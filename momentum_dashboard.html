@@ -4502,16 +4502,25 @@ async function loadChart(symbol) {
       canvas.parentNode.insertBefore(d, canvas.nextSibling);
       return d;
     })();
+    const tvId = 'tv_' + symbol.replace(/[^a-zA-Z0-9]/g,'_') + '_' + Date.now();
     fallbackDiv.style.display = 'block';
     fallbackDiv.innerHTML = `
       <div style="font-size:11px;color:var(--accent-gold);padding:6px 12px 4px;opacity:.8">
-        ⚠ Yahoo/Stooq לא זמינים — גרף Finviz (daily)
+        ⚡ TradingView — ${symbol}
       </div>
-      <img
-        src="https://finviz.com/chart.ashx?t=${symbol}&ty=c&ta=1&p=d&s=l"
-        style="width:100%;border-radius:0 0 8px 8px;display:block"
-        onerror="this.parentElement.innerHTML='<div style=padding:20px;color:var(--accent-red);text-align:center>⚠ לא ניתן לטעון גרף — ${symbol}</div>'"
-      />`;
+      <div id="${tvId}" style="height:420px;border-radius:0 0 8px 8px;overflow:hidden"></div>`;
+    const tvScript = document.createElement('script');
+    tvScript.src = 'https://s3.tradingview.com/tv.js';
+    tvScript.onload = () => {
+      new TradingView.widget({
+        width: '100%', height: 420,
+        symbol: symbol, interval: 'D',
+        timezone: 'Etc/UTC', theme: 'dark', style: '1', locale: 'en',
+        toolbar_bg: '#0d1520', enable_publishing: false,
+        allow_symbol_change: true, container_id: tvId
+      });
+    };
+    document.head.appendChild(tvScript);
   }
 }
 
@@ -6074,9 +6083,9 @@ async function autoLoadFromData() {
 
   for (const f of fileConfigs) {
     for (const lbl of dates) {
-      const url = f.pattern(lbl);
+      const url = f.pattern(lbl) + `?v=${Date.now()}`;
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-store' });
         if (!res.ok) continue;
         const text = await res.text();
         const rows = parseCSV(text);
