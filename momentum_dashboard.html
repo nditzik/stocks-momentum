@@ -6061,16 +6061,18 @@ async function autoLoadFromData() {
     dates.push(`${mm}-${dd}-${yyyy}`);
   }
 
-  const files = [
-    { type: 'strength',      pattern: lbl => `data/stocks-screener-strength-and-direction-${lbl}.csv`,    slotId: 'slot-strength', statusId: 'status-strength' },
-    { type: '6m_high',       pattern: lbl => `data/stocks-screener-nearing-6-month-highs-${lbl}.csv`,     slotId: 'slot-highs',    statusId: 'status-6m_high' },
-    { type: 'ttm_squeeze',   pattern: lbl => `data/ttm-squeeze-triggered-${lbl}.csv`,                     slotId: 'slot-squeeze',  statusId: 'status-ttm_squeeze' },
-    { type: 'macd_buy',      pattern: lbl => `data/12-26-9-day-emacd-new-buy-signals-${lbl}.csv`,         slotId: 'slot-macd',     statusId: 'status-macd_buy' },
-    { type: 'hot_prospects', pattern: lbl => `data/stocks-screener-hot-prospects-${lbl}.csv`,             slotId: 'slot-hot',      statusId: 'status-hot_prospects' },
+  const fileConfigs = [
+    { type: 'strength',      pattern: lbl => `data/stocks-screener-strength-and-direction-${lbl}.csv`,  slotId: 'slot-strength', statusId: 'status-strength' },
+    { type: '6m_high',       pattern: lbl => `data/stocks-screener-nearing-6-month-highs-${lbl}.csv`,   slotId: 'slot-highs',    statusId: 'status-6m_high' },
+    { type: 'ttm_squeeze',   pattern: lbl => `data/ttm-squeeze-triggered-${lbl}.csv`,                   slotId: 'slot-squeeze',  statusId: 'status-ttm_squeeze' },
+    { type: 'macd_buy',      pattern: lbl => `data/12-26-9-day-emacd-new-buy-signals-${lbl}.csv`,       slotId: 'slot-macd',     statusId: 'status-macd_buy' },
+    { type: 'hot_prospects', pattern: lbl => `data/stocks-screener-hot-prospects-${lbl}.csv`,           slotId: 'slot-hot',      statusId: 'status-hot_prospects' },
   ];
 
-  let loaded = 0;
-  for (const f of files) {
+  let latestDate = null;
+  const loadedConfigs = [];
+
+  for (const f of fileConfigs) {
     for (const lbl of dates) {
       const url = f.pattern(lbl);
       try {
@@ -6080,19 +6082,40 @@ async function autoLoadFromData() {
         const rows = parseCSV(text);
         if (!rows.length) continue;
         newFiles[f.type] = rows;
-        const slot = document.getElementById(f.slotId);
-        const statusEl = document.getElementById(f.statusId);
-        if (slot) slot.classList.add('loaded');
-        if (statusEl) { statusEl.className = 'slot-status ok'; statusEl.textContent = `✓ ${lbl} (${rows.length} שורות)`; }
-        loaded++;
+        if (!latestDate) latestDate = lbl;
+        loadedConfigs.push({ ...f, lbl, rowCount: rows.length });
         break;
       } catch(e) { /* try next date */ }
     }
   }
 
-  if (loaded > 0) {
-    checkApplyReady();
-    applyNewData();
+  if (!loadedConfigs.length) return;
+
+  checkApplyReady();
+  applyNewData(); // resets slots + toggles upload panel
+
+  // Close upload panel if applyNewData opened it
+  const panel = document.getElementById('uploadPanel');
+  if (panel && panel.classList.contains('visible')) toggleUpload();
+
+  // Re-mark slots as loaded with status
+  loadedConfigs.forEach(f => {
+    const slot = document.getElementById(f.slotId);
+    const statusEl = document.getElementById(f.statusId);
+    if (slot) slot.classList.add('loaded');
+    if (statusEl) { statusEl.className = 'slot-status ok'; statusEl.textContent = `✓ ${f.lbl} (${f.rowCount} שורות)`; }
+  });
+
+  // Set timestamp from file date
+  if (latestDate) {
+    const [mm, dd, yyyy] = latestDate.split('-');
+    const tsStr = `${dd}/${mm}/${yyyy}`;
+    const hBadge = document.getElementById('headerLastUpdate');
+    const hTime  = document.getElementById('headerUpdateTime');
+    if (hBadge && hTime) { hTime.textContent = tsStr; hBadge.style.display = 'block'; }
+    const fBadge = document.getElementById('footerLastUpdate');
+    const fTime  = document.getElementById('footerUpdateTime');
+    if (fBadge && fTime) { fTime.textContent = tsStr; fBadge.style.display = 'inline'; }
   }
 }
 
