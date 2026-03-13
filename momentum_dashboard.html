@@ -6048,8 +6048,57 @@ function renderSignalPulse() {
   bar.innerHTML = html;
 }
 
+// ── AUTO LOAD FROM data/ ──
+async function autoLoadFromData() {
+  const today = new Date();
+  const dates = [];
+  for (let i = 0; i < 10; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    dates.push(`${mm}-${dd}-${yyyy}`);
+  }
+
+  const files = [
+    { type: 'strength',      pattern: lbl => `data/stocks-screener-strength-and-direction-${lbl}.csv`,    slotId: 'slot-strength', statusId: 'status-strength' },
+    { type: '6m_high',       pattern: lbl => `data/stocks-screener-nearing-6-month-highs-${lbl}.csv`,     slotId: 'slot-highs',    statusId: 'status-6m_high' },
+    { type: 'ttm_squeeze',   pattern: lbl => `data/ttm-squeeze-triggered-${lbl}.csv`,                     slotId: 'slot-squeeze',  statusId: 'status-ttm_squeeze' },
+    { type: 'macd_buy',      pattern: lbl => `data/12-26-9-day-emacd-new-buy-signals-${lbl}.csv`,         slotId: 'slot-macd',     statusId: 'status-macd_buy' },
+    { type: 'hot_prospects', pattern: lbl => `data/stocks-screener-hot-prospects-${lbl}.csv`,             slotId: 'slot-hot',      statusId: 'status-hot_prospects' },
+  ];
+
+  let loaded = 0;
+  for (const f of files) {
+    for (const lbl of dates) {
+      const url = f.pattern(lbl);
+      try {
+        const res = await fetch(url);
+        if (!res.ok) continue;
+        const text = await res.text();
+        const rows = parseCSV(text);
+        if (!rows.length) continue;
+        newFiles[f.type] = rows;
+        const slot = document.getElementById(f.slotId);
+        const statusEl = document.getElementById(f.statusId);
+        if (slot) slot.classList.add('loaded');
+        if (statusEl) { statusEl.className = 'slot-status ok'; statusEl.textContent = `✓ ${lbl} (${rows.length} שורות)`; }
+        loaded++;
+        break;
+      } catch(e) { /* try next date */ }
+    }
+  }
+
+  if (loaded > 0) {
+    checkApplyReady();
+    applyNewData();
+  }
+}
+
 // Start
 init();
+autoLoadFromData();
 </script>
 </body>
 </html>
