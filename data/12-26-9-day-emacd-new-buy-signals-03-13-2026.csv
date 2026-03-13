@@ -1,0 +1,36 @@
+Symbol,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D Rel Str","1Y vs IDX","YTD vs IDX","200D Avg Vol","Wkly Opts",Direction,Strength,"14D Stoch %K","50D RelVol"
+ORKA,"Medical - Drugs",37.37,+16.82%,6,Buy,"100% Buy",+287.82,+239.86%,30.84,32.73,26.41,33.7,63.08,219.52,27.84,389647,No,Strongest,Maximum,48.23%,1.53
+APEI,Schools,56.95,+19.69%,6,Buy,"100% Buy",+157.02,+168.06%,39.22,43.17,37.53,45.82,85.06,147.72,52.56,281541,No,"Top 1%","Top 1%",87.14%,5.08
+AXGN,"Medical Instruments",31.91,+0.47%,4,Sell,"40% Buy",+135.56,+85.37%,29.55,32.63,25.12,31.97,49.87,65.03,0.12,1016407,No,Weakest,Average,54.27%,0.43
+PLPC,"Electronics Products - Misc",265,+1.59%,1,Sell,"88% Buy",+87.75,+114.70%,233.11,252.16,220.56,258.44,54.57,94.36,31.21,105536,No,Average,Strong,79.64%,0.77
+EOSE,"Industrial Services",5.81,-5.07%,2,Sell,"56% Sell",+85.19,+49.11%,13.23,12.11,12,8.21,30.14,28.77,-45.67,20186643,Yes,Strengthening,Average,11.16%,0.32
+BG,"Agriculture Products",126.34,+0.41%,6,Buy,"100% Buy",+80.51,+71.43%,103.79,113.58,96.87,120.61,67.22,51.09,44.55,1793291,No,Strongest,"Top 1%",90.07%,0.45
+SU,"Oil - C$ Integrated",59.4,-0.59%,7,Buy,"100% Buy",+76.29,+66.11%,47.87,52.98,45.46,56.92,70.51,45.77,37.06,4544878,Yes,Strongest,"Top 1%",90.77%,0.21
+APLD,"Finance - Misc Services",27.78,+1.09%,1,Sell,"8% Buy",+52.39,+347.85%,30.41,32.49,27.28,29.07,45.72,327.51,17.63,35483762,Yes,Weakest,Weak,49.95%,0.34
+DVN,"Oil - US Exploration & Product",46.05,+0.22%,4,Buy,"100% Buy",+46.66,+36.06%,38.17,41.16,36.94,44.27,63.47,15.72,28.44,8826157,Yes,Strongest,Maximum,90.38%,0.31
+ORA,"Other Alt Energy",110.43,+0.34%,1,Sell,"8% Buy",+45.57,+53.88%,113.91,117.45,107.74,112.23,43.64,33.54,2.51,588255,No,Weakest,Weak,50.33%,0.14
+ESQ,"Banks - Northeast",109,+2.83%,3,Hold,"80% Buy",+45.10,+55.58%,104.09,106.95,102.65,104.33,59.49,35.24,11.7,86718,No,Strengthening,Average,61.15%,0.49
+LOCO,"Retail - Restaurants",12.84,+18.01%,12,Buy,"100% Buy",+34.72,+28.95%,10.71,10.84,10.49,11.02,76.33,8.61,24.73,271769,No,"Top 1%",Strong,67.86%,4.56
+VLGEA,"Retail - Supermarket",42.05,+1.67%,10,Buy,"88% Buy",+30.04,+26.37%,35.98,37.44,36.04,39.84,65.85,6.03,21.25,51004,No,Strongest,Maximum,85.94%,0.22
+TCI,"Real Estate Developers",40.01,+13.99%,1,Sell,"40% Sell",+15.82,+40.50%,48.11,48.38,47.36,40.36,44.74,20.16,-28.95,2678,No,Weakening,Average,31.88%,1.69
+OLN,"Chemical - Diversified",25.4,-2.35%,5,Buy,"100% Buy",+12.20,+7.39%,22.29,23.78,22.74,24.46,56.75,-12.95,25.64,2705106,No,Strengthening,Average,68.46%,0.31
+BHF,"Insurance - Life",59.98,-0.66%,1,Sell,"8% Buy",+7.72,+12.77%,62.09,63.07,57.55,61.34,36.49,-7.57,-4.3,1076709,No,Weakest,Weak,32.01%,0.21
+PLSE,"Medical Instruments",21.58,+1.31%,2,Buy,"96% Buy",+5.97,+28.22%,16.25,17.62,16.42,20.37,61.52,7.88,61.6,221758,No,Strongest,Strong,71.21%,0.49
+GAIN,"Finance - SBIC & Commercial",14.03,-0.14%,4,Hold,"8% Sell",+5.10,+7.26%,13.88,13.87,13.92,13.81,56.95,-13.08,3.36,171576,No,Weakest,Minimum,67.32%,2.03
+NMRK,"Real Estate Operations",14.09,+1.88%,2,Sell,"72% Sell",+3.21,+18.83%,16.76,16.07,17.21,14.6,39.61,-1.51,-15.93,1331609,No,Average,Average,22.54%,0.31
+OLLI,"Consumer Prdts - Misc Staple",108.95,+3.89%,1,Sell,"88% Sell",-0.40,+8.88%,115,110.89,120.4,107.71,53.34,-11.46,3.49,1126455,No,Average,Good,58.28%,0.73
+AOSL,"Electronics - Semiconductors",21.53,+1.56%,1,Sell,"88% Sell",-0.60,-16.04%,22.04,21.7,24.12,21.43,52.18,-36.38,11.76,309548,No,Weakening,Soft,61.48%,0.18
+WYFI,"Technology Services",16.15,-3.70%,1,Sell,N/A,-4.33,N/A,20.32,18.13,21.33,17.1,46.62,N/A,7.93,N/A,No,N/A,N/A,45.81%,0.59
+CPRI,"Retail - Apparel & Shoes",18.69,+2.19%,4,Sell,"72% Sell",-7.12,-10.82%,22.86,21.99,22.16,19.68,41.16,-31.16,-19.88,2918949,No,Average,Good,30.89%,0.45
+TME,"Media Conglomerates",14.07,+2.85%,1,Sell,"100% Sell",-9.82,+13.39%,17.78,15.89,19.96,14.47,40.8,-6.95,-16.86,5887186,No,Strengthening,Strong,20.34%,0.41
+STAA,"Medical - Dental Suppliers",18.66,+1.47%,5,Hold,"80% Sell",-23.33,+7.38%,22.5,19.35,24.08,18.42,50.06,-12.96,-16.1,1344343,No,Weakening,Average,35.21%,0.29
+PFLT,"Finance - Investment Mgmt",8.13,+1.12%,2,Sell,"100% Sell",-27.87,-25.60%,9.07,8.97,9.27,8.3,36.59,-45.94,-9.42,1032921,No,Strengthening,Strong,30.80%,0.29
+RUM,"Internet - Software",5.33,-2.20%,2,Sell,"100% Sell",-38.39,-29.19%,6.26,5.9,6.71,5.56,44.69,-49.53,-12.26,2835755,Yes,Strongest,Strong,65.13%,0.19
+VOYG,"Aerospace - Defense Equipment",27.12,+3.99%,8,Sell,N/A,-42.76,N/A,27.46,29.4,28.61,27.47,49.18,N/A,8.67,N/A,No,N/A,N/A,50.70%,0.34
+FUFU,"Finance - Misc Services",2.45,-0.81%,6,Sell,"88% Sell",-45.38,-41.49%,2.88,2.73,3.18,2.44,47.97,-61.83,-3.32,288306,No,Weakening,Strong,57.85%,0.59
+ENVX,"Electronics Products - Misc",4.94,+0.41%,3,Sell,"100% Sell",-47.68,-29.89%,7.82,6.57,8.71,5.48,37.18,-50.23,-27.92,7220565,Yes,Average,Strong,20.94%,0.27
+RXST,"Medical Instruments",7.35,-3.80%,3,Sell,"100% Sell",-48.18,-70.26%,9.62,8.75,9.31,8.02,38.49,-90.6,-25.09,1016053,No,Strengthening,Soft,30.51%,0.15
+ODD,"Internet - Software",13.69,+2.16%,5,Sell,"100% Sell",-54.62,-69.54%,35.43,28.08,43.44,18.97,28.86,-89.88,-63.17,1243704,Yes,Strengthening,Maximum,11.52%,0.34
+NP,"Insurance - Multi Line",19.87,+9.24%,2,Sell,N/A,N/A,N/A,24.64,23.29,0,20.24,44.5,N/A,-28.38,N/A,No,N/A,N/A,15.80%,0.47
+LBRX,"Medical - Biomedical",26.33,+5.57%,7,Buy,N/A,N/A,N/A,20.32,22.81,0,24.27,66.42,N/A,21.71,N/A,No,N/A,N/A,82.94%,0.54
+"Downloaded from Barchart.com as of 03-13-2026 11:33am CDT"
