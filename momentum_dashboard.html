@@ -4006,6 +4006,8 @@ const PROXY_BUILDERS = [
   (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u.replace('query1.finance.yahoo.com','query2.finance.yahoo.com'))}`,
 ];
 
+const TWELVE_DATA_KEY = '5v3XmYvikpBQTl917ZJiMv7eAhT_Zmp1';
+
 // ── Yahoo Finance Quote (fundamental data) ──────────────────────────────────
 async function loadYahooQuote(symbol) {
   const el = document.getElementById('yahooQuotePanel');
@@ -4351,112 +4353,28 @@ async function loadChart(symbol) {
   // Scroll to chart
   setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
 
-  // Fetch via CORS proxy chain — all proxies in parallel, first winner used
-  const end = Math.floor(Date.now() / 1000);
-  const start = end - 220 * 24 * 3600; // 220 days for MA150
-  const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&period1=${start}&period2=${end}&includePrePost=false`;
+  // ── Fetch from Twelve Data — direct API, no CORS proxy needed ──────────────
   try {
-    let json = null;
-    let lastErr = '';
-    const tryProxy = async (builder) => {
-      const resp = await fetch(builder(yahooUrl), { headers: { 'Accept': 'application/json' }, signal: AbortSignal.timeout(12000) });
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const text = await resp.text();
-      const j = JSON.parse(text);
-      if (!j?.chart?.result?.[0]) throw new Error('no data');
-      return j;
-    };
-    try {
-      json = await Promise.any(PROXY_BUILDERS.map(b => tryProxy(b)));
-    } catch(e) { lastErr = e.message; }
-    // ── Stooq fallback if all proxies failed ──────────────────────────────────
-    if (!json) {
-      loading.innerHTML = `<span style="color:var(--text-2);font-size:12px">⟳ Proxies נכשלו, מנסה Stooq...</span>`;
-      try {
-        const d1 = new Date(Date.now() - 240 * 24 * 3600 * 1000).toISOString().slice(0,10).replace(/-/g,'');
-        const d2 = new Date().toISOString().slice(0,10).replace(/-/g,'');
-        const stooqUrl = `https://stooq.com/q/d/l/?s=${symbol.toLowerCase()}.us&d1=${d1}&d2=${d2}&i=d`;
-        // Stooq requires a proxy too (CORS blocked in browser)
-        const tryStooq = async (builder) => {
-          const r = await fetch(builder(stooqUrl), { signal: AbortSignal.timeout(12000) });
-          if (!r.ok) throw new Error(`HTTP ${r.status}`);
-          const t = await r.text();
-          if (!t || t.startsWith('No data') || t.startsWith('<')) throw new Error('no csv data');
-          return t;
-        };
-        let csv;
-        try { csv = await Promise.any(PROXY_BUILDERS.map(b => tryStooq(b))); }
-        catch(e) { throw new Error(`Stooq via proxy: ${e.message}`); }
-        if (!csv || csv.startsWith('No data')) throw new Error('Stooq: no data');
-        const lines = csv.trim().split('\n').filter(Boolean);
-        if (lines.length < 3) throw new Error('Stooq: too few rows');
-        const stooqCandles = [];
-        for (let i = 1; i < lines.length; i++) {
-          const p = lines[i].split(',');
-          if (p.length < 5) continue;
-          const t = new Date(p[0]).getTime();
-          if (!t || isNaN(t)) continue;
-          stooqCandles.push({ t, o: +p[1], h: +p[2], l: +p[3], c: +p[4], v: +(p[5]||0) });
-        }
-        if (!stooqCandles.length) throw new Error('Stooq: empty candles');
-        stooqCandles.sort((a,b) => a.t - b.t);
-        if (selectedSymbol !== symbol) return;
+    const tdUrl = `https://api.twelvedata.com/time_series?symbol=${encodeURIComponent(symbol)}&interval=1day&outputsize=220&apikey=${TWELVE_DATA_KEY}`;
+    const resp = await fetch(tdUrl, { signal: AbortSignal.timeout(15000) });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const json = await resp.json();
+    if (json.status === 'error') throw new Error(json.message || 'Twelve Data error');
+    if (!json.values || !json.values.length) throw new Error('No data');
 
-        function calcMALocal(data, period) {
-          const r = new Array(data.length).fill(null);
-          let s = 0;
-          for (let i = 0; i < data.length; i++) {
-            s += data[i].c;
-            if (i >= period) s -= data[i-period].c;
-            if (i >= period-1) r[i] = s / period;
-          }
-          return r;
-        }
-        const ma20s = calcMALocal(stooqCandles,20);
-        const ma50s = calcMALocal(stooqCandles,50);
-        const ma150s = calcMALocal(stooqCandles,150);
-        chartData = { candles: stooqCandles, ma20: ma20s, ma50: ma50s, ma150: ma150s,
-          bb: calcBB(stooqCandles,20,2), rsi14: calcRSI(stooqCandles,14),
-          stoch: calcStoch(stooqCandles,14,3,3), macd: calcMACD(stooqCandles,12,26,9),
-          meta: { symbol }, earningsEvents: [], source: 'Stooq' };
-        chartSymbolActive = symbol;
-        panOffset = 0;
-        loading.style.display = 'none';
-        canvas.style.display = 'block';
-        renderCandles();
-        setupCrosshair(canvas);
-        return; // done via Stooq
-      } catch(stooqErr) {
-        throw new Error(`כל ה-proxy נכשלו (${lastErr}) וגם Stooq נכשל (${stooqErr.message})`);
-      }
-    }
+    // Values come newest-first — reverse to oldest-first
+    const candles = json.values.slice().reverse().map(v => ({
+      t: new Date(v.datetime).getTime(),
+      o: +v.open,
+      h: +v.high,
+      l: +v.low,
+      c: +v.close,
+      v: +(v.volume || 0),
+    })).filter(c => c.t && !isNaN(c.o));
 
-    const result = json?.chart?.result?.[0];
-    if (!result) throw new Error('No data');
+    if (!candles.length) throw new Error('Empty candles');
+    if (selectedSymbol !== symbol) return;
 
-    const timestamps = result.timestamp;
-    const quotes = result.indicators.quote[0];
-    const closes = quotes.close;
-    const opens = quotes.open;
-    const highs = quotes.high;
-    const lows = quotes.low;
-    const volumes = quotes.volume;
-
-    // Build candle array, filter nulls
-    const candles = [];
-    for (let i = 0; i < timestamps.length; i++) {
-      if (opens[i] == null || closes[i] == null) continue;
-      candles.push({
-        t: timestamps[i] * 1000,
-        o: opens[i],
-        h: highs[i],
-        l: lows[i],
-        c: closes[i],
-        v: volumes[i] || 0,
-      });
-    }
-
-    // Compute MAs — O(n) sliding window
     function calcMA(data, period) {
       const result = new Array(data.length).fill(null);
       let sum = 0;
@@ -4471,56 +4389,31 @@ async function loadChart(symbol) {
     const ma20 = calcMA(candles, 20);
     const ma50 = calcMA(candles, 50);
     const ma150 = calcMA(candles, 150);
-
-    // Guard: abort if user switched to a different stock while we were fetching
-    if (selectedSymbol !== symbol) return;
-    const evts = result.events?.earnings;
-    const earningsEvents = evts
-      ? Object.values(evts).map(e => e.date * 1000)
-      : [];
     const bb    = calcBB(candles, 20, 2);
     const rsi14 = calcRSI(candles, 14);
     const stoch = calcStoch(candles, 14, 3, 3);
     const macd  = calcMACD(candles, 12, 26, 9);
-    chartData = { candles, ma20, ma50, ma150, bb, rsi14, stoch, macd, meta: result.meta || {}, earningsEvents };
+
+    chartData = { candles, ma20, ma50, ma150, bb, rsi14, stoch, macd, meta: { symbol }, earningsEvents: [] };
     chartSymbolActive = symbol;
     panOffset = 0;
     loading.style.display = 'none';
     canvas.style.display = 'block';
-
     renderCandles();
     setupCrosshair(canvas);
 
   } catch (err) {
-    // Fallback: Finviz chart image (no proxy needed — plain <img> bypasses CORS)
     loading.style.display = 'none';
     canvas.style.display = 'none';
     const fallbackDiv = document.getElementById('chartFallback') || (() => {
       const d = document.createElement('div');
       d.id = 'chartFallback';
-      d.style.cssText = 'width:100%;padding:0 0 8px';
+      d.style.cssText = 'width:100%;padding:20px;text-align:center';
       canvas.parentNode.insertBefore(d, canvas.nextSibling);
       return d;
     })();
-    const tvId = 'tv_' + symbol.replace(/[^a-zA-Z0-9]/g,'_') + '_' + Date.now();
     fallbackDiv.style.display = 'block';
-    fallbackDiv.innerHTML = `
-      <div style="font-size:11px;color:var(--accent-gold);padding:6px 12px 4px;opacity:.8">
-        ⚡ TradingView — ${symbol}
-      </div>
-      <div id="${tvId}" style="height:420px;border-radius:0 0 8px 8px;overflow:hidden"></div>`;
-    const tvScript = document.createElement('script');
-    tvScript.src = 'https://s3.tradingview.com/tv.js';
-    tvScript.onload = () => {
-      new TradingView.widget({
-        width: '100%', height: 420,
-        symbol: symbol, interval: 'D',
-        timezone: 'Etc/UTC', theme: 'dark', style: '1', locale: 'en',
-        toolbar_bg: '#0d1520', enable_publishing: false,
-        allow_symbol_change: true, container_id: tvId
-      });
-    };
-    document.head.appendChild(tvScript);
+    fallbackDiv.innerHTML = `<div style="color:var(--accent-red);font-size:13px;padding:20px">שגיאה בטעינת גרף ${symbol}: ${err.message}</div>`;
   }
 }
 
