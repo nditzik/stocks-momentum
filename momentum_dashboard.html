@@ -5061,6 +5061,9 @@ function handleFile(e, type) {
 }
 
 function processUploadedFile(file, type) {
+  // Extract date from filename e.g. "...-03-13-2026.csv" → "03-13-2026"
+  const dateMatch = file.name.match(/(\d{2}-\d{2}-\d{4})/);
+  if (dateMatch) currentDataDate = dateMatch[1];
   const slotId = 'slot-' + (type === '6m_high' ? 'highs' : type === 'ttm_squeeze' ? 'squeeze' : type === 'macd_buy' ? 'macd' : type === 'hot_prospects' ? 'hot' : type === 'market_data' ? 'market' : type === 'unusual_data' ? 'unusual' : type === 'flow_data' ? 'flow' : 'strength');
   const statusEl = document.getElementById('status-' + type);
   const slot = document.getElementById(slotId);
@@ -6111,7 +6114,7 @@ async function autoLoadFromData() {
         const rows = parseCSV(text);
         if (!rows.length) continue;
         newFiles[f.type] = rows;
-        if (!latestDate) latestDate = lbl;
+        if (!latestDate) { latestDate = lbl; currentDataDate = lbl; }
         loadedConfigs.push({ ...f, lbl, rowCount: rows.length });
         break;
       } catch(e) { /* try next date */ }
@@ -6152,10 +6155,18 @@ async function autoLoadFromData() {
 const HISTORY_KEY = 'momentum_history';
 const HISTORY_MAX_DAYS = 60;
 const SIG_LABEL = { strength:'Str', '6m_high':'6M', ttm_squeeze:'TTM', macd_buy:'MACD', hot_prospects:'Hot' };
+let currentDataDate = null; // set from CSV filename (MM-DD-YYYY)
 
 function saveHistorySnapshot() {
   if (!RAW_DATA.length) return;
-  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  // Use file date if available, otherwise today
+  let today;
+  if (currentDataDate) {
+    const [mm, dd, yyyy] = currentDataDate.split('-');
+    today = `${yyyy}-${mm}-${dd}`; // YYYY-MM-DD
+  } else {
+    today = new Date().toISOString().slice(0, 10);
+  }
   let history = [];
   try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
   // Remove today's existing entry (overwrite)
