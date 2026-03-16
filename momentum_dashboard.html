@@ -1270,6 +1270,118 @@
   .upload-toggle-btn:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
   .upload-toggle-btn.active { border-color: var(--accent-teal); color: var(--accent-teal); background: rgba(0,212,170,0.08); }
 
+  /* History */
+  .history-toggle-btn {
+    padding: 7px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    border-radius: 8px;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .history-toggle-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+  .history-toggle-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,200,66,0.08); }
+  .history-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .history-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .history-panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-0);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .history-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    direction: ltr;
+  }
+  .history-row:last-child { border-bottom: none; }
+  .history-sym {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-teal);
+    min-width: 62px;
+    cursor: pointer;
+  }
+  .history-sym:hover { text-decoration: underline; }
+  .history-name {
+    font-size: 11px;
+    color: var(--text-2);
+    min-width: 110px;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+  }
+  .history-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-gold);
+    font-weight: 700;
+    min-width: 28px;
+    align-self: center;
+  }
+  .history-timeline { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+  .history-day {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg-3);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .history-day-date { color: var(--text-2); font-family: 'DM Mono', monospace; }
+  .history-day-tags { display: flex; gap: 3px; }
+  .htag {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+  .htag-strength     { background: rgba(0,210,190,0.15);  color: var(--accent-teal); }
+  .htag-6m_high      { background: rgba(245,200,66,0.15);  color: var(--accent-gold); }
+  .htag-ttm_squeeze  { background: rgba(139,92,246,0.2);   color: #a78bfa; }
+  .htag-macd_buy     { background: rgba(74,222,128,0.15);  color: #4ade80; }
+  .htag-hot_prospects{ background: rgba(248,113,113,0.15); color: #f87171; }
+  .history-clear-btn {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .history-clear-btn:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
   @media (max-width: 900px) { .upload-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .upload-grid { grid-template-columns: 1fr; } }
 
@@ -2074,9 +2186,23 @@
     <button class="fav-io-btn" onclick="exportCSV()" title="ייצוא טבלה מסוננת ל-CSV">📊 CSV</button>
     <button class="compact-toggle-btn" id="compactToggleBtn" onclick="toggleCompact()" title="Compact Mode — שורות צפופות יותר">⊟ צפוף</button>
     <button class="smart-toggle-btn" id="smartToggleBtn" onclick="toggleSmartMode()" title="Smart Mode — מסנן אוטומטי: מניות בשיא (RSI+Stoch גבוה), מבנה שבור, ו-Strength חלש. Smart ON = רק דיפים בריאים בטרנד עולה.">🧠 Smart</button>
+    <button class="history-toggle-btn" id="historyToggleBtn" onclick="toggleHistory()">📋 היסטוריה</button>
     <button class="upload-toggle-btn" id="uploadToggleBtn" onclick="toggleUpload()">📂 עדכן נתונים</button>
     <button class="view-toggle-btn" id="viewToggleBtn" onclick="toggleView()">⬛ Heatmap</button>
     <button class="cb-toggle-btn" id="cbToggleBtn" onclick="toggleColorBlind()" title="מצב עיוור צבעים (כחול/כתום)">👁 CB</button>
+  </div>
+
+  <!-- HISTORY PANEL -->
+  <div class="history-panel" id="historyPanel">
+    <div class="history-panel-header">
+      <div class="history-panel-title">📋 היסטוריית מניות</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span id="historyDateRange" style="font-size:11px;color:var(--text-2);font-family:'DM Mono',monospace"></span>
+        <button class="history-clear-btn" onclick="clearHistory()">🗑 נקה היסטוריה</button>
+        <button class="close-btn" onclick="toggleHistory()">✕</button>
+      </div>
+    </div>
+    <div id="historyContent"></div>
   </div>
 
   <!-- HEATMAP VIEW -->
@@ -5113,6 +5239,7 @@ function applyNewData() {
   // Replace global data
   RAW_DATA.length = 0;
   rebuilt.forEach(r => RAW_DATA.push(r));
+  saveHistorySnapshot();
 
   // Refresh everything
   updateStatBar();
@@ -6019,6 +6146,96 @@ async function autoLoadFromData() {
     const fTime  = document.getElementById('footerUpdateTime');
     if (fBadge && fTime) { fTime.textContent = tsStr; fBadge.style.display = 'inline'; }
   }
+}
+
+// ── History (localStorage) ────────────────────────────────────────────────────
+const HISTORY_KEY = 'momentum_history';
+const HISTORY_MAX_DAYS = 60;
+const SIG_LABEL = { strength:'Str', '6m_high':'6M', ttm_squeeze:'TTM', macd_buy:'MACD', hot_prospects:'Hot' };
+
+function saveHistorySnapshot() {
+  if (!RAW_DATA.length) return;
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+  // Remove today's existing entry (overwrite)
+  history = history.filter(e => e.date !== today);
+  const stocks = RAW_DATA.map(d => ({
+    s: d.symbol,
+    n: d.name || d.sq_name || d.macd_name || '',
+    sig: d.signals || [],
+    rv: parseFloat(d.rvol) || 0,
+    p: parseFloat(d.price) || 0,
+  }));
+  history.push({ date: today, stocks });
+  // Keep only last HISTORY_MAX_DAYS days
+  history.sort((a, b) => a.date.localeCompare(b.date));
+  if (history.length > HISTORY_MAX_DAYS) history = history.slice(-HISTORY_MAX_DAYS);
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch(e) {}
+}
+
+function toggleHistory() {
+  const panel = document.getElementById('historyPanel');
+  const btn   = document.getElementById('historyToggleBtn');
+  const open  = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  btn.classList.toggle('active', !open);
+  if (!open) renderHistory();
+}
+
+function renderHistory() {
+  const content = document.getElementById('historyContent');
+  const rangeEl = document.getElementById('historyDateRange');
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+  if (!history.length) {
+    content.innerHTML = '<div style="color:var(--text-2);font-size:12px;text-align:center;padding:24px">אין היסטוריה עדיין — פתח את הדשבורד עם נתונים כדי לצבור</div>';
+    rangeEl.textContent = '';
+    return;
+  }
+  // Date range label
+  const dates = history.map(e => e.date);
+  const fmt = d => { const [y,m,dd] = d.split('-'); return `${dd}/${m}`; };
+  rangeEl.textContent = `${fmt(dates[0])} — ${fmt(dates[dates.length-1])} · ${dates.length} ימים`;
+
+  // Aggregate: symbol → [ {date, signals[]} ]
+  const map = {};
+  history.forEach(entry => {
+    entry.stocks.forEach(st => {
+      if (!map[st.s]) map[st.s] = { name: st.n, days: [] };
+      else if (!map[st.s].name && st.n) map[st.s].name = st.n;
+      map[st.s].days.push({ date: entry.date, sig: st.sig });
+    });
+  });
+
+  // Sort by total appearances desc, then by most recent
+  const rows = Object.entries(map).sort((a, b) => {
+    const diff = b[1].days.length - a[1].days.length;
+    if (diff !== 0) return diff;
+    return b[1].days[b[1].days.length-1].date.localeCompare(a[1].days[a[1].days.length-1].date);
+  });
+
+  let html = '';
+  rows.forEach(([sym, info]) => {
+    const tagsHtml = info.days.map(d => {
+      const [,mm,dd] = d.date.split('-');
+      const sigTags = d.sig.map(s => `<span class="htag htag-${s}">${SIG_LABEL[s]||s}</span>`).join('');
+      return `<div class="history-day"><span class="history-day-date">${dd}/${mm}</span><div class="history-day-tags">${sigTags}</div></div>`;
+    }).join('');
+    html += `<div class="history-row">
+      <span class="history-sym" onclick="loadChart('${sym}')">${sym}</span>
+      <span class="history-name">${info.name}</span>
+      <span class="history-count">${info.days.length}×</span>
+      <div class="history-timeline">${tagsHtml}</div>
+    </div>`;
+  });
+  content.innerHTML = html;
+}
+
+function clearHistory() {
+  if (!confirm('למחוק את כל ההיסטוריה?')) return;
+  localStorage.removeItem(HISTORY_KEY);
+  renderHistory();
 }
 
 // Start
