@@ -2199,6 +2199,7 @@
       <div class="history-panel-title">📋 היסטוריית מניות</div>
       <div style="display:flex;gap:8px;align-items:center">
         <span id="historyDateRange" style="font-size:11px;color:var(--text-2);font-family:'DM Mono',monospace"></span>
+        <button class="history-clear-btn" onclick="exportHistoryCSV()" style="border-color:var(--accent-green);color:var(--accent-green)">⬇ ייצוא CSV</button>
         <button class="history-clear-btn" onclick="clearHistory()">🗑 נקה היסטוריה</button>
         <button class="close-btn" onclick="toggleHistory()">✕</button>
       </div>
@@ -6264,6 +6265,46 @@ function clearHistory() {
   if (!confirm('למחוק את כל ההיסטוריה?')) return;
   localStorage.removeItem(HISTORY_KEY);
   renderHistory();
+}
+
+function exportHistoryCSV() {
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+  if (!history.length) { alert('אין היסטוריה לייצוא'); return; }
+
+  // Aggregate same as renderHistory
+  const map = {};
+  history.forEach(entry => {
+    entry.stocks.forEach(st => {
+      if (!map[st.s]) map[st.s] = { name: st.n || '', days: [] };
+      else if (!map[st.s].name && st.n) map[st.s].name = st.n;
+      map[st.s].days.push({ date: entry.date, sig: st.sig });
+    });
+  });
+
+  const rows = Object.entries(map).sort((a, b) => b[1].days.length - a[1].days.length);
+
+  const lines = ['Symbol,Name,Appearances,Dates,Signals'];
+  rows.forEach(([sym, info]) => {
+    const dates = info.days.map(d => d.date).join(' | ');
+    const sigs  = info.days.map(d => d.sig.map(s => SIG_LABEL[s] || s).join('+')).join(' | ');
+    lines.push([
+      sym,
+      `"${(info.name||'').replace(/"/g,'""')}"`,
+      info.days.length,
+      `"${dates}"`,
+      `"${sigs}"`
+    ].join(','));
+  });
+
+  const blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const today = new Date().toISOString().slice(0,10);
+  a.download = `momentum_history_${today}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 // Start
