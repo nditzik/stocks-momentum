@@ -2170,8 +2170,8 @@
     <button class="filter-btn" data-filter="low_alpha" onclick="setFilter('low_alpha',this)" title="מניות שסוננו — Alpha נמוך מ-52W %Chg" style="border-color:var(--accent-red);color:var(--accent-red)">⚠️ Alpha נמוך</button>
     </div>
     <select class="sort-select" id="sortSelect" onchange="sortData(this.value)">
+      <option value="score" selected>מיין: Score משוקלל</option>
       <option value="signals">מיין: סיגנלים</option>
-      <option value="score">מיין: Score משוקלל</option>
       <option value="alpha">מיין: Weighted Alpha</option>
       <option value="w52">מיין: שינוי שנתי</option>
       <option value="rsi">מיין: RSI</option>
@@ -2375,7 +2375,7 @@ const RAW_DATA = [{"symbol":"NVT","signals":["strength","6m_high","ttm_squeeze"]
 // ===== STATE =====
 let filtered = [];
 let currentFilter = 'all';
-let currentSort = 'signals';
+let currentSort = 'score';
 let currentPage = 1;
 const PAGE_SIZE = 50;
 let selectedSymbol = null;
@@ -2868,6 +2868,10 @@ function calcScore(d) {
   let s = 0;
   const str = (d.strength || '').toLowerCase();
   const dir = (d.direction || '').toLowerCase();
+
+  // ── Signal count (max 20) — confluence bonus
+  const sc = d.signal_count || 0;
+  s += sc >= 3 ? 20 : sc === 2 ? 12 : sc === 1 ? 5 : 0;
 
   // ── Strength level (max 30) — long-term, highest weight
   s += str.includes('top') || str.includes('1%') ? 30
