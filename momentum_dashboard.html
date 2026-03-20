@@ -2171,10 +2171,10 @@
     </div>
     <select class="sort-select" id="sortSelect" onchange="sortData(this.value)">
       <option value="signals">מיין: סיגנלים</option>
+      <option value="score">מיין: Score משוקלל</option>
       <option value="alpha">מיין: Weighted Alpha</option>
       <option value="w52">מיין: שינוי שנתי</option>
       <option value="rsi">מיין: RSI</option>
-      <option value="dip">מיין: Dip Score</option>
       <option value="rvol">מיין: RVOL</option>
     </select>
     <div class="vol-filter-wrap">
@@ -2282,6 +2282,7 @@
           <th>שם</th>
           <th onclick="sortData('price')">מחיר</th>
           <th onclick="sortData('change')">שינוי%</th>
+          <th onclick="sortData('score')" title="ציון משוקלל — חוזק+כיוון+Hot Prospects+ממוצעים">Score</th>
           <th onclick="sortData('rvol')" title="Relative Volume — נפח יחסי ל-50 יום">RVOL</th>
           <th>סיגנלים</th>
           <th onclick="sortData('signals')">חוזק</th>
@@ -2290,7 +2291,6 @@
           <th>ממוצעים נעים</th>
           <th onclick="sortData('alpha')">Wtd Alpha</th>
           <th onclick="sortData('w52')">52W%</th>
-          <th onclick="sortData('dip')" title="Dip Score — כמה טוב הדיפ (0-100)">Dip</th>
           <th>המלצה</th>
         </tr>
       </thead>
@@ -2649,12 +2649,18 @@ function applyFilters() {
     const vol = parseFloat(d.vol || 0); // 200D Avg Vol only — never filter by intraday volume
     if (vol > 0 && vol < minVolThreshold) return false;
     // Global permanent alpha filter:
-    // 1) must have alpha data  2) must be positive  3) must be >= 52W%
+    // 1) must have alpha data  2) must be positive
+    // 3) alpha < 52W% is only filtered when strength is weak/average/soft/weakening
+    //    Strong / Max / Top 1% pass through regardless of alpha vs 52W
     const _a = parseFloat(d.wtd_alpha);
     if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
     if (d.w52_chg) {
       const _w = p52(d.w52_chg);
-      if (!isNaN(_w) && _a < _w) return false;
+      if (!isNaN(_w) && _a < _w) {
+        const _str = (d.strength || '').toLowerCase();
+        const strongEnough = _str.includes('top') || _str.includes('max') || _str.includes('strong');
+        if (!strongEnough) return false;
+      }
     }
 
     // ── Auto-quality filter (always on) ───────────────────────────────────
@@ -2726,6 +2732,7 @@ function applyFilters() {
     if (currentSort === 'change') return parseFloat(b.change_pct||0) - parseFloat(a.change_pct||0);
     if (currentSort === 'rsi') return parseFloat(b.rel_str||0) - parseFloat(a.rel_str||0);
     if (currentSort === 'rr') return calcRR(b) - calcRR(a);
+    if (currentSort === 'score') return calcScore(b) - calcScore(a);
     if (currentSort === 'dip') return calcDipScore(b) - calcDipScore(a);
     if (currentSort === 'rvol') return parseFloat(b.rvol||0) - parseFloat(a.rvol||0);
     return 0;
@@ -2855,26 +2862,45 @@ function getRecommendation(d) {
   return { label: 'המתן', cls: 'avoid', icon: '⏸' };
 }
 
-// ── Momentum score 0–100 ───────────────────────────────────────────────────
+// ── Weighted score 0–100 ──────────────────────────────────────────────────
+// Weights: Strength(long-term)=high · Hot Prospects=high · Direction=med · rest=low
 function calcScore(d) {
   let s = 0;
-  const sc = d.signal_count;
-  // Signals (max 30)
-  s += sc >= 3 ? 30 : sc >= 2 ? 18 : 8;
-  // MA alignment (max 25) — up to 5 MAs
+  const str = (d.strength || '').toLowerCase();
+  const dir = (d.direction || '').toLowerCase();
+
+  // ── Strength level (max 30) — long-term, highest weight
+  s += str.includes('top') || str.includes('1%') ? 30
+     : str.includes('max')    ? 28
+     : str.includes('strong') ? 22
+     : str.includes('soft')   ? 6
+     : str.includes('average')? 4
+     : str.includes('weak')   ? 2 : 0;
+
+  // ── Hot Prospects (max 25) — high weight
+  if (d.signals.includes('hot_prospects')) s += 25;
+
+  // ── Direction / Strength+Dir signal (max 15) — medium weight
+  if (dir.includes('strength')) s += 15;
+  else if (dir.includes('strong')) s += 10;
+  else if (dir.includes('weak')) s += 3;
+
+  // ── MA alignment (max 15)
   const price = parseFloat(d.price || 0);
   const mas = [d.ma20, d.ma50, d.ma100, d.ma150];
   const above = mas.filter(m => m && price > parseFloat(m)).length;
   const total = mas.filter(m => m).length;
-  if (total > 0) s += Math.round((above / total) * 25);
-  // Opinion (max 20)
+  if (total > 0) s += Math.round((above / total) * 15);
+
+  // ── Opinion (max 10)
   const op = (d.opinion || '').toLowerCase();
-  s += op.includes('100%') ? 20 : op.includes('buy') ? 12 : 0;
-  // Direction strength (max 15)
-  if ((d.direction || '').toLowerCase().includes('strength')) s += 15;
-  // Strength level (max 10)
-  const str = (d.strength || '').toLowerCase();
-  s += str === 'maximum' ? 10 : str === 'strong' ? 7 : str === 'average' ? 3 : 0;
+  s += op.includes('100%') ? 10 : op.includes('buy') ? 6 : 0;
+
+  // ── Short-term momentum signals (max 5 each — lower weight)
+  if (d.signals.includes('6m_high'))    s += 4;
+  if (d.signals.includes('macd_buy'))   s += 3;
+  if (d.signals.includes('ttm_squeeze'))s += 3;
+
   return Math.min(100, Math.max(0, s));
 }
 
@@ -2938,6 +2964,7 @@ function renderTable() {
         <td><span class="name-cell" title="${d.name || d.sq_name || d.macd_name || d.industry || ''}">${(d.name || d.sq_name || d.macd_name || d.industry || '—').substring(0, 22)}</span></td>
         <td><span class="price-cell" style="color:${chg > 0 ? 'var(--accent-green)' : chg < 0 ? 'var(--accent-red)' : 'var(--text-0)'}">${price > 0 ? '$'+price.toFixed(2) : '—'}</span></td>
         <td><span class="${chg >= 0 ? 'change-pos' : 'change-neg'}" style="font-family:'DM Mono',monospace;font-size:12px">${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%</span></td>
+        ${(() => { const sc = calcScore(d); const scC = sc >= 70 ? 'var(--accent-green)' : sc >= 45 ? 'var(--accent-gold)' : 'var(--text-2)'; return `<td style="font-family:'DM Mono',monospace;font-size:12px;color:${scC};text-align:center;font-weight:600">${sc}</td>`; })()}
         ${(() => { const rv = parseFloat(d.rvol||0); const rc = rv >= 2 ? 'var(--accent-teal)' : rv >= 1.3 ? 'var(--accent-gold)' : rv > 0 && rv < 0.8 ? 'var(--text-2)' : 'var(--text-1)'; return `<td style="font-family:'DM Mono',monospace;font-size:11px;color:${rc};text-align:center">${rv > 0 ? rv.toFixed(1)+'×' : '—'}</td>`; })()}
         <td>
           <div class="signal-badges">
@@ -2964,7 +2991,6 @@ function renderTable() {
         </td>
         <td><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent-green)">${d.wtd_alpha ? '+'+parseFloat(d.wtd_alpha).toFixed(0) : '—'}</span></td>
         <td><span class="${p52(d.w52_chg) >= 0 ? 'change-pos' : 'change-neg'}" style="font-family:'DM Mono',monospace;font-size:12px">${d.w52_chg || '—'}</span></td>
-        <td>${(() => { const ds = calcDipScore(d); const c = ds >= 65 ? 'var(--accent-teal)' : ds >= 40 ? 'var(--accent-gold)' : 'var(--text-2)'; return ds > 0 ? `<span class="dip-score-cell"><span class="dip-pip" style="background:${c}"></span><span style="color:${c}">${ds}</span></span>` : '<span style="color:var(--text-2)">—</span>'; })()}</td>
         <td><span class="rec-cell rec-${rec.cls}">${rec.icon} ${rec.label}</span></td>
       </tr>
     `;
