@@ -2167,6 +2167,7 @@
     <button class="filter-btn" data-filter="alpha52" onclick="setFilter('alpha52',this)" title="Weighted Alpha גדול משינוי שנתי — מניות עם מומנטום מואץ">α > 52W</button>
     <button class="filter-btn" data-filter="rvol" onclick="setFilter('rvol',this)" title="Relative Volume מעל 1.5× — נפח גבוה, אישור מומנטום">⚡ RVOL×1.5+</button>
     <button class="filter-btn" data-filter="hot_prospects" onclick="setFilter('hot_prospects',this)" title="Hot Prospects — Trend Seeker BUY + תמיכה טכנית חזקה">🔥 Hot Prospects</button>
+    <button class="filter-btn" data-filter="low_alpha" onclick="setFilter('low_alpha',this)" title="מניות שסוננו — Alpha נמוך מ-52W %Chg" style="border-color:var(--accent-red);color:var(--accent-red)">⚠️ Alpha נמוך</button>
     </div>
     <select class="sort-select" id="sortSelect" onchange="sortData(this.value)">
       <option value="signals">מיין: סיגנלים</option>
@@ -2619,6 +2620,27 @@ function updateVolFilter(val) {
 function applyFilters() {
   const q = document.getElementById('searchInput').value.toUpperCase().trim();
   
+  // Low-alpha tab: stocks that were filtered out because alpha < 52W%
+  if (currentFilter === 'low_alpha') {
+    filtered = RAW_DATA.filter(d => {
+      if (q && !d.symbol.includes(q)) return false;
+      const vol = parseFloat(d.vol || 0);
+      if (vol > 0 && vol < minVolThreshold) return false;
+      const _a = parseFloat(d.wtd_alpha);
+      if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
+      if (!d.w52_chg) return false;
+      const _w = p52(d.w52_chg);
+      return !isNaN(_w) && _a < _w;
+    });
+    filtered.sort((a, b) => {
+      const diff = p52(b.w52_chg) - p52(a.w52_chg);
+      return diff !== 0 ? diff : parseFloat(b.wtd_alpha||0) - parseFloat(a.wtd_alpha||0);
+    });
+    document.getElementById('resultsCount').textContent = `${filtered.length} מניות (alpha נמוך)`;
+    renderTable();
+    return;
+  }
+
   filtered = RAW_DATA.filter(d => {
     if (q && !d.symbol.includes(q)) return false;
     // Watchlist: always show all favorited stocks regardless of global filters
