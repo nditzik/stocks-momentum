@@ -1,0 +1,29 @@
+Symbol,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D Rel Str","1Y vs IDX","YTD vs IDX","200D Avg Vol","Wkly Opts",Direction,Strength,"14D Stoch %K","50D RelVol"
+COKE,"Beverages - Soft",210.43,-1.14%,11,Buy,"100% Buy",+85.44,+58.64%,164.43,174.76,149.67,204.75,67.75,42.23,40.76,539357,No,Strengthening,Maximum,72.15%,0.95
+TALK,"Medical Information Systems",5.13,0.00%,2,Buy,"100% Buy",+83.29,+83.87%,3.84,4.35,3.46,4.94,66.47,67.46,44.81,2035285,No,Strengthening,Maximum,90.73%,3.39
+ANDE,"Agriculture Products",68.56,-1.31%,5,Buy,"100% Buy",+81.76,+56.60%,57.41,63.85,51.97,66.73,58.36,40.19,32.43,338232,No,Average,Maximum,77.54%,0.99
+LHX,"Aerospace - Defense",363.7,-1.27%,3,Buy,"100% Buy",+73.87,+70.72%,320.26,352.17,308.44,362.47,53.68,54.31,27.38,1266557,Yes,Average,Maximum,54.36%,0.7
+BG,"Agriculture Products",122.04,-1.60%,5,Buy,"100% Buy",+72.25,+62.20%,104.89,116.07,97.96,120.84,54.76,45.79,40.49,1794119,No,Average,Maximum,73.42%,1.09
+UTHR,"Medical - Drugs",527,-0.63%,3,Buy,"100% Buy",+59.72,+65.28%,483.74,490.69,454.3,512.01,56.93,48.87,11.65,595609,No,Average,Strong,79.61%,1.17
+ERIC,"Wireless Equipment",11.58,+0.96%,6,Buy,"100% Buy",+50.92,+41.05%,10.24,10.83,9.59,11.4,56.84,24.64,23.49,13079730,No,Strengthening,Maximum,64.35%,1.17
+DRS,"Aerospace - Defense Equipment",45.48,-2.07%,6,Buy,"88% Buy",+36.21,+30.13%,38.51,42.08,39.74,44.77,56.72,13.72,36.9,1192239,No,Strengthening,Good,62.37%,0.84
+SOBO,"Oil - Production & Pipeline",33.58,+0.72%,8,Buy,"100% Buy",+35.64,+29.10%,28.54,30,28.25,32.93,66.63,12.69,25.73,866445,No,Strongest,"Top 1%",68.09%,0.95
+SRE,"Other Alt Energy",95.25,+0.92%,3,Buy,"100% Buy",+34.33,+33.99%,90.91,91.12,89.29,94.49,59.23,17.58,11.37,3792366,No,Strengthening,Good,72.44%,1.16
+WLK,"Consumer Prdts - Misc Discr",111.23,-1.22%,6,Buy,"100% Buy",+30.36,+9.09%,82.37,95.72,82.37,105.78,61.96,-7.32,53.92,1345334,No,Strengthening,Maximum,73.87%,0.66
+MTDR,"Oil - US Exploration & Product",57.07,-0.89%,9,Buy,"88% Buy",+30.25,+8.46%,45.08,48.65,45.49,54.31,66.18,-7.95,37.96,1780311,No,Strengthening,Maximum,87.14%,1.27
+GNL,"REIT - Equity Trust Other",9.57,-0.52%,2,Hold,"96% Buy",+28.07,+20.38%,8.8,9.48,8.51,9.53,52.03,3.97,14.77,1699075,No,Weakening,Strong,75.00%,1.25
+EQIX,"REIT - Equity Trust Retail",974.76,+0.12%,10,Buy,"100% Buy",+25.27,+13.96%,829.76,883.62,816.51,961.56,63.74,-2.45,30.72,585922,No,Strengthening,Maximum,78.11%,0.63
+SR,"Utility - Gas Distribution",91.57,+0.20%,5,Buy,"100% Buy",+22.91,+19.06%,86.55,87.65,84.14,91.34,57.21,2.65,14.22,440453,No,Strengthening,Strong,54.55%,0.73
+NFG,"Oil - US Integrated",93.47,+1.16%,9,Buy,"88% Buy",+21.66,+18.80%,83.76,86.58,84.98,91.9,60.17,2.39,20.24,645437,No,Strengthening,Strong,49.02%,1.03
+DLR,"REIT - Equity Trust Other",179.85,+0.51%,7,Buy,"88% Buy",+19.23,+19.04%,165.8,171.04,167.32,179,56.66,2.63,19.74,1808166,Yes,Strengthening,Strong,64.25%,0.71
+BNL,"REIT - Equity Trust Resident",19.36,+0.21%,8,Buy,"100% Buy",+17.47,+12.23%,18.37,18.94,18.34,19.23,53.71,-4.18,14.95,1699134,No,Strengthening,Strong,67.43%,1.09
+GTY,"REIT - Equity Trust Other",33.23,-0.57%,13,Buy,"100% Buy",+16.85,+8.56%,29.66,31.34,28.96,33.06,58.07,-7.85,24.9,417720,No,Strengthening,Maximum,61.99%,0.79
+KR,"Retail - Supermarket",73.76,+0.66%,6,Buy,"72% Buy",+15.10,+12.65%,65.81,67.22,66.47,71.14,60.24,-3.76,21.54,7001808,Yes,Strengthening,Strong,70.22%,0.94
+IVT,"REIT - Equity Trust Other",31.48,-0.69%,6,Buy,"100% Buy",+14.19,+8.51%,29.21,30.19,29.08,31.14,60.99,-7.9,15.08,484147,No,Strengthening,Maximum,57.57%,0.95
+BSM,"E&P MLP",15.36,+0.33%,7,Buy,"100% Buy",+8.87,+0.07%,14.28,14.86,13.73,15.19,56.27,-16.34,19.07,468310,No,Strengthening,Maximum,75.91%,1.53
+KRP,"Oil - US Royalty Trusts",14.51,+0.76%,6,Buy,"88% Buy",+8.57,+2.91%,13.13,13.66,13.27,14.44,56.86,-13.5,26.87,573232,No,Strengthening,Good,55.72%,1.95
+CMS,"Utility - Electric Power",77.45,-0.04%,6,Buy,"100% Buy",+8.39,+5.07%,73.19,74.2,72.93,77.23,58.15,-11.34,14.24,2534613,No,Average,Maximum,64.60%,0.98
+WTRG,"Utility - Water Supply",40.47,-0.49%,9,Buy,"100% Buy",+5.95,+3.40%,39.08,39.29,39.14,40.18,54.16,-13.01,8.99,2136919,No,Strengthening,Strong,60.18%,0.38
+BGC,"Finance - Investment Brokers",9.6,+0.21%,3,Buy,"56% Buy",+4.45,+4.58%,9.09,9.24,9.28,9.5,53.71,-11.83,10.99,2730175,No,Weakening,Weak,76.07%,0.85
+APD,"Chemical - Diversified",284.15,+0.97%,5,Buy,"88% Buy",+1.30,-3.35%,262.94,275.06,268.2,279.74,55.61,-19.76,18.52,1305418,No,Average,Average,55.01%,0.99
+"Downloaded from Barchart.com as of 03-20-2026 01:12am CDT"
