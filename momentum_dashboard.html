@@ -2326,6 +2326,8 @@
       </div>
     </div>
     <div class="radar-stats" id="radarStats"></div>
+    <div class="radar-section-title">🔥 Top 30 — Signal Heatmap</div>
+    <div class="radar-heatmap" id="radarHeatmap"></div>
     <div class="radar-sides" id="radarSides"></div>
   </div>
 
@@ -6406,12 +6408,13 @@ function renderRadar() {
   try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
 
   const statsEl   = document.getElementById('radarStats');
+  const heatEl    = document.getElementById('radarHeatmap');
   const sidesEl   = document.getElementById('radarSides');
   const rangeEl   = document.getElementById('radarDateRange');
 
   if (!history.length) {
-    statsEl.innerHTML = sidesEl.innerHTML = '';
-    sidesEl.innerHTML = '<div style="color:var(--text-2);font-size:12px;text-align:center;padding:24px">אין היסטוריה עדיין</div>';
+    statsEl.innerHTML = heatEl.innerHTML = sidesEl.innerHTML = '';
+    heatEl.innerHTML = '<div style="color:var(--text-2);font-size:12px;text-align:center;padding:24px">אין היסטוריה עדיין</div>';
     rangeEl.textContent = '';
     return;
   }
