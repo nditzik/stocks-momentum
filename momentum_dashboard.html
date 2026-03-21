@@ -6408,6 +6408,7 @@ function openFromRadar(sym) {
   btn.classList.remove('active');
   if (tbl) tbl.style.display = '';
   if (pgn) pgn.style.display = '';
+  selectedSymbol = sym;  // required so loadChart guard passes
   loadChart(sym);
 }
 
