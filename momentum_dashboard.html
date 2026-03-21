@@ -2326,8 +2326,6 @@
       </div>
     </div>
     <div class="radar-stats" id="radarStats"></div>
-    <div class="radar-section-title">🔥 Top 30 — Signal Heatmap</div>
-    <div class="radar-heatmap" id="radarHeatmap"></div>
     <div class="radar-sides" id="radarSides"></div>
   </div>
 
@@ -6394,18 +6392,26 @@ function toggleRadar() {
   if (!open) renderRadar();
 }
 
+function openFromRadar(sym) {
+  // Close radar panel first, then open chart
+  const panel = document.getElementById('radarPanel');
+  const btn   = document.getElementById('radarToggleBtn');
+  panel.style.display = 'none';
+  btn.classList.remove('active');
+  loadChart(sym);
+}
+
 function renderRadar() {
   let history = [];
   try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
 
   const statsEl   = document.getElementById('radarStats');
-  const heatEl    = document.getElementById('radarHeatmap');
   const sidesEl   = document.getElementById('radarSides');
   const rangeEl   = document.getElementById('radarDateRange');
 
   if (!history.length) {
-    statsEl.innerHTML = heatEl.innerHTML = sidesEl.innerHTML = '';
-    heatEl.innerHTML = '<div style="color:var(--text-2);font-size:12px;text-align:center;padding:24px">אין היסטוריה עדיין</div>';
+    statsEl.innerHTML = sidesEl.innerHTML = '';
+    sidesEl.innerHTML = '<div style="color:var(--text-2);font-size:12px;text-align:center;padding:24px">אין היסטוריה עדיין</div>';
     rangeEl.textContent = '';
     return;
   }
@@ -6497,45 +6503,11 @@ function renderRadar() {
     return '<span style="color:var(--accent-red)">↓↓ Weak</span>';
   };
 
-  // Render sig cell
-  const sigCell = (sigs, score) => {
-    if (!sigs) return '<div class="rday"><div class="rday-inner sc-none"></div></div>';
-    const cls = score >= 5 ? 'sc-high' : score >= 2 ? 'sc-mid' : 'sc-low';
-    const tags = sigs.map(s => `<span class="rsig ${SIG_CLS[s]||''}">${SIG_LABEL[s]||s}</span>`).join('');
-    return `<div class="rday"><div class="rday-inner ${cls}">${tags}</div></div>`;
-  };
-
-  // Show last 10 dates max in heatmap (scrollable anyway)
-  const showDates = dates.slice(-10);
-
-  let heatHtml = '<table class="radar-table"><thead><tr>';
-  heatHtml += '<th class="left">סימבול</th><th class="left">שם</th><th>ימים</th><th>Score</th><th>Trend</th>';
-  showDates.forEach(d => { heatHtml += `<th>${fmtDate(d)}</th>`; });
-  heatHtml += '<th>כיוון</th></tr></thead><tbody>';
-
-  top30.forEach(s => {
-    const trendColor = s.trend > 0 ? 'var(--accent-green)' : s.trend < 0 ? 'var(--accent-red)' : 'var(--text-2)';
-    heatHtml += `<tr>
-      <td><span class="radar-sym" onclick="loadChart('${s.sym}')">${s.sym}</span></td>
-      <td><span class="radar-name" title="${s.name}">${s.name}</span></td>
-      <td class="radar-app">${s.appearances}</td>
-      <td class="radar-score-cell" style="color:${s.totalScore>=20?'var(--accent-green)':s.totalScore>=10?'var(--accent-gold)':'var(--text-1)'}">${s.totalScore}</td>
-      <td class="radar-trend-cell" style="color:${trendColor}">${s.trend > 0 ? '+' : ''}${s.trend}</td>`;
-    showDates.forEach((d, i) => {
-      const sigs = s.days[d];
-      const sc   = sigs ? radarDayScore(sigs) : null;
-      heatHtml  += `<td>${sigCell(sigs, sc)}</td>`;
-    });
-    heatHtml += `<td class="radar-dir-cell">${dirArrow(s.trend)}</td></tr>`;
-  });
-  heatHtml += '</tbody></table>';
-  heatEl.innerHTML = heatHtml;
-
   // Side tables: Top Strengthening & Top Weakening
   const sideTable = (title, list, color) => {
     const sorted = [...list].sort((a, b) => b.trend - a.trend || b.totalScore - a.totalScore).slice(0, 12);
     const rows = sorted.map(s => `<tr>
-      <td><span class="radar-sym" onclick="loadChart('${s.sym}')" style="color:${color}">${s.sym}</span></td>
+      <td><span class="radar-sym" onclick="openFromRadar('${s.sym}')" style="color:${color}">${s.sym}</span></td>
       <td class="radar-name" title="${s.name}">${s.name}</td>
       <td style="font-family:'DM Mono',monospace;font-size:10px;text-align:center;color:${color}">${s.trend > 0 ? '+' : ''}${s.trend}</td>
       <td style="font-family:'DM Mono',monospace;font-size:10px;text-align:center;color:var(--text-2)">${s.strDays}d</td>
