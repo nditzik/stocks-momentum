@@ -6386,20 +6386,28 @@ function radarDayScore(sigs) {
 }
 
 function toggleRadar() {
-  const panel = document.getElementById('radarPanel');
-  const btn   = document.getElementById('radarToggleBtn');
-  const open  = panel.style.display === 'block';
+  const panel    = document.getElementById('radarPanel');
+  const btn      = document.getElementById('radarToggleBtn');
+  const tbl      = document.querySelector('.table-wrapper');
+  const pgn      = document.getElementById('pagination');
+  const open     = panel.style.display === 'block';
   panel.style.display = open ? 'none' : 'block';
+  if (tbl) tbl.style.display = open ? '' : 'none';
+  if (pgn) pgn.style.display = open ? '' : 'none';
   btn.classList.toggle('active', !open);
   if (!open) renderRadar();
 }
 
 function openFromRadar(sym) {
-  // Close radar panel first, then open chart
+  // Close radar (restores table), then open chart
   const panel = document.getElementById('radarPanel');
   const btn   = document.getElementById('radarToggleBtn');
+  const tbl   = document.querySelector('.table-wrapper');
+  const pgn   = document.getElementById('pagination');
   panel.style.display = 'none';
   btn.classList.remove('active');
+  if (tbl) tbl.style.display = '';
+  if (pgn) pgn.style.display = '';
   loadChart(sym);
 }
 
@@ -6505,6 +6513,40 @@ function renderRadar() {
     if (trend >= -1) return '<span style="color:var(--accent-gold)">↓ Fading</span>';
     return '<span style="color:var(--accent-red)">↓↓ Weak</span>';
   };
+
+  // Render sig cell
+  const sigCell = (sigs, score) => {
+    if (!sigs) return '<div class="rday"><div class="rday-inner sc-none"></div></div>';
+    const cls = score >= 5 ? 'sc-high' : score >= 2 ? 'sc-mid' : 'sc-low';
+    const tags = sigs.map(s => `<span class="rsig ${SIG_CLS[s]||''}">${SIG_LABEL[s]||s}</span>`).join('');
+    return `<div class="rday"><div class="rday-inner ${cls}">${tags}</div></div>`;
+  };
+
+  // Show last 10 dates max in heatmap
+  const showDates = dates.slice(-10);
+
+  let heatHtml = '<table class="radar-table"><thead><tr>';
+  heatHtml += '<th class="left">סימבול</th><th class="left">שם</th><th>ימים</th><th>Score</th><th>Trend</th>';
+  showDates.forEach(d => { heatHtml += `<th>${fmtDate(d)}</th>`; });
+  heatHtml += '<th>כיוון</th></tr></thead><tbody>';
+
+  top30.forEach(s => {
+    const trendColor = s.trend > 0 ? 'var(--accent-green)' : s.trend < 0 ? 'var(--accent-red)' : 'var(--text-2)';
+    heatHtml += `<tr>
+      <td><span class="radar-sym" onclick="openFromRadar('${s.sym}')">${s.sym}</span></td>
+      <td><span class="radar-name" title="${s.name}">${s.name}</span></td>
+      <td class="radar-app">${s.appearances}</td>
+      <td class="radar-score-cell" style="color:${s.totalScore>=20?'var(--accent-green)':s.totalScore>=10?'var(--accent-gold)':'var(--text-1)'}">${s.totalScore}</td>
+      <td class="radar-trend-cell" style="color:${trendColor}">${s.trend > 0 ? '+' : ''}${s.trend}</td>`;
+    showDates.forEach(d => {
+      const sigs = s.days[d];
+      const sc   = sigs ? radarDayScore(sigs) : null;
+      heatHtml  += `<td>${sigCell(sigs, sc)}</td>`;
+    });
+    heatHtml += `<td class="radar-dir-cell">${dirArrow(s.trend)}</td></tr>`;
+  });
+  heatHtml += '</tbody></table>';
+  heatEl.innerHTML = heatHtml;
 
   // Side tables: Top Strengthening & Top Weakening
   const sideTable = (title, list, color) => {
