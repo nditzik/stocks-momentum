@@ -6458,11 +6458,11 @@ function renderRadar() {
     return { sym, name: info.name, appearances, totalScore, trend, strDays, hotDays, lastSigs, dayScores, isNew, days: info.days };
   });
 
-  // Categories
-  const isToday = s => !!s.days[lastDate];
-  const strengthening = stocks.filter(s => isToday(s) && s.trend > 0);
-  const stable        = stocks.filter(s => isToday(s) && s.trend === 0);
-  const weakening     = stocks.filter(s => isToday(s) && s.trend < 0);
+  // Categories — appearances vs total days in history
+  const maxDays = dates.length;
+  const strengthening = stocks.filter(s => s.appearances === maxDays && s.trend >= 1.5);
+  const stable        = stocks.filter(s => s.appearances === maxDays && s.trend >= 0 && s.trend < 1.5);
+  const weakening     = stocks.filter(s => s.appearances >= 2 && s.trend < 0);
   const newToday      = stocks.filter(s => s.isNew);
   const maxStreak     = (() => {
     let max = 0;
