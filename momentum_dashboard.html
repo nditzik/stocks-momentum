@@ -2672,6 +2672,31 @@ function buildOverview() {
   `;
 }
 
+// ── Permanent base filter — shared by applyFilters() and saveHistorySnapshot()
+function passesBaseFilter(d) {
+  const vol = parseFloat(d.vol || 0);
+  if (vol > 0 && vol < minVolThreshold) return false;
+  const _a = parseFloat(d.wtd_alpha);
+  if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
+  if (d.w52_chg) {
+    const _w = p52(d.w52_chg);
+    if (!isNaN(_w) && _a < _w) {
+      const _str = (d.strength || '').toLowerCase();
+      if (!(_str.includes('top') || _str.includes('max') || _str.includes('strong'))) return false;
+    }
+  }
+  const _rsi   = parseFloat(d.rel_str || 0);
+  const _stoch = parseFloat(d.stoch   || 0);
+  const _px    = parseFloat(d.price   || 0);
+  const _ma50  = parseFloat(d.ma50    || 0);
+  const _ma100 = parseFloat(d.ma100   || 0);
+  if (_rsi > 0 && _stoch > 0 && _rsi > 72 && _stoch > 82) return false;
+  if (_px > 0 && _ma50 > 0 && _ma100 > 0 && _px < _ma50 && _px < _ma100) return false;
+  if (d.strength && /weak/i.test(d.strength)) return false;
+  if (d.opinion && /\bsell\b/i.test(d.opinion)) return false;
+  return true;
+}
+
 // ===== FILTERS =====
 function setFilter(f, btn) {
   currentFilter = f;
@@ -2782,40 +2807,12 @@ function applyFilters() {
     if (q && !d.symbol.includes(q)) return false;
     // Watchlist: always show all favorited stocks regardless of global filters
     if (currentFilter === 'watchlist') return watchlist.has(d.symbol);
-    // Volume filter: exclude stocks with known avg volume below threshold
-    const vol = parseFloat(d.vol || 0); // 200D Avg Vol only — never filter by intraday volume
-    if (vol > 0 && vol < minVolThreshold) return false;
-    // Global permanent alpha filter:
-    // 1) must have alpha data  2) must be positive
-    // 3) alpha < 52W% is only filtered when strength is weak/average/soft/weakening
-    //    Strong / Max / Top 1% pass through regardless of alpha vs 52W
-    const _a = parseFloat(d.wtd_alpha);
-    if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
-    if (d.w52_chg) {
-      const _w = p52(d.w52_chg);
-      if (!isNaN(_w) && _a < _w) {
-        const _str = (d.strength || '').toLowerCase();
-        const strongEnough = _str.includes('top') || _str.includes('max') || _str.includes('strong');
-        if (!strongEnough) return false;
-      }
-    }
-
-    // ── Auto-quality filter (always on) ───────────────────────────────────
-    // Excludes stocks that are clearly peaked or structurally broken.
-    // Only kicks in when the relevant data fields actually exist.
+    // Permanent base filters (volume, alpha, quality gates)
+    if (!passesBaseFilter(d)) return false;
     const _rsi   = parseFloat(d.rel_str || 0);
     const _stoch = parseFloat(d.stoch   || 0);
     const _px    = parseFloat(d.price   || 0);
     const _ma50  = parseFloat(d.ma50    || 0);
-    const _ma100 = parseFloat(d.ma100   || 0);
-    // 1. Doubly overbought: RSI > 72 AND Stoch > 82 simultaneously
-    if (_rsi > 0 && _stoch > 0 && _rsi > 72 && _stoch > 82) return false;
-    // 2. Broken structure: price below both MA50 and MA100
-    if (_px > 0 && _ma50 > 0 && _ma100 > 0 && _px < _ma50 && _px < _ma100) return false;
-    // 3. Explicitly weak strength
-    if (d.strength && /weak/i.test(d.strength)) return false;
-    // 4. Sell opinion — exclude stocks with a sell recommendation
-    if (d.opinion && /\bsell\b/i.test(d.opinion)) return false;
 
     // ── Smart Mode (additional quality gate when toggle is ON) ────────────
     // Narrows results to "dip in uptrend" setups: pulled back but trend intact.
@@ -6366,7 +6363,7 @@ function saveHistorySnapshot() {
   try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
   // Remove today's existing entry (overwrite)
   history = history.filter(e => e.date !== today);
-  const stocks = RAW_DATA.map(d => ({
+  const stocks = RAW_DATA.filter(passesBaseFilter).map(d => ({
     s: d.symbol,
     n: d.name || d.sq_name || d.macd_name || '',
     sig: d.signals || [],
