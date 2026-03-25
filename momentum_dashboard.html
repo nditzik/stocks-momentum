@@ -979,10 +979,20 @@
   /* Signal chart */
   .signals-overview {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
     margin-bottom: 28px;
   }
+  .readiness-bar { height: 8px; border-radius: 4px; margin: 4px 0 8px; }
+  .readiness-row { display:flex; align-items:center; justify-content:space-between; font-size:12px; margin-bottom:4px; }
+  .readiness-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:5px; }
+  .sig-breakdown-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; font-size:12px; }
+  .sig-breakdown-bar { flex:1; height:6px; border-radius:3px; }
+  .rvol-row { display:flex; align-items:center; justify-content:space-between; font-size:12px; margin-bottom:5px; }
+  .traj-row { display:flex; align-items:center; gap:6px; font-size:12px; margin-bottom:5px; cursor:pointer; }
+  .traj-row:hover { opacity:0.8; }
+  .spark { display:inline-flex; align-items:flex-end; gap:1px; height:18px; vertical-align:middle; }
+  .spark-bar { width:4px; border-radius:1px; }
 
   .scanner-card {
     background: var(--bg-card);
@@ -2672,74 +2682,154 @@ function init() {
 }
 
 function buildOverview() {
-  // Shared: skip stocks where Weighted Alpha < 52W %Chg (same logic as applyFilters)
-  const passAlpha = d => {
-    const _a = parseFloat(d.wtd_alpha);
-    if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
-    if (d.w52_chg) {
-      const _w = p52(d.w52_chg);
-      if (!isNaN(_w) && _a < _w) return false;
-    }
-    return true;
-  };
+  if (!RAW_DATA.length) return;
+  const base = RAW_DATA.filter(passesBaseFilter);
 
-  // Card 1: Top Alpha — Strength & Direction stocks only
-  const top_strength = RAW_DATA
-    .filter(d => d.signals.includes('strength') && d.wtd_alpha && passAlpha(d))
-    .sort((a,b) => parseFloat(b.wtd_alpha||0) - parseFloat(a.wtd_alpha||0))
-    .slice(0, 8);
+  // ── Card 1: Signal Breakdown ──────────────────────────────────────────────
+  const sigDefs = [
+    { key: 'strength',     lbl: 'Strength',     color: 'var(--signal-4)' },
+    { key: 'hot_prospects',lbl: 'Hot Prospects', color: 'var(--signal-3)' },
+    { key: '6m_high',      lbl: '6M High',       color: 'var(--accent-teal)' },
+    { key: 'ttm_squeeze',  lbl: 'TTM Squeeze',   color: 'var(--accent-purple)' },
+    { key: 'macd_buy',     lbl: 'MACD Buy',      color: 'var(--accent-green)' },
+  ];
+  const sigCounts = sigDefs.map(s => ({ ...s, n: base.filter(d => (d.signals||[]).includes(s.key)).length }));
+  const maxSig = Math.max(...sigCounts.map(s => s.n), 1);
+  const sigBreakdownHTML = sigCounts.map(s => `
+    <div class="sig-breakdown-row">
+      <span style="color:${s.color};width:90px;flex-shrink:0">${s.lbl}</span>
+      <div class="sig-breakdown-bar" style="background:rgba(255,255,255,0.06)">
+        <div style="height:100%;width:${(s.n/maxSig*100).toFixed(0)}%;background:${s.color};border-radius:3px;transition:width .4s"></div>
+      </div>
+      <span style="color:var(--text-1);font-weight:600;width:28px;text-align:right;flex-shrink:0">${s.n}</span>
+    </div>`).join('');
 
-  // Card 2: Top Alpha — all stocks (מובילי האלפא הכלליים)
-  const top_alpha = RAW_DATA
-    .filter(d => d.wtd_alpha && passAlpha(d))
-    .sort((a,b) => parseFloat(b.wtd_alpha||0) - parseFloat(a.wtd_alpha||0))
-    .slice(0, 8);
-
-  const maxStr   = Math.max(...top_strength.map(d => parseFloat(d.wtd_alpha||0)), 1);
-  const maxAlpha = Math.max(...top_alpha.map(d => parseFloat(d.wtd_alpha||0)), 1);
-
-  const signalBadge = d => ['strength','6m_high','ttm_squeeze','macd_buy','hot_prospects']
-    .filter(s => d.signals.includes(s))
-    .map(s => ({ strength:'STR', '6m_high':'6MH', ttm_squeeze:'SQZ', macd_buy:'MACD', hot_prospects:'HOT' }[s]))
-    .map(lbl => `<span style="font-size:7.5px;padding:1px 3px;border-radius:2px;background:rgba(255,255,255,0.08);color:var(--text-1);margin-right:2px">${lbl}</span>`)
+  // ── Card 2: Entry Readiness (RSI + Stoch) ────────────────────────────────
+  let ready = 0, watch = 0, stretched = 0;
+  const topReady = [];
+  base.forEach(d => {
+    const rsi   = parseFloat(d.rel_str || 0);
+    const stoch = parseFloat(d.stoch   || 0);
+    if (!rsi && !stoch) return;
+    const isStretched = rsi > 65 || stoch > 75;
+    const isWatch     = !isStretched && (rsi > 55 || stoch > 65);
+    if (isStretched) stretched++;
+    else if (isWatch) watch++;
+    else { ready++; topReady.push(d); }
+  });
+  const total = ready + watch + stretched || 1;
+  const pReady = (ready/total*100).toFixed(0);
+  const pWatch = (watch/total*100).toFixed(0);
+  const pStr   = (stretched/total*100).toFixed(0);
+  const readyList = topReady
+    .sort((a,b) => (b.signal_count||0) - (a.signal_count||0))
+    .slice(0,5)
+    .map(d => `<span onclick="selectStock('${d.symbol}')" style="cursor:pointer;color:var(--accent-teal);font-weight:600;margin-right:6px">${d.symbol}</span>`)
     .join('');
+  const readinessHTML = `
+    <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:10px">
+      <div style="width:${pReady}%;background:var(--accent-green)" title="מוכן: ${ready}"></div>
+      <div style="width:${pWatch}%;background:var(--accent-gold)" title="ממתין: ${watch}"></div>
+      <div style="width:${pStr}%;background:var(--signal-4)" title="מתוח: ${stretched}"></div>
+    </div>
+    <div class="readiness-row"><span><span class="readiness-dot" style="background:var(--accent-green)"></span>✅ מוכן לכניסה</span><span style="color:var(--accent-green);font-weight:600">${ready}</span></div>
+    <div class="readiness-row"><span><span class="readiness-dot" style="background:var(--accent-gold)"></span>⚠️ ממתין לדיפ</span><span style="color:var(--accent-gold);font-weight:600">${watch}</span></div>
+    <div class="readiness-row"><span><span class="readiness-dot" style="background:var(--signal-4)"></span>🔴 מתוח מדי</span><span style="color:var(--signal-4);font-weight:600">${stretched}</span></div>
+    ${readyList ? `<div style="margin-top:8px;font-size:11px;color:var(--text-2)">מוכנות גבוהה:</div><div style="margin-top:3px">${readyList}</div>` : ''}`;
+
+  // ── Card 3: Volume Confirmation ───────────────────────────────────────────
+  const rvHigh  = base.filter(d => parseFloat(d.rvol||0) >= 2.0);
+  const rvMid   = base.filter(d => { const r = parseFloat(d.rvol||0); return r >= 1.5 && r < 2.0; });
+  const rvLow   = base.filter(d => { const r = parseFloat(d.rvol||0); return r > 0 && r < 1.5; });
+  const topRvol = [...rvHigh, ...rvMid]
+    .sort((a,b) => parseFloat(b.rvol||0) - parseFloat(a.rvol||0))
+    .slice(0,5);
+  const maxRv = parseFloat(topRvol[0]?.rvol || 1);
+  const rvolHTML = `
+    <div class="rvol-row" style="margin-bottom:8px">
+      <span><span class="readiness-dot" style="background:var(--accent-teal)"></span>🔥 RVOL ≥ 2×</span>
+      <span style="color:var(--accent-teal);font-weight:600">${rvHigh.length} מניות</span>
+    </div>
+    <div class="rvol-row" style="margin-bottom:10px">
+      <span><span class="readiness-dot" style="background:var(--accent-gold)"></span>✅ RVOL 1.5–2×</span>
+      <span style="color:var(--accent-gold);font-weight:600">${rvMid.length} מניות</span>
+    </div>
+    ${topRvol.map(d => `
+      <div class="rvol-row" onclick="selectStock('${d.symbol}')" style="cursor:pointer">
+        <span style="color:var(--accent-teal);font-weight:700;width:52px">${d.symbol}</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;margin:0 6px">
+          <div style="height:100%;width:${Math.min(100,parseFloat(d.rvol)/maxRv*100).toFixed(0)}%;background:var(--accent-teal);border-radius:3px"></div>
+        </div>
+        <span style="font-size:11px;color:var(--text-1)">${parseFloat(d.rvol).toFixed(1)}×</span>
+      </div>`).join('')}`;
+
+  // ── Card 4: Score Trajectory (from history) ───────────────────────────────
+  let trajHTML = '<div style="color:var(--text-2);font-size:12px;padding:12px 0">נדרשת היסטוריה של לפחות יומיים</div>';
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length >= 2) {
+      // Build per-stock score arrays
+      const stockScores = {};
+      history.forEach(entry => {
+        entry.stocks.forEach(s => {
+          if (!stockScores[s.s]) stockScores[s.s] = [];
+          stockScores[s.s].push({ date: entry.date, score: radarDayScore(s.sig) });
+        });
+      });
+      // Only stocks appearing in last entry and with ≥2 days
+      const lastDate = history[history.length-1].date;
+      const lastSyms = new Set(history[history.length-1].stocks.map(s => s.s));
+      const candidates = Object.entries(stockScores)
+        .filter(([sym, arr]) => lastSyms.has(sym) && arr.length >= 2)
+        .map(([sym, arr]) => {
+          arr.sort((a,b) => a.date.localeCompare(b.date));
+          const scores = arr.map(x => x.score);
+          const half = Math.ceil(scores.length/2);
+          const first = scores.slice(0,half).reduce((a,b)=>a+b,0)/half;
+          const last  = scores.slice(-half).reduce((a,b)=>a+b,0)/half;
+          return { sym, scores, trend: last - first };
+        })
+        .sort((a,b) => b.trend - a.trend)
+        .slice(0,6);
+
+      if (candidates.length) {
+        const spark = scores => {
+          const mx = Math.max(...scores, 1);
+          return `<span class="spark">${scores.map(v => {
+            const h = Math.max(3, Math.round(v/mx*16));
+            const c = v >= 5 ? 'var(--accent-green)' : v >= 3 ? 'var(--accent-gold)' : 'var(--text-2)';
+            return `<span class="spark-bar" style="height:${h}px;background:${c}"></span>`;
+          }).join('')}</span>`;
+        };
+        trajHTML = candidates.map(c => `
+          <div class="traj-row" onclick="selectStock('${c.sym}')">
+            <span style="color:var(--accent-teal);font-weight:700;width:52px;flex-shrink:0">${c.sym}</span>
+            ${spark(c.scores)}
+            <span style="color:${c.trend>0?'var(--accent-green)':'var(--signal-4)'};font-size:11px;margin-left:auto">
+              ${c.trend>0?'↑':'↓'}${Math.abs(c.trend).toFixed(1)}
+            </span>
+          </div>`).join('');
+      }
+    }
+  } catch(e) {}
 
   document.getElementById('signalsOverview').innerHTML = `
     <div class="scanner-card">
-      <div class="scanner-card-title">
-        <span class="scanner-dot" style="background:var(--accent-teal)"></span>
-        Top Weighted Alpha — Strength &amp; Direction
-      </div>
-      <div class="mini-list">
-        ${top_strength.map(d => `
-          <div class="mini-item" onclick="selectStock('${d.symbol}')">
-            <span class="mini-sym" style="color:var(--accent-teal)">${d.symbol}</span>
-            <div class="mini-bar-wrap">
-              <div class="mini-bar" style="background:linear-gradient(90deg,var(--accent-teal),var(--accent-green));width:${Math.min(100, parseFloat(d.wtd_alpha)/maxStr*100)}%"></div>
-            </div>
-            <span class="mini-val">+${parseFloat(d.wtd_alpha).toFixed(0)}</span>
-          </div>
-        `).join('')}
-      </div>
+      <div class="scanner-card-title"><span class="scanner-dot" style="background:var(--signal-4)"></span>פירוט סיגנלים</div>
+      ${sigBreakdownHTML}
     </div>
     <div class="scanner-card">
-      <div class="scanner-card-title">
-        <span class="scanner-dot" style="background:var(--accent-gold)"></span>
-        🏆 מובילי האלפא — כלל המניות
-      </div>
-      <div class="mini-list">
-        ${top_alpha.map(d => `
-          <div class="mini-item" onclick="selectStock('${d.symbol}')">
-            <span class="mini-sym" style="color:var(--accent-gold)">${d.symbol}</span>
-            <div class="mini-bar-wrap">
-              <div class="mini-bar" style="background:linear-gradient(90deg,var(--accent-gold),var(--accent-green));width:${Math.min(100, parseFloat(d.wtd_alpha)/maxAlpha*100)}%"></div>
-            </div>
-            <span class="mini-val" style="color:var(--accent-gold)">+${parseFloat(d.wtd_alpha).toFixed(0)}</span>
-          </div>
-        `).join('')}
-      </div>
+      <div class="scanner-card-title"><span class="scanner-dot" style="background:var(--accent-green)"></span>עוצמת כניסה — RSI &amp; Stoch</div>
+      ${readinessHTML}
     </div>
-  `;
+    <div class="scanner-card">
+      <div class="scanner-card-title"><span class="scanner-dot" style="background:var(--accent-teal)"></span>אישור ווליום — RVOL</div>
+      ${rvolHTML}
+    </div>
+    <div class="scanner-card">
+      <div class="scanner-card-title"><span class="scanner-dot" style="background:var(--accent-purple)"></span>מגמת ציון — היסטוריה</div>
+      ${trajHTML}
+    </div>`;
 }
 
 // ── Permanent base filter — shared by applyFilters() and saveHistorySnapshot()
