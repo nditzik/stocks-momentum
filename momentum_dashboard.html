@@ -2434,6 +2434,7 @@
     </div>
     <input class="search-input" type="text" id="searchInput" placeholder="חפש סימבול..." oninput="searchFilter()" dir="ltr">
     <span class="results-count" id="resultsCount"></span>
+    <button id="livepriceBtn" class="history-clear-btn" onclick="_lastPageFetch=0;fetchPagePrices()" title="עדכן מחירים חיים לעמוד הנוכחי">🔄 מחירים חיים</button>
     <button class="fav-io-btn" onclick="exportWatchlist()" title="ייצוא רשימת מועדפים לקובץ JSON">⭐ ייצוא</button>
     <label class="fav-io-btn" title="ייבוא רשימת מועדפים מקובץ JSON" style="cursor:pointer">⭐ ייבוא<input type="file" accept=".json" onchange="importWatchlist(event)" style="display:none"></label>
     <button class="fav-io-btn" onclick="exportCSV()" title="ייצוא טבלה מסוננת ל-CSV">📊 CSV</button>
@@ -3148,7 +3149,6 @@ function applyFilters() {
   renderPagination();
   if (heatmapActive) renderHeatmap();
   renderTopChart();
-  fetchPagePrices();
 }
 
 // ===== TOP ALPHA CHART (disabled — chart hidden) =====
@@ -3494,7 +3494,6 @@ function goPage(p) {
   currentPage = p;
   renderTable();
   renderPagination();
-  fetchPagePrices();
   document.querySelector('.table-wrapper').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -6947,8 +6946,9 @@ let livePrices = {}; // symbol → current price
 async function fetchLivePrices(symbols) {
   const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
   if (!syms.length) return;
-  const btn = document.getElementById('refreshPricesBtn');
-  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  const btn  = document.getElementById('refreshPricesBtn');
+  const btn2 = document.getElementById('livepriceBtn');
+  [btn, btn2].forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
   try {
     const url = `https://api.twelvedata.com/price?symbol=${syms.join(',')}&apikey=${TWELVE_DATA_KEY}`;
     const res  = await fetch(url, { signal: AbortSignal.timeout(10000) });
@@ -6972,7 +6972,8 @@ async function fetchLivePrices(symbols) {
   } catch(e) {
     console.warn('Live price fetch failed', e);
   } finally {
-    if (btn) { btn.textContent = '🔄 עדכן מחירים'; btn.disabled = false; }
+    if (btn)  { btn.textContent  = '🔄 עדכן מחירים'; btn.disabled  = false; }
+    if (btn2) { btn2.textContent = '🔄 מחירים חיים'; btn2.disabled = false; }
   }
 }
 
