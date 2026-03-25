@@ -2293,15 +2293,15 @@
       <div class="stat-value" id="statTotal">—</div>
       <div class="stat-sub">מכלל הסורקים</div>
     </div>
-    <div class="stat-card purple">
-      <div class="stat-label">TTM Squeeze</div>
-      <div class="stat-value" id="statSqueeze">—</div>
-      <div class="stat-sub">פיצוץ פוטנציאלי</div>
+    <div class="stat-card green" style="cursor:pointer" onclick="toggleChanges()" title="מניות שהצטרפו היום לדשבורד">
+      <div class="stat-label">🆕 הצטרפו</div>
+      <div class="stat-value" id="statNew">—</div>
+      <div class="stat-sub">חדשות בדשבורד</div>
     </div>
-    <div class="stat-card green">
-      <div class="stat-label">MACD Buy</div>
-      <div class="stat-value" id="statMacd">—</div>
-      <div class="stat-sub">סיגנל חדש</div>
+    <div class="stat-card purple" style="cursor:pointer" onclick="toggleChanges()" title="מניות שירדו מהדשבורד">
+      <div class="stat-label">⬇ יצאו</div>
+      <div class="stat-value" id="statExited">—</div>
+      <div class="stat-sub">ירדו מהדשבורד</div>
     </div>
   </div>
 
@@ -2629,8 +2629,19 @@ function updateStatBar() {
   animateCounter(document.getElementById('stat3'),       gf.filter(d => d.signal_count === 3).length);
   animateCounter(document.getElementById('stat2'),       gf.filter(d => d.signal_count === 2).length);
   animateCounter(document.getElementById('statTotal'),   gf.length);
-  animateCounter(document.getElementById('statSqueeze'), gf.filter(d => d.signals.includes('ttm_squeeze')).length);
-  animateCounter(document.getElementById('statMacd'),    gf.filter(d => d.signals.includes('macd_buy')).length);
+  // Changes counts — computed from history vs current filtered data
+  (function() {
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+    const todayKey = history.length ? history[history.length - 1].date : '';
+    const pastEntries = history.filter(e => e.date !== todayKey);
+    const pastSyms = new Set(pastEntries.flatMap(e => e.stocks.map(s => s.s)));
+    const todaySyms = new Set(gf.map(d => d.symbol));
+    const newCount    = [...todaySyms].filter(s => !pastSyms.has(s)).length;
+    const exitedCount = pastSyms.size ? [...pastSyms].filter(s => !todaySyms.has(s)).length : 0;
+    animateCounter(document.getElementById('statNew'),    newCount);
+    animateCounter(document.getElementById('statExited'), exitedCount);
+  })();
 }
 
 function todayStr() {
