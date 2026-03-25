@@ -1409,6 +1409,55 @@
   }
   .history-toggle-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
   .history-toggle-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,200,66,0.08); }
+  .changes-toggle-btn {
+    padding: 7px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    border-radius: 8px;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .changes-toggle-btn:hover { border-color: #c084fc; color: #c084fc; }
+  .changes-toggle-btn.active { border-color: #c084fc; color: #c084fc; background: rgba(192,132,252,0.08); }
+  .changes-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    display: none;
+  }
+  .changes-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-1);
+  }
+  .changes-panel-title { font-size: 15px; font-weight: 600; color: var(--text-1); }
+  .changes-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px 6px;
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .changes-section-title.exited { color: #f87171; }
+  .changes-section-title.joined { color: #4ade80; }
+  .changes-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .changes-table th { padding: 6px 10px; text-align: left; color: var(--text-2); border-bottom: 1px solid var(--border); font-weight: 500; white-space: nowrap; }
+  .changes-table td { padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; vertical-align: middle; }
+  .changes-table tr:hover td { background: rgba(255,255,255,0.03); cursor: pointer; }
+  .changes-table .sym-cell { font-weight: 700; color: var(--accent-teal); font-family: 'DM Mono', monospace; }
+  .changes-empty { padding: 20px; text-align: center; color: var(--text-2); font-size: 13px; }
   .history-panel {
     background: var(--bg-2);
     border: 1px solid var(--border);
@@ -2310,6 +2359,7 @@
     <button class="compact-toggle-btn" id="compactToggleBtn" onclick="toggleCompact()" title="Compact Mode — שורות צפופות יותר">⊟ צפוף</button>
     <button class="smart-toggle-btn" id="smartToggleBtn" onclick="toggleSmartMode()" title="Smart Mode — מסנן אוטומטי: מניות בשיא (RSI+Stoch גבוה), מבנה שבור, ו-Strength חלש. Smart ON = רק דיפים בריאים בטרנד עולה.">🧠 Smart</button>
     <button class="radar-toggle-btn" id="radarToggleBtn" onclick="toggleRadar()">📡 Radar</button>
+    <button class="changes-toggle-btn" id="changesToggleBtn" onclick="toggleChanges()">🔄 שינויים</button>
     <button class="history-toggle-btn" id="historyToggleBtn" onclick="toggleHistory()">📋 היסטוריה</button>
     <button class="upload-toggle-btn" id="uploadToggleBtn" onclick="toggleUpload()">📂 עדכן נתונים</button>
     <button class="view-toggle-btn" id="viewToggleBtn" onclick="toggleView()">⬛ Heatmap</button>
@@ -2329,6 +2379,15 @@
     <div class="radar-section-title">🔥 Top 30 — Signal Heatmap</div>
     <div class="radar-heatmap" id="radarHeatmap"></div>
     <div class="radar-sides" id="radarSides"></div>
+  </div>
+
+  <!-- CHANGES PANEL -->
+  <div class="changes-panel" id="changesPanel">
+    <div class="changes-panel-header">
+      <div class="changes-panel-title">🔄 שינויים — כניסות ויציאות</div>
+      <button class="history-clear-btn" onclick="toggleChanges()">✕</button>
+    </div>
+    <div id="changesContent"></div>
   </div>
 
   <!-- HISTORY PANEL -->
@@ -6364,11 +6423,20 @@ function saveHistorySnapshot() {
   // Remove today's existing entry (overwrite)
   history = history.filter(e => e.date !== today);
   const stocks = RAW_DATA.filter(passesBaseFilter).map(d => ({
-    s: d.symbol,
-    n: d.name || d.sq_name || d.macd_name || '',
-    sig: d.signals || [],
-    rv: parseFloat(d.rvol) || 0,
-    p: parseFloat(d.price) || 0,
+    s:    d.symbol,
+    n:    d.name || d.sq_name || d.macd_name || '',
+    sig:  d.signals || [],
+    rv:   parseFloat(d.rvol)      || 0,
+    p:    parseFloat(d.price)     || 0,
+    str:  d.strength              || '',
+    alp:  d.wtd_alpha             || '',
+    w52:  d.w52_chg               || '',
+    op:   d.opinion               || '',
+    rsi:  parseFloat(d.rel_str)   || 0,
+    stch: parseFloat(d.stoch)     || 0,
+    sc:   d.signal_count          || 0,
+    chg:  d.change_pct            || '',
+    ma50: parseFloat(d.ma50)      || 0,
   }));
   history.push({ date: today, stocks });
   // Keep only last HISTORY_MAX_DAYS days
@@ -6571,6 +6639,113 @@ function renderRadar() {
   sidesEl.innerHTML =
     sideTable('↑ Top Strengthening', strengthening, 'var(--accent-green)') +
     sideTable('↓ Top Weakening',     weakening,     'var(--accent-red)');
+}
+
+// ===== CHANGES (כניסות / יציאות) =====
+function toggleChanges() {
+  const panel = document.getElementById('changesPanel');
+  const btn   = document.getElementById('changesToggleBtn');
+  const tbl   = document.querySelector('.table-wrapper');
+  const pgn   = document.getElementById('pagination');
+  const open  = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  if (tbl) tbl.style.display = open ? '' : 'none';
+  if (pgn) pgn.style.display = open ? '' : 'none';
+  btn.classList.toggle('active', !open);
+  if (!open) renderChanges();
+}
+
+function renderChanges() {
+  const el = document.getElementById('changesContent');
+  if (!RAW_DATA.length) {
+    el.innerHTML = '<div class="changes-empty">טען נתונים כדי לראות שינויים</div>';
+    return;
+  }
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+  if (history.length < 2) {
+    el.innerHTML = '<div class="changes-empty">נדרשת היסטוריה של לפחות יומיים לזיהוי שינויים</div>';
+    return;
+  }
+
+  // Today's filtered symbols
+  const todaySet = new Set(RAW_DATA.filter(passesBaseFilter).map(d => d.symbol));
+
+  // All symbols from past days (excluding today's entry)
+  const today = history[history.length - 1].date;
+  const pastEntries = history.filter(e => e.date !== today);
+  const pastMap = new Map(); // sym -> last known stock data
+  pastEntries.forEach(entry => {
+    entry.stocks.forEach(s => {
+      pastMap.set(s.s, s); // keeps last seen
+    });
+  });
+
+  // Exited: in past history but NOT in today
+  const exited = [...pastMap.values()].filter(s => !todaySet.has(s.s));
+  // New: in today but NO history at all
+  const allHistSyms = new Set([...pastMap.keys()]);
+  const newStocks = RAW_DATA.filter(passesBaseFilter).filter(d => !allHistSyms.has(d.symbol));
+
+  const sigLabel = sigs => (sigs || []).map(k => ({ strength:'Str', hot_prospects:'Hot', '6m_high':'6M', ttm_squeeze:'TTM', macd_buy:'MACD' }[k] || k)).join('+') || '—';
+  const cols = `<tr>
+    <th>סימול</th><th>שם</th><th>סיגנלים</th><th>חוזק</th><th>Alpha</th><th>52W%</th><th>Opinion</th><th>RSI</th><th>Stoch</th><th>מחיר</th>
+  </tr>`;
+
+  // Render exited table (from history data)
+  const exitedRows = exited.length ? exited.map(s => `
+    <tr onclick="openFromChanges('${s.s}')">
+      <td class="sym-cell">${s.s}</td>
+      <td>${s.n || '—'}</td>
+      <td>${sigLabel(s.sig)}</td>
+      <td>${s.str || '—'}</td>
+      <td>${s.alp || '—'}</td>
+      <td>${s.w52 || '—'}</td>
+      <td>${s.op  || '—'}</td>
+      <td>${s.rsi  ? s.rsi.toFixed(0)  : '—'}</td>
+      <td>${s.stch ? s.stch.toFixed(0) : '—'}</td>
+      <td>${s.p    ? '$'+s.p.toFixed(2) : '—'}</td>
+    </tr>`).join('') :
+    '<tr><td colspan="10" class="changes-empty">אין מניות שירדו</td></tr>';
+
+  // Render new stocks table (from RAW_DATA)
+  const newRows = newStocks.length ? newStocks.map(d => `
+    <tr onclick="openFromChanges('${d.symbol}')">
+      <td class="sym-cell">${d.symbol}</td>
+      <td>${d.name || d.sq_name || '—'}</td>
+      <td>${sigLabel(d.signals)}</td>
+      <td>${d.strength || '—'}</td>
+      <td>${d.wtd_alpha || '—'}</td>
+      <td>${d.w52_chg   || '—'}</td>
+      <td>${d.opinion   || '—'}</td>
+      <td>${parseFloat(d.rel_str) ? parseFloat(d.rel_str).toFixed(0) : '—'}</td>
+      <td>${parseFloat(d.stoch)   ? parseFloat(d.stoch).toFixed(0)   : '—'}</td>
+      <td>${parseFloat(d.price)   ? '$'+parseFloat(d.price).toFixed(2) : '—'}</td>
+    </tr>`).join('') :
+    '<tr><td colspan="10" class="changes-empty">אין מניות חדשות</td></tr>';
+
+  el.innerHTML = `
+    <div class="changes-section-title exited">⬇ יצאו מהדשבורד (${exited.length})</div>
+    <div style="overflow-x:auto;padding:0 8px 8px">
+      <table class="changes-table">${cols}${exitedRows}</table>
+    </div>
+    <div class="changes-section-title joined">⬆ הצטרפו חדשות (${newStocks.length})</div>
+    <div style="overflow-x:auto;padding:0 8px 16px">
+      <table class="changes-table">${cols}${newRows}</table>
+    </div>`;
+}
+
+function openFromChanges(sym) {
+  const panel = document.getElementById('changesPanel');
+  const btn   = document.getElementById('changesToggleBtn');
+  const tbl   = document.querySelector('.table-wrapper');
+  const pgn   = document.getElementById('pagination');
+  panel.style.display = 'none';
+  btn.classList.remove('active');
+  if (tbl) tbl.style.display = '';
+  if (pgn) pgn.style.display = '';
+  selectedSymbol = sym;
+  loadChart(sym);
 }
 
 function toggleHistory() {
