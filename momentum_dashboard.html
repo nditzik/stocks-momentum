@@ -2472,6 +2472,7 @@
         <span style="font-size:11px;color:var(--text-2)" id="portfolioRiskLabel"></span>
         <label style="font-size:12px;color:var(--text-2)">פורטפוליו $<input id="portfolioSize" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:90px" placeholder="10000" oninput="savePortfolio();renderTrades()"></label>
         <label style="font-size:12px;color:var(--text-2)">סיכון %<input id="riskPct" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:50px" placeholder="1" oninput="savePortfolio();renderTrades()"></label>
+        <button id="refreshPricesBtn" class="history-clear-btn" onclick="fetchLivePrices()">🔄 עדכן מחירים</button>
         <button class="history-clear-btn" onclick="exportJournalCSV()">⬇ CSV</button>
         <button class="history-clear-btn" onclick="toggleTrades()">✕</button>
       </div>
@@ -6779,12 +6780,13 @@ function updateTradeField(id, field, val) {
   if (unrealEl && t.status === 'open') {
     const entry = parseFloat(t.entry || 0);
     const size  = parseFloat(t.size  || 0);
-    const live  = RAW_DATA.find(d => d.symbol === t.symbol);
-    const cur   = parseFloat(live?.price || 0);
+    const rawLive = RAW_DATA.find(d => d.symbol === t.symbol);
+    const cur   = livePrices[t.symbol] || parseFloat(rawLive?.price || 0);
     if (entry > 0 && size > 0 && cur > 0) {
       const unreal = (cur - entry) * size;
       const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
-      unrealEl.innerHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal.toFixed(2)}$ <span style="font-size:10px;opacity:.7">($${cur})</span></span>`;
+      const src = livePrices[t.symbol] ? '🔴 חי' : '📄 קובץ';
+      unrealEl.innerHTML = `<span class="${cls}">${unreal>=0?'+':''}${unreal.toFixed(2)}$</span> <span style="font-size:10px;color:var(--text-2)">$${cur.toFixed(2)} ${src}</span>`;
     }
   }
 }
@@ -6807,7 +6809,7 @@ function toggleTrades() {
   if (tbl) tbl.style.display = open ? '' : 'none';
   if (pgn) pgn.style.display = open ? '' : 'none';
   btn.classList.toggle('active', !open);
-  if (!open) renderTrades();
+  if (!open) { renderTrades(); fetchLivePrices(); }
 }
 
 function renderTrades() {
@@ -6860,15 +6862,16 @@ function renderTrades() {
       const cls = rr >= 2 ? 'rr-good' : rr >= 1.5 ? 'rr-ok' : 'rr-bad';
       rrHTML = `<span class="rr-badge ${cls}">R:R ${rr}</span>`;
     }
-    // Unrealized P&L for open trades
-    let unrealHTML = '—';
+    // Unrealized P&L for open trades — live price first, RAW_DATA as fallback
+    let unrealHTML = '<span style="color:var(--text-2);font-size:11px">לא זמין</span>';
     if (isOpen && entry > 0 && size > 0) {
-      const live = RAW_DATA.find(d => d.symbol === t.symbol);
-      const cur = parseFloat(live?.price || 0);
+      const rawLive = RAW_DATA.find(d => d.symbol === t.symbol);
+      const cur = livePrices[t.symbol] || parseFloat(rawLive?.price || 0);
       if (cur > 0) {
         const unreal = (cur - entry) * size;
         const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
-        unrealHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal.toFixed(2)}$ <span style="font-size:10px;opacity:.7">($${cur})</span></span>`;
+        const src = livePrices[t.symbol] ? '🔴 חי' : '📄 קובץ';
+        unrealHTML = `<span class="${cls}">${unreal>=0?'+':''}${unreal.toFixed(2)}$</span> <span style="font-size:10px;color:var(--text-2)">$${cur.toFixed(2)} ${src}</span>`;
       }
     }
     const pnl = calcPnL(t);
@@ -6925,6 +6928,32 @@ function renderTrades() {
       </div>
       ${closed.length ? `<div style="overflow-x:auto"><table class="journal-table">${closedHeader}${closed.map(t=>journalRow(t,false)).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות סגורות</div>'}
     </div>`;
+}
+
+let livePrices = {}; // symbol → current price
+
+async function fetchLivePrices() {
+  const syms = tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
+  if (!syms.length) return;
+  const btn = document.getElementById('refreshPricesBtn');
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  try {
+    const url = `https://api.twelvedata.com/price?symbol=${syms.join(',')}&apikey=${TWELVE_DATA_KEY}`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    const json = await res.json();
+    if (syms.length === 1) {
+      if (json.price) livePrices[syms[0]] = parseFloat(json.price);
+    } else {
+      Object.entries(json).forEach(([sym, val]) => {
+        if (val?.price) livePrices[sym] = parseFloat(val.price);
+      });
+    }
+    renderTrades();
+  } catch(e) {
+    console.warn('Live price fetch failed', e);
+  } finally {
+    if (btn) { btn.textContent = '🔄 עדכן מחירים'; btn.disabled = false; }
+  }
 }
 
 function addManualTrade() {
