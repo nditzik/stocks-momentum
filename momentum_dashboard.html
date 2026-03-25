@@ -6748,20 +6748,21 @@ function updateTradeField(id, field, val) {
   const t = tradeJournal.find(x => x.id === id);
   if (!t) return;
   t[field] = val;
-  // Auto-calc size when entry + stop set
-  if (['entry','stop'].includes(field)) {
+  // Auto-calc size from portfolio when entry + stop set (only if user hasn't set size manually)
+  if (['entry','stop'].includes(field) && !t._manualSize) {
     const entry = parseFloat(t.entry || 0);
     const stop  = parseFloat(t.stop  || 0);
     const pf    = parseFloat(document.getElementById('portfolioSize')?.value || localStorage.getItem('momentum_portfolio') || 0);
     const rp    = parseFloat(document.getElementById('riskPct')?.value || localStorage.getItem('momentum_risk_pct') || 1);
     if (entry > 0 && stop > 0 && entry > stop && pf > 0) {
-      const riskPerShare = entry - stop;
-      const riskAmount   = pf * (rp / 100);
-      t.size = Math.floor(riskAmount / riskPerShare);
+      t.size = Math.floor(pf * (rp / 100) / (entry - stop));
+      const sizeEl = document.getElementById('size_'+id);
+      if (sizeEl) sizeEl.value = t.size;
     }
   }
+  if (field === 'size') t._manualSize = true;
   saveJournal();
-  // Re-render RR badge only
+  // Update RR badge
   const rrEl = document.getElementById('rr_'+id);
   if (rrEl) {
     const entry  = parseFloat(t.entry  || 0);
@@ -6773,8 +6774,19 @@ function updateTradeField(id, field, val) {
       rrEl.innerHTML = `<span class="rr-badge ${cls}">R:R ${rr}</span>`;
     }
   }
-  const sizeEl = document.getElementById('size_'+id);
-  if (sizeEl && t.size) sizeEl.textContent = t.size + ' מניות';
+  // Update unrealized P&L
+  const unrealEl = document.getElementById('unreal_'+id);
+  if (unrealEl && t.status === 'open') {
+    const entry = parseFloat(t.entry || 0);
+    const size  = parseFloat(t.size  || 0);
+    const live  = RAW_DATA.find(d => d.symbol === t.symbol);
+    const cur   = parseFloat(live?.price || 0);
+    if (entry > 0 && size > 0 && cur > 0) {
+      const unreal = (cur - entry) * size;
+      const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
+      unrealEl.innerHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal.toFixed(2)}$ <span style="font-size:10px;opacity:.7">($${cur})</span></span>`;
+    }
+  }
 }
 
 function calcPnL(t) {
@@ -6852,13 +6864,11 @@ function renderTrades() {
     let unrealHTML = '—';
     if (isOpen && entry > 0 && size > 0) {
       const live = RAW_DATA.find(d => d.symbol === t.symbol);
-      if (live) {
-        const cur = parseFloat(live.price || 0);
-        if (cur > 0) {
-          const unreal = ((cur - entry) * size).toFixed(2);
-          const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
-          unrealHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal}$</span>`;
-        }
+      const cur = parseFloat(live?.price || 0);
+      if (cur > 0) {
+        const unreal = (cur - entry) * size;
+        const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
+        unrealHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal.toFixed(2)}$ <span style="font-size:10px;opacity:.7">($${cur})</span></span>`;
       }
     }
     const pnl = calcPnL(t);
@@ -6869,7 +6879,7 @@ function renderTrades() {
       <td><input id="stop_${t.id}"  value="${t.stop}"  placeholder="סטופ"  onchange="updateTradeField(${t.id},'stop',this.value)"></td>
       <td><input id="target_${t.id}" value="${t.target}" placeholder="יעד" onchange="updateTradeField(${t.id},'target',this.value)"></td>
       <td id="rr_${t.id}">${rrHTML}</td>
-      <td id="size_${t.id}" style="font-size:11px;color:var(--text-1)">${size ? size+' מניות' : '—'}</td>
+      <td><input id="size_${t.id}" value="${size||''}" placeholder="כמות" title="כמות מניות" onchange="updateTradeField(${t.id},'size',this.value);renderTrades()" style="width:60px"></td>
       ${isOpen ? `
       <td id="unreal_${t.id}">${unrealHTML}</td>
       <td><input id="exit_${t.id}" value="${t.exitPrice}" placeholder="סגירה" style="width:60px"></td>
