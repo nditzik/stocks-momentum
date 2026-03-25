@@ -1433,6 +1433,50 @@
   }
   .history-toggle-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
   .history-toggle-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,200,66,0.08); }
+  .readiness-tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; white-space:nowrap; cursor:default; }
+  .readiness-tag.ready  { background:rgba(0,230,118,0.15); color:var(--accent-green); border:1px solid rgba(0,230,118,0.3); }
+  .readiness-tag.close  { background:rgba(245,166,35,0.15); color:var(--accent-gold);  border:1px solid rgba(245,166,35,0.3); }
+  .add-trade-btn { background:none; border:1px solid var(--border); border-radius:5px; color:var(--text-2); font-size:13px; padding:2px 7px; cursor:pointer; transition:all .15s; line-height:1; }
+  .add-trade-btn:hover { border-color:var(--accent-green); color:var(--accent-green); }
+  .add-trade-btn.in-journal { border-color:var(--accent-teal); color:var(--accent-teal); }
+  .trades-toggle-btn {
+    padding: 7px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    border-radius: 8px;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .trades-toggle-btn:hover  { border-color: var(--accent-green); color: var(--accent-green); }
+  .trades-toggle-btn.active { border-color: var(--accent-green); color: var(--accent-green); background: rgba(0,230,118,0.08); }
+  .trades-panel { background:var(--bg-2); border:1px solid var(--border); border-radius:12px; margin-bottom:16px; overflow:hidden; display:none; }
+  .trades-panel-header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--border); background:var(--bg-1); }
+  .trades-section { padding:12px 16px; }
+  .trades-section-title { font-size:12px; font-weight:700; color:var(--text-2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+  .candidates-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-bottom:8px; }
+  .candidate-card { background:var(--bg-1); border:1px solid var(--border); border-radius:8px; padding:10px 12px; cursor:pointer; transition:border-color .15s; }
+  .candidate-card:hover { border-color:var(--accent-green); }
+  .candidate-card .cc-sym { font-weight:700; color:var(--accent-teal); font-size:14px; }
+  .candidate-card .cc-score { font-size:11px; color:var(--text-2); margin-top:2px; }
+  .candidate-card .cc-bar { height:4px; border-radius:2px; background:rgba(255,255,255,0.08); margin-top:6px; }
+  .candidate-card .cc-bar-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--accent-teal),var(--accent-green)); transition:width .4s; }
+  .journal-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .journal-table th { padding:6px 8px; text-align:left; color:var(--text-2); border-bottom:1px solid var(--border); font-weight:500; white-space:nowrap; }
+  .journal-table td { padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.04); white-space:nowrap; vertical-align:middle; }
+  .journal-table tr:hover td { background:rgba(255,255,255,0.03); }
+  .journal-table input { background:var(--bg-0); border:1px solid var(--border); border-radius:4px; color:var(--text-1); padding:3px 6px; font-size:11px; width:68px; font-family:'DM Mono',monospace; }
+  .journal-table input:focus { outline:none; border-color:var(--accent-teal); }
+  .rr-badge { font-size:10px; padding:2px 5px; border-radius:3px; font-weight:700; }
+  .rr-good  { background:rgba(0,230,118,0.15); color:var(--accent-green); }
+  .rr-ok    { background:rgba(245,166,35,0.15); color:var(--accent-gold); }
+  .rr-bad   { background:rgba(255,77,106,0.15); color:var(--signal-4); }
+  .pnl-pos  { color:var(--accent-green); font-weight:600; }
+  .pnl-neg  { color:var(--signal-4); font-weight:600; }
+  .trade-status-open   { color:var(--accent-gold); }
+  .trade-status-closed { color:var(--text-2); }
   .changes-toggle-btn {
     padding: 7px 16px;
     background: var(--bg-2);
@@ -2395,6 +2439,7 @@
     <button class="fav-io-btn" onclick="exportCSV()" title="ייצוא טבלה מסוננת ל-CSV">📊 CSV</button>
     <button class="compact-toggle-btn" id="compactToggleBtn" onclick="toggleCompact()" title="Compact Mode — שורות צפופות יותר">⊟ צפוף</button>
     <button class="smart-toggle-btn" id="smartToggleBtn" onclick="toggleSmartMode()" title="Smart Mode — מסנן אוטומטי: מניות בשיא (RSI+Stoch גבוה), מבנה שבור, ו-Strength חלש. Smart ON = רק דיפים בריאים בטרנד עולה.">🧠 Smart</button>
+    <button class="trades-toggle-btn" id="tradesToggleBtn" onclick="toggleTrades()">📈 עסקאות</button>
     <button class="radar-toggle-btn" id="radarToggleBtn" onclick="toggleRadar()">📡 Radar</button>
     <button class="changes-toggle-btn" id="changesToggleBtn" onclick="toggleChanges()">🔄 שינויים</button>
     <button class="history-toggle-btn" id="historyToggleBtn" onclick="toggleHistory()">📋 היסטוריה</button>
@@ -2417,6 +2462,21 @@
     <div class="radar-section-title">🔥 Top 30 — Signal Heatmap</div>
     <div class="radar-heatmap" id="radarHeatmap"></div>
     <div class="radar-sides" id="radarSides"></div>
+  </div>
+
+  <!-- TRADES PANEL -->
+  <div class="trades-panel" id="tradesPanel">
+    <div class="trades-panel-header">
+      <div style="font-size:15px;font-weight:600;color:var(--text-1)">📈 עסקאות</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-size:11px;color:var(--text-2)" id="portfolioRiskLabel"></span>
+        <label style="font-size:12px;color:var(--text-2)">פורטפוליו $<input id="portfolioSize" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:90px" placeholder="10000" oninput="savePortfolio();renderTrades()"></label>
+        <label style="font-size:12px;color:var(--text-2)">סיכון %<input id="riskPct" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:50px" placeholder="1" oninput="savePortfolio();renderTrades()"></label>
+        <button class="history-clear-btn" onclick="exportJournalCSV()">⬇ CSV</button>
+        <button class="history-clear-btn" onclick="toggleTrades()">✕</button>
+      </div>
+    </div>
+    <div id="tradesContent"></div>
   </div>
 
   <!-- CHANGES PANEL -->
@@ -2526,6 +2586,7 @@
           <th onclick="sortData('alpha')">Wtd Alpha</th>
           <th onclick="sortData('w52')">52W%</th>
           <th>המלצה</th>
+          <th title="Readiness Score — עוצמת כניסה + כפתור הוספה ליומן">בשלות ➕</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -2721,6 +2782,7 @@ function init() {
     if (btn) { btn.classList.add('active'); btn.textContent = '🌙 כהה'; }
   }
   loadWatchlist();
+  loadJournal();
   updateStatBar();
   loadIndicesBar();
   renderSignalPulse();
@@ -3250,6 +3312,60 @@ function calcScore(d) {
   return Math.min(100, Math.max(0, s));
 }
 
+// ── Readiness Score 0–100 ─────────────────────────────────────────────────
+function calcReadiness(d) {
+  let s = 0;
+  const rsi   = parseFloat(d.rel_str  || 0);
+  const stoch = parseFloat(d.stoch    || 0);
+  const price = parseFloat(d.price    || 0);
+  const ma50  = parseFloat(d.ma50     || 0);
+  const rvol  = parseFloat(d.rvol     || 0);
+  const chg   = parseFloat(d.change_pct || 0);
+  const sc    = d.signal_count || 0;
+
+  // RSI + Stoch zone (max 25)
+  if (rsi > 0 && stoch > 0) {
+    if (rsi < 60 && stoch < 65)       s += 25;
+    else if (rsi < 65 || stoch < 72)  s += 12;
+  }
+  // MA50 proximity — dip in uptrend (max 20)
+  if (price > 0 && ma50 > 0 && price >= ma50) {
+    const dist = (price - ma50) / ma50 * 100;
+    if (dist <= 8)       s += 20;
+    else if (dist <= 15) s += 10;
+  }
+  // RVOL confirmation (max 15)
+  if (rvol >= 2.0)      s += 15;
+  else if (rvol >= 1.5) s += 10;
+  else if (rvol >= 1.0) s += 5;
+
+  // Signal count / momentum (max 15)
+  s += sc >= 3 ? 15 : sc === 2 ? 8 : sc === 1 ? 4 : 0;
+
+  // History trend (max 10)
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length >= 2) {
+      const arr = [];
+      history.forEach(e => { const f = e.stocks.find(x => x.s === d.symbol); if (f) arr.push(radarDayScore(f.sig)); });
+      if (arr.length >= 2) {
+        const half = Math.ceil(arr.length / 2);
+        const first = arr.slice(0, half).reduce((a,b)=>a+b,0) / half;
+        const last  = arr.slice(-half).reduce((a,b)=>a+b,0) / half;
+        const trend = last - first;
+        if (trend > 1)      s += 10;
+        else if (trend > 0) s += 5;
+      }
+    }
+  } catch(e) {}
+
+  // Green candle (max 15)
+  if (chg > 1.5)     s += 15;
+  else if (chg > 0)  s += 8;
+
+  return Math.min(100, Math.max(0, s));
+}
+
 function maStatus(price, ma) {
   const p = parseFloat(price || 0);
   const m = parseFloat(ma || 0);
@@ -3302,6 +3418,13 @@ function renderTable() {
       : stochVal > 80 ? `<span style="font-size:8px;padding:1px 5px;border-radius:3px;background:rgba(255,77,106,0.18);color:var(--accent-red);white-space:nowrap" title="Stoch ${stochVal.toFixed(0)} — קנייה-יתר">קנ״י ${stochVal.toFixed(0)}</span>`
       : '' : '';
     
+    const rdy = calcReadiness(d);
+    const rdyTag = rdy >= 70
+      ? `<span class="readiness-tag ready" title="Readiness ${rdy}">🟢 ${rdy}</span>`
+      : rdy >= 50
+      ? `<span class="readiness-tag close" title="Readiness ${rdy}">🟡 ${rdy}</span>`
+      : '';
+    const inJournal = tradeJournal.some(t => t.symbol === d.symbol && t.status === 'open');
     return `
       <tr onclick="selectStock('${d.symbol}')" class="${isSelected ? 'selected' : ''} row-${rec.cls}">
         <td style="color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px">${start + i + 1}</td>
@@ -3338,6 +3461,10 @@ function renderTable() {
         <td><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent-green)">${d.wtd_alpha ? '+'+parseFloat(d.wtd_alpha).toFixed(0) : '—'}</span></td>
         <td><span class="${p52(d.w52_chg) >= 0 ? 'change-pos' : 'change-neg'}" style="font-family:'DM Mono',monospace;font-size:12px">${d.w52_chg || '—'}</span></td>
         <td><span class="rec-cell rec-${rec.cls}">${rec.icon} ${rec.label}</span></td>
+        <td onclick="event.stopPropagation()" style="padding:2px 6px;text-align:center">
+          ${rdyTag}
+          <button class="add-trade-btn ${inJournal ? 'in-journal' : ''}" onclick="event.stopPropagation();addToJournal('${d.symbol}')" title="${inJournal ? 'כבר ביומן' : 'הוסף ליומן עסקאות'}">${inJournal ? '✓' : '+'}</button>
+        </td>
       </tr>
     `;
   }).join('');
@@ -6549,6 +6676,234 @@ async function autoLoadFromData() {
     const fTime  = document.getElementById('footerUpdateTime');
     if (fBadge && fTime) { fTime.textContent = tsStr; fBadge.style.display = 'inline'; }
   }
+}
+
+// ── Trade Journal ─────────────────────────────────────────────────────────────
+const JOURNAL_KEY = 'momentum_journal';
+let tradeJournal = [];
+
+function loadJournal() {
+  try { tradeJournal = JSON.parse(localStorage.getItem(JOURNAL_KEY) || '[]'); } catch(e) { tradeJournal = []; }
+}
+function saveJournal() {
+  try { localStorage.setItem(JOURNAL_KEY, JSON.stringify(tradeJournal)); } catch(e) {}
+}
+function savePortfolio() {
+  const pf = document.getElementById('portfolioSize')?.value;
+  const rp = document.getElementById('riskPct')?.value;
+  if (pf) localStorage.setItem('momentum_portfolio', pf);
+  if (rp) localStorage.setItem('momentum_risk_pct', rp);
+}
+
+function addToJournal(sym) {
+  if (tradeJournal.some(t => t.symbol === sym && t.status === 'open')) return;
+  const d = RAW_DATA.find(x => x.symbol === sym);
+  const price = parseFloat(d?.price || 0);
+  tradeJournal.push({
+    id: Date.now(),
+    symbol: sym,
+    name: d?.name || d?.sq_name || '',
+    entry: price > 0 ? price.toFixed(2) : '',
+    stop: '',
+    target: '',
+    size: '',
+    date: new Date().toISOString().slice(0,10),
+    status: 'open',
+    exitPrice: '',
+    notes: '',
+    readiness: d ? calcReadiness(d) : 0,
+  });
+  saveJournal();
+  renderTable();
+  // Open trades panel
+  const panel = document.getElementById('tradesPanel');
+  const tbl = document.querySelector('.table-wrapper');
+  const pgn = document.getElementById('pagination');
+  panel.style.display = 'block';
+  if (tbl) tbl.style.display = 'none';
+  if (pgn) pgn.style.display = 'none';
+  document.getElementById('tradesToggleBtn').classList.add('active');
+  renderTrades();
+}
+
+function removeFromJournal(id) {
+  tradeJournal = tradeJournal.filter(t => t.id !== id);
+  saveJournal();
+  renderTable();
+  renderTrades();
+}
+
+function closeTrade(id) {
+  const t = tradeJournal.find(x => x.id === id);
+  if (!t) return;
+  const ep = parseFloat(document.getElementById('exit_'+id)?.value || 0);
+  if (ep > 0) t.exitPrice = ep.toFixed(2);
+  t.status = 'closed';
+  saveJournal();
+  renderTable();
+  renderTrades();
+}
+
+function updateTradeField(id, field, val) {
+  const t = tradeJournal.find(x => x.id === id);
+  if (!t) return;
+  t[field] = val;
+  // Auto-calc size when entry + stop set
+  if (['entry','stop'].includes(field)) {
+    const entry = parseFloat(t.entry || 0);
+    const stop  = parseFloat(t.stop  || 0);
+    const pf    = parseFloat(document.getElementById('portfolioSize')?.value || localStorage.getItem('momentum_portfolio') || 0);
+    const rp    = parseFloat(document.getElementById('riskPct')?.value || localStorage.getItem('momentum_risk_pct') || 1);
+    if (entry > 0 && stop > 0 && entry > stop && pf > 0) {
+      const riskPerShare = entry - stop;
+      const riskAmount   = pf * (rp / 100);
+      t.size = Math.floor(riskAmount / riskPerShare);
+    }
+  }
+  saveJournal();
+  // Re-render RR badge only
+  const rrEl = document.getElementById('rr_'+id);
+  if (rrEl) {
+    const entry  = parseFloat(t.entry  || 0);
+    const stop   = parseFloat(t.stop   || 0);
+    const target = parseFloat(t.target || 0);
+    if (entry > 0 && stop > 0 && target > 0 && entry > stop) {
+      const rr = ((target - entry) / (entry - stop)).toFixed(1);
+      const cls = rr >= 2 ? 'rr-good' : rr >= 1.5 ? 'rr-ok' : 'rr-bad';
+      rrEl.innerHTML = `<span class="rr-badge ${cls}">R:R ${rr}</span>`;
+    }
+  }
+  const sizeEl = document.getElementById('size_'+id);
+  if (sizeEl && t.size) sizeEl.textContent = t.size + ' מניות';
+}
+
+function calcPnL(t) {
+  const entry = parseFloat(t.entry || 0);
+  const exit  = parseFloat(t.exitPrice || 0);
+  const size  = parseFloat(t.size || 0);
+  if (!entry || !exit || !size) return null;
+  return ((exit - entry) * size).toFixed(2);
+}
+
+function toggleTrades() {
+  const panel = document.getElementById('tradesPanel');
+  const btn   = document.getElementById('tradesToggleBtn');
+  const tbl   = document.querySelector('.table-wrapper');
+  const pgn   = document.getElementById('pagination');
+  const open  = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  if (tbl) tbl.style.display = open ? '' : 'none';
+  if (pgn) pgn.style.display = open ? '' : 'none';
+  btn.classList.toggle('active', !open);
+  if (!open) renderTrades();
+}
+
+function renderTrades() {
+  const el = document.getElementById('tradesContent');
+  if (!el) return;
+
+  // Restore portfolio settings
+  const savedPF = localStorage.getItem('momentum_portfolio');
+  const savedRP = localStorage.getItem('momentum_risk_pct');
+  if (savedPF) { const inp = document.getElementById('portfolioSize'); if (inp && !inp.value) inp.value = savedPF; }
+  if (savedRP) { const inp = document.getElementById('riskPct');       if (inp && !inp.value) inp.value = savedRP; }
+
+  // ── Candidates section ────────────────────────────────────────────────────
+  const base = RAW_DATA.filter(passesBaseFilter);
+  const candidates = base
+    .map(d => ({ d, score: calcReadiness(d) }))
+    .filter(x => x.score >= 50)
+    .sort((a,b) => b.score - a.score)
+    .slice(0, 12);
+
+  const candidatesHTML = candidates.length ? `
+    <div class="candidates-grid">
+      ${candidates.map(({d,score}) => {
+        const inJ = tradeJournal.some(t => t.symbol === d.symbol && t.status === 'open');
+        const chg = parseFloat(d.change_pct || 0);
+        return `<div class="candidate-card" onclick="selectStock('${d.symbol}')">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="cc-sym">${d.symbol}</span>
+            <button class="add-trade-btn ${inJ?'in-journal':''}" onclick="event.stopPropagation();addToJournal('${d.symbol}')" title="${inJ?'כבר ביומן':'הוסף ליומן'}">${inJ?'✓':'+'}</button>
+          </div>
+          <div class="cc-score">${d.name||d.sq_name||''} · ${chg>=0?'+':''}${chg.toFixed(1)}% · RSI ${parseFloat(d.rel_str||0).toFixed(0)} · RVOL ${parseFloat(d.rvol||0).toFixed(1)}×</div>
+          <div class="cc-bar"><div class="cc-bar-fill" style="width:${score}%"></div></div>
+          <div style="font-size:10px;color:var(--text-2);margin-top:3px">Readiness ${score}/100</div>
+        </div>`;
+      }).join('')}
+    </div>` : '<div style="color:var(--text-2);font-size:12px;padding:8px 0">אין מועמדות עם ציון ≥50 כרגע</div>';
+
+  // ── Journal section ───────────────────────────────────────────────────────
+  const open   = tradeJournal.filter(t => t.status === 'open');
+  const closed = tradeJournal.filter(t => t.status === 'closed');
+
+  const journalRow = t => {
+    const entry  = parseFloat(t.entry  || 0);
+    const stop   = parseFloat(t.stop   || 0);
+    const target = parseFloat(t.target || 0);
+    let rrHTML = '<span style="color:var(--text-2)">—</span>';
+    if (entry > 0 && stop > 0 && target > 0 && entry > stop) {
+      const rr = ((target - entry) / (entry - stop)).toFixed(1);
+      const cls = rr >= 2 ? 'rr-good' : rr >= 1.5 ? 'rr-ok' : 'rr-bad';
+      rrHTML = `<span class="rr-badge ${cls}">R:R ${rr}</span>`;
+    }
+    const pnl = calcPnL(t);
+    return `<tr>
+      <td><span style="color:var(--accent-teal);font-weight:700">${t.symbol}</span><br><span style="font-size:10px;color:var(--text-2)">${t.date}</span></td>
+      <td><span class="readiness-tag ${t.readiness>=70?'ready':'close'}">${t.readiness}</span></td>
+      <td><input id="entry_${t.id}" value="${t.entry}" placeholder="כניסה" onchange="updateTradeField(${t.id},'entry',this.value)"></td>
+      <td><input id="stop_${t.id}"  value="${t.stop}"  placeholder="סטופ"  onchange="updateTradeField(${t.id},'stop',this.value)"></td>
+      <td><input id="target_${t.id}" value="${t.target}" placeholder="יעד" onchange="updateTradeField(${t.id},'target',this.value)"></td>
+      <td id="rr_${t.id}">${rrHTML}</td>
+      <td id="size_${t.id}" style="font-size:11px;color:var(--text-1)">${t.size ? t.size+' מניות' : '—'}</td>
+      ${t.status === 'open' ? `
+      <td><input id="exit_${t.id}" value="${t.exitPrice}" placeholder="סגירה" style="width:60px"></td>
+      <td><button onclick="closeTrade(${t.id})" style="font-size:11px;padding:2px 8px;border:1px solid var(--accent-gold);border-radius:4px;background:none;color:var(--accent-gold);cursor:pointer">סגור</button></td>
+      ` : `
+      <td style="font-size:11px">${t.exitPrice ? '$'+t.exitPrice : '—'}</td>
+      <td class="${pnl>=0?'pnl-pos':'pnl-neg'}">${pnl ? (pnl>=0?'+':'')+pnl+'$' : '—'}</td>
+      `}
+      <td><button onclick="removeFromJournal(${t.id})" style="font-size:11px;padding:1px 6px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--text-2);cursor:pointer">✕</button></td>
+    </tr>`;
+  };
+
+  const tableHeader = `<tr>
+    <th>סימול</th><th>בשלות</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>R:R</th><th>גודל</th><th>סגירה/יציאה</th><th>P&L</th><th></th>
+  </tr>`;
+
+  const totalPnL = closed.reduce((sum,t) => {
+    const p = parseFloat(calcPnL(t)||0); return sum + p;
+  }, 0);
+
+  el.innerHTML = `
+    <div class="trades-section">
+      <div class="trades-section-title">🎯 מועמדות לטרייד — Readiness ≥ 50 (${candidates.length})</div>
+      ${candidatesHTML}
+    </div>
+    <div class="trades-section" style="border-top:1px solid var(--border)">
+      <div class="trades-section-title">📋 יומן פתוח (${open.length})</div>
+      ${open.length ? `<div style="overflow-x:auto"><table class="journal-table">${tableHeader}${open.map(journalRow).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות פתוחות — לחץ ➕ ליד מניה</div>'}
+    </div>
+    <div class="trades-section" style="border-top:1px solid var(--border)">
+      <div class="trades-section-title" style="display:flex;justify-content:space-between">
+        <span>🗂 עסקאות סגורות (${closed.length})</span>
+        ${closed.length ? `<span class="${totalPnL>=0?'pnl-pos':'pnl-neg'}">סה"כ P&L: ${totalPnL>=0?'+':''}${totalPnL.toFixed(2)}$</span>` : ''}
+      </div>
+      ${closed.length ? `<div style="overflow-x:auto"><table class="journal-table">${tableHeader}${closed.map(journalRow).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות סגורות</div>'}
+    </div>`;
+}
+
+function exportJournalCSV() {
+  const rows = [['Symbol','Name','Date','Entry','Stop','Target','R:R','Size','Status','Exit','P&L','Readiness']];
+  tradeJournal.forEach(t => {
+    const entry = parseFloat(t.entry||0), stop = parseFloat(t.stop||0), target = parseFloat(t.target||0);
+    const rr = (entry>0&&stop>0&&target>0&&entry>stop) ? ((target-entry)/(entry-stop)).toFixed(2) : '';
+    const pnl = calcPnL(t) || '';
+    rows.push([t.symbol,t.name,t.date,t.entry,t.stop,t.target,rr,t.size,t.status,t.exitPrice,pnl,t.readiness]);
+  });
+  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download = `trade_journal_${new Date().toISOString().slice(0,10)}.csv`; a.click();
 }
 
 // ── History (localStorage) ────────────────────────────────────────────────────
