@@ -30,6 +30,20 @@
     --signal-1: #3b9eff;
   }
 
+  .light-mode {
+    --bg-0: #f0f4f8;
+    --bg-1: #ffffff;
+    --bg-2: #f8fafc;
+    --bg-3: #eef2f7;
+    --bg-card: #ffffff;
+    --border: #d0dce8;
+    --border-bright: #b0c4d8;
+    --text-0: #1a2a3a;
+    --text-1: #3a5570;
+    --text-2: #7a96b0;
+  }
+  .light-mode body::before { opacity: 0.03; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
@@ -1876,6 +1890,19 @@
     white-space: nowrap;
   }
   .cb-toggle-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .theme-toggle-btn {
+    padding: 7px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    border-radius: 8px;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .theme-toggle-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+  .theme-toggle-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,166,35,0.08); }
   .cb-toggle-btn.active {
     border-color: var(--accent-blue);
     color: var(--accent-blue);
@@ -2373,6 +2400,7 @@
     <button class="history-toggle-btn" id="historyToggleBtn" onclick="toggleHistory()">📋 היסטוריה</button>
     <button class="upload-toggle-btn" id="uploadToggleBtn" onclick="toggleUpload()">📂 עדכן נתונים</button>
     <button class="view-toggle-btn" id="viewToggleBtn" onclick="toggleView()">⬛ Heatmap</button>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="החלף בין מצב כהה ובהיר">☀️ בהיר</button>
     <button class="cb-toggle-btn" id="cbToggleBtn" onclick="toggleColorBlind()" title="מצב עיוור צבעים (כחול/כתום)">👁 CB</button>
   </div>
 
@@ -2607,6 +2635,21 @@ function animateCounter(el, target, duration = 650) {
 }
 
 // ── Color-blind mode toggle ─────────────────────────────────────────────────
+function toggleTheme() {
+  const light = document.documentElement.classList.toggle('light-mode');
+  const btn = document.getElementById('themeToggleBtn');
+  btn.classList.toggle('active', light);
+  btn.textContent = light ? '🌙 כהה' : '☀️ בהיר';
+  localStorage.setItem('momentum_theme', light ? 'light' : 'dark');
+}
+
+// Apply saved theme on load
+(function() {
+  if (localStorage.getItem('momentum_theme') === 'light') {
+    document.documentElement.classList.add('light-mode');
+  }
+})();
+
 function toggleColorBlind() {
   const active = document.body.classList.toggle('colorblind');
   document.getElementById('cbToggleBtn').classList.toggle('active', active);
@@ -2672,6 +2715,11 @@ function init() {
   if (vTag) vTag.textContent = DASHBOARD_VERSION;
   const fTag = document.getElementById('footerVersion');
   if (fTag) fTag.textContent = `Momentum Scanner ${DASHBOARD_VERSION}`;
+  // Sync theme button state with saved preference
+  if (localStorage.getItem('momentum_theme') === 'light') {
+    const btn = document.getElementById('themeToggleBtn');
+    if (btn) { btn.classList.add('active'); btn.textContent = '🌙 כהה'; }
+  }
   loadWatchlist();
   updateStatBar();
   loadIndicesBar();
