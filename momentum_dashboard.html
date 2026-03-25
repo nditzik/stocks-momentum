@@ -5069,10 +5069,23 @@ async function loadChart(symbol) {
       return d;
     })();
     fallbackDiv.style.display = 'block';
+    const tvId = 'tv_' + symbol.replace(/[^a-zA-Z0-9]/g,'');
     fallbackDiv.innerHTML = `
-      <div style="color:var(--accent-gold);font-size:11px;padding:4px 8px;opacity:.7">גרף TradingView (Twelve Data: ${err.message})</div>
-      <iframe src="https://www.tradingview.com/widgetsnippet/symbol-overview/?symbol=${encodeURIComponent(symbol)}&interval=D&theme=dark&style=1&locale=he_IL&hide_side_toolbar=0"
-        style="width:100%;height:400px;border:none;border-radius:8px" allowtransparency="true" scrolling="no"></iframe>`;
+      <div style="color:var(--accent-gold);font-size:11px;padding:4px 8px;opacity:.7">גרף TradingView — Twelve Data: ${err.message}</div>
+      <div id="${tvId}" style="height:420px"></div>`;
+    // Inject TradingView widget script
+    const s = document.createElement('script');
+    s.src = 'https://s3.tradingview.com/tv.js';
+    s.onload = () => {
+      new TradingView.widget({
+        container_id: tvId, symbol, interval: 'D',
+        width: '100%', height: 420,
+        theme: 'dark', style: '1', locale: 'en',
+        toolbar_bg: '#131722', hide_side_toolbar: false,
+        studies: ['MASimple@tv-scriptstd;length=20','MASimple@tv-scriptstd;length=50','MASimple@tv-scriptstd;length=150']
+      });
+    };
+    document.head.appendChild(s);
   }
 }
 
@@ -6946,8 +6959,7 @@ function renderTrades() {
 
 let livePrices = {}; // symbol → current price
 
-// Generic live price fetcher — uses Finnhub (separate from Twelve Data / chart API)
-const FINNHUB_KEY = 'cvt0a89r01qhupf4k8rgcvt0a89r01qhupf4k8s0';
+// Generic live price fetcher — uses Twelve Data price endpoint (manual only, never auto)
 async function fetchLivePrices(symbols) {
   const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
   if (!syms.length) return;
@@ -6955,15 +6967,16 @@ async function fetchLivePrices(symbols) {
   const btn2 = document.getElementById('livepriceBtn');
   [btn, btn2].forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
   try {
-    // Fetch in parallel — Finnhub free: 60 req/min
-    await Promise.all(syms.map(async sym => {
-      try {
-        const res  = await fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_KEY}`, { signal: AbortSignal.timeout(8000) });
-        const json = await res.json();
-        if (json.c && json.c > 0) livePrices[sym] = json.c; // c = current price
-      } catch(e) {}
-    }));
-    // Update price cells in table
+    const url  = `https://api.twelvedata.com/price?symbol=${syms.join(',')}&apikey=${TWELVE_DATA_KEY}`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    const json = await res.json();
+    if (syms.length === 1) {
+      if (json.price) livePrices[syms[0]] = parseFloat(json.price);
+    } else {
+      Object.entries(json).forEach(([sym, val]) => {
+        if (val?.price) livePrices[sym] = parseFloat(val.price);
+      });
+    }
     syms.forEach(sym => {
       const p = livePrices[sym];
       if (!p) return;
