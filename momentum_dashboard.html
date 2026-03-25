@@ -3148,6 +3148,7 @@ function applyFilters() {
   renderPagination();
   if (heatmapActive) renderHeatmap();
   renderTopChart();
+  fetchPagePrices();
 }
 
 // ===== TOP ALPHA CHART (disabled — chart hidden) =====
@@ -3432,7 +3433,7 @@ function renderTable() {
         <td onclick="event.stopPropagation();toggleWatchlist('${d.symbol}')" style="padding:0 4px;text-align:center"><button class="star-btn ${watchlist.has(d.symbol) ? 'fav' : ''}" title="${watchlist.has(d.symbol) ? 'הסר ממועדפים' : 'הוסף למועדפים'}">${watchlist.has(d.symbol) ? '⭐' : '☆'}</button></td>
         <td><span class="symbol-cell">${d.symbol}</span></td>
         <td><span class="name-cell" title="${d.name || d.sq_name || d.macd_name || d.industry || ''}">${(d.name || d.sq_name || d.macd_name || d.industry || '—').substring(0, 22)}</span></td>
-        <td><span class="price-cell" style="color:${chg > 0 ? 'var(--accent-green)' : chg < 0 ? 'var(--accent-red)' : 'var(--text-0)'}">${price > 0 ? '$'+price.toFixed(2) : '—'}</span></td>
+        <td><span class="price-cell" data-price-sym="${d.symbol}" style="color:${chg > 0 ? 'var(--accent-green)' : chg < 0 ? 'var(--accent-red)' : 'var(--text-0)'}">${livePrices[d.symbol] ? '$'+(livePrices[d.symbol]).toFixed(2) : price > 0 ? '$'+price.toFixed(2) : '—'}</span></td>
         <td><span class="${chg >= 0 ? 'change-pos' : 'change-neg'}" style="font-family:'DM Mono',monospace;font-size:12px">${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%</span></td>
         ${(() => { const sc = calcScore(d); const scC = sc >= 70 ? 'var(--accent-green)' : sc >= 45 ? 'var(--accent-gold)' : 'var(--text-2)'; return `<td style="font-family:'DM Mono',monospace;font-size:12px;color:${scC};text-align:center;font-weight:600">${sc}</td>`; })()}
         ${(() => { const rv = parseFloat(d.rvol||0); const rc = rv >= 2 ? 'var(--accent-teal)' : rv >= 1.3 ? 'var(--accent-gold)' : rv > 0 && rv < 0.8 ? 'var(--text-2)' : 'var(--text-1)'; return `<td style="font-family:'DM Mono',monospace;font-size:11px;color:${rc};text-align:center">${rv > 0 ? rv.toFixed(1)+'×' : '—'}</td>`; })()}
@@ -3493,6 +3494,7 @@ function goPage(p) {
   currentPage = p;
   renderTable();
   renderPagination();
+  fetchPagePrices();
   document.querySelector('.table-wrapper').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -6941,8 +6943,9 @@ function renderTrades() {
 
 let livePrices = {}; // symbol → current price
 
-async function fetchLivePrices() {
-  const syms = tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
+// Generic live price fetcher — accepts any symbol list
+async function fetchLivePrices(symbols) {
+  const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
   if (!syms.length) return;
   const btn = document.getElementById('refreshPricesBtn');
   if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
@@ -6957,12 +6960,30 @@ async function fetchLivePrices() {
         if (val?.price) livePrices[sym] = parseFloat(val.price);
       });
     }
-    renderTrades();
+    // Update price cells in table without full re-render
+    syms.forEach(sym => {
+      const p = livePrices[sym];
+      if (!p) return;
+      document.querySelectorAll(`[data-price-sym="${sym}"]`).forEach(el => {
+        el.textContent = '$' + p.toFixed(2);
+      });
+    });
+    if (document.getElementById('tradesPanel')?.style.display === 'block') renderTrades();
   } catch(e) {
     console.warn('Live price fetch failed', e);
   } finally {
     if (btn) { btn.textContent = '🔄 עדכן מחירים'; btn.disabled = false; }
   }
+}
+
+// Fetch prices for current visible page
+function fetchPagePrices() {
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const syms  = filtered.slice(start, start + PAGE_SIZE).map(d => d.symbol);
+  // Merge journal open symbols too
+  const journalSyms = tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
+  const all = [...new Set([...syms, ...journalSyms])];
+  if (all.length) fetchLivePrices(all);
 }
 
 function addManualTrade() {
