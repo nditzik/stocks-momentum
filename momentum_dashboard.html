@@ -6959,7 +6959,7 @@ function renderTrades() {
 
 let livePrices = {}; // symbol → current price
 
-// Generic live price fetcher — uses Twelve Data price endpoint (manual only, never auto)
+// Generic live price fetcher — Yahoo Finance via allorigins proxy (free, no API key)
 async function fetchLivePrices(symbols) {
   const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
   if (!syms.length) return;
@@ -6967,16 +6967,17 @@ async function fetchLivePrices(symbols) {
   const btn2 = document.getElementById('livepriceBtn');
   [btn, btn2].forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
   try {
-    const url  = `https://api.twelvedata.com/price?symbol=${syms.join(',')}&apikey=${TWELVE_DATA_KEY}`;
-    const res  = await fetch(url, { signal: AbortSignal.timeout(10000) });
-    const json = await res.json();
-    if (syms.length === 1) {
-      if (json.price) livePrices[syms[0]] = parseFloat(json.price);
-    } else {
-      Object.entries(json).forEach(([sym, val]) => {
-        if (val?.price) livePrices[sym] = parseFloat(val.price);
-      });
-    }
+    const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
+    const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
+    const outer = await res.json();
+    const data  = JSON.parse(outer.contents);
+    const quotes = data?.quoteResponse?.result || [];
+    quotes.forEach(q => {
+      const p = q.regularMarketPrice;
+      if (p && p > 0) livePrices[q.symbol] = p;
+    });
+    // Update price cells in table
     syms.forEach(sym => {
       const p = livePrices[sym];
       if (!p) return;
