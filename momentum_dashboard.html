@@ -1464,8 +1464,8 @@
   .candidate-card .cc-bar { height:4px; border-radius:2px; background:rgba(255,255,255,0.08); margin-top:6px; }
   .candidate-card .cc-bar-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--accent-teal),var(--accent-green)); transition:width .4s; }
   .journal-table { width:100%; border-collapse:collapse; font-size:12px; }
-  .journal-table th { padding:6px 8px; text-align:left; color:var(--text-2); border-bottom:1px solid var(--border); font-weight:500; white-space:nowrap; }
-  .journal-table td { padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.04); white-space:nowrap; vertical-align:middle; }
+  .journal-table th { padding:6px 8px; text-align:right; color:var(--text-2); border-bottom:1px solid var(--border); font-weight:500; white-space:nowrap; }
+  .journal-table td { padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.04); white-space:nowrap; vertical-align:middle; text-align:right; }
   .journal-table tr:hover td { background:rgba(255,255,255,0.03); }
   .journal-table input { background:var(--bg-0); border:1px solid var(--border); border-radius:4px; color:var(--text-1); padding:3px 6px; font-size:11px; width:68px; font-family:'DM Mono',monospace; }
   .journal-table input:focus { outline:none; border-color:var(--accent-teal); }
@@ -6837,26 +6837,41 @@ function renderTrades() {
   const open   = tradeJournal.filter(t => t.status === 'open');
   const closed = tradeJournal.filter(t => t.status === 'closed');
 
-  const journalRow = t => {
-    const entry  = parseFloat(t.entry  || 0);
-    const stop   = parseFloat(t.stop   || 0);
-    const target = parseFloat(t.target || 0);
+  const journalRow = (t, isOpen) => {
+    const entry   = parseFloat(t.entry  || 0);
+    const stop    = parseFloat(t.stop   || 0);
+    const target  = parseFloat(t.target || 0);
+    const size    = parseFloat(t.size   || 0);
     let rrHTML = '<span style="color:var(--text-2)">—</span>';
     if (entry > 0 && stop > 0 && target > 0 && entry > stop) {
       const rr = ((target - entry) / (entry - stop)).toFixed(1);
       const cls = rr >= 2 ? 'rr-good' : rr >= 1.5 ? 'rr-ok' : 'rr-bad';
       rrHTML = `<span class="rr-badge ${cls}">R:R ${rr}</span>`;
     }
+    // Unrealized P&L for open trades
+    let unrealHTML = '—';
+    if (isOpen && entry > 0 && size > 0) {
+      const live = RAW_DATA.find(d => d.symbol === t.symbol);
+      if (live) {
+        const cur = parseFloat(live.price || 0);
+        if (cur > 0) {
+          const unreal = ((cur - entry) * size).toFixed(2);
+          const cls = unreal >= 0 ? 'pnl-pos' : 'pnl-neg';
+          unrealHTML = `<span class="${cls}" title="מחיר נוכחי $${cur}">${unreal>=0?'+':''}${unreal}$</span>`;
+        }
+      }
+    }
     const pnl = calcPnL(t);
     return `<tr>
       <td><span style="color:var(--accent-teal);font-weight:700">${t.symbol}</span><br><span style="font-size:10px;color:var(--text-2)">${t.date}</span></td>
-      <td><span class="readiness-tag ${t.readiness>=70?'ready':'close'}">${t.readiness}</span></td>
+      <td><span class="readiness-tag ${t.readiness>=70?'ready':'close'}">${t.readiness||'—'}</span></td>
       <td><input id="entry_${t.id}" value="${t.entry}" placeholder="כניסה" onchange="updateTradeField(${t.id},'entry',this.value)"></td>
       <td><input id="stop_${t.id}"  value="${t.stop}"  placeholder="סטופ"  onchange="updateTradeField(${t.id},'stop',this.value)"></td>
       <td><input id="target_${t.id}" value="${t.target}" placeholder="יעד" onchange="updateTradeField(${t.id},'target',this.value)"></td>
       <td id="rr_${t.id}">${rrHTML}</td>
-      <td id="size_${t.id}" style="font-size:11px;color:var(--text-1)">${t.size ? t.size+' מניות' : '—'}</td>
-      ${t.status === 'open' ? `
+      <td id="size_${t.id}" style="font-size:11px;color:var(--text-1)">${size ? size+' מניות' : '—'}</td>
+      ${isOpen ? `
+      <td id="unreal_${t.id}">${unrealHTML}</td>
       <td><input id="exit_${t.id}" value="${t.exitPrice}" placeholder="סגירה" style="width:60px"></td>
       <td><button onclick="closeTrade(${t.id})" style="font-size:11px;padding:2px 8px;border:1px solid var(--accent-gold);border-radius:4px;background:none;color:var(--accent-gold);cursor:pointer">סגור</button></td>
       ` : `
@@ -6867,8 +6882,11 @@ function renderTrades() {
     </tr>`;
   };
 
-  const tableHeader = `<tr>
-    <th>סימול</th><th>בשלות</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>R:R</th><th>גודל</th><th>סגירה/יציאה</th><th>P&L</th><th></th>
+  const openHeader = `<tr>
+    <th>סימול</th><th>בשלות</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>R:R</th><th>גודל</th><th>P&L כעת</th><th>סגירה</th><th>אשר סגירה</th><th></th>
+  </tr>`;
+  const closedHeader = `<tr>
+    <th>סימול</th><th>בשלות</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>R:R</th><th>גודל</th><th>יציאה</th><th>P&L</th><th></th>
   </tr>`;
 
   const totalPnL = closed.reduce((sum,t) => {
@@ -6881,16 +6899,45 @@ function renderTrades() {
       ${candidatesHTML}
     </div>
     <div class="trades-section" style="border-top:1px solid var(--border)">
-      <div class="trades-section-title">📋 יומן פתוח (${open.length})</div>
-      ${open.length ? `<div style="overflow-x:auto"><table class="journal-table">${tableHeader}${open.map(journalRow).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות פתוחות — לחץ ➕ ליד מניה</div>'}
+      <div class="trades-section-title" style="display:flex;justify-content:space-between;align-items:center">
+        <span>📋 יומן פתוח (${open.length})</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <input id="manualSymInput" placeholder="סימול ידני" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:4px 8px;font-size:12px;width:100px;text-transform:uppercase" onkeydown="if(event.key==='Enter')addManualTrade()">
+          <button onclick="addManualTrade()" style="padding:4px 12px;border:1px solid var(--accent-teal);border-radius:4px;background:none;color:var(--accent-teal);font-size:12px;cursor:pointer">+ הוסף</button>
+        </div>
+      </div>
+      ${open.length ? `<div style="overflow-x:auto"><table class="journal-table">${openHeader}${open.map(t=>journalRow(t,true)).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px;margin-bottom:6px">אין עסקאות פתוחות — לחץ ➕ ליד מניה או הזן ידנית</div>'}
     </div>
     <div class="trades-section" style="border-top:1px solid var(--border)">
       <div class="trades-section-title" style="display:flex;justify-content:space-between">
         <span>🗂 עסקאות סגורות (${closed.length})</span>
         ${closed.length ? `<span class="${totalPnL>=0?'pnl-pos':'pnl-neg'}">סה"כ P&L: ${totalPnL>=0?'+':''}${totalPnL.toFixed(2)}$</span>` : ''}
       </div>
-      ${closed.length ? `<div style="overflow-x:auto"><table class="journal-table">${tableHeader}${closed.map(journalRow).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות סגורות</div>'}
+      ${closed.length ? `<div style="overflow-x:auto"><table class="journal-table">${closedHeader}${closed.map(t=>journalRow(t,false)).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות סגורות</div>'}
     </div>`;
+}
+
+function addManualTrade() {
+  const inp = document.getElementById('manualSymInput');
+  const sym = (inp?.value || '').trim().toUpperCase();
+  if (!sym) return;
+  if (tradeJournal.some(t => t.symbol === sym && t.status === 'open')) { inp.value=''; return; }
+  const d = RAW_DATA.find(x => x.symbol === sym);
+  const price = parseFloat(d?.price || 0);
+  tradeJournal.push({
+    id: Date.now(),
+    symbol: sym,
+    name: d?.name || d?.sq_name || '',
+    entry: price > 0 ? price.toFixed(2) : '',
+    stop: '', target: '', size: '',
+    date: new Date().toISOString().slice(0,10),
+    status: 'open', exitPrice: '', notes: '',
+    readiness: d ? calcReadiness(d) : 0,
+  });
+  saveJournal();
+  inp.value = '';
+  renderTable();
+  renderTrades();
 }
 
 function exportJournalCSV() {
