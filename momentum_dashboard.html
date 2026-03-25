@@ -2472,7 +2472,7 @@
         <span style="font-size:11px;color:var(--text-2)" id="portfolioRiskLabel"></span>
         <label style="font-size:12px;color:var(--text-2)">פורטפוליו $<input id="portfolioSize" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:90px" placeholder="10000" oninput="savePortfolio();renderTrades()"></label>
         <label style="font-size:12px;color:var(--text-2)">סיכון %<input id="riskPct" type="number" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:3px 6px;font-size:12px;width:50px" placeholder="1" oninput="savePortfolio();renderTrades()"></label>
-        <button id="refreshPricesBtn" class="history-clear-btn" onclick="fetchLivePrices()">🔄 עדכן מחירים</button>
+        <button id="refreshPricesBtn" class="history-clear-btn" onclick="_lastPageFetch=0;fetchPagePrices()">🔄 עדכן מחירים</button>
         <button class="history-clear-btn" onclick="exportJournalCSV()">⬇ CSV</button>
         <button class="history-clear-btn" onclick="toggleTrades()">✕</button>
       </div>
@@ -6976,11 +6976,14 @@ async function fetchLivePrices(symbols) {
   }
 }
 
-// Fetch prices for current visible page
+// Fetch prices for current visible page — max once per 60s to avoid rate limit
+let _lastPageFetch = 0;
 function fetchPagePrices() {
+  const now = Date.now();
+  if (now - _lastPageFetch < 60000) return; // cooldown 60s
+  _lastPageFetch = now;
   const start = (currentPage - 1) * PAGE_SIZE;
   const syms  = filtered.slice(start, start + PAGE_SIZE).map(d => d.symbol);
-  // Merge journal open symbols too
   const journalSyms = tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
   const all = [...new Set([...syms, ...journalSyms])];
   if (all.length) fetchLivePrices(all);
