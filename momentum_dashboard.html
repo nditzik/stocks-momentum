@@ -6902,9 +6902,18 @@ function renderTrades() {
     <th>סימול</th><th>בשלות</th><th>כניסה</th><th>סטופ</th><th>יעד</th><th>R:R</th><th>גודל</th><th>יציאה</th><th>P&L</th><th></th>
   </tr>`;
 
-  const totalPnL = closed.reduce((sum,t) => {
-    const p = parseFloat(calcPnL(t)||0); return sum + p;
+  // Totals
+  const totalClosedPnL = closed.reduce((sum,t) => sum + parseFloat(calcPnL(t)||0), 0);
+  const totalOpenUnreal = open.reduce((sum,t) => {
+    const entry = parseFloat(t.entry||0), size = parseFloat(t.size||0);
+    const rawLive = RAW_DATA.find(d => d.symbol === t.symbol);
+    const cur = livePrices[t.symbol] || parseFloat(rawLive?.price||0);
+    return (entry>0 && size>0 && cur>0) ? sum + (cur-entry)*size : sum;
   }, 0);
+  const hasOpenPnL = open.some(t => {
+    const rawLive = RAW_DATA.find(d => d.symbol === t.symbol);
+    return livePrices[t.symbol] || parseFloat(rawLive?.price||0) > 0;
+  });
 
   el.innerHTML = `
     <div class="trades-section">
@@ -6913,7 +6922,7 @@ function renderTrades() {
     </div>
     <div class="trades-section" style="border-top:1px solid var(--border)">
       <div class="trades-section-title" style="display:flex;justify-content:space-between;align-items:center">
-        <span>📋 יומן פתוח (${open.length})</span>
+        <span>📋 יומן פתוח (${open.length})${hasOpenPnL ? ` · <span class="${totalOpenUnreal>=0?'pnl-pos':'pnl-neg'}" style="font-size:12px">סה"כ P&L כעת: ${totalOpenUnreal>=0?'+':''}${totalOpenUnreal.toFixed(2)}$</span>` : ''}</span>
         <div style="display:flex;gap:6px;align-items:center">
           <input id="manualSymInput" placeholder="סימול ידני" style="background:var(--bg-0);border:1px solid var(--border);border-radius:4px;color:var(--text-1);padding:4px 8px;font-size:12px;width:100px;text-transform:uppercase" onkeydown="if(event.key==='Enter')addManualTrade()">
           <button onclick="addManualTrade()" style="padding:4px 12px;border:1px solid var(--accent-teal);border-radius:4px;background:none;color:var(--accent-teal);font-size:12px;cursor:pointer">+ הוסף</button>
@@ -6924,7 +6933,7 @@ function renderTrades() {
     <div class="trades-section" style="border-top:1px solid var(--border)">
       <div class="trades-section-title" style="display:flex;justify-content:space-between">
         <span>🗂 עסקאות סגורות (${closed.length})</span>
-        ${closed.length ? `<span class="${totalPnL>=0?'pnl-pos':'pnl-neg'}">סה"כ P&L: ${totalPnL>=0?'+':''}${totalPnL.toFixed(2)}$</span>` : ''}
+        ${closed.length ? `<span class="${totalClosedPnL>=0?'pnl-pos':'pnl-neg'}">סה"כ P&L ממומש: ${totalClosedPnL>=0?'+':''}${totalClosedPnL.toFixed(2)}$</span>` : ''}
       </div>
       ${closed.length ? `<div style="overflow-x:auto"><table class="journal-table">${closedHeader}${closed.map(t=>journalRow(t,false)).join('')}</table></div>` : '<div style="color:var(--text-2);font-size:12px">אין עסקאות סגורות</div>'}
     </div>`;
