@@ -1454,7 +1454,7 @@
   .changes-section-title.joined { color: #4ade80; }
   .changes-table { width: 100%; border-collapse: collapse; font-size: 12px; }
   .changes-table th { padding: 6px 10px; text-align: left; color: var(--text-2); border-bottom: 1px solid var(--border); font-weight: 500; white-space: nowrap; }
-  .changes-table td { padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; vertical-align: middle; }
+  .changes-table td { padding: 5px 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; vertical-align: middle; }
   .changes-table tr:hover td { background: rgba(255,255,255,0.03); cursor: pointer; }
   .changes-table .sym-cell { font-weight: 700; color: var(--accent-teal); font-family: 'DM Mono', monospace; }
   .changes-empty { padding: 20px; text-align: center; color: var(--text-2); font-size: 13px; }
@@ -6688,50 +6688,54 @@ function renderChanges() {
   const newStocks = RAW_DATA.filter(passesBaseFilter).filter(d => !allHistSyms.has(d.symbol));
 
   const sigLabel = sigs => (sigs || []).map(k => ({ strength:'Str', hot_prospects:'Hot', '6m_high':'6M', ttm_squeeze:'TTM', macd_buy:'MACD' }[k] || k)).join('+') || '—';
-  const cols = `<tr>
-    <th>סימול</th><th>שם</th><th>סיגנלים</th><th>חוזק</th><th>Alpha</th><th>52W%</th><th>Opinion</th><th>RSI</th><th>Stoch</th><th>מחיר</th>
+
+  const colsNew = `<tr>
+    <th style="text-align:left">סימול</th><th style="text-align:left">שם</th><th style="text-align:left">מחיר</th><th style="text-align:left">סיגנלים</th><th style="text-align:left">חוזק</th><th style="text-align:left">Alpha</th><th style="text-align:left">52W%</th><th style="text-align:left">Opinion</th><th style="text-align:left">RSI</th><th style="text-align:left">Stoch</th>
+  </tr>`;
+  const colsExit = `<tr>
+    <th style="text-align:left">סימול</th><th style="text-align:left">שם</th><th style="text-align:left">מחיר</th><th style="text-align:left">סיגנלים</th><th style="text-align:left">חוזק</th><th style="text-align:left">Alpha</th><th style="text-align:left">52W%</th><th style="text-align:left">Opinion</th><th style="text-align:left">RSI</th><th style="text-align:left">Stoch</th>
   </tr>`;
 
-  // Render exited table (from history data)
-  const exitedRows = exited.length ? exited.map(s => `
-    <tr onclick="openFromChanges('${s.s}')">
-      <td class="sym-cell">${s.s}</td>
-      <td>${s.n || '—'}</td>
-      <td>${sigLabel(s.sig)}</td>
-      <td>${s.str || '—'}</td>
-      <td>${s.alp || '—'}</td>
-      <td>${s.w52 || '—'}</td>
-      <td>${s.op  || '—'}</td>
-      <td>${s.rsi  ? s.rsi.toFixed(0)  : '—'}</td>
-      <td>${s.stch ? s.stch.toFixed(0) : '—'}</td>
-      <td>${s.p    ? '$'+s.p.toFixed(2) : '—'}</td>
-    </tr>`).join('') :
-    '<tr><td colspan="10" class="changes-empty">אין מניות שירדו</td></tr>';
-
-  // Render new stocks table (from RAW_DATA)
+  // Render new stocks table (from RAW_DATA) — first
   const newRows = newStocks.length ? newStocks.map(d => `
     <tr onclick="openFromChanges('${d.symbol}')">
-      <td class="sym-cell">${d.symbol}</td>
-      <td>${d.name || d.sq_name || '—'}</td>
-      <td>${sigLabel(d.signals)}</td>
-      <td>${d.strength || '—'}</td>
-      <td>${d.wtd_alpha || '—'}</td>
-      <td>${d.w52_chg   || '—'}</td>
-      <td>${d.opinion   || '—'}</td>
-      <td>${parseFloat(d.rel_str) ? parseFloat(d.rel_str).toFixed(0) : '—'}</td>
-      <td>${parseFloat(d.stoch)   ? parseFloat(d.stoch).toFixed(0)   : '—'}</td>
-      <td>${parseFloat(d.price)   ? '$'+parseFloat(d.price).toFixed(2) : '—'}</td>
+      <td class="sym-cell" style="text-align:left">${d.symbol}</td>
+      <td style="text-align:left">${d.name || d.sq_name || '—'}</td>
+      <td style="text-align:left">${parseFloat(d.price) ? '$'+parseFloat(d.price).toFixed(2) : '—'}</td>
+      <td style="text-align:left">${sigLabel(d.signals)}</td>
+      <td style="text-align:left">${d.strength || '—'}</td>
+      <td style="text-align:left">${d.wtd_alpha || '—'}</td>
+      <td style="text-align:left">${d.w52_chg   || '—'}</td>
+      <td style="text-align:left">${d.opinion   || '—'}</td>
+      <td style="text-align:left">${parseFloat(d.rel_str) ? parseFloat(d.rel_str).toFixed(0) : '—'}</td>
+      <td style="text-align:left">${parseFloat(d.stoch)   ? parseFloat(d.stoch).toFixed(0)   : '—'}</td>
     </tr>`).join('') :
     '<tr><td colspan="10" class="changes-empty">אין מניות חדשות</td></tr>';
 
+  // Render exited table (from history data) — second
+  const exitedRows = exited.length ? exited.map(s => `
+    <tr onclick="openFromChanges('${s.s}')">
+      <td class="sym-cell" style="text-align:left">${s.s}</td>
+      <td style="text-align:left">${s.n || '—'}</td>
+      <td style="text-align:left">${s.p ? '$'+s.p.toFixed(2) : '—'}</td>
+      <td style="text-align:left">${sigLabel(s.sig)}</td>
+      <td style="text-align:left">${s.str || '—'}</td>
+      <td style="text-align:left">${s.alp || '—'}</td>
+      <td style="text-align:left">${s.w52 || '—'}</td>
+      <td style="text-align:left">${s.op  || '—'}</td>
+      <td style="text-align:left">${s.rsi  ? s.rsi.toFixed(0)  : '—'}</td>
+      <td style="text-align:left">${s.stch ? s.stch.toFixed(0) : '—'}</td>
+    </tr>`).join('') :
+    '<tr><td colspan="10" class="changes-empty">אין מניות שירדו</td></tr>';
+
   el.innerHTML = `
-    <div class="changes-section-title exited">⬇ יצאו מהדשבורד (${exited.length})</div>
-    <div style="overflow-x:auto;padding:0 8px 8px">
-      <table class="changes-table">${cols}${exitedRows}</table>
-    </div>
     <div class="changes-section-title joined">⬆ הצטרפו חדשות (${newStocks.length})</div>
+    <div style="overflow-x:auto;padding:0 8px 8px">
+      <table class="changes-table">${colsNew}${newRows}</table>
+    </div>
+    <div class="changes-section-title exited">⬇ יצאו מהדשבורד (${exited.length})</div>
     <div style="overflow-x:auto;padding:0 8px 16px">
-      <table class="changes-table">${cols}${newRows}</table>
+      <table class="changes-table">${colsExit}${exitedRows}</table>
     </div>`;
 }
 
