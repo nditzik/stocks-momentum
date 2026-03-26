@@ -2435,6 +2435,10 @@
     <input class="search-input" type="text" id="searchInput" placeholder="חפש סימבול..." oninput="searchFilter()" dir="ltr">
     <span class="results-count" id="resultsCount"></span>
     <button id="livepriceBtn" class="history-clear-btn" onclick="_lastPageFetch=0;fetchPagePrices()" title="עדכן מחירים חיים לעמוד הנוכחי">🔄 מחירים חיים</button>
+    <button class="history-clear-btn" onclick="exportTOS(4)" title="ייצא לThinkorSwim — 4 סיגנלים">⬇ TOS 4🔥</button>
+    <button class="history-clear-btn" onclick="exportTOS(3)" title="ייצא לThinkorSwim — 3 סיגנלים">⬇ TOS 3</button>
+    <button class="history-clear-btn" onclick="exportTOS(2)" title="ייצא לThinkorSwim — 2 סיגנלים">⬇ TOS 2</button>
+    <button class="history-clear-btn" onclick="exportTOS('watchlist')" title="ייצא מועדפים לThinkorSwim">⬇ TOS ⭐</button>
     <button class="fav-io-btn" onclick="exportWatchlist()" title="ייצוא רשימת מועדפים לקובץ JSON">⭐ ייצוא</button>
     <label class="fav-io-btn" title="ייבוא רשימת מועדפים מקובץ JSON" style="cursor:pointer">⭐ ייבוא<input type="file" accept=".json" onchange="importWatchlist(event)" style="display:none"></label>
     <button class="fav-io-btn" onclick="exportCSV()" title="ייצוא טבלה מסוננת ל-CSV">📊 CSV</button>
@@ -7028,6 +7032,28 @@ function addManualTrade() {
   inp.value = '';
   renderTable();
   renderTrades();
+}
+
+function exportTOS(type) {
+  let syms = [];
+  const date = new Date().toISOString().slice(0,10);
+  let name = '';
+  if (type === 'watchlist') {
+    syms = [...watchlist];
+    name = `TOS_Watchlist_${date}`;
+  } else {
+    syms = RAW_DATA
+      .filter(passesBaseFilter)
+      .filter(d => type === 4 ? d.signal_count >= 4 : d.signal_count === type)
+      .map(d => d.symbol);
+    name = `TOS_${type}signals_${date}`;
+  }
+  if (!syms.length) { alert('אין מניות לייצוא בקטגוריה זו'); return; }
+  const content = syms.join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(content);
+  a.download = name + '.tsl';
+  a.click();
 }
 
 function exportJournalCSV() {
