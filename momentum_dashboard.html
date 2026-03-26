@@ -2384,6 +2384,11 @@
       <div class="stat-value" id="statExited">—</div>
       <div class="stat-sub">ירדו מהדשבורד</div>
     </div>
+    <div class="stat-card green" id="statOpportunityCard" style="cursor:pointer;display:none" onclick="setFilter('watchlist',document.querySelector('[data-filter=watchlist]'))" title="מועדפים שהגיעו לנקודת כניסה היום">
+      <div class="stat-label">🎯 הזדמנויות</div>
+      <div class="stat-value" id="statOpportunity">—</div>
+      <div class="stat-sub" id="statOpportunitySub">מועדפים בנקודה</div>
+    </div>
   </div>
 
   <!-- SCANNER OVERVIEW (hidden) -->
@@ -3434,7 +3439,10 @@ function renderTable() {
     return `
       <tr onclick="selectStock('${d.symbol}')" class="${isSelected ? 'selected' : ''} row-${rec.cls}">
         <td style="color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px">${start + i + 1}</td>
-        <td onclick="event.stopPropagation();toggleWatchlist('${d.symbol}')" style="padding:0 4px;text-align:center"><button class="star-btn ${watchlist.has(d.symbol) ? 'fav' : ''}" title="${watchlist.has(d.symbol) ? 'הסר ממועדפים' : 'הוסף למועדפים'}">${watchlist.has(d.symbol) ? '⭐' : '☆'}</button></td>
+        <td onclick="event.stopPropagation();toggleWatchlist('${d.symbol}')" style="padding:0 4px;text-align:center">
+          <button class="star-btn ${watchlist.has(d.symbol) ? 'fav' : ''}" title="${watchlist.has(d.symbol) ? 'הסר ממועדפים' : 'הוסף למועדפים'}">${watchlist.has(d.symbol) ? '⭐' : '☆'}</button>
+          ${opportunitySymbols.has(d.symbol) ? '<span title="הזדמנות כניסה — נגע בממוצע עם נר ירוק וווליום" style="font-size:13px;cursor:default">🎯</span>' : ''}
+        </td>
         <td><span class="symbol-cell">${d.symbol}</span></td>
         <td><span class="name-cell" title="${d.name || d.sq_name || d.macd_name || d.industry || ''}">${(d.name || d.sq_name || d.macd_name || d.industry || '—').substring(0, 22)}</span></td>
         <td><span class="price-cell" data-price-sym="${d.symbol}" style="color:${chg > 0 ? 'var(--accent-green)' : chg < 0 ? 'var(--accent-red)' : 'var(--text-0)'}">${livePrices[d.symbol] ? '$'+(livePrices[d.symbol]).toFixed(2) : price > 0 ? '$'+price.toFixed(2) : '—'}</span></td>
@@ -5796,6 +5804,7 @@ function applyNewData() {
 
   // Refresh everything
   updateStatBar();
+  checkWatchlistOpportunities();
   renderSignalPulse();
   buildOverview();
   selectedSymbol = null;
@@ -7032,6 +7041,81 @@ function addManualTrade() {
   inp.value = '';
   renderTable();
   renderTrades();
+}
+
+// ── Watchlist Opportunity Checker ─────────────────────────────────────────────
+let opportunitySymbols = new Set();
+
+function isOpportunity(sym, livePrice) {
+  const d = RAW_DATA.find(x => x.symbol === sym);
+  const price = livePrice || parseFloat(d?.price || 0);
+  if (!price) return false;
+  const chg   = livePrice ? null : parseFloat(d?.change_pct || 0); // for live price we don't have chg
+  const ma20  = parseFloat(d?.ma20  || 0);
+  const ma50  = parseFloat(d?.ma50  || 0);
+  const rvol  = parseFloat(d?.rvol  || 0);
+  // Condition 1: near MA20 or MA50 (within 5%)
+  const nearMA = (ma20 > 0 && price <= ma20 * 1.05 && price >= ma20 * 0.99) ||
+                 (ma50 > 0 && price <= ma50 * 1.05 && price >= ma50 * 0.99);
+  if (!nearMA) return false;
+  // Condition 2: green candle (positive change) — skip if no chg data
+  if (chg !== null && chg <= 0) return false;
+  // Condition 3: high volume — skip if no rvol data
+  if (rvol > 0 && rvol < 1.5) return false;
+  return true;
+}
+
+function playOpportunitySound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 150, 300].forEach((delay, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = [520, 660, 800][i];
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.18, ctx.currentTime + delay/1000);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay/1000 + 0.25);
+      osc.start(ctx.currentTime + delay/1000);
+      osc.stop(ctx.currentTime + delay/1000 + 0.3);
+    });
+  } catch(e) {}
+}
+
+async function checkWatchlistOpportunities() {
+  if (!watchlist.size) return;
+  const syms = [...watchlist];
+  // Fetch live prices for all watchlist symbols
+  try {
+    const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
+    const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
+    const outer = await res.json();
+    const data  = JSON.parse(outer.contents);
+    const quotes = data?.quoteResponse?.result || [];
+    quotes.forEach(q => { if (q.regularMarketPrice > 0) livePrices[q.symbol] = q.regularMarketPrice; });
+  } catch(e) { console.warn('Watchlist price fetch failed', e); }
+
+  // Check each watchlist symbol
+  opportunitySymbols = new Set();
+  syms.forEach(sym => {
+    if (isOpportunity(sym, livePrices[sym])) opportunitySymbols.add(sym);
+  });
+
+  // Update stat card
+  const card = document.getElementById('statOpportunityCard');
+  const val  = document.getElementById('statOpportunity');
+  const sub  = document.getElementById('statOpportunitySub');
+  if (opportunitySymbols.size > 0) {
+    card.style.display = '';
+    val.textContent = opportunitySymbols.size;
+    sub.textContent = [...opportunitySymbols].join(' · ');
+    playOpportunitySound();
+  } else {
+    card.style.display = 'none';
+  }
+  // Re-render table to show tags
+  renderTable();
 }
 
 function exportTOS(type) {
