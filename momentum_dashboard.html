@@ -2384,10 +2384,10 @@
       <div class="stat-value" id="statExited">—</div>
       <div class="stat-sub">ירדו מהדשבורד</div>
     </div>
-    <div class="stat-card green" id="statOpportunityCard" style="cursor:pointer;display:none" onclick="setFilter('watchlist',document.querySelector('[data-filter=watchlist]'))" title="מועדפים שהגיעו לנקודת כניסה היום">
-      <div class="stat-label">🎯 הזדמנויות</div>
+    <div class="stat-card green" id="statOpportunityCard" style="cursor:pointer" onclick="setFilter('watchlist',document.querySelector('[data-filter=watchlist]'))" title="מועדפים שהגיעו לנקודת כניסה היום">
+      <div class="stat-label">🎯 הזדמנויות <span id="oppCheckBtn" onclick="event.stopPropagation();checkWatchlistOpportunities()" style="font-size:10px;opacity:.6;cursor:pointer;margin-right:4px" title="בדוק מחדש">🔄</span></div>
       <div class="stat-value" id="statOpportunity">—</div>
-      <div class="stat-sub" id="statOpportunitySub">מועדפים בנקודה</div>
+      <div class="stat-sub" id="statOpportunitySub">לחץ 🔄 לבדיקה</div>
     </div>
   </div>
 
@@ -7083,8 +7083,17 @@ function playOpportunitySound() {
 }
 
 async function checkWatchlistOpportunities() {
-  if (!watchlist.size) return;
+  const val  = document.getElementById('statOpportunity');
+  const sub  = document.getElementById('statOpportunitySub');
+  if (!watchlist.size) {
+    val.textContent = '—';
+    sub.textContent = 'אין מועדפים';
+    return;
+  }
+  val.textContent = '⏳';
+  sub.textContent = 'מושך מחירים...';
   const syms = [...watchlist];
+
   // Fetch live prices for all watchlist symbols
   try {
     const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
@@ -7094,7 +7103,11 @@ async function checkWatchlistOpportunities() {
     const data  = JSON.parse(outer.contents);
     const quotes = data?.quoteResponse?.result || [];
     quotes.forEach(q => { if (q.regularMarketPrice > 0) livePrices[q.symbol] = q.regularMarketPrice; });
-  } catch(e) { console.warn('Watchlist price fetch failed', e); }
+  } catch(e) {
+    sub.textContent = 'שגיאה במשיכת מחירים';
+    console.warn('Watchlist price fetch failed', e);
+    return;
+  }
 
   // Check each watchlist symbol
   opportunitySymbols = new Set();
@@ -7103,18 +7116,14 @@ async function checkWatchlistOpportunities() {
   });
 
   // Update stat card
-  const card = document.getElementById('statOpportunityCard');
-  const val  = document.getElementById('statOpportunity');
-  const sub  = document.getElementById('statOpportunitySub');
   if (opportunitySymbols.size > 0) {
-    card.style.display = '';
     val.textContent = opportunitySymbols.size;
     sub.textContent = [...opportunitySymbols].join(' · ');
     playOpportunitySound();
   } else {
-    card.style.display = 'none';
+    val.textContent = '0';
+    sub.textContent = `נבדקו ${syms.length} מועדפים — אין הזדמנות`;
   }
-  // Re-render table to show tags
   renderTable();
 }
 
