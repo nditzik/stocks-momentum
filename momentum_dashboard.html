@@ -2384,7 +2384,7 @@
       <div class="stat-value" id="statExited">—</div>
       <div class="stat-sub">ירדו מהדשבורד</div>
     </div>
-    <div class="stat-card green" id="statOpportunityCard" style="cursor:pointer" onclick="setFilter('watchlist',document.querySelector('[data-filter=watchlist]'))" title="מועדפים שהגיעו לנקודת כניסה היום">
+    <div class="stat-card green" id="statOpportunityCard" style="cursor:pointer" onclick="setFilter('watchlist',document.querySelector('[data-filter=watchlist]'))" title="מועדפים שהגיעו לנקודת כניסה: נר ירוק + מחיר קרוב ל-MA20 או MA50 (±5%)">
       <div class="stat-label">🎯 הזדמנויות <span id="oppCheckBtn" onclick="event.stopPropagation();checkWatchlistOpportunities()" style="font-size:10px;opacity:.6;cursor:pointer;margin-right:4px" title="בדוק מחדש">🔄</span></div>
       <div class="stat-value" id="statOpportunity">—</div>
       <div class="stat-sub" id="statOpportunitySub">לחץ 🔄 לבדיקה</div>
@@ -7087,22 +7087,23 @@ function addManualTrade() {
 // ── Watchlist Opportunity Checker ─────────────────────────────────────────────
 let opportunitySymbols = new Set();
 
-function isOpportunity(sym, livePrice) {
+function isOpportunity(sym) {
   const d = RAW_DATA.find(x => x.symbol === sym);
-  const price = livePrice || parseFloat(d?.price || 0);
+  if (!d) return false;
+  const price = livePrices[sym] || parseFloat(d.price || 0);
   if (!price) return false;
-  const chg   = livePrice ? null : parseFloat(d?.change_pct || 0); // for live price we don't have chg
-  const ma20  = parseFloat(d?.ma20  || 0);
-  const ma50  = parseFloat(d?.ma50  || 0);
-  const rvol  = parseFloat(d?.rvol  || 0);
-  // Condition 1: near MA20 or MA50 (within 5%)
-  const nearMA = (ma20 > 0 && price <= ma20 * 1.05 && price >= ma20 * 0.99) ||
-                 (ma50 > 0 && price <= ma50 * 1.05 && price >= ma50 * 0.99);
-  if (!nearMA) return false;
-  // Condition 2: green candle (positive change) — skip if no chg data
-  if (chg !== null && chg <= 0) return false;
-  // Condition 3: high volume — skip if no rvol data
-  if (rvol > 0 && rvol < 1.5) return false;
+  const chg  = parseFloat(d.change_pct || 0);
+  const ma20 = parseFloat(d.ma20 || 0);
+  const ma50 = parseFloat(d.ma50 || 0);
+  const rvol = parseFloat(d.rvol || 0);
+  // Condition 1: green candle
+  if (chg <= 0) return false;
+  // Condition 2: near MA20 or MA50 (price between -2% and +5%)
+  const nearMA20 = ma20 > 0 && price <= ma20 * 1.05 && price >= ma20 * 0.98;
+  const nearMA50 = ma50 > 0 && price <= ma50 * 1.05 && price >= ma50 * 0.98;
+  if (!nearMA20 && !nearMA50) return false;
+  // Condition 3: RVOL — only reject if available AND very low
+  if (rvol > 0 && rvol < 0.8) return false;
   return true;
 }
 
@@ -7123,7 +7124,7 @@ function playOpportunitySound() {
   } catch(e) {}
 }
 
-async function checkWatchlistOpportunities() {
+function checkWatchlistOpportunities() {
   const val  = document.getElementById('statOpportunity');
   const sub  = document.getElementById('statOpportunitySub');
   if (!watchlist.size) {
@@ -7131,35 +7132,25 @@ async function checkWatchlistOpportunities() {
     sub.textContent = 'אין מועדפים';
     return;
   }
-  val.textContent = '⏳';
-  sub.textContent = 'מושך מחירים...';
-  const syms = [...watchlist];
-
-  // Fetch live prices for all watchlist symbols
-  try {
-    const quotes = await yahooQuotes(syms);
-    applyQuotes(quotes);
-    renderTable();
-  } catch(e) {
-    sub.textContent = 'שגיאה במשיכת מחירים';
-    console.warn('Watchlist price fetch failed', e);
-    return;
-  }
-
-  // Check each watchlist symbol
+  // Check only watchlist stocks present in RAW_DATA (have MA data)
   opportunitySymbols = new Set();
-  syms.forEach(sym => {
-    if (isOpportunity(sym, livePrices[sym])) opportunitySymbols.add(sym);
+  let checked = 0;
+  watchlist.forEach(sym => {
+    const d = RAW_DATA.find(x => x.symbol === sym);
+    if (!d) return; // not in current data — skip
+    checked++;
+    if (isOpportunity(sym)) opportunitySymbols.add(sym);
   });
 
-  // Update stat card
   if (opportunitySymbols.size > 0) {
     val.textContent = opportunitySymbols.size;
     sub.textContent = [...opportunitySymbols].join(' · ');
     playOpportunitySound();
   } else {
     val.textContent = '0';
-    sub.textContent = `נבדקו ${syms.length} מועדפים — אין הזדמנות`;
+    sub.textContent = checked > 0
+      ? `נבדקו ${checked} מועדפים — אין הזדמנות`
+      : 'המועדפים לא נמצאים בדשבורד הנוכחי';
   }
   renderTable();
 }
