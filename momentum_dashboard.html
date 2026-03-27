@@ -5082,14 +5082,11 @@ async function loadChart(symbol) {
       return d;
     })();
     fallbackDiv.style.display = 'block';
-    const tvId = 'tv_' + symbol.replace(/[^a-zA-Z0-9]/g,'');
+    const tvId = 'tvwidget_' + Date.now();
     fallbackDiv.innerHTML = `
       <div style="color:var(--accent-gold);font-size:11px;padding:4px 8px;opacity:.7">גרף TradingView — Twelve Data: ${err.message}</div>
       <div id="${tvId}" style="height:420px"></div>`;
-    // Inject TradingView widget script
-    const s = document.createElement('script');
-    s.src = 'https://s3.tradingview.com/tv.js';
-    s.onload = () => {
+    const initTV = () => {
       new TradingView.widget({
         container_id: tvId, symbol, interval: 'D',
         width: '100%', height: 420,
@@ -5098,7 +5095,13 @@ async function loadChart(symbol) {
         studies: ['MASimple@tv-scriptstd;length=20','MASimple@tv-scriptstd;length=50','MASimple@tv-scriptstd;length=150']
       });
     };
-    document.head.appendChild(s);
+    if (window.TradingView) { initTV(); }
+    else {
+      const s = document.createElement('script');
+      s.src = 'https://s3.tradingview.com/tv.js';
+      s.onload = initTV;
+      document.head.appendChild(s);
+    }
   }
 }
 
@@ -6990,19 +6993,19 @@ function applyQuotes(quotes) {
 
 // Fetch Yahoo Finance quotes — tries two proxies, throws if both fail
 async function yahooQuotes(syms) {
-  const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(syms.join(','))}`;
+  const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
   const proxies = [
-    `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`,
-    `https://corsproxy.io/?${encodeURIComponent(yhUrl)}`
+    { url: `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`, wrap: true },
+    { url: `https://corsproxy.io/?${encodeURIComponent(yhUrl)}`,             wrap: false }
   ];
-  for (const proxy of proxies) {
+  for (const { url, wrap } of proxies) {
     try {
-      const res   = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
+      const res  = await fetch(url, { signal: AbortSignal.timeout(10000) });
       if (!res.ok) continue;
       const text = await res.text();
-      // allorigins wraps in {contents:...}, corsproxy returns raw
       let data;
-      try { const outer = JSON.parse(text); data = JSON.parse(outer.contents); } catch { data = JSON.parse(text); }
+      if (wrap) { const outer = JSON.parse(text); data = JSON.parse(outer.contents); }
+      else       { data = JSON.parse(text); }
       const result = data?.quoteResponse?.result || [];
       if (result.length) return result;
     } catch(e) { continue; }
