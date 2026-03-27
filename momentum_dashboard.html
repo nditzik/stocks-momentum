@@ -6973,6 +6973,31 @@ function renderTrades() {
 
 let livePrices = {}; // symbol → current price
 
+// Apply Yahoo Finance quotes to RAW_DATA + livePrices — single source of truth
+function applyQuotes(quotes) {
+  quotes.forEach(q => {
+    const p   = q.regularMarketPrice;
+    const chg = q.regularMarketChangePercent;
+    if (!p || p <= 0) return;
+    livePrices[q.symbol] = p;
+    const d = RAW_DATA.find(x => x.symbol === q.symbol);
+    if (d) {
+      d.price      = p.toFixed(2);
+      d.change_pct = chg ? chg.toFixed(2) : d.change_pct;
+    }
+  });
+}
+
+// Fetch Yahoo Finance quotes for given symbols
+async function yahooQuotes(syms) {
+  const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
+  const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
+  const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
+  const outer = await res.json();
+  const data  = JSON.parse(outer.contents);
+  return data?.quoteResponse?.result || [];
+}
+
 // Generic live price fetcher — Yahoo Finance via allorigins proxy (free, no API key)
 async function fetchLivePrices(symbols) {
   const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
@@ -6981,24 +7006,10 @@ async function fetchLivePrices(symbols) {
   const btn2 = document.getElementById('livepriceBtn');
   [btn, btn2].forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
   try {
-    const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
-    const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
-    const outer = await res.json();
-    const data  = JSON.parse(outer.contents);
-    const quotes = data?.quoteResponse?.result || [];
-    quotes.forEach(q => {
-      const p = q.regularMarketPrice;
-      if (p && p > 0) livePrices[q.symbol] = p;
-    });
-    // Update price cells in table
-    syms.forEach(sym => {
-      const p = livePrices[sym];
-      if (!p) return;
-      document.querySelectorAll(`[data-price-sym="${sym}"]`).forEach(el => {
-        el.textContent = '$' + p.toFixed(2);
-      });
-    });
+    const quotes = await yahooQuotes(syms);
+    applyQuotes(quotes);
+    // Re-render table + trades with updated RAW_DATA
+    renderTable();
     if (document.getElementById('tradesPanel')?.style.display === 'block') renderTrades();
   } catch(e) {
     console.warn('Live price fetch failed', e);
@@ -7097,13 +7108,9 @@ async function checkWatchlistOpportunities() {
 
   // Fetch live prices for all watchlist symbols
   try {
-    const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
-    const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
-    const outer = await res.json();
-    const data  = JSON.parse(outer.contents);
-    const quotes = data?.quoteResponse?.result || [];
-    quotes.forEach(q => { if (q.regularMarketPrice > 0) livePrices[q.symbol] = q.regularMarketPrice; });
+    const quotes = await yahooQuotes(syms);
+    applyQuotes(quotes);
+    renderTable();
   } catch(e) {
     sub.textContent = 'שגיאה במשיכת מחירים';
     console.warn('Watchlist price fetch failed', e);
