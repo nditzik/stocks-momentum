@@ -6988,48 +6988,65 @@ function applyQuotes(quotes) {
   });
 }
 
-// Fetch Yahoo Finance quotes for given symbols
+// Fetch Yahoo Finance quotes — tries two proxies, throws if both fail
 async function yahooQuotes(syms) {
-  const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms.join(',')}`;
-  const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`;
-  const res   = await fetch(proxy, { signal: AbortSignal.timeout(12000) });
-  const outer = await res.json();
-  const data  = JSON.parse(outer.contents);
-  return data?.quoteResponse?.result || [];
+  const yhUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(syms.join(','))}`;
+  const proxies = [
+    `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`,
+    `https://corsproxy.io/?${encodeURIComponent(yhUrl)}`
+  ];
+  for (const proxy of proxies) {
+    try {
+      const res   = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
+      if (!res.ok) continue;
+      const text = await res.text();
+      // allorigins wraps in {contents:...}, corsproxy returns raw
+      let data;
+      try { const outer = JSON.parse(text); data = JSON.parse(outer.contents); } catch { data = JSON.parse(text); }
+      const result = data?.quoteResponse?.result || [];
+      if (result.length) return result;
+    } catch(e) { continue; }
+  }
+  throw new Error('כל הפרוקסי נכשלו');
 }
 
-// Generic live price fetcher — Yahoo Finance via allorigins proxy (free, no API key)
+// Generic live price fetcher — all filtered stocks, full table sync
 async function fetchLivePrices(symbols) {
-  const syms = symbols || tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
+  const syms = symbols || filtered.map(d => d.symbol);
   if (!syms.length) return;
-  const btn  = document.getElementById('refreshPricesBtn');
-  const btn2 = document.getElementById('livepriceBtn');
-  [btn, btn2].forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
+  const btns = [document.getElementById('refreshPricesBtn'), document.getElementById('livepriceBtn')];
+  btns.forEach(b => { if (b) { b.textContent = '⏳'; b.disabled = true; } });
   try {
-    const quotes = await yahooQuotes(syms);
-    applyQuotes(quotes);
-    // Re-render table + trades with updated RAW_DATA
+    // Batch into groups of 50 (Yahoo limit)
+    const batches = [];
+    for (let i = 0; i < syms.length; i += 50) batches.push(syms.slice(i, i + 50));
+    for (const batch of batches) {
+      const quotes = await yahooQuotes(batch);
+      applyQuotes(quotes);
+    }
     renderTable();
+    renderPagination();
     if (document.getElementById('tradesPanel')?.style.display === 'block') renderTrades();
+    btns.forEach(b => { if (b) { b.textContent = b.id === 'refreshPricesBtn' ? '✓ עודכן' : '✓ עודכן'; b.style.color = 'var(--accent-green)'; } });
+    setTimeout(() => btns.forEach(b => { if (b) { b.textContent = b.id === 'refreshPricesBtn' ? '🔄 עדכן מחירים' : '🔄 מחירים חיים'; b.style.color = ''; b.disabled = false; } }), 2000);
   } catch(e) {
+    btns.forEach(b => { if (b) { b.textContent = '❌ נכשל'; b.style.color = 'var(--accent-red)'; } });
+    setTimeout(() => btns.forEach(b => { if (b) { b.textContent = b.id === 'refreshPricesBtn' ? '🔄 עדכן מחירים' : '🔄 מחירים חיים'; b.style.color = ''; b.disabled = false; } }), 2000);
     console.warn('Live price fetch failed', e);
-  } finally {
-    if (btn)  { btn.textContent  = '🔄 עדכן מחירים'; btn.disabled  = false; }
-    if (btn2) { btn2.textContent = '🔄 מחירים חיים'; btn2.disabled = false; }
   }
 }
 
-// Fetch prices for current visible page — max once per 60s to avoid rate limit
+// fetchPagePrices kept for backwards compat — now fetches all filtered
 let _lastPageFetch = 0;
 function fetchPagePrices() {
   const now = Date.now();
-  if (now - _lastPageFetch < 60000) return; // cooldown 60s
+  if (now - _lastPageFetch < 60000) return;
   _lastPageFetch = now;
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const syms  = filtered.slice(start, start + PAGE_SIZE).map(d => d.symbol);
-  const journalSyms = tradeJournal.filter(t => t.status === 'open').map(t => t.symbol);
-  const all = [...new Set([...syms, ...journalSyms])];
-  if (all.length) fetchLivePrices(all);
+  const syms = [...new Set([
+    ...filtered.map(d => d.symbol),
+    ...tradeJournal.filter(t => t.status === 'open').map(t => t.symbol)
+  ])];
+  if (syms.length) fetchLivePrices(syms);
 }
 
 function addManualTrade() {
