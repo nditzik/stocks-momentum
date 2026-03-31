@@ -1,0 +1,46 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D Rel Str","1Y vs IDX","YTD vs IDX","200D Avg Vol","Wkly Opts",Direction,Strength,"14D Stoch %K","50D RelVol"
+XWIN,"Xmax Inc",Furniture,7.15,-0.14%,9,Buy,"100% Buy",+188.36,+907.04%,6,6.26,5.6,6.55,77.56,893.37,26.5,852525,No,Average,Strong,81.27%,1.2
+TEN,"Tsakos Energy Navigation Ltd","Transportation - Ship",38,-0.37%,4,Buy,"100% Buy",+178.99,+121.32%,27.88,31.76,26.07,36.51,62.96,107.65,76.82,374577,No,Average,"Top 1%",74.26%,0.58
+NE,"Noble Corp Plc","Oil & Gas - Drilling",48.89,-1.85%,5,Buy,"100% Buy",+167.91,+102.19%,36.38,42.78,33.96,46.97,62.73,88.52,80.45,2167476,No,Strengthening,Maximum,80.15%,0.65
+APEI,"American Public Education",Schools,56.5,-1.29%,7,Buy,"100% Buy",+139.08,+151.33%,41.52,46.88,39.48,52.02,66.66,137.66,56.8,296694,No,Strengthening,"Top 1%",84.55%,0.67
+VG,"Venture Global Inc Cl A","Oil - US Exploration & Product",16.89,-3.65%,6,Buy,"72% Buy",+134.85,+69.75%,9.21,11.3,10.17,13.96,72.4,56.08,154.98,12220624,Yes,Strengthening,Strong,91.70%,1.05
+SDRL,"Seadrill 2021 Ltd","Oil & Gas - Drilling",44.95,-1.01%,8,Buy,"100% Buy",+127.91,+78.16%,36.98,41.94,35.16,43.81,57.28,64.49,37.24,901246,No,Average,Maximum,78.20%,0.58
+SCHL,"Scholastic Corp","Publishing - Books",38.83,+0.23%,6,Buy,"100% Buy",+108.51,+107.98%,32.15,34.82,30.58,35.83,69.92,94.31,38.38,354954,No,Average,Maximum,88.84%,0.94
+ANDE,"Andersons Inc","Agriculture Products",71.57,-2.21%,6,Buy,"100% Buy",+101.44,+65.44%,59.08,65.98,53.47,68.69,59.61,51.77,41.94,346718,No,Strengthening,Maximum,81.76%,0.9
+KGS,"Kodiak Gas Services Inc","Oil Field Machinery & Equip",57.46,-1.73%,6,Buy,"100% Buy",+100.29,+52.78%,43.19,50.77,40.48,56.82,59.54,39.11,60.97,1596628,No,Average,Maximum,71.10%,0.97
+MPC,"Marathon Petroleum Corp","Oil - Refining and Marketing",245.16,-2.68%,11,Buy,"100% Buy",+99.51,+70.13%,194.8,206.53,192.13,230.76,67.26,56.46,58.08,2258010,No,Strengthening,Maximum,89.01%,1
+WTTR,"Select Water Solutions Inc","Waste Removal Svcs",15.22,-2.50%,12,Buy,"100% Buy",+89.53,+46.35%,12.07,13.37,11.43,14.41,64.77,32.68,52.01,1148265,No,Strengthening,"Top 1%",87.35%,1.47
+UGP,"Ultrapar Participacoes S.A. ADR","Oil - Production & Pipeline",5.34,-0.56%,6,Buy,"100% Buy",+88.27,+71.70%,4.49,5,4.28,5.1,59.67,58.03,48.97,2120180,No,Strengthening,Maximum,79.51%,1.18
+TS,"Tenaris S.A. ADR","Steel - Pipe & Tube",57.2,-1.87%,7,Buy,"100% Buy",+86.21,+46.29%,45.44,50.82,42.25,55.08,64.96,32.62,56.09,1541631,No,Average,Maximum,85.39%,0.78
+DLX,"Deluxe Corp","Business Office Products",27.36,+1.37%,3,Hold,"96% Buy",+83.51,+72.40%,24.07,26.75,22.42,27.24,53.09,58.73,29.86,377706,No,Average,Strong,66.15%,0.64
+NYT,"New York Times Company","Publishing - Newspapers",83.25,+0.56%,7,Buy,"100% Buy",+78.18,+69.93%,71.54,76.44,66.81,81.19,63.29,56.26,27.25,1940745,No,Strengthening,"Top 1%",67.05%,0.58
+CNR,"Core Natural Resources Inc",Coal,110.18,-2.69%,9,Buy,"100% Buy",+77.23,+42.92%,90.43,95.18,87.52,100.27,63.45,29.25,31.81,868148,No,Strengthening,Maximum,87.73%,1.27
+RES,"RPC Inc","Oil - Field Services",7.15,-2.32%,14,Buy,"100% Buy",+73.49,+30.95%,5.93,6.28,5.51,6.66,65.9,17.28,38.76,1938900,No,Strengthening,"Top 1%",90.24%,0.87
+ELPC,"Companhia Paranaense DE Energia [Copel] ADR","Utility - Electric Power",11.43,+0.18%,5,Buy,"100% Buy",+72.01,+72.66%,10.3,10.89,9.78,11.34,52.36,58.99,27.52,92933,No,Average,Maximum,60.95%,3.81
+GLNG,"Golar Lng Ltd","Oil - International Integrated",54.08,-1.73%,8,Buy,"100% Buy",+71.71,+42.77%,41.41,44.99,41.14,48.8,68.74,29.1,52.67,1494339,No,Strengthening,"Top 1%",89.08%,0.87
+CASY,"Casey's General Stor","Retail - Convenience Stores",704.8,-1.32%,4,Buy,"100% Buy",+69.59,+63.15%,610.82,662.19,586.99,682.11,60.05,49.48,34.85,346596,No,Average,Maximum,85.33%,0.77
+FANG,"Diamondback Energy","Oil - US Exploration & Product",198.65,-1.58%,9,Buy,"100% Buy",+67.44,+26.09%,161.66,173.71,155.38,187.03,70.14,12.42,39.47,2236521,No,Strengthening,"Top 1%",88.22%,1.23
+JHG,"Janus Henderson Group Plc","Finance - Investment Mgmt",51.35,-0.06%,2,Buy,"100% Buy",+61.46,+42.72%,47.54,49.8,46.4,51.12,55.88,29.05,15.28,1792726,No,Average,Strong,54.79%,1.39
+ADM,"Archer Daniels Midland","Agriculture Operations",71.75,-0.66%,4,Buy,"100% Buy",+60.44,+49.89%,63.91,68.59,63.16,69.89,57.24,36.22,32.13,3704792,No,Strengthening,Maximum,78.56%,0.98
+REPX,"Riley Exploration Permian Inc","Oil - US Exploration & Product",36.71,-1.24%,12,Buy,"100% Buy",+60.30,+26.59%,28.35,30.31,28.08,33.9,73.04,12.92,46.38,188676,No,Strengthening,Maximum,90.32%,0.69
+LOCO,"El Pollo Loco","Retail - Restaurants",13.8,-0.07%,9,Buy,"100% Buy",+56.41,+31.30%,11.19,11.52,10.75,12.76,68.88,17.63,39.26,279599,No,Strengthening,Maximum,84.18%,0.89
+KEX,"Kirby Corp","Transportation - Ship",134.18,+0.04%,3,Buy,"100% Buy",+53.36,+33.37%,120.01,127.46,109.36,129.97,60.58,19.7,29.11,812776,No,Average,Maximum,83.55%,0.63
+RPRX,"Royalty Pharma Plc Cl A","Medical - Biomedical",46.37,+0.04%,3,Buy,"100% Buy",+49.98,+47.82%,41.87,44.44,39.98,46.14,56.97,34.15,27.34,3843064,No,Average,Maximum,64.89%,0.62
+AM,"Antero Midstream Corp","Oil - US Integrated",23.12,-0.30%,9,Buy,"100% Buy",+46.39,+28.87%,19.52,21.23,19.14,22.99,59.9,15.2,37.29,2657969,No,Average,Maximum,62.31%,0.84
+RRC,"Range Resources Corp","Oil - US Exploration & Product",46.21,-3.02%,9,Buy,"100% Buy",+43.97,+17.91%,38.24,39.84,37.55,43.75,67.06,4.24,38.39,3103294,No,Strengthening,Maximum,83.94%,1.02
+PRDO,"Perdoceo Education Corp",Schools,37.18,-0.13%,9,Buy,"88% Buy",+41.70,+46.21%,31.53,33.31,32.66,35.33,67.17,32.54,34.09,650219,No,Strengthening,Strong,78.31%,1.15
+AR,"Antero Resources Corp","Oil - US Exploration & Product",44.23,-2.04%,12,Buy,"100% Buy",+41.49,+11.44%,35.72,37.19,34.65,41.25,69.11,-2.23,35.68,5362673,Yes,Strengthening,Maximum,87.78%,1.01
+CIG,"Comp En DE MN Cemig ADR","Utility - Electric Power",2.33,+1.01%,6,Buy,"100% Buy",+36.74,+28.73%,2.15,2.24,2.11,2.28,54.73,15.06,23.83,3685167,No,Average,Maximum,65.27%,0.95
+KMI,"Kinder Morgan Inc","Oil - Production & Pipeline",33.65,-1.12%,5,Buy,"100% Buy",+36.51,+18.61%,29.5,31.99,28.74,33.49,57.69,4.94,29.74,14079782,Yes,Average,Maximum,68.55%,0.7
+NOG,"Northern Oil and Gas","Oil - US Exploration & Product",29.91,-1.51%,6,Buy,"88% Buy",+33.51,-0.80%,24.42,26.65,24.37,28.58,62.47,-14.47,46.64,2199805,No,Strengthening,Strong,85.47%,0.81
+VNOM,"Viper Energy Inc","Oil - US Exploration & Product",46.71,-2.38%,2,Buy,"100% Buy",+28.95,+5.70%,40.93,43.95,39.97,45.76,56.22,-7.97,28.25,2287097,No,Average,Maximum,73.30%,0.64
+ENB,"Enbridge Inc","Oil - Production & Pipeline",54.33,-0.46%,6,Buy,"100% Buy",+26.71,+22.20%,49.61,51.82,49.18,54.06,59.35,8.53,20.92,4181226,No,Average,Maximum,72.86%,1.11
+PBA,"Pembina Pipeline Cor","Oil - Production & Pipeline",45.17,-1.31%,6,Buy,"100% Buy",+25.68,+13.12%,40.71,43.33,40.1,44.76,59.75,-0.55,26.01,1434771,No,Average,Maximum,75.94%,1.35
+VIRT,"Virtu Financial Cm A","Finance - Misc Services",42.84,+0.75%,3,Buy,"88% Buy",+23.51,+13.45%,37.14,39.9,36.72,41.27,60.64,-0.22,35.9,1010475,No,Average,Strong,76.55%,0.52
+AHCO,"Adapthealth Corp Cl. A","Medical Products",11.29,+0.80%,7,Buy,"100% Buy",+20.91,+6.11%,10.04,10.18,9.74,10.3,63.33,-7.56,20.68,1186194,No,Strengthening,Maximum,80.42%,1.75
+ARLP,"Alliance Resource Pt",Coal,28.15,-2.90%,6,Buy,"100% Buy",+17.12,+5.59%,25.11,26.23,24.75,27.71,58.79,-8.08,28.51,354784,No,Strengthening,Strong,74.35%,1.65
+MASI,"Masimo Corp","Medical Instruments",177.32,+0.12%,6,Buy,"88% Buy",+10.79,+8.42%,150.36,160.88,148.54,176.5,70.16,-5.25,43.67,1001274,No,Strengthening,Maximum,48.25%,0.85
+T,"AT&T Inc","Wireless National",28.78,-1.10%,4,Buy,"88% Buy",+10.31,+2.13%,26.01,27.21,26.5,28.25,59.24,-11.54,23.19,41304379,Yes,Average,Strong,81.45%,0.76
+HESM,"Hess Midstream Partners LP","E&P MLP",39.5,-0.73%,5,Buy,"88% Buy",+9.64,-7.06%,35.72,37.61,35.87,39.44,57.31,-20.73,21.82,1559946,No,Average,Average,54.09%,0.76
+DVA,"Davita Healthcare Partners Inc","Medical - Outpatient & Hm Care",152.37,-1.33%,1,Buy,"88% Buy",+1.88,+1.43%,128.56,140.35,129.18,152.04,55.45,-12.24,41.45,920216,No,Weakening,Strong,75.88%,0.56
+"Downloaded from Barchart.com as of 03-30-2026 10:34pm CDT"
