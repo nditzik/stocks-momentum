@@ -2750,18 +2750,8 @@ function toggleSmartMode() {
 }
 
 function updateStatBar() {
-  // Apply ALL permanent filters identical to applyFilters() — volume + alpha
-  const gf = RAW_DATA.filter(d => {
-    const vol = parseFloat(d.vol || 0); // 200D Avg Vol only — never filter by intraday volume
-    if (vol > 0 && vol < minVolThreshold) return false;
-    const _a = parseFloat(d.wtd_alpha);
-    if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
-    if (d.w52_chg) {
-      const _w = p52(d.w52_chg);
-      if (!isNaN(_w) && _a < _w) return false;
-    }
-    return true;
-  });
+  // Use same base filter as the table — guarantees stat bar matches table counts
+  const gf = RAW_DATA.filter(passesBaseFilter);
   animateCounter(document.getElementById('stat4'),       gf.filter(d => d.signal_count >= 4).length);
   animateCounter(document.getElementById('stat3'),       gf.filter(d => d.signal_count === 3).length);
   animateCounter(document.getElementById('stat2'),       gf.filter(d => d.signal_count === 2).length);
@@ -2810,8 +2800,15 @@ function init() {
   loadIndicesBar();
   renderSignalPulse();
 
+  // Restore last update timestamp from previous session
+  try {
+    const saved = localStorage.getItem(LAST_UPDATE_KEY);
+    if (saved) _applyLastUpdateBadge(saved);
+  } catch(e) {}
+
   buildOverview();
   applyFilters();
+  if (RAW_DATA.length) checkWatchlistOpportunities();
 }
 
 function buildOverview() {
@@ -4374,6 +4371,7 @@ document.addEventListener('keydown', e => {
 // ===== WATCHLIST / FAVORITES =====
 let watchlist = new Set();
 const WL_KEY = 'momentum_watchlist';
+const LAST_UPDATE_KEY = 'momentum_last_update';
 
 function loadWatchlist() {
   try {
@@ -5908,10 +5906,14 @@ function applyNewData() {
   const min = String(now.getMinutes()).padStart(2,'0');
   const tsStr = `${dd}/${mm}/${yyyy} ${hh}:${min}`;
 
+  try { localStorage.setItem(LAST_UPDATE_KEY, tsStr); } catch(e) {}
+  _applyLastUpdateBadge(tsStr);
+}
+
+function _applyLastUpdateBadge(tsStr) {
   const hBadge = document.getElementById('headerLastUpdate');
   const hTime  = document.getElementById('headerUpdateTime');
   if (hBadge && hTime) { hTime.textContent = tsStr; hBadge.style.display = 'block'; }
-
   const fBadge = document.getElementById('footerLastUpdate');
   const fTime  = document.getElementById('footerUpdateTime');
   if (fBadge && fTime) { fTime.textContent = tsStr; fBadge.style.display = 'inline'; }
@@ -6772,12 +6774,8 @@ async function autoLoadFromData() {
   if (latestDate) {
     const [mm, dd, yyyy] = latestDate.split('-');
     const tsStr = `${dd}/${mm}/${yyyy}`;
-    const hBadge = document.getElementById('headerLastUpdate');
-    const hTime  = document.getElementById('headerUpdateTime');
-    if (hBadge && hTime) { hTime.textContent = tsStr; hBadge.style.display = 'block'; }
-    const fBadge = document.getElementById('footerLastUpdate');
-    const fTime  = document.getElementById('footerUpdateTime');
-    if (fBadge && fTime) { fTime.textContent = tsStr; fBadge.style.display = 'inline'; }
+    try { localStorage.setItem(LAST_UPDATE_KEY, tsStr); } catch(e) {}
+    _applyLastUpdateBadge(tsStr);
   }
 }
 
