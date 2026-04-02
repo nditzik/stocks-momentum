@@ -3589,8 +3589,8 @@ function renderTable() {
         <td><span class="opinion-cell ${opCls}">${d.opinion || '—'}</span></td>
         <td><span style="font-size:11px;color:${(d.direction||'').includes('Strength') ? 'var(--accent-green)' : (d.direction||'').includes('Weak') ? 'var(--accent-red)' : 'var(--text-1)'}">${d.direction || '—'}</span></td>
         ${currentFilter === 'smart_track' ? `
-        <td style="text-align:center">${maDist(d.price, d.ma20)}</td>
-        <td style="text-align:center">${maDist(d.price, d.ma50)}</td>
+        <td style="text-align:center">${maDist(livePrices[d.symbol] || d.price, d.ma20)}</td>
+        <td style="text-align:center">${maDist(livePrices[d.symbol] || d.price, d.ma50)}</td>
         <td style="text-align:center">${rsiCell(d.rel_str)}</td>
         ` : `
         <td>
@@ -7118,29 +7118,21 @@ function applyQuotes(quotes) {
   });
 }
 
-// Fetch single symbol price via Yahoo v8/chart (no crumb needed)
+// Fetch single symbol price via Yahoo v8/chart — all proxies in parallel
 async function yahooSingleQuote(sym) {
-  const yhUrl = `https://query2.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=1d`;
-  const proxies = [
-    `https://api.allorigins.win/get?url=${encodeURIComponent(yhUrl)}`,
-    `https://corsproxy.io/?${encodeURIComponent(yhUrl)}`
-  ];
-  for (const proxy of proxies) {
-    try {
-      const res  = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
-      if (!res.ok) continue;
-      const text = await res.text();
-      let data;
-      try { const outer = JSON.parse(text); data = JSON.parse(outer.contents); } catch { data = JSON.parse(text); }
+  const end   = Math.floor(Date.now() / 1000);
+  const start = end - 5 * 24 * 3600;
+  const url   = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&period1=${start}&period2=${end}&includePrePost=false`;
+  try {
+    return await Promise.any(PROXY_BUILDERS.map(async fn => {
+      const r = await fetch(fn(url), { headers: { 'Accept': 'application/json' }, signal: AbortSignal.timeout(8000) });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const data = await r.json();
       const meta = data?.chart?.result?.[0]?.meta;
-      if (meta?.regularMarketPrice) return {
-        symbol: sym,
-        regularMarketPrice: meta.regularMarketPrice,
-        regularMarketChangePercent: meta.regularMarketChangePercent || 0
-      };
-    } catch(e) { continue; }
-  }
-  return null;
+      if (!meta?.regularMarketPrice) throw new Error('no price');
+      return { symbol: sym, regularMarketPrice: meta.regularMarketPrice, regularMarketChangePercent: meta.regularMarketChangePercent || 0 };
+    }));
+  } catch(e) { return null; }
 }
 
 // Fetch Yahoo Finance quotes — parallel individual calls (v8/chart, no crumb)
