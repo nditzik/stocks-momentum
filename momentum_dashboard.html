@@ -3445,7 +3445,7 @@ function maDist(price, ma) {
   if (!p || !m) return '<span style="color:var(--text-2)">—</span>';
   const pct = (p - m) / m * 100;
   const col = pct >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
-  return `<span style="font-family:'DM Mono',monospace;font-size:11px;color:${col}">${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%</span>`;
+  return `<span style="font-family:'DM Mono',monospace;font-size:11px;color:${col}" title="MA: $${m.toFixed(2)} | מחיר: $${p.toFixed(2)}">${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%</span>`;
 }
 
 function rsiCell(rsi) {
@@ -3594,7 +3594,7 @@ function renderTable() {
         <td style="text-align:center">${rsiCell(d.rel_str)}</td>
         ` : `
         <td>
-          <span class="ma-cell">
+          <span class="ma-cell" title="MA20:${d.ma20||'—'} | MA50:${d.ma50||'—'} | MA100:${d.ma100||'—'} | MA150:${d.ma150||'—'}">
             ${maTotal > 0 ? `<span style="color:var(--text-2);font-size:10px">${maCount}/${maTotal} ↑</span>` : '—'}
           </span>
         </td>
@@ -5901,10 +5901,10 @@ function applyNewData() {
       setf('name',        r['Name'] || '');
       setf('industry',    r['Industry'] || '');
       setf('exchange',    r['Exchange'] || '');
-      setf('ma20',        r['20D MA']  || '');
-      setf('ma50',        r['50D MA']  || '');
-      setf('ma100',       r['100D MA'] || '');
-      setf('ma150',       r['150D MA'] || '');
+      setf('ma20',        num(r['20D MA']  || '', '$,+%'));
+      setf('ma50',        num(r['50D MA']  || '', '$,+%'));
+      setf('ma100',       num(r['100D MA'] || '', '$,+%'));
+      setf('ma150',       num(r['150D MA'] || '', '$,+%'));
       setf('rel_str',     r['14D Rel Str'] || '');
       setf('stoch',       r['14D Stoch %K'] || '');
       setf('wtd_alpha',   num(r['Wtd Alpha'] || '', '+'));
