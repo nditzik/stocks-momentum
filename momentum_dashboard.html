@@ -1433,6 +1433,13 @@
   }
   .history-toggle-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
   .history-toggle-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,200,66,0.08); }
+  /* Smart Track */
+  .smart-alert { display:none; background:rgba(255,77,106,0.12); border:1px solid rgba(255,77,106,0.35); border-radius:8px; padding:10px 16px; margin-bottom:14px; color:var(--accent-red); font-size:13px; line-height:1.6; }
+  .smart-alert strong { color:#fff; }
+  .smart-badge { display:inline-flex; align-items:center; gap:3px; font-size:11px; padding:2px 6px; border-radius:4px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.2); color:var(--accent-teal); margin-right:3px; white-space:nowrap; cursor:default; }
+  .smart-badge-row { display:flex; flex-wrap:wrap; gap:3px; margin-top:3px; }
+  .filter-btn[data-filter="smart_track"] { border-color:var(--accent-purple); color:var(--accent-purple); }
+  .filter-btn[data-filter="smart_track"].active { background:var(--accent-purple); color:#fff; border-color:var(--accent-purple); }
   .readiness-tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; white-space:nowrap; cursor:default; }
   .readiness-tag.ready  { background:rgba(0,230,118,0.15); color:var(--accent-green); border:1px solid rgba(0,230,118,0.3); }
   .readiness-tag.close  { background:rgba(245,166,35,0.15); color:var(--accent-gold);  border:1px solid rgba(245,166,35,0.3); }
@@ -2424,6 +2431,7 @@
     <button class="filter-btn" data-filter="rvol" onclick="setFilter('rvol',this)" title="Relative Volume מעל 1.5× — נפח גבוה, אישור מומנטום">⚡ RVOL×1.5+</button>
     <button class="filter-btn" data-filter="hot_prospects" onclick="setFilter('hot_prospects',this)" title="Hot Prospects — Trend Seeker BUY + תמיכה טכנית חזקה">🔥 Hot Prospects</button>
     <button class="filter-btn" data-filter="low_alpha" onclick="setFilter('low_alpha',this)" title="מניות שסוננו — Alpha נמוך מ-52W %Chg" style="border-color:var(--accent-red);color:var(--accent-red)">⚠️ Alpha נמוך</button>
+    <button class="filter-btn" data-filter="smart_track" onclick="setFilter('smart_track',this)" title="מעקב חכם — לפני כניסה, עקביות, טעונות, כניסות חדשות חזקות">🔍 מעקב חכם</button>
     </div>
     <select class="sort-select" id="sortSelect" onchange="sortData(this.value)">
       <option value="score" selected>מיין: Score משוקלל</option>
@@ -2576,6 +2584,9 @@
       <button class="apply-btn" id="applyBtn" onclick="applyNewData()" disabled>✓ עדכן דשבורד</button>
     </div>
   </div>
+
+  <!-- SMART TRACK ALERT -->
+  <div class="smart-alert" id="smartTrackAlert"></div>
 
   <!-- TABLE -->
   <div class="table-wrapper">
@@ -2985,6 +2996,10 @@ function setFilter(f, btn) {
   currentPage = 1;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  if (f !== 'smart_track') {
+    const alertEl = document.getElementById('smartTrackAlert');
+    if (alertEl) alertEl.style.display = 'none';
+  }
   applyFilters();
   if (f === 'watchlist') refreshWatchlistPrices();
 }
@@ -3082,6 +3097,25 @@ function applyFilters() {
     });
     document.getElementById('resultsCount').textContent = `${filtered.length} מניות (alpha נמוך)`;
     renderTable();
+    return;
+  }
+
+  // Smart Track tab
+  if (currentFilter === 'smart_track') {
+    const { result, dropped } = buildSmartTracking();
+    filtered = result;
+    const alertEl = document.getElementById('smartTrackAlert');
+    if (alertEl) {
+      if (dropped.length > 0) {
+        alertEl.innerHTML = `⚠️ <strong>${dropped.length} מניות ירדו מהדשבורד מאז הפעם האחרונה:</strong> ${dropped.map(s => `<strong>${s}</strong>`).join(' · ')}`;
+        alertEl.style.display = 'block';
+      } else {
+        alertEl.style.display = 'none';
+      }
+    }
+    document.getElementById('resultsCount').textContent = `${filtered.length} מניות מעקב`;
+    renderTable();
+    renderPagination();
     return;
   }
 
@@ -3475,7 +3509,10 @@ function renderTable() {
           ${opportunitySymbols.has(d.symbol) ? '<span title="הזדמנות כניסה — נגע בממוצע עם נר ירוק וווליום" style="font-size:13px;cursor:default">🎯</span>' : ''}
         </td>
         <td><span class="symbol-cell">${d.symbol}</span></td>
-        <td><span class="name-cell" title="${d.name || d.sq_name || d.macd_name || d.industry || ''}">${(d.name || d.sq_name || d.macd_name || d.industry || '—').substring(0, 22)}</span></td>
+        <td>
+          <span class="name-cell" title="${d.name || d.sq_name || d.macd_name || d.industry || ''}">${(d.name || d.sq_name || d.macd_name || d.industry || '—').substring(0, 22)}</span>
+          ${d._smartBadges ? `<div class="smart-badge-row">${d._smartBadges.map(b => `<span class="smart-badge" title="${(SMART_BADGE_META[b]||{}).title||''}">${b} ${(SMART_BADGE_META[b]||{}).label||''}</span>`).join('')}</div>` : ''}
+        </td>
         <td><span class="price-cell" data-price-sym="${d.symbol}" style="color:${chg > 0 ? 'var(--accent-green)' : chg < 0 ? 'var(--accent-red)' : 'var(--text-0)'}">${livePrices[d.symbol] ? '$'+(livePrices[d.symbol]).toFixed(2) : price > 0 ? '$'+price.toFixed(2) : '—'}</span></td>
         <td><span class="${chg >= 0 ? 'change-pos' : 'change-neg'}" style="font-family:'DM Mono',monospace;font-size:12px">${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%</span></td>
         ${(() => { const sc = calcScore(d); const scC = sc >= 70 ? 'var(--accent-green)' : sc >= 45 ? 'var(--accent-gold)' : 'var(--text-2)'; return `<td style="font-family:'DM Mono',monospace;font-size:12px;color:${scC};text-align:center;font-weight:600">${sc}</td>`; })()}
@@ -7112,6 +7149,80 @@ function addManualTrade() {
   inp.value = '';
   renderTable();
   renderTrades();
+}
+
+// ── Smart Tracking Tab ────────────────────────────────────────────────────────
+const SMART_TRACK_KEY = 'momentum_smart_track';
+
+const SMART_BADGE_META = {
+  '🎯': { label: 'MA Bounce',    title: 'קרובה ל-MA20/50 + נר ירוק + ווליום' },
+  '🌀': { label: 'טעונה',        title: 'Score גבוה + RSI/Stoch לא מתוח' },
+  '⚡': { label: 'כניסה חדשה',   title: '3+ סיגנלים — נכנסה חזקה היום' },
+  '📊': { label: 'עקבית',        title: 'הופיעה ב-3+ snapshots אחרונים' },
+};
+
+function buildSmartTracking() {
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) {}
+
+  // Previous snapshot (for "new today" detection)
+  const sortedHistory = [...history].sort((a,b) => a.date.localeCompare(b.date));
+  const prevSnap = sortedHistory.length >= 2 ? sortedHistory[sortedHistory.length - 2] : null;
+  const prevScMap = {};
+  if (prevSnap) prevSnap.stocks.forEach(s => { prevScMap[s.s] = s.sc || 0; });
+
+  // Consistency: count appearances in last 5 snapshots
+  const last5 = sortedHistory.slice(-5);
+  const appearCount = {};
+  last5.forEach(snap => snap.stocks.forEach(s => {
+    appearCount[s.s] = (appearCount[s.s] || 0) + 1;
+  }));
+
+  const result = [];
+  RAW_DATA.filter(passesBaseFilter).forEach(d => {
+    const badges = [];
+    const price  = parseFloat(d.price || 0);
+    const ma20   = parseFloat(d.ma20  || 0);
+    const ma50   = parseFloat(d.ma50  || 0);
+    const chg    = parseFloat(d.change_pct || 0);
+    const rvol   = parseFloat(d.rvol  || 0);
+    const rsi    = parseFloat(d.rel_str || 0);
+    const stoch  = parseFloat(d.stoch || 0);
+    const sc     = d.signal_count || 0;
+
+    // 🎯 MA Bounce: price within -2%/+3% of MA20 or MA50, green candle, vol OK
+    const nearMA20 = ma20 > 0 && price >= ma20 * 0.98 && price <= ma20 * 1.03;
+    const nearMA50 = ma50 > 0 && price >= ma50 * 0.98 && price <= ma50 * 1.03;
+    if ((nearMA20 || nearMA50) && chg > 0 && (rvol === 0 || rvol >= 1)) badges.push('🎯');
+
+    // 🌀 Coiled: high score + not overbought
+    const score = calcScore(d);
+    const notOverBought = (rsi === 0 || rsi < 65) && (stoch === 0 || stoch < 70);
+    if (score >= 35 && notOverBought) badges.push('🌀');
+
+    // ⚡ New strong entry: 3+ signals and either new or fewer signals before
+    if (sc >= 3 && (prevScMap[d.symbol] === undefined || prevScMap[d.symbol] < 3)) badges.push('⚡');
+
+    // 📊 Consistent: appeared in 3+ of last 5 snapshots
+    if ((appearCount[d.symbol] || 0) >= 3) badges.push('📊');
+
+    if (badges.length > 0) {
+      result.push(Object.assign({}, d, { _smartBadges: badges, _badgeCount: badges.length }));
+    }
+  });
+
+  result.sort((a, b) => b._badgeCount - a._badgeCount || calcScore(b) - calcScore(a));
+
+  // Dropped alert: symbols in smart track last time, now gone from RAW_DATA
+  let prevSmartSyms = [];
+  try { prevSmartSyms = JSON.parse(localStorage.getItem(SMART_TRACK_KEY) || '[]'); } catch(e) {}
+  const currentRawSyms = new Set(RAW_DATA.map(d => d.symbol));
+  const dropped = prevSmartSyms.filter(s => !currentRawSyms.has(s));
+
+  // Save current smart symbols
+  try { localStorage.setItem(SMART_TRACK_KEY, JSON.stringify(result.map(d => d.symbol))); } catch(e) {}
+
+  return { result, dropped };
 }
 
 // ── Watchlist Opportunity Checker ─────────────────────────────────────────────
