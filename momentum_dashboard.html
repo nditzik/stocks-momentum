@@ -3095,11 +3095,11 @@ function applyFilters() {
       if (d) { filtered.push(d); }
       else { filtered.push({ symbol: sym, _notInData: true, name: '—', score: -1 }); }
     });
-    const scoreOf = d => calcScore(d);
     filtered.sort((a, b) => {
-      if (a._notInData && !b._notInData) return 1;
-      if (!a._notInData && b._notInData) return -1;
-      return scoreOf(b) - scoreOf(a);
+      if (a._notInData && b._notInData) return 0;
+      if (a._notInData) return 1;
+      if (b._notInData) return -1;
+      return calcScore(b) - calcScore(a);
     });
     document.getElementById('resultsCount').textContent = `${filtered.length} מועדפים`;
     renderTable();
@@ -3317,7 +3317,7 @@ function calcScore(d) {
      : str.includes('weak')   ? 2 : 0;
 
   // ── Hot Prospects (max 25) — high weight
-  if (d.signals.includes('hot_prospects')) s += 25;
+  if ((d.signals || []).includes('hot_prospects')) s += 25;
 
   // ── Direction / Strength+Dir signal (max 15) — medium weight
   if (dir.includes('strength')) s += 15;
