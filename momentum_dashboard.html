@@ -2800,9 +2800,18 @@ function init() {
   loadIndicesBar();
   renderSignalPulse();
 
-  // Restore last update timestamp from previous session
+  // Restore last update timestamp — prefer saved key, fall back to latest history entry
   try {
-    const saved = localStorage.getItem(LAST_UPDATE_KEY);
+    let saved = localStorage.getItem('momentum_last_update');
+    if (!saved) {
+      const hist = JSON.parse(localStorage.getItem('momentum_history') || '[]');
+      if (hist.length) {
+        const latest = hist[hist.length - 1].date; // "YYYY-MM-DD"
+        const [yyyy, mm, dd] = latest.split('-');
+        saved = `${dd}/${mm}/${yyyy}`;
+        localStorage.setItem('momentum_last_update', saved);
+      }
+    }
     if (saved) _applyLastUpdateBadge(saved);
   } catch(e) {}
 
