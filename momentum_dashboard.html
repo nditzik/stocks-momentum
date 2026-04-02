@@ -3005,6 +3005,9 @@ function setFilter(f, btn) {
   if (f !== 'smart_track') {
     const alertEl = document.getElementById('smartTrackAlert');
     if (alertEl) alertEl.style.display = 'none';
+    renderTableHeader('normal');
+  } else {
+    renderTableHeader('smart_track');
   }
   applyFilters();
   if (f === 'watchlist') refreshWatchlistPrices();
@@ -3437,6 +3440,49 @@ function calcReadiness(d) {
   return Math.min(100, Math.max(0, s));
 }
 
+function maDist(price, ma) {
+  const p = parseFloat(price || 0), m = parseFloat(ma || 0);
+  if (!p || !m) return '<span style="color:var(--text-2)">—</span>';
+  const pct = (p - m) / m * 100;
+  const col = pct >= 0 ? 'var(--accent-green)' : 'var(--accent-red)';
+  return `<span style="font-family:'DM Mono',monospace;font-size:11px;color:${col}">${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%</span>`;
+}
+
+function rsiCell(rsi) {
+  const v = parseFloat(rsi || 0);
+  if (!v) return '<span style="color:var(--text-2)">—</span>';
+  const col = v > 70 ? 'var(--accent-red)' : v < 30 ? 'var(--accent-purple)' : 'var(--accent-teal)';
+  return `<span style="font-family:'DM Mono',monospace;font-size:12px;color:${col};font-weight:600">${v.toFixed(0)}</span>`;
+}
+
+function renderTableHeader(mode) {
+  const thead = document.querySelector('#mainTable thead');
+  if (!thead) return;
+  const base = `<th onclick="sortData('signals')" class="sorted">#</th>
+    <th title="מועדפים">⭐</th><th>סימבול</th><th>שם</th>
+    <th onclick="sortData('price')">מחיר</th>
+    <th onclick="sortData('change')">שינוי%</th>
+    <th onclick="sortData('score')" title="ציון משוקלל — חוזק+כיוון+Hot Prospects+ממוצעים">Score</th>
+    <th onclick="sortData('rvol')" title="Relative Volume — נפח יחסי ל-50 יום">RVOL</th>
+    <th>סיגנלים</th><th onclick="sortData('signals')">חוזק</th>
+    <th>Opinion</th><th>Direction</th>`;
+  if (mode === 'smart_track') {
+    thead.innerHTML = `<tr>${base}
+      <th title="מרחק ממחיר לMA20">▲ MA20</th>
+      <th title="מרחק ממחיר לMA50">▲ MA50</th>
+      <th onclick="sortData('rsi')" title="RSI">RSI</th>
+    </tr>`;
+  } else {
+    thead.innerHTML = `<tr>${base}
+      <th>ממוצעים נעים</th>
+      <th onclick="sortData('alpha')">Wtd Alpha</th>
+      <th onclick="sortData('w52')">52W%</th>
+      <th>המלצה</th>
+      <th title="Readiness Score — עוצמת כניסה + כפתור הוספה ליומן">בשלות ➕</th>
+    </tr>`;
+  }
+}
+
 function maStatus(price, ma) {
   const p = parseFloat(price || 0);
   const m = parseFloat(ma || 0);
@@ -3471,7 +3517,7 @@ function renderTable() {
           <button class="star-btn fav" title="הסר ממועדפים">⭐</button>
         </td>
         <td><span class="symbol-cell">${d.symbol}</span></td>
-        <td colspan="13" style="color:var(--text-2);font-size:11px;font-style:italic">לא נמצא בנתונים הנוכחיים</td>
+        <td colspan="${currentFilter === 'smart_track' ? 11 : 13}" style="color:var(--text-2);font-size:11px;font-style:italic">לא נמצא בנתונים הנוכחיים</td>
       </tr>`;
     }
     const rec = getRecommendation(d);
@@ -3480,12 +3526,13 @@ function renderTable() {
     const chg = parseFloat(d.change_pct || 0);
     const isSelected = d.symbol === selectedSymbol;
     
-    const ma20s = maStatus(d.price, d.ma20);
-    const ma50s = maStatus(d.price, d.ma50);
+    const ma20s  = maStatus(d.price, d.ma20);
+    const ma50s  = maStatus(d.price, d.ma50);
     const ma100s = maStatus(d.price, d.ma100);
-    
-    const maCount = [ma20s, ma50s, ma100s].filter(x => x === 'above').length;
-    const maTotal = [ma20s, ma50s, ma100s].filter(x => x !== null).length;
+    const ma150s = maStatus(d.price, d.ma150);
+
+    const maCount = [ma20s, ma50s, ma100s, ma150s].filter(x => x === 'above').length;
+    const maTotal = [ma20s, ma50s, ma100s, ma150s].filter(x => x !== null).length;
     
     const opCls = (d.opinion||'').includes('100%') ? 'op-100buy' : (d.opinion||'').toLowerCase().includes('buy') ? 'op-buy' : 'op-sell';
     
@@ -3541,6 +3588,11 @@ function renderTable() {
         </td>
         <td><span class="opinion-cell ${opCls}">${d.opinion || '—'}</span></td>
         <td><span style="font-size:11px;color:${(d.direction||'').includes('Strength') ? 'var(--accent-green)' : (d.direction||'').includes('Weak') ? 'var(--accent-red)' : 'var(--text-1)'}">${d.direction || '—'}</span></td>
+        ${currentFilter === 'smart_track' ? `
+        <td style="text-align:center">${maDist(d.price, d.ma20)}</td>
+        <td style="text-align:center">${maDist(d.price, d.ma50)}</td>
+        <td style="text-align:center">${rsiCell(d.rel_str)}</td>
+        ` : `
         <td>
           <span class="ma-cell">
             ${maTotal > 0 ? `<span style="color:var(--text-2);font-size:10px">${maCount}/${maTotal} ↑</span>` : '—'}
@@ -3553,6 +3605,7 @@ function renderTable() {
           ${rdyTag}
           <button class="add-trade-btn ${inJournal ? 'in-journal' : ''}" onclick="event.stopPropagation();addToJournal('${d.symbol}')" title="${inJournal ? 'כבר ביומן' : 'הוסף ליומן עסקאות'}">${inJournal ? '✓' : '+'}</button>
         </td>
+        `}
       </tr>
     `;
   }).join('');
