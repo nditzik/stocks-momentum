@@ -3085,10 +3085,29 @@ function applyFilters() {
     return;
   }
 
+  // Watchlist: show ALL favorited stocks, including those not in current data
+  if (currentFilter === 'watchlist') {
+    const inData = new Set(RAW_DATA.map(x => x.symbol));
+    filtered = [];
+    watchlist.forEach(sym => {
+      if (q && !sym.includes(q)) return;
+      const d = RAW_DATA.find(x => x.symbol === sym);
+      if (d) { filtered.push(d); }
+      else { filtered.push({ symbol: sym, _notInData: true, name: '—', score: -1 }); }
+    });
+    const scoreOf = d => calcScore(d);
+    filtered.sort((a, b) => {
+      if (a._notInData && !b._notInData) return 1;
+      if (!a._notInData && b._notInData) return -1;
+      return scoreOf(b) - scoreOf(a);
+    });
+    document.getElementById('resultsCount').textContent = `${filtered.length} מועדפים`;
+    renderTable();
+    return;
+  }
+
   filtered = RAW_DATA.filter(d => {
     if (q && !d.symbol.includes(q)) return false;
-    // Watchlist: always show all favorited stocks regardless of global filters
-    if (currentFilter === 'watchlist') return watchlist.has(d.symbol);
     // Permanent base filters (volume, alpha, quality gates)
     if (!passesBaseFilter(d)) return false;
     const _rsi   = parseFloat(d.rel_str || 0);
@@ -3404,6 +3423,17 @@ function renderTable() {
   const page = filtered.slice(start, start + PAGE_SIZE);
 
   tbody.innerHTML = page.map((d, i) => {
+    // Watchlist stock not in current data — show placeholder row
+    if (d._notInData) {
+      return `<tr style="opacity:0.45">
+        <td style="color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px">${start + i + 1}</td>
+        <td onclick="event.stopPropagation();toggleWatchlist('${d.symbol}')" style="padding:0 4px;text-align:center">
+          <button class="star-btn fav" title="הסר ממועדפים">⭐</button>
+        </td>
+        <td><span class="symbol-cell">${d.symbol}</span></td>
+        <td colspan="13" style="color:var(--text-2);font-size:11px;font-style:italic">לא נמצא בנתונים הנוכחיים</td>
+      </tr>`;
+    }
     const rec = getRecommendation(d);
     const atr = calcATR(d);
     const price = parseFloat(d.price || 0);
