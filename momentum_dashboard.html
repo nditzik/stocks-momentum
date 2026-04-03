@@ -1440,6 +1440,157 @@
   .smart-badge-row { display:flex; flex-wrap:wrap; gap:3px; margin-top:3px; }
   .filter-btn[data-filter="smart_track"] { border-color:var(--accent-purple); color:var(--accent-purple); }
   .filter-btn[data-filter="smart_track"].active { background:var(--accent-purple); color:#fff; border-color:var(--accent-purple); }
+  .filter-btn[data-filter="scanner"] { border-color:var(--accent-teal); color:var(--accent-teal); }
+  .filter-btn[data-filter="scanner"].active { background:var(--accent-teal); color:#000; border-color:var(--accent-teal); }
+
+  /* ===== SCANNER PANEL ===== */
+  .scanner-panel {
+    display: none;
+    background: var(--bg-2);
+    border: 1px solid var(--border-bright);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .scanner-panel.visible { display: block; }
+  .scanner-panel-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .scanner-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .scanner-input-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 360px;
+  }
+  .scanner-input {
+    width: 100%;
+    background: var(--bg-0);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    color: var(--text-0);
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .scanner-input:focus { border-color: var(--accent-teal); }
+  .scanner-autocomplete {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    left: 0;
+    background: var(--bg-1);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    z-index: 100;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    display: none;
+  }
+  .scanner-autocomplete.open { display: block; }
+  .scanner-ac-item {
+    padding: 9px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.1s;
+  }
+  .scanner-ac-item:hover, .scanner-ac-item.active { background: var(--bg-3); color: var(--text-0); }
+  .scanner-ac-item .ac-key { font-family:'DM Mono',monospace; font-size:11px; color:var(--text-2); margin-right:auto; }
+  .scanner-mode-btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-bright);
+    background: var(--bg-0);
+    color: var(--text-1);
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .scanner-mode-btn.and { border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59,158,255,0.08); }
+  .scanner-mode-btn.or  { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(245,166,35,0.08); }
+  .scanner-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+    min-height: 32px;
+    align-items: center;
+  }
+  .scanner-chips-empty {
+    font-size: 12px;
+    color: var(--text-2);
+    font-style: italic;
+  }
+  .scanner-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
+    border-radius: 20px;
+    background: rgba(0,212,170,0.12);
+    border: 1px solid rgba(0,212,170,0.35);
+    color: var(--accent-teal);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: default;
+    white-space: nowrap;
+  }
+  .scanner-chip-remove {
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    color: rgba(0,212,170,0.6);
+    transition: color 0.1s;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: monospace;
+  }
+  .scanner-chip-remove:hover { color: var(--accent-red); }
+  .scanner-hint {
+    font-size: 11px;
+    color: var(--text-2);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .scanner-quick-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .scanner-quick-btn {
+    padding: 4px 11px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-0);
+    color: var(--text-2);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .scanner-quick-btn:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
   .readiness-tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; white-space:nowrap; cursor:default; }
   .readiness-tag.ready  { background:rgba(0,230,118,0.15); color:var(--accent-green); border:1px solid rgba(0,230,118,0.3); }
   .readiness-tag.close  { background:rgba(245,166,35,0.15); color:var(--accent-gold);  border:1px solid rgba(245,166,35,0.3); }
@@ -2432,6 +2583,7 @@
     <button class="filter-btn" data-filter="hot_prospects" onclick="setFilter('hot_prospects',this)" title="Hot Prospects — Trend Seeker BUY + תמיכה טכנית חזקה">🔥 Hot Prospects</button>
     <button class="filter-btn" data-filter="low_alpha" onclick="setFilter('low_alpha',this)" title="מניות שסוננו — Alpha נמוך מ-52W %Chg" style="border-color:var(--accent-red);color:var(--accent-red)">⚠️ Alpha נמוך</button>
     <button class="filter-btn" data-filter="smart_track" onclick="setFilter('smart_track',this)" title="מעקב חכם — לפני כניסה, עקביות, טעונות, כניסות חדשות חזקות">🔍 מעקב חכם</button>
+    <button class="filter-btn" data-filter="scanner" onclick="setFilter('scanner',this)" title="סורק חכם — חפש לפי סיגנלים ספציפיים">🔎 סורק סיגנלים</button>
     </div>
     <select class="sort-select" id="sortSelect" onchange="sortData(this.value)">
       <option value="score" selected>מיין: Score משוקלל</option>
@@ -2588,6 +2740,31 @@
   <!-- SMART TRACK ALERT -->
   <div class="smart-alert" id="smartTrackAlert"></div>
 
+  <!-- SCANNER PANEL -->
+  <div class="scanner-panel" id="scannerPanel">
+    <div class="scanner-panel-title">🔎 סורק סיגנלים — בחר סיגנלים לסינון</div>
+    <div class="scanner-quick-btns" id="scannerQuickBtns"></div>
+    <div class="scanner-input-row">
+      <div class="scanner-input-wrap">
+        <input class="scanner-input" id="scannerInput" type="text" placeholder="הקלד שם סיגנל..." autocomplete="off"
+          oninput="scannerInputChange(this.value)"
+          onkeydown="scannerInputKeydown(event)"
+          onfocus="scannerShowAC()"
+          onblur="setTimeout(scannerHideAC,200)"
+          dir="ltr">
+        <div class="scanner-autocomplete" id="scannerAC"></div>
+      </div>
+      <button class="scanner-mode-btn or" id="scannerModeBtn" onclick="toggleScannerMode()" title="החלף בין AND (כל הסיגנלים) ו-OR (לפחות אחד)">
+        OR — לפחות אחד
+      </button>
+      <button class="scanner-mode-btn" style="border-color:var(--border);color:var(--text-2)" onclick="clearScannerSignals()" title="נקה הכל">✕ נקה</button>
+    </div>
+    <div class="scanner-chips" id="scannerChips">
+      <span class="scanner-chips-empty">לא נבחרו סיגנלים — הצג את כל המניות</span>
+    </div>
+    <div class="scanner-hint" id="scannerHint"></div>
+  </div>
+
   <!-- TABLE -->
   <div class="table-wrapper">
     <table id="mainTable">
@@ -2700,6 +2877,144 @@ let selectedSymbol = null;
 let smartMode = false;
 let sectorOptionsData = {}; // market ETF options data (populated by market_data CSV)
 let unusualFlowData  = {}; // keyed by ETF symbol → { callVol, putVol } from unusual activity file
+
+// ===== SCANNER STATE =====
+let scannerSignals = [];   // selected signal keys
+let scannerMode    = 'OR'; // 'AND' | 'OR'
+let scannerACIdx   = -1;   // keyboard nav index in autocomplete
+
+const SCANNER_SIG_DEFS = [
+  { key: 'strength',     lbl: 'Strength+Dir',  icon: '💪', color: 'var(--signal-4)' },
+  { key: 'hot_prospects',lbl: 'Hot Prospects',  icon: '🔥', color: 'var(--signal-3)' },
+  { key: '6m_high',      lbl: '6M High',        icon: '📈', color: 'var(--accent-teal)' },
+  { key: 'ttm_squeeze',  lbl: 'TTM Squeeze',    icon: '🌀', color: 'var(--accent-purple)' },
+  { key: 'macd_buy',     lbl: 'MACD Buy',       icon: '⚡', color: 'var(--accent-green)' },
+];
+
+function initScannerPanel() {
+  // Quick-add buttons for all signals
+  const wrap = document.getElementById('scannerQuickBtns');
+  if (!wrap) return;
+  wrap.innerHTML = SCANNER_SIG_DEFS.map(s =>
+    `<button class="scanner-quick-btn" onclick="addScannerSignal('${s.key}')" title="${s.lbl}" style="border-color:${s.color};color:${s.color}">
+      ${s.icon} ${s.lbl}
+    </button>`
+  ).join('');
+}
+
+function addScannerSignal(key) {
+  if (!scannerSignals.includes(key)) {
+    scannerSignals.push(key);
+    renderScannerChips();
+    if (currentFilter === 'scanner') applyFilters();
+  }
+  document.getElementById('scannerInput').value = '';
+  scannerHideAC();
+}
+
+function removeScannerSignal(key) {
+  scannerSignals = scannerSignals.filter(k => k !== key);
+  renderScannerChips();
+  if (currentFilter === 'scanner') applyFilters();
+}
+
+function clearScannerSignals() {
+  scannerSignals = [];
+  renderScannerChips();
+  if (currentFilter === 'scanner') applyFilters();
+}
+
+function toggleScannerMode() {
+  scannerMode = scannerMode === 'OR' ? 'AND' : 'OR';
+  const btn = document.getElementById('scannerModeBtn');
+  if (btn) {
+    btn.className = 'scanner-mode-btn ' + (scannerMode === 'AND' ? 'and' : 'or');
+    btn.textContent = scannerMode === 'AND'
+      ? 'AND — כל הסיגנלים'
+      : 'OR — לפחות אחד';
+  }
+  if (currentFilter === 'scanner') applyFilters();
+}
+
+function renderScannerChips() {
+  const el = document.getElementById('scannerChips');
+  if (!el) return;
+  if (!scannerSignals.length) {
+    el.innerHTML = '<span class="scanner-chips-empty">לא נבחרו סיגנלים — הצג את כל המניות</span>';
+    return;
+  }
+  el.innerHTML = scannerSignals.map(key => {
+    const def = SCANNER_SIG_DEFS.find(s => s.key === key) || { lbl: key, icon: '•' };
+    return `<span class="scanner-chip">
+      ${def.icon} ${def.lbl}
+      <button class="scanner-chip-remove" onclick="removeScannerSignal('${key}')" title="הסר">✕</button>
+    </span>`;
+  }).join('');
+  // Hint
+  const hint = document.getElementById('scannerHint');
+  if (hint) {
+    hint.textContent = scannerMode === 'AND'
+      ? `AND: רק מניות עם כל ${scannerSignals.length} הסיגנלים`
+      : `OR: מניות עם לפחות אחד מ-${scannerSignals.length} הסיגנלים`;
+  }
+}
+
+function scannerGetSuggestions(q) {
+  const lower = q.toLowerCase().trim();
+  if (!lower) return SCANNER_SIG_DEFS.filter(s => !scannerSignals.includes(s.key));
+  return SCANNER_SIG_DEFS.filter(s =>
+    !scannerSignals.includes(s.key) &&
+    (s.lbl.toLowerCase().includes(lower) || s.key.toLowerCase().includes(lower))
+  );
+}
+
+function scannerInputChange(val) {
+  scannerACIdx = -1;
+  scannerRenderAC(scannerGetSuggestions(val));
+}
+
+function scannerShowAC() {
+  scannerRenderAC(scannerGetSuggestions(document.getElementById('scannerInput').value));
+}
+
+function scannerHideAC() {
+  const el = document.getElementById('scannerAC');
+  if (el) el.classList.remove('open');
+}
+
+function scannerRenderAC(suggestions) {
+  const el = document.getElementById('scannerAC');
+  if (!el) return;
+  if (!suggestions.length) { el.classList.remove('open'); return; }
+  el.innerHTML = suggestions.map((s, i) =>
+    `<div class="scanner-ac-item" data-key="${s.key}" onmousedown="addScannerSignal('${s.key}')">
+      <span style="color:${s.color}">${s.icon}</span>
+      <span>${s.lbl}</span>
+      <span class="ac-key">${s.key}</span>
+    </div>`
+  ).join('');
+  el.classList.add('open');
+}
+
+function scannerInputKeydown(e) {
+  const ac = document.getElementById('scannerAC');
+  const items = ac ? ac.querySelectorAll('.scanner-ac-item') : [];
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    scannerACIdx = Math.min(scannerACIdx + 1, items.length - 1);
+    items.forEach((el, i) => el.classList.toggle('active', i === scannerACIdx));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    scannerACIdx = Math.max(scannerACIdx - 1, 0);
+    items.forEach((el, i) => el.classList.toggle('active', i === scannerACIdx));
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    const active = scannerACIdx >= 0 ? items[scannerACIdx] : items[0];
+    if (active) addScannerSignal(active.dataset.key);
+  } else if (e.key === 'Escape') {
+    scannerHideAC();
+  }
+}
 let optionsFlowData  = {}; // keyed by ETF symbol → { bullPremium, bearPremium } from flow file
 let flowTrades       = []; // top institutional trades sorted by premium (from flow file)
 
@@ -2816,6 +3131,7 @@ function init() {
   } catch(e) {}
 
   buildOverview();
+  initScannerPanel();
   applyFilters();
   if (RAW_DATA.length) checkWatchlistOpportunities();
 }
@@ -3011,6 +3327,9 @@ function setFilter(f, btn) {
   } else {
     renderTableHeader('smart_track');
   }
+  // Show/hide scanner panel
+  const scanPanel = document.getElementById('scannerPanel');
+  if (scanPanel) scanPanel.classList.toggle('visible', f === 'scanner');
   applyFilters();
   if (f === 'watchlist') refreshWatchlistPrices();
 }
@@ -3138,6 +3457,26 @@ function applyFilters() {
       document.getElementById('livepriceBtn').insertAdjacentElement('afterend', tosBtn);
     }
     tosBtn.style.display = '';
+    renderTable();
+    renderPagination();
+    return;
+  }
+
+  // Scanner tab: filter by selected signals
+  if (currentFilter === 'scanner') {
+    filtered = RAW_DATA.filter(d => {
+      if (q && !d.symbol.includes(q)) return false;
+      if (!passesBaseFilter(d)) return false;
+      if (!scannerSignals.length) return true; // no signals selected → show all
+      const sigs = d.signals || [];
+      if (scannerMode === 'AND') return scannerSignals.every(k => sigs.includes(k));
+      return scannerSignals.some(k => sigs.includes(k));
+    });
+    filtered.sort((a, b) => calcScore(b) - calcScore(a));
+    const modeLabel = scannerSignals.length
+      ? (scannerMode === 'AND' ? `AND [${scannerSignals.length}]` : `OR [${scannerSignals.length}]`)
+      : 'כל המניות';
+    document.getElementById('resultsCount').textContent = `${filtered.length} תוצאות · ${modeLabel}`;
     renderTable();
     renderPagination();
     return;
