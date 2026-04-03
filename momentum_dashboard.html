@@ -2808,11 +2808,12 @@
     <div class="scanner-section">
       <div class="scanner-sec-label">כמות סיגנלים מינימום</div>
       <div class="sc-toggle-group" id="scSigCount">
-        <button class="sc-toggle active" data-val="0" onclick="setScannerSigMin(0,this)">הכל</button>
-        <button class="sc-toggle" data-val="1" onclick="setScannerSigMin(1,this)">1+</button>
-        <button class="sc-toggle" data-val="2" onclick="setScannerSigMin(2,this)">2+</button>
-        <button class="sc-toggle" data-val="3" onclick="setScannerSigMin(3,this)">3+</button>
-        <button class="sc-toggle" data-val="4" onclick="setScannerSigMin(4,this)">4+</button>
+        <button class="sc-toggle active" data-val="0"      onclick="setScannerSigMin(0,this)">הכל</button>
+        <button class="sc-toggle" data-val="exact1" onclick="setScannerSigMin('exact1',this)" title="בדיוק סיגנל אחד בלבד">=1</button>
+        <button class="sc-toggle" data-val="1"      onclick="setScannerSigMin(1,this)">1+</button>
+        <button class="sc-toggle" data-val="2"      onclick="setScannerSigMin(2,this)">2+</button>
+        <button class="sc-toggle" data-val="3"      onclick="setScannerSigMin(3,this)">3+</button>
+        <button class="sc-toggle" data-val="4"      onclick="setScannerSigMin(4,this)">4+</button>
       </div>
       <div class="scanner-sec-label" style="margin-top:10px">RVOL</div>
       <div class="sc-toggle-group" id="scRvol">
@@ -2839,6 +2840,13 @@
         <button class="sc-toggle" data-val="low"  onclick="setScannerBBPct('low',this)"  title="BB% < 20 — קרוב לרצועה תחתונה">תחתון &lt;20%</button>
         <button class="sc-toggle" data-val="mid"  onclick="setScannerBBPct('mid',this)"  title="BB% 20–70 — אזור ביניים">אמצע 20–70%</button>
         <button class="sc-toggle" data-val="high" onclick="setScannerBBPct('high',this)" title="BB% > 70 — קרוב לרצועה עליונה">עליון &gt;70%</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">Band Width <span style="font-size:10px;color:var(--text-2)">= (Upper−Lower)/MA20 × 100</span></div>
+      <div class="sc-toggle-group" id="scBBWidth">
+        <button class="sc-toggle active" data-val="" onclick="setScannerBBWidth('',this)">הכל</button>
+        <button class="sc-toggle" data-val="squeeze" onclick="setScannerBBWidth('squeeze',this)" title="Band Width < 10% — רצועות צרות, squeeze מתהווה">🌀 צר &lt;10%</button>
+        <button class="sc-toggle" data-val="normal"  onclick="setScannerBBWidth('normal',this)"  title="Band Width 10–20% — רוחב נורמלי">בינוני 10–20%</button>
+        <button class="sc-toggle" data-val="wide"    onclick="setScannerBBWidth('wide',this)"    title="Band Width > 20% — רצועות מורחבות, תנודתיות גבוהה">רחב &gt;20%</button>
       </div>
     </div>
 
@@ -3012,6 +3020,7 @@ let scannerOpinion  = '';   // ''|'buy'|'hold'|'sell'
 let scannerDirection= '';   // ''|'strengthening'|'average'|'weakening'
 let scannerStrength = '';   // ''|'maximum'|'strong'|'moderate'
 let scannerBBPct    = '';   // ''|'low'|'mid'|'high'
+let scannerBBWidth  = '';   // ''|'squeeze'|'normal'|'wide'
 
 const SCANNER_SIG_DEFS = [
   { key: 'strength',     lbl: 'Strength+Dir',  icon: '💪', color: 'var(--signal-4)' },
@@ -3061,7 +3070,7 @@ function _scRadio(groupId, val) {
   });
 }
 function setScannerSigMin(val, btn) {
-  scannerSigMin = Number(val);
+  scannerSigMin = val === 'exact1' ? 'exact1' : Number(val);
   _scRadio('scSigCount', String(val));
   if (currentFilter === 'scanner') applyFilters();
 }
@@ -3078,6 +3087,11 @@ function setScannerRSI(val, btn) {
 function setScannerBBPct(val, btn) {
   scannerBBPct = val;
   _scRadio('scBBPct', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerBBWidth(val, btn) {
+  scannerBBWidth = val;
+  _scRadio('scBBWidth', val);
   if (currentFilter === 'scanner') applyFilters();
 }
 function setScannerOpinion(val, btn) {
@@ -3121,12 +3135,13 @@ function resetAllScannerFilters() {
   scannerDirection= '';
   scannerStrength = '';
   scannerBBPct    = '';
+  scannerBBWidth  = '';
   renderScannerChips();
   // Reset mode button
   const modeBtn = document.getElementById('scannerModeBtn');
   if (modeBtn) { modeBtn.className = 'scanner-mode-btn or'; modeBtn.textContent = 'OR'; }
   // Reset all radio groups
-  ['scSigCount','scRvol','scRsi','scBBPct','scOpinion','scDirection','scStrength'].forEach(id => {
+  ['scSigCount','scRvol','scRsi','scBBPct','scBBWidth','scOpinion','scDirection','scStrength'].forEach(id => {
     document.querySelectorAll(`#${id} .sc-toggle`).forEach((b,i) => b.classList.toggle('active', i === 0));
   });
   // Reset MA multi-select
@@ -3686,7 +3701,8 @@ function applyFilters() {
       }
 
       // ── Signal count minimum ─────────────────────────────────────────────
-      if (scannerSigMin > 0 && (d.signal_count || 0) < scannerSigMin) return false;
+      if (scannerSigMin === 'exact1' && (d.signal_count || 0) !== 1) return false;
+      else if (scannerSigMin > 0 && (d.signal_count || 0) < scannerSigMin) return false;
 
       // ── RVOL ─────────────────────────────────────────────────────────────
       if (scannerRvol > 0) {
@@ -3709,9 +3725,22 @@ function applyFilters() {
       if (scannerBBPct) {
         const bbp = parseFloat(d.bb_pct ?? -1);
         if (bbp >= 0) {
-          if (scannerBBPct === 'low'  && bbp >= 20)           return false;
+          if (scannerBBPct === 'low'  && bbp >= 20)              return false;
           if (scannerBBPct === 'mid'  && (bbp < 20 || bbp > 70)) return false;
-          if (scannerBBPct === 'high' && bbp <= 70)           return false;
+          if (scannerBBPct === 'high' && bbp <= 70)              return false;
+        }
+      }
+
+      // ── Band Width ────────────────────────────────────────────────────────
+      if (scannerBBWidth) {
+        const upper = parseFloat(d.bb_upper || 0);
+        const lower = parseFloat(d.bb_lower || 0);
+        const ma20  = parseFloat(d.ma20     || 0);
+        if (upper > 0 && lower > 0 && ma20 > 0) {
+          const bw = (upper - lower) / ma20 * 100;
+          if (scannerBBWidth === 'squeeze' && bw >= 10)           return false;
+          if (scannerBBWidth === 'normal'  && (bw < 10 || bw > 20)) return false;
+          if (scannerBBWidth === 'wide'    && bw <= 20)           return false;
         }
       }
 
@@ -3763,7 +3792,7 @@ function applyFilters() {
     // Count active filters for display
     const activeCount = [
       scannerSignals.length > 0, scannerSigMin > 0, scannerRvol > 0,
-      !!scannerRSI, !!scannerBBPct, scannerMAAbove.size > 0, scannerMANear.size > 0,
+      !!scannerRSI, !!scannerBBPct, !!scannerBBWidth, scannerMAAbove.size > 0, scannerMANear.size > 0,
       !!scannerOpinion, !!scannerDirection, !!scannerStrength
     ].filter(Boolean).length;
     const label = activeCount ? `${activeCount} פילטרים פעילים` : 'כל המניות';
