@@ -1591,6 +1591,39 @@
     transition: all 0.12s;
   }
   .scanner-quick-btn:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+
+  /* Scanner panel layout */
+  .scanner-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .scanner-reset-btn { padding:5px 12px; border-radius:6px; border:1px solid var(--border); background:none; color:var(--text-2); font-size:12px; cursor:pointer; transition:all .12s; }
+  .scanner-reset-btn:hover { border-color:var(--accent-red); color:var(--accent-red); }
+  .scanner-section { padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .scanner-sec-label { font-size:10px; font-weight:700; color:var(--text-2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:7px; display:flex; align-items:center; gap:8px; }
+  .sc-mode-wrap { display:inline-flex; }
+  .sc-toggle-group { display:flex; flex-wrap:wrap; gap:6px; }
+  .sc-toggle {
+    padding: 5px 13px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-0);
+    color: var(--text-2);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+    white-space: nowrap;
+  }
+  .sc-toggle:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+  .sc-toggle.active {
+    background: rgba(0,212,170,0.15);
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+    font-weight: 600;
+  }
+  /* Color override for custom-colored toggles */
+  .sc-toggle[style*="--sc-active-col"].active {
+    background: color-mix(in srgb, var(--sc-active-col) 15%, transparent);
+    border-color: var(--sc-active-col);
+    color: var(--sc-active-col);
+  }
   .readiness-tag { display:inline-block; font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; white-space:nowrap; cursor:default; }
   .readiness-tag.ready  { background:rgba(0,230,118,0.15); color:var(--accent-green); border:1px solid rgba(0,230,118,0.3); }
   .readiness-tag.close  { background:rgba(245,166,35,0.15); color:var(--accent-gold);  border:1px solid rgba(245,166,35,0.3); }
@@ -2742,26 +2775,114 @@
 
   <!-- SCANNER PANEL -->
   <div class="scanner-panel" id="scannerPanel">
-    <div class="scanner-panel-title">🔎 סורק סיגנלים — בחר סיגנלים לסינון</div>
-    <div class="scanner-quick-btns" id="scannerQuickBtns"></div>
-    <div class="scanner-input-row">
-      <div class="scanner-input-wrap">
-        <input class="scanner-input" id="scannerInput" type="text" placeholder="הקלד שם סיגנל..." autocomplete="off"
-          oninput="scannerInputChange(this.value)"
-          onkeydown="scannerInputKeydown(event)"
-          onfocus="scannerShowAC()"
-          onblur="setTimeout(scannerHideAC,200)"
-          dir="ltr">
-        <div class="scanner-autocomplete" id="scannerAC"></div>
+    <div class="scanner-panel-header">
+      <span class="scanner-panel-title">🔎 סורק טכני — שלב פילטרים לאיתור כניסות</span>
+      <button class="scanner-reset-btn" onclick="resetAllScannerFilters()">✕ אפס הכל</button>
+    </div>
+
+    <!-- ROW 1: Signals -->
+    <div class="scanner-section">
+      <div class="scanner-sec-label">סיגנלים
+        <span class="sc-mode-wrap">
+          <button class="scanner-mode-btn or" id="scannerModeBtn" onclick="toggleScannerMode()" title="AND = כל הסיגנלים | OR = לפחות אחד">OR</button>
+        </span>
       </div>
-      <button class="scanner-mode-btn or" id="scannerModeBtn" onclick="toggleScannerMode()" title="החלף בין AND (כל הסיגנלים) ו-OR (לפחות אחד)">
-        OR — לפחות אחד
-      </button>
-      <button class="scanner-mode-btn" style="border-color:var(--border);color:var(--text-2)" onclick="clearScannerSignals()" title="נקה הכל">✕ נקה</button>
+      <div class="scanner-quick-btns" id="scannerQuickBtns"></div>
+      <div class="scanner-input-row">
+        <div class="scanner-input-wrap">
+          <input class="scanner-input" id="scannerInput" type="text" placeholder="הקלד סיגנל..." autocomplete="off"
+            oninput="scannerInputChange(this.value)"
+            onkeydown="scannerInputKeydown(event)"
+            onfocus="scannerShowAC()"
+            onblur="setTimeout(scannerHideAC,200)"
+            dir="ltr">
+          <div class="scanner-autocomplete" id="scannerAC"></div>
+        </div>
+      </div>
+      <div class="scanner-chips" id="scannerChips">
+        <span class="scanner-chips-empty">כל הסיגנלים</span>
+      </div>
     </div>
-    <div class="scanner-chips" id="scannerChips">
-      <span class="scanner-chips-empty">לא נבחרו סיגנלים — הצג את כל המניות</span>
+
+    <!-- ROW 2: Signal count + RVOL -->
+    <div class="scanner-section">
+      <div class="scanner-sec-label">כמות סיגנלים מינימום</div>
+      <div class="sc-toggle-group" id="scSigCount">
+        <button class="sc-toggle active" data-val="0" onclick="setScannerSigMin(0,this)">הכל</button>
+        <button class="sc-toggle" data-val="1" onclick="setScannerSigMin(1,this)">1+</button>
+        <button class="sc-toggle" data-val="2" onclick="setScannerSigMin(2,this)">2+</button>
+        <button class="sc-toggle" data-val="3" onclick="setScannerSigMin(3,this)">3+</button>
+        <button class="sc-toggle" data-val="4" onclick="setScannerSigMin(4,this)">4+</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">RVOL</div>
+      <div class="sc-toggle-group" id="scRvol">
+        <button class="sc-toggle active" data-val="0"   onclick="setScannerRvol(0,this)">הכל</button>
+        <button class="sc-toggle" data-val="1"   onclick="setScannerRvol(1,this)">≥ 1×</button>
+        <button class="sc-toggle" data-val="1.5" onclick="setScannerRvol(1.5,this)">≥ 1.5×</button>
+        <button class="sc-toggle" data-val="2"   onclick="setScannerRvol(2,this)">≥ 2×</button>
+      </div>
     </div>
+
+    <!-- ROW 3: RSI + BB% -->
+    <div class="scanner-section">
+      <div class="scanner-sec-label">RSI (14)</div>
+      <div class="sc-toggle-group" id="scRsi">
+        <button class="sc-toggle active" data-val="" onclick="setScannerRSI('',this)">הכל</button>
+        <button class="sc-toggle" data-val="oversold"   onclick="setScannerRSI('oversold',this)"   title="RSI < 40">חפרז &lt;40</button>
+        <button class="sc-toggle" data-val="healthy"    onclick="setScannerRSI('healthy',this)"    title="RSI 40–60">בריא 40–60</button>
+        <button class="sc-toggle" data-val="hot"        onclick="setScannerRSI('hot',this)"        title="RSI 60–70">חם 60–70</button>
+        <button class="sc-toggle" data-val="overbought" onclick="setScannerRSI('overbought',this)" title="RSI > 70">מוגזם &gt;70</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">BB% <span style="font-size:10px;color:var(--text-2)">(מיקום בתוך הרצועה)</span></div>
+      <div class="sc-toggle-group" id="scBBPct">
+        <button class="sc-toggle active" data-val="" onclick="setScannerBBPct('',this)">הכל</button>
+        <button class="sc-toggle" data-val="low"  onclick="setScannerBBPct('low',this)"  title="BB% < 20 — קרוב לרצועה תחתונה">תחתון &lt;20%</button>
+        <button class="sc-toggle" data-val="mid"  onclick="setScannerBBPct('mid',this)"  title="BB% 20–70 — אזור ביניים">אמצע 20–70%</button>
+        <button class="sc-toggle" data-val="high" onclick="setScannerBBPct('high',this)" title="BB% > 70 — קרוב לרצועה עליונה">עליון &gt;70%</button>
+      </div>
+    </div>
+
+    <!-- ROW 4: MA alignment -->
+    <div class="scanner-section">
+      <div class="scanner-sec-label">ממוצעים נעים — מחיר מעל</div>
+      <div class="sc-toggle-group" id="scMAAbove">
+        <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMA('ma20',this)">MA20</button>
+        <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMA('ma50',this)">MA50</button>
+        <button class="sc-toggle" data-val="ma100" onclick="toggleScannerMA('ma100',this)">MA100</button>
+        <button class="sc-toggle" data-val="ma150" onclick="toggleScannerMA('ma150',this)">MA150</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">קרוב לממוצע <span style="font-size:10px;color:var(--text-2)">(±3%)</span></div>
+      <div class="sc-toggle-group" id="scMANear">
+        <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMANear('ma20',this)">קרוב MA20</button>
+        <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMANear('ma50',this)">קרוב MA50</button>
+      </div>
+    </div>
+
+    <!-- ROW 5: Sentiment -->
+    <div class="scanner-section" style="border-bottom:none">
+      <div class="scanner-sec-label">Opinion</div>
+      <div class="sc-toggle-group" id="scOpinion">
+        <button class="sc-toggle active" data-val="" onclick="setScannerOpinion('',this)">הכל</button>
+        <button class="sc-toggle" data-val="buy"  onclick="setScannerOpinion('buy',this)"  style="--sc-active-col:var(--accent-green)">Bullish</button>
+        <button class="sc-toggle" data-val="hold" onclick="setScannerOpinion('hold',this)" style="--sc-active-col:var(--accent-gold)">Neutral</button>
+        <button class="sc-toggle" data-val="sell" onclick="setScannerOpinion('sell',this)" style="--sc-active-col:var(--accent-red)">Bearish</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">Direction</div>
+      <div class="sc-toggle-group" id="scDirection">
+        <button class="sc-toggle active" data-val="" onclick="setScannerDirection('',this)">הכל</button>
+        <button class="sc-toggle" data-val="strengthening" onclick="setScannerDirection('strengthening',this)">Strengthening</button>
+        <button class="sc-toggle" data-val="average"       onclick="setScannerDirection('average',this)">Average</button>
+        <button class="sc-toggle" data-val="weakening"     onclick="setScannerDirection('weakening',this)" style="--sc-active-col:var(--accent-red)">Weakening</button>
+      </div>
+      <div class="scanner-sec-label" style="margin-top:10px">Strength</div>
+      <div class="sc-toggle-group" id="scStrength">
+        <button class="sc-toggle active" data-val="" onclick="setScannerStrength('',this)">הכל</button>
+        <button class="sc-toggle" data-val="maximum" onclick="setScannerStrength('maximum',this)" style="--sc-active-col:var(--signal-4)">Maximum</button>
+        <button class="sc-toggle" data-val="strong"  onclick="setScannerStrength('strong',this)"  style="--sc-active-col:var(--accent-green)">Strong</button>
+        <button class="sc-toggle" data-val="moderate" onclick="setScannerStrength('moderate',this)" style="--sc-active-col:var(--accent-gold)">Moderate</button>
+      </div>
+    </div>
+
     <div class="scanner-hint" id="scannerHint"></div>
   </div>
 
@@ -2879,9 +3000,18 @@ let sectorOptionsData = {}; // market ETF options data (populated by market_data
 let unusualFlowData  = {}; // keyed by ETF symbol → { callVol, putVol } from unusual activity file
 
 // ===== SCANNER STATE =====
-let scannerSignals = [];   // selected signal keys
-let scannerMode    = 'OR'; // 'AND' | 'OR'
-let scannerACIdx   = -1;   // keyboard nav index in autocomplete
+let scannerSignals  = [];   // selected signal keys
+let scannerMode     = 'OR'; // 'AND' | 'OR'
+let scannerACIdx    = -1;   // keyboard nav index in autocomplete
+let scannerRSI      = '';   // '' | 'oversold' | 'healthy' | 'hot' | 'overbought'
+let scannerMAAbove  = new Set(); // 'ma20'|'ma50'|'ma100'|'ma150'
+let scannerMANear   = new Set(); // 'ma20'|'ma50'
+let scannerSigMin   = 0;    // 0,1,2,3,4
+let scannerRvol     = 0;    // 0,1,1.5,2
+let scannerOpinion  = '';   // ''|'buy'|'hold'|'sell'
+let scannerDirection= '';   // ''|'strengthening'|'average'|'weakening'
+let scannerStrength = '';   // ''|'maximum'|'strong'|'moderate'
+let scannerBBPct    = '';   // ''|'low'|'mid'|'high'
 
 const SCANNER_SIG_DEFS = [
   { key: 'strength',     lbl: 'Strength+Dir',  icon: '💪', color: 'var(--signal-4)' },
@@ -2924,14 +3054,92 @@ function clearScannerSignals() {
   if (currentFilter === 'scanner') applyFilters();
 }
 
+// ── Exclusive toggle helpers (radio-style) ────────────────────────────────
+function _scRadio(groupId, val) {
+  document.querySelectorAll(`#${groupId} .sc-toggle`).forEach(b => {
+    b.classList.toggle('active', b.dataset.val === val);
+  });
+}
+function setScannerSigMin(val, btn) {
+  scannerSigMin = Number(val);
+  _scRadio('scSigCount', String(val));
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerRvol(val, btn) {
+  scannerRvol = Number(val);
+  _scRadio('scRvol', String(val));
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerRSI(val, btn) {
+  scannerRSI = val;
+  _scRadio('scRsi', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerBBPct(val, btn) {
+  scannerBBPct = val;
+  _scRadio('scBBPct', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerOpinion(val, btn) {
+  scannerOpinion = val;
+  _scRadio('scOpinion', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerDirection(val, btn) {
+  scannerDirection = val;
+  _scRadio('scDirection', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+function setScannerStrength(val, btn) {
+  scannerStrength = val;
+  _scRadio('scStrength', val);
+  if (currentFilter === 'scanner') applyFilters();
+}
+
+// ── MA toggles (multi-select) ─────────────────────────────────────────────
+function toggleScannerMA(key, btn) {
+  if (scannerMAAbove.has(key)) { scannerMAAbove.delete(key); btn.classList.remove('active'); }
+  else { scannerMAAbove.add(key); btn.classList.add('active'); }
+  if (currentFilter === 'scanner') applyFilters();
+}
+function toggleScannerMANear(key, btn) {
+  if (scannerMANear.has(key)) { scannerMANear.delete(key); btn.classList.remove('active'); }
+  else { scannerMANear.add(key); btn.classList.add('active'); }
+  if (currentFilter === 'scanner') applyFilters();
+}
+
+// ── Reset all filters ─────────────────────────────────────────────────────
+function resetAllScannerFilters() {
+  scannerSignals  = [];
+  scannerMode     = 'OR';
+  scannerRSI      = '';
+  scannerMAAbove  = new Set();
+  scannerMANear   = new Set();
+  scannerSigMin   = 0;
+  scannerRvol     = 0;
+  scannerOpinion  = '';
+  scannerDirection= '';
+  scannerStrength = '';
+  scannerBBPct    = '';
+  renderScannerChips();
+  // Reset mode button
+  const modeBtn = document.getElementById('scannerModeBtn');
+  if (modeBtn) { modeBtn.className = 'scanner-mode-btn or'; modeBtn.textContent = 'OR'; }
+  // Reset all radio groups
+  ['scSigCount','scRvol','scRsi','scBBPct','scOpinion','scDirection','scStrength'].forEach(id => {
+    document.querySelectorAll(`#${id} .sc-toggle`).forEach((b,i) => b.classList.toggle('active', i === 0));
+  });
+  // Reset MA multi-select
+  document.querySelectorAll('#scMAAbove .sc-toggle, #scMANear .sc-toggle').forEach(b => b.classList.remove('active'));
+  if (currentFilter === 'scanner') applyFilters();
+}
+
 function toggleScannerMode() {
   scannerMode = scannerMode === 'OR' ? 'AND' : 'OR';
   const btn = document.getElementById('scannerModeBtn');
   if (btn) {
     btn.className = 'scanner-mode-btn ' + (scannerMode === 'AND' ? 'and' : 'or');
-    btn.textContent = scannerMode === 'AND'
-      ? 'AND — כל הסיגנלים'
-      : 'OR — לפחות אחד';
+    btn.textContent = scannerMode === 'AND' ? 'AND' : 'OR';
   }
   if (currentFilter === 'scanner') applyFilters();
 }
@@ -3462,21 +3670,110 @@ function applyFilters() {
     return;
   }
 
-  // Scanner tab: filter by selected signals
+  // Scanner tab: full technical filter
   if (currentFilter === 'scanner') {
     filtered = RAW_DATA.filter(d => {
       if (q && !d.symbol.includes(q)) return false;
       if (!passesBaseFilter(d)) return false;
-      if (!scannerSignals.length) return true; // no signals selected → show all
-      const sigs = d.signals || [];
-      if (scannerMode === 'AND') return scannerSignals.every(k => sigs.includes(k));
-      return scannerSignals.some(k => sigs.includes(k));
+
+      // ── Signals ─────────────────────────────────────────────────────────
+      if (scannerSignals.length) {
+        const sigs = d.signals || [];
+        const sigMatch = scannerMode === 'AND'
+          ? scannerSignals.every(k => sigs.includes(k))
+          : scannerSignals.some(k => sigs.includes(k));
+        if (!sigMatch) return false;
+      }
+
+      // ── Signal count minimum ─────────────────────────────────────────────
+      if (scannerSigMin > 0 && (d.signal_count || 0) < scannerSigMin) return false;
+
+      // ── RVOL ─────────────────────────────────────────────────────────────
+      if (scannerRvol > 0) {
+        const rv = parseFloat(d.rvol || 0);
+        if (rv > 0 && rv < scannerRvol) return false;
+      }
+
+      // ── RSI ──────────────────────────────────────────────────────────────
+      if (scannerRSI) {
+        const rsi = parseFloat(d.rel_str || 0);
+        if (rsi > 0) {
+          if (scannerRSI === 'oversold'   && rsi >= 40)            return false;
+          if (scannerRSI === 'healthy'    && (rsi < 40 || rsi >= 60)) return false;
+          if (scannerRSI === 'hot'        && (rsi < 60 || rsi >= 70)) return false;
+          if (scannerRSI === 'overbought' && rsi < 70)             return false;
+        }
+      }
+
+      // ── BB% ──────────────────────────────────────────────────────────────
+      if (scannerBBPct) {
+        const bbp = parseFloat(d.bb_pct ?? -1);
+        if (bbp >= 0) {
+          if (scannerBBPct === 'low'  && bbp >= 20)           return false;
+          if (scannerBBPct === 'mid'  && (bbp < 20 || bbp > 70)) return false;
+          if (scannerBBPct === 'high' && bbp <= 70)           return false;
+        }
+      }
+
+      // ── MA Above ─────────────────────────────────────────────────────────
+      if (scannerMAAbove.size) {
+        const px = parseFloat(d.price || 0);
+        for (const ma of scannerMAAbove) {
+          const maVal = parseFloat(d[ma] || 0);
+          if (px > 0 && maVal > 0 && px < maVal) return false;
+        }
+      }
+
+      // ── MA Near ──────────────────────────────────────────────────────────
+      if (scannerMANear.size) {
+        const px = parseFloat(d.price || 0);
+        let nearAny = false;
+        for (const ma of scannerMANear) {
+          const maVal = parseFloat(d[ma] || 0);
+          if (px > 0 && maVal > 0 && px >= maVal * 0.97 && px <= maVal * 1.03) { nearAny = true; break; }
+        }
+        if (!nearAny) return false;
+      }
+
+      // ── Opinion ──────────────────────────────────────────────────────────
+      if (scannerOpinion) {
+        const op = (d.opinion || '').toLowerCase();
+        if (scannerOpinion === 'buy'  && !op.includes('buy'))  return false;
+        if (scannerOpinion === 'hold' && !op.includes('hold') && !op.includes('neutral')) return false;
+        if (scannerOpinion === 'sell' && !op.includes('sell')) return false;
+      }
+
+      // ── Direction ────────────────────────────────────────────────────────
+      if (scannerDirection) {
+        const dir = (d.direction || '').toLowerCase();
+        if (!dir.includes(scannerDirection)) return false;
+      }
+
+      // ── Strength ─────────────────────────────────────────────────────────
+      if (scannerStrength) {
+        const str = (d.strength || '').toLowerCase();
+        if (!str.includes(scannerStrength)) return false;
+      }
+
+      return true;
     });
+
     filtered.sort((a, b) => calcScore(b) - calcScore(a));
-    const modeLabel = scannerSignals.length
-      ? (scannerMode === 'AND' ? `AND [${scannerSignals.length}]` : `OR [${scannerSignals.length}]`)
-      : 'כל המניות';
-    document.getElementById('resultsCount').textContent = `${filtered.length} תוצאות · ${modeLabel}`;
+
+    // Count active filters for display
+    const activeCount = [
+      scannerSignals.length > 0, scannerSigMin > 0, scannerRvol > 0,
+      !!scannerRSI, !!scannerBBPct, scannerMAAbove.size > 0, scannerMANear.size > 0,
+      !!scannerOpinion, !!scannerDirection, !!scannerStrength
+    ].filter(Boolean).length;
+    const label = activeCount ? `${activeCount} פילטרים פעילים` : 'כל המניות';
+    document.getElementById('resultsCount').textContent = `${filtered.length} תוצאות · ${label}`;
+
+    // Update hint
+    const hint = document.getElementById('scannerHint');
+    if (hint) hint.textContent = activeCount
+      ? `מציג ${filtered.length} מניות שעברו את כל ${activeCount} הפילטרים הפעילים`
+      : `מציג את כל ${filtered.length} המניות — הוסף פילטרים לצמצום`;
     renderTable();
     renderPagination();
     return;
@@ -6275,6 +6572,9 @@ function applyNewData() {
       setf('macd_1m',     num(r['1M %Chg'] || '', '+%'));
       setf('macd_vol',    r['Volume']    || '');
       setf('rvol',        r['50D RelVol'] || '');
+      setf('bb_lower',    num(r['BB Lower'] || r['Boll Lower'] || '', '$,'));
+      setf('bb_upper',    num(r['BB Upper'] || r['Boll Upper'] || '', '$,'));
+      setf('bb_pct',      num(r['BB%'] || r['BB %'] || '', '%'));
     });
 
     rebuilt.push(e);
