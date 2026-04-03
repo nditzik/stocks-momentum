@@ -3005,6 +3005,8 @@ function setFilter(f, btn) {
   if (f !== 'smart_track') {
     const alertEl = document.getElementById('smartTrackAlert');
     if (alertEl) alertEl.style.display = 'none';
+    const tosBtn = document.getElementById('smartTrackTOSBtn');
+    if (tosBtn) tosBtn.style.display = 'none';
     renderTableHeader('normal');
   } else {
     renderTableHeader('smart_track');
@@ -3123,6 +3125,19 @@ function applyFilters() {
       }
     }
     document.getElementById('resultsCount').textContent = `${filtered.length} מניות מעקב`;
+    // Show TOS export button for smart track
+    let tosBtn = document.getElementById('smartTrackTOSBtn');
+    if (!tosBtn) {
+      tosBtn = document.createElement('button');
+      tosBtn.id = 'smartTrackTOSBtn';
+      tosBtn.className = 'history-clear-btn';
+      tosBtn.style.cssText = 'border-color:var(--accent-purple);color:var(--accent-purple)';
+      tosBtn.title = 'ייצא רשימת מעקב חכם לThinkorSwim';
+      tosBtn.textContent = '⬇ TOS מעקב חכם';
+      tosBtn.onclick = () => exportTOS('smart_track');
+      document.getElementById('livepriceBtn').insertAdjacentElement('afterend', tosBtn);
+    }
+    tosBtn.style.display = '';
     renderTable();
     renderPagination();
     return;
@@ -7208,7 +7223,7 @@ const SMART_TRACK_KEY = 'momentum_smart_track';
 
 const SMART_BADGE_META = {
   '🎯': { label: 'MA Bounce',    title: 'קרובה ל-MA20/50 + נר ירוק + ווליום' },
-  '🌀': { label: 'טעונה',        title: 'Score גבוה + RSI/Stoch לא מתוח' },
+  '🌀': { label: 'טעונה',        title: 'Score ≥55 + RSI 40-63 + מחיר מעל MA50' },
   '⚡': { label: 'כניסה חדשה',   title: '3+ סיגנלים — נכנסה חזקה היום' },
   '📊': { label: 'עקבית',        title: 'הופיעה ב-3+ snapshots אחרונים' },
 };
@@ -7247,10 +7262,12 @@ function buildSmartTracking() {
     const nearMA50 = ma50 > 0 && price >= ma50 * 0.98 && price <= ma50 * 1.03;
     if ((nearMA20 || nearMA50) && chg > 0 && (rvol === 0 || rvol >= 1)) badges.push('🎯');
 
-    // 🌀 Coiled: high score + not overbought
+    // 🌀 Coiled: high score + healthy RSI zone + above MA50
     const score = calcScore(d);
-    const notOverBought = (rsi === 0 || rsi < 65) && (stoch === 0 || stoch < 70);
-    if (score >= 35 && notOverBought) badges.push('🌀');
+    const rsiHealthy = rsi === 0 || (rsi >= 40 && rsi < 63);
+    const stochOk    = stoch === 0 || stoch < 70;
+    const aboveMA50  = ma50 === 0 || price > ma50;
+    if (score >= 55 && rsiHealthy && stochOk && aboveMA50) badges.push('🌀');
 
     // ⚡ New strong entry: 3+ signals and either new or fewer signals before
     if (sc >= 3 && (prevScMap[d.symbol] === undefined || prevScMap[d.symbol] < 3)) badges.push('⚡');
@@ -7258,7 +7275,8 @@ function buildSmartTracking() {
     // 📊 Consistent: appeared in 3+ of last 5 snapshots
     if ((appearCount[d.symbol] || 0) >= 3) badges.push('📊');
 
-    if (badges.length > 0) {
+    // דרישת מינימום 2 תגיות כדי להיכנס לטאב
+    if (badges.length >= 2) {
       result.push(Object.assign({}, d, { _smartBadges: badges, _badgeCount: badges.length }));
     }
   });
@@ -7355,6 +7373,10 @@ function exportTOS(type) {
   if (type === 'watchlist') {
     syms = [...watchlist];
     name = `TOS_Watchlist_${date}`;
+  } else if (type === 'smart_track') {
+    const { result } = buildSmartTracking();
+    syms = result.map(d => d.symbol);
+    name = `TOS_SmartTrack_${date}`;
   } else {
     syms = RAW_DATA
       .filter(passesBaseFilter)
