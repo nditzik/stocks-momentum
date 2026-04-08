@@ -3534,10 +3534,20 @@ function buildOverview() {
 
 // ── Permanent base filter — shared by applyFilters() and saveHistorySnapshot()
 function passesBaseFilter(d) {
-  const vol = parseFloat(d.vol || 0);
-  if (vol > 0 && vol < minVolThreshold) return false;
-  const _a = parseFloat(d.wtd_alpha);
-  if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false;
+  // ── שדות מפתח — חייבים להיות קיימים ────────────────────────────────────
+  const vol  = parseFloat(d.vol   || 0);
+  const _px  = parseFloat(d.price || 0);
+  const _a   = parseFloat(d.wtd_alpha);
+  const _ma20= parseFloat(d.ma20  || 0);
+  const _rsi = parseFloat(d.rel_str || 0);
+  if (!vol  || vol  <= 0) return false; // ווליום חסר → ירידה
+  if (!_px  || _px  <= 0) return false; // מחיר חסר → ירידה
+  if (!d.wtd_alpha || isNaN(_a) || _a <= 0) return false; // alpha חסר → ירידה
+  if (!_ma20 || _ma20 <= 0) return false; // MA20 חסר → ירידה
+  if (!_rsi  || _rsi  <= 0) return false; // RSI חסר → ירידה
+
+  // ── פילטרים קיימים ──────────────────────────────────────────────────────
+  if (vol < minVolThreshold) return false;
   if (d.w52_chg) {
     const _w = p52(d.w52_chg);
     if (!isNaN(_w) && _a < _w) {
@@ -3545,9 +3555,7 @@ function passesBaseFilter(d) {
       if (!(_str.includes('top') || _str.includes('max') || _str.includes('strong'))) return false;
     }
   }
-  const _rsi   = parseFloat(d.rel_str || 0);
   const _stoch = parseFloat(d.stoch   || 0);
-  const _px    = parseFloat(d.price   || 0);
   const _ma50  = parseFloat(d.ma50    || 0);
   const _ma100 = parseFloat(d.ma100   || 0);
   if (_rsi > 0 && _stoch > 0 && _rsi > 72 && _stoch > 82) return false;
