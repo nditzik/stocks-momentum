@@ -6604,7 +6604,7 @@ function applyNewData() {
       const r = entry._raw;
       // ── Universal field mapping — same header format across all scanners ──
       // "Last non-empty wins": later scanners overwrite earlier ones if they have a value.
-      const setf = (key, val) => { const v = (val||'').trim(); if (v) e[key] = v; };
+      const setf = (key, val) => { const v = (val||'').trim(); if (v && v !== 'N/A' && v !== 'n/a' && v !== '-') e[key] = v; };
       const num  = (v, strip='+%') => (v||'').replace(new RegExp('['+strip+']','g'),'').replace('$','').replace(',','').trim();
 
       setf('price',       num(r['Latest'] || r['Last'] || '', '$,'));
