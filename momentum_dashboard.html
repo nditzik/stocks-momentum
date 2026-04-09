@@ -8000,7 +8000,7 @@ let opportunitySymbols = new Set();
 
 function isOpportunity(sym) {
   const d = RAW_DATA.find(x => x.symbol === sym);
-  if (!d) return false;
+  if (!d || !passesBaseFilter(d)) return false;
   const price = livePrices[sym] || parseFloat(d.price || 0);
   if (!price) return false;
   const chg  = parseFloat(d.change_pct || 0);
