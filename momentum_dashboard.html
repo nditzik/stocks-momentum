@@ -3845,8 +3845,8 @@ function applyFilters() {
     watchlist.forEach(sym => {
       if (q && !sym.includes(q)) return;
       const d = RAW_DATA.find(x => x.symbol === sym);
-      if (d) { filtered.push(d); }
-      else { filtered.push({ symbol: sym, _notInData: true, name: '—', score: -1 }); }
+      if (d && passesBaseFilter(d)) { filtered.push(d); }
+      else { filtered.push({ symbol: sym, _notInData: true, name: d ? '⚠️ נתונים חסרים' : '—', score: -1 }); }
     });
     filtered.sort((a, b) => {
       if (a._notInData && b._notInData) return 0;
