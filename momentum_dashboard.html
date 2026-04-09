@@ -3846,7 +3846,8 @@ function applyFilters() {
       if (q && !sym.includes(q)) return;
       const d = RAW_DATA.find(x => x.symbol === sym);
       if (d && passesBaseFilter(d)) { filtered.push(d); }
-      else { filtered.push({ symbol: sym, _notInData: true, name: d ? '⚠️ נתונים חסרים' : '—', score: -1 }); }
+      else if (!d) { filtered.push({ symbol: sym, _notInData: true, name: '—', score: -1 }); }
+      // d exists but fails base filter → don't show at all
     });
     filtered.sort((a, b) => {
       if (a._notInData && b._notInData) return 0;
