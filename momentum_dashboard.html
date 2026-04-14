@@ -6685,6 +6685,88 @@ function applyNewData() {
 
   try { localStorage.setItem(LAST_UPDATE_KEY, tsStr); } catch(e) {}
   _applyLastUpdateBadge(tsStr);
+
+  // Send update emails
+  sendDashboardEmails(tsStr);
+}
+
+// ===== BREVO EMAIL =====
+const BREVO_API_KEY = 'YOUR_API_KEY_HERE'; // ← הכנס את המפתח שלך כאן
+const BREVO_RECIPIENTS = [
+  { email: 'nditzik@gmail.com',     name: 'Itzik' },
+  { email: 'eddie@teco.org.il',     name: 'Eddie' },
+  { email: 'yakiryona3@gmail.com',  name: 'Yakir' },
+];
+const BREVO_SENDER = { email: 'nditzik@gmail.com', name: 'Momentum Scanner' };
+
+function buildEmailTable(stocks) {
+  if (!stocks.length) return '<p style="color:#888">אין מניות</p>';
+  const rows = stocks.map(d => {
+    const chg = parseFloat(d.change_pct || 0);
+    const chgColor = chg >= 0 ? '#00c853' : '#ff1744';
+    const sigs = (d.signals || []).map(s => {
+      const labels = { strength:'STR', hot_prospects:'HOT', '6m_high':'6MH', ttm_squeeze:'SQZ', macd_buy:'MACD' };
+      return `<span style="background:#1e2d3d;color:#00d4aa;padding:2px 6px;border-radius:3px;font-size:11px;margin-right:3px">${labels[s]||s}</span>`;
+    }).join('');
+    return `<tr style="border-bottom:1px solid #1e2d3d">
+      <td style="padding:8px 12px;font-weight:700;color:#00d4aa">${d.symbol}</td>
+      <td style="padding:8px 12px;color:#9db4cc">${d.name||''}</td>
+      <td style="padding:8px 12px;font-family:monospace">$${parseFloat(d.price||0).toFixed(2)}</td>
+      <td style="padding:8px 12px;color:${chgColor};font-family:monospace">${chg>=0?'+':''}${chg.toFixed(2)}%</td>
+      <td style="padding:8px 12px">${sigs}</td>
+      <td style="padding:8px 12px;color:#9db4cc">${d.opinion||'—'}</td>
+    </tr>`;
+  }).join('');
+  return `<table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px;background:#0d1117;color:#e8f0f8">
+    <thead>
+      <tr style="background:#111820;border-bottom:2px solid #1e2d3d">
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">סימבול</th>
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">שם</th>
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">מחיר</th>
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">שינוי%</th>
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">סיגנלים</th>
+        <th style="padding:8px 12px;text-align:right;color:#5a7a94">Opinion</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+async function sendBrevoEmail(subject, htmlBody) {
+  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return; // לא מוגדר
+  try {
+    await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sender: BREVO_SENDER,
+        to: BREVO_RECIPIENTS,
+        subject,
+        htmlContent: `<div dir="rtl" style="background:#080c10;padding:24px;border-radius:8px">${htmlBody}</div>`,
+      }),
+    });
+  } catch(e) { console.warn('Brevo send failed:', e); }
+}
+
+async function sendDashboardEmails(tsStr) {
+  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return;
+  const base = RAW_DATA.filter(passesBaseFilter);
+  const stocks4 = base.filter(d => d.signal_count >= 4).sort((a,b) => calcScore(b)-calcScore(a));
+  const stocks3 = base.filter(d => d.signal_count === 3).sort((a,b) => calcScore(b)-calcScore(a));
+  const stocks2 = base.filter(d => d.signal_count === 2).sort((a,b) => calcScore(b)-calcScore(a));
+
+  const emailDefs = [
+    { count: 4, icon: '💎', stocks: stocks4 },
+    { count: 3, icon: '🔥', stocks: stocks3 },
+    { count: 2, icon: '⚡', stocks: stocks2 },
+  ];
+
+  for (const { count, icon, stocks } of emailDefs) {
+    const subject = `${icon} Momentum Scanner — ${count} סיגנלים | ${tsStr} | ${stocks.length} מניות`;
+    const header = `<h2 style="color:#00d4aa;margin-bottom:4px">${icon} מניות עם ${count} סיגנלים</h2>
+      <p style="color:#5a7a94;font-size:12px;margin-bottom:16px">עדכון: ${tsStr} · ${stocks.length} מניות</p>`;
+    await sendBrevoEmail(subject, header + buildEmailTable(stocks));
+  }
 }
 
 function _applyLastUpdateBadge(tsStr) {
