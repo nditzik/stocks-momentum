@@ -2633,6 +2633,7 @@
     <input class="search-input" type="text" id="searchInput" placeholder="חפש סימבול..." oninput="searchFilter()" dir="ltr">
     <span class="results-count" id="resultsCount"></span>
     <button id="livepriceBtn" class="history-clear-btn" onclick="_lastPageFetch=0;fetchPagePrices()" title="עדכן מחירים חיים לעמוד הנוכחי">🔄 מחירים חיים</button>
+    <button class="history-clear-btn" style="border-color:var(--accent-blue);color:var(--accent-blue)" onclick="sendDashboardEmailsManual(this)" title="שלח אימיילים עם הנתונים הנוכחיים">📧 שלח אימיילים</button>
     <button class="history-clear-btn" style="border-color:var(--accent-green);color:var(--accent-green)" onclick="checkWatchlistOpportunities()" title="בדוק הזדמנויות במועדפים">🎯 בדוק מועדפים</button>
     <button class="history-clear-btn" onclick="exportTOS(4)" title="ייצא לThinkorSwim — 4 סיגנלים">⬇ TOS 4🔥</button>
     <button class="history-clear-btn" onclick="exportTOS(3)" title="ייצא לThinkorSwim — 3 סיגנלים">⬇ TOS 3</button>
@@ -6733,9 +6734,9 @@ function buildEmailTable(stocks) {
 }
 
 async function sendBrevoEmail(subject, htmlBody) {
-  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return; // לא מוגדר
+  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return;
   try {
-    await fetch('https://api.brevo.com/v3/smtp/email', {
+    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -6745,7 +6746,22 @@ async function sendBrevoEmail(subject, htmlBody) {
         htmlContent: `<div dir="rtl" style="background:#080c10;padding:24px;border-radius:8px">${htmlBody}</div>`,
       }),
     });
-  } catch(e) { console.warn('Brevo send failed:', e); }
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) console.error('Brevo error:', res.status, json);
+    else console.log('Brevo sent:', subject);
+  } catch(e) { console.error('Brevo send failed:', e); }
+}
+
+async function sendDashboardEmailsManual(btn) {
+  if (!RAW_DATA.length) { alert('אין נתונים לשליחה'); return; }
+  const orig = btn.textContent;
+  btn.textContent = '⏳ שולח...';
+  btn.disabled = true;
+  const now = new Date();
+  const tsStr = `${String(now.getDate()).padStart(2,'0')}/${String(now.getMonth()+1).padStart(2,'0')}/${now.getFullYear()} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  await sendDashboardEmails(tsStr);
+  btn.textContent = '✓ נשלח';
+  setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
 }
 
 async function sendDashboardEmails(tsStr) {
