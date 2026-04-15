@@ -1,5 +1,65 @@
 # Momentum Scanner Dashboard
 
+A multi-signal stock analysis dashboard built on Barchart data.
+
+## Key Features
+
+### Signals
+The dashboard analyzes 5 signals from Barchart CSV files:
+- **Strength+Direction** — Stocks with strong trend momentum and positive direction
+- **6M High** — Stocks approaching their 6-month high
+- **TTM Squeeze** — Stocks in technical squeeze before a breakout
+- **MACD Buy** — MACD buy signal triggered
+- **Hot Prospects** — Stocks with strong technical support
+
+### Tabs
+| Tab | Description |
+|-----|-------------|
+| All Stocks | All stocks passing the base filter |
+| Watchlist | Stocks marked as ⭐ favorites |
+| Smart Track | Pre-entry stocks (🎯 MA Bounce / 🌀 Coiled / ⚡ New Entry / 📊 Consistent) |
+| Signal Scanner | Advanced search by signals, RSI, BB%, moving averages, sentiment |
+
+### Base Filters
+A stock must meet all of the following to appear in the dashboard:
+- Average volume (200-day) above 750K
+- Positive Weighted Alpha
+- MA20 available
+- RSI available
+- Price available
+
+### Chart
+Clicking a stock opens a candlestick chart with MA20/50/150, Bollinger Bands, RSI, Stochastic and MACD.
+
+### Export
+- Export watchlists to ThinkorSwim (TOS)
+- Export to CSV
+- Export/import favorites as JSON
+
+## Usage
+
+1. Download CSV files from Barchart into the `data/` folder
+2. The dashboard auto-loads the most recent files
+3. Required filename format: `ttm-squeeze-triggered-MM-DD-YYYY.csv`
+
+### Required Files
+```
+data/stocks-screener-strength-and-direction-MM-DD-YYYY.csv
+data/stocks-screener-nearing-6-month-highs-MM-DD-YYYY.csv
+data/ttm-squeeze-triggered-MM-DD-YYYY.csv
+data/12-26-9-day-emacd-new-buy-signals-MM-DD-YYYY.csv
+data/stocks-screener-hot-prospects-MM-DD-YYYY.csv
+```
+
+## Tech Stack
+- Pure HTML/CSS/JavaScript — no external dependencies
+- Data: Barchart.com
+- Live prices: Yahoo Finance API
+
+---
+
+# Momentum Scanner Dashboard — עברית
+
 דשבורד לניתוח מניות מבוסס מולטי-סיגנל, בנוי על נתוני Barchart.
 
 ## תכונות עיקריות
