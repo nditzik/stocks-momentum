@@ -2634,6 +2634,7 @@
     <span class="results-count" id="resultsCount"></span>
     <button id="livepriceBtn" class="history-clear-btn" onclick="_lastPageFetch=0;fetchPagePrices()" title="עדכן מחירים חיים לעמוד הנוכחי">🔄 מחירים חיים</button>
     <button class="history-clear-btn" style="border-color:var(--accent-blue);color:var(--accent-blue)" onclick="sendDashboardEmailsManual(this)" title="שלח אימיילים עם הנתונים הנוכחיים">📧 שלח אימיילים</button>
+    <button class="history-clear-btn" style="border-color:#888;color:#888" onclick="promptBrevoKey()" title="הגדר Brevo API Key">⚙️ מפתח אימייל</button>
     <button class="history-clear-btn" style="border-color:var(--accent-green);color:var(--accent-green)" onclick="checkWatchlistOpportunities()" title="בדוק הזדמנויות במועדפים">🎯 בדוק מועדפים</button>
     <button class="history-clear-btn" onclick="exportTOS(4)" title="ייצא לThinkorSwim — 4 סיגנלים">⬇ TOS 4🔥</button>
     <button class="history-clear-btn" onclick="exportTOS(3)" title="ייצא לThinkorSwim — 3 סיגנלים">⬇ TOS 3</button>
@@ -6692,7 +6693,16 @@ function applyNewData() {
 }
 
 // ===== BREVO EMAIL =====
-const BREVO_API_KEY = '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';
+const BREVO_API_KEY_STORAGE = 'momentum_brevo_key';
+function getBrevoKey() { try { return localStorage.getItem(BREVO_API_KEY_STORAGE) || ''; } catch(e) { return ''; } }
+function setBrevoKey(k) { try { localStorage.setItem(BREVO_API_KEY_STORAGE, k); } catch(e) {} }
+function promptBrevoKey() {
+  const current = getBrevoKey();
+  const k = prompt('הכנס Brevo API Key:', current || '');
+  if (k === null) return;
+  if (k.trim()) { setBrevoKey(k.trim()); alert('✓ המפתח נשמר בהצלחה'); }
+  else { setBrevoKey(''); alert('המפתח נמחק'); }
+}
 const BREVO_RECIPIENTS = [
   { email: 'nditzik@gmail.com',     name: 'Itzik' },
   { email: 'eddie@teco.org.il',     name: 'Eddie' },
@@ -6734,11 +6744,12 @@ function buildEmailTable(stocks) {
 }
 
 async function sendBrevoEmail(subject, htmlBody) {
-  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return;
+  const key = getBrevoKey();
+  if (!key) { console.warn('Brevo: no API key set'); return; }
   try {
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
-      headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+      headers: { 'api-key': key, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         sender: BREVO_SENDER,
         to: BREVO_RECIPIENTS,
@@ -6753,6 +6764,7 @@ async function sendBrevoEmail(subject, htmlBody) {
 }
 
 async function sendDashboardEmailsManual(btn) {
+  if (!getBrevoKey()) { alert('לא הוגדר API Key — לחץ על ⚙️ מפתח אימייל להגדרה'); return; }
   if (!RAW_DATA.length) { alert('אין נתונים לשליחה'); return; }
   const orig = btn.textContent;
   btn.textContent = '⏳ שולח...';
@@ -6765,24 +6777,29 @@ async function sendDashboardEmailsManual(btn) {
 }
 
 async function sendDashboardEmails(tsStr) {
-  if (BREVO_API_KEY === 'YOUR_API_KEY_HERE') return;
+  if (!getBrevoKey()) return;
   const base = RAW_DATA.filter(passesBaseFilter);
   const stocks4 = base.filter(d => d.signal_count >= 4).sort((a,b) => calcScore(b)-calcScore(a));
   const stocks3 = base.filter(d => d.signal_count === 3).sort((a,b) => calcScore(b)-calcScore(a));
   const stocks2 = base.filter(d => d.signal_count === 2).sort((a,b) => calcScore(b)-calcScore(a));
 
-  const emailDefs = [
-    { count: 4, icon: '💎', stocks: stocks4 },
-    { count: 3, icon: '🔥', stocks: stocks3 },
-    { count: 2, icon: '⚡', stocks: stocks2 },
-  ];
+  const subject = `⚡ Momentum Scanner — עדכון יומי | ${tsStr}`;
+  const body = `
+    <h1 style="color:#00d4aa;margin-bottom:4px">Momentum Scanner</h1>
+    <p style="color:#5a7a94;font-size:12px;margin-bottom:24px">עדכון: ${tsStr}</p>
 
-  for (const { count, icon, stocks } of emailDefs) {
-    const subject = `${icon} Momentum Scanner — ${count} סיגנלים | ${tsStr} | ${stocks.length} מניות`;
-    const header = `<h2 style="color:#00d4aa;margin-bottom:4px">${icon} מניות עם ${count} סיגנלים</h2>
-      <p style="color:#5a7a94;font-size:12px;margin-bottom:16px">עדכון: ${tsStr} · ${stocks.length} מניות</p>`;
-    await sendBrevoEmail(subject, header + buildEmailTable(stocks));
-  }
+    <h2 style="color:#ff4d6a;margin-bottom:4px">💎 4 סיגנלים — ${stocks4.length} מניות</h2>
+    ${buildEmailTable(stocks4)}
+    <br>
+
+    <h2 style="color:#f5a623;margin-top:24px;margin-bottom:4px">🔥 3 סיגנלים — ${stocks3.length} מניות</h2>
+    ${buildEmailTable(stocks3)}
+    <br>
+
+    <h2 style="color:#00d4aa;margin-top:24px;margin-bottom:4px">⚡ 2 סיגנלים — ${stocks2.length} מניות</h2>
+    ${buildEmailTable(stocks2)}
+  `;
+  await sendBrevoEmail(subject, body);
 }
 
 function _applyLastUpdateBadge(tsStr) {
