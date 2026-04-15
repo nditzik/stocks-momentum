@@ -6707,6 +6707,7 @@ const BREVO_RECIPIENTS = [
   { email: 'nditzik@gmail.com',     name: 'Itzik' },
   { email: 'eddie@teco.org.il',     name: 'Eddie' },
   { email: 'yakiryona3@gmail.com',  name: 'Yakir' },
+  { email: 'ofeknidam@gmail.com',   name: 'Ofek' },
 ];
 const BREVO_SENDER = { email: 'nditzik@gmail.com', name: 'Momentum Scanner' };
 
@@ -6785,8 +6786,13 @@ async function sendDashboardEmails(tsStr) {
 
   const subject = `⚡ Momentum Scanner — עדכון יומי | ${tsStr}`;
   const body = `
-    <h1 style="color:#00d4aa;margin-bottom:4px">Momentum Scanner</h1>
-    <p style="color:#5a7a94;font-size:12px;margin-bottom:24px">עדכון: ${tsStr}</p>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+      <img src="https://nditzik.github.io/stocks-momentum/logo.png" alt="logo" style="height:48px;width:auto;flex-shrink:0">
+      <div>
+        <h1 style="color:#00d4aa;margin:0">Momentum Scanner</h1>
+        <p style="color:#5a7a94;font-size:12px;margin:2px 0 0">עדכון: ${tsStr}</p>
+      </div>
+    </div>
 
     <h2 style="color:#ff4d6a;margin-bottom:4px">💎 4 סיגנלים — ${stocks4.length} מניות</h2>
     ${buildEmailTable(stocks4)}
