@@ -6688,12 +6688,23 @@ function applyNewData() {
   try { localStorage.setItem(LAST_UPDATE_KEY, tsStr); } catch(e) {}
   _applyLastUpdateBadge(tsStr);
 
-  // Send update emails
-  sendDashboardEmails(tsStr);
+  // Send update emails — skip if autoDate already emailed
+  if (applyNewData._autoDate) {
+    const lastEmailed = localStorage.getItem(LAST_EMAIL_DATE_KEY) || '';
+    if (applyNewData._autoDate !== lastEmailed) {
+      localStorage.setItem(LAST_EMAIL_DATE_KEY, applyNewData._autoDate);
+      sendDashboardEmails(tsStr);
+    }
+    applyNewData._autoDate = null;
+  } else {
+    // manual button — always send
+    sendDashboardEmails(tsStr);
+  }
 }
 
 // ===== BREVO EMAIL =====
 const BREVO_API_KEY_STORAGE = 'momentum_brevo_key';
+const LAST_EMAIL_DATE_KEY   = 'momentum_last_emailed_date';
 function getBrevoKey() { try { return localStorage.getItem(BREVO_API_KEY_STORAGE) || ''; } catch(e) { return ''; } }
 function setBrevoKey(k) { try { localStorage.setItem(BREVO_API_KEY_STORAGE, k); } catch(e) {} }
 function promptBrevoKey() {
@@ -7755,6 +7766,7 @@ async function autoLoadFromData() {
   if (!loadedConfigs.length) return;
 
   checkApplyReady();
+  applyNewData._autoDate = latestDate; // mark for email dedup
   applyNewData(); // resets slots + toggles upload panel
 
   // Close upload panel if applyNewData opened it
