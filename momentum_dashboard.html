@@ -2614,6 +2614,8 @@
     <button class="filter-btn" data-filter="alpha52" onclick="setFilter('alpha52',this)" title="Weighted Alpha גדול משינוי שנתי — מניות עם מומנטום מואץ">α > 52W</button>
     <button class="filter-btn" data-filter="rvol" onclick="setFilter('rvol',this)" title="Relative Volume מעל 1.5× — נפח גבוה, אישור מומנטום">⚡ RVOL×1.5+</button>
     <button class="filter-btn" data-filter="hot_prospects" onclick="setFilter('hot_prospects',this)" title="Hot Prospects — Trend Seeker BUY + תמיכה טכנית חזקה">🔥 Hot Prospects</button>
+    <button class="filter-btn" data-filter="dip_entry" onclick="setFilter('dip_entry',this)" title="כניסת דיפ — 2+ סיגנלים · Dip Score ≥ 65 · קרוב ל-MA20/50" style="border-color:var(--accent-green);color:var(--accent-green)">📉 כניסת דיפ</button>
+    <button class="filter-btn" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="כניסת פריצה — 3+ סיגנלים · 6M High · שינוי ≥ 1.5% · RVOL ≥ 1.5×" style="border-color:var(--signal-4);color:var(--signal-4)">🚀 כניסת פריצה</button>
     <button class="filter-btn" data-filter="low_alpha" onclick="setFilter('low_alpha',this)" title="מניות שסוננו — Alpha נמוך מ-52W %Chg" style="border-color:var(--accent-red);color:var(--accent-red)">⚠️ Alpha נמוך</button>
     <button class="filter-btn" data-filter="smart_track" onclick="setFilter('smart_track',this)" title="מעקב חכם — לפני כניסה, עקביות, טעונות, כניסות חדשות חזקות">🔍 מעקב חכם</button>
     <button class="filter-btn" data-filter="scanner" onclick="setFilter('scanner',this)" title="סורק חכם — חפש לפי סיגנלים ספציפיים">🔎 סורק סיגנלים</button>
@@ -3897,6 +3899,23 @@ function applyFilters() {
     }
     if (currentFilter === 'rvol') return parseFloat(d.rvol||0) >= 1.5;
     if (currentFilter === 'hot_prospects') return d.signals.includes('hot_prospects');
+    if (currentFilter === 'dip_entry') {
+      if ((d.signal_count || 0) < 2) return false;
+      if (calcDipScore(d) < 65) return false;
+      const px   = parseFloat(d.price || 0);
+      const ma20 = parseFloat(d.ma20 || 0);
+      const ma50 = parseFloat(d.ma50 || 0);
+      const nearMA20 = ma20 > 0 && px <= ma20 * 1.05 && px >= ma20 * 0.98;
+      const nearMA50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
+      return nearMA20 || nearMA50;
+    }
+    if (currentFilter === 'breakout_entry') {
+      if ((d.signal_count || 0) < 3) return false;
+      if (!(d.signals || []).includes('6m_high')) return false;
+      if (parseFloat(d.change_pct || 0) < 1.5) return false;
+      if (parseFloat(d.rvol || 0) < 1.5) return false;
+      return true;
+    }
     return true;
   });
 
