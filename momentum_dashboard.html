@@ -6784,6 +6784,91 @@ async function sendDashboardEmails(tsStr) {
   const stocks3 = base.filter(d => d.signal_count === 3).sort((a,b) => calcScore(b)-calcScore(a));
   const stocks2 = base.filter(d => d.signal_count === 2).sort((a,b) => calcScore(b)-calcScore(a));
 
+  // ── עוצמת כניסה (RSI & Stoch) ──
+  let ready = 0, watchRSI = 0, stretched = 0;
+  const topReady = [];
+  base.forEach(d => {
+    const rsi   = parseFloat(d.rel_str || 0);
+    const stoch = parseFloat(d.stoch   || 0);
+    if (!rsi && !stoch) return;
+    const isStretched = rsi > 65 || stoch > 75;
+    const isWatch     = !isStretched && (rsi > 55 || stoch > 65);
+    if (isStretched) stretched++;
+    else if (isWatch) watchRSI++;
+    else { ready++; topReady.push(d); }
+  });
+  const readySyms = topReady.sort((a,b)=>(b.signal_count||0)-(a.signal_count||0)).slice(0,8).map(d=>d.symbol).join(' &nbsp;·&nbsp; ');
+  const readinessEmailHTML = `
+    <table style="border-collapse:collapse;width:100%;max-width:400px">
+      <tr><td style="padding:4px 8px;color:#00c853">✅ מוכן לכניסה</td><td style="padding:4px 8px;color:#00c853;font-weight:700">${ready}</td></tr>
+      <tr><td style="padding:4px 8px;color:#ffc107">⚠️ ממתין לדיפ</td><td style="padding:4px 8px;color:#ffc107;font-weight:700">${watchRSI}</td></tr>
+      <tr><td style="padding:4px 8px;color:#ff1744">🔴 מתוח מדי</td><td style="padding:4px 8px;color:#ff1744;font-weight:700">${stretched}</td></tr>
+    </table>
+    ${readySyms ? `<p style="color:#5a7a94;font-size:12px;margin-top:6px">מוכנות גבוהה: <span style="color:#00d4aa">${readySyms}</span></p>` : ''}`;
+
+  // ── RVOL ──
+  const rvHigh = base.filter(d => parseFloat(d.rvol||0) >= 2.0).sort((a,b)=>parseFloat(b.rvol||0)-parseFloat(a.rvol||0));
+  const rvMid  = base.filter(d => { const r=parseFloat(d.rvol||0); return r>=1.5&&r<2.0; }).sort((a,b)=>parseFloat(b.rvol||0)-parseFloat(a.rvol||0));
+  const topRvol = [...rvHigh, ...rvMid].slice(0,8);
+  const rvolEmailHTML = `
+    <p style="margin:4px 0;color:#5a7a94;font-size:12px">🔥 RVOL ≥ 2×: <strong style="color:#00d4aa">${rvHigh.length} מניות</strong> &nbsp;|&nbsp; ✅ RVOL 1.5–2×: <strong style="color:#ffc107">${rvMid.length} מניות</strong></p>
+    <table style="border-collapse:collapse;width:100%;max-width:400px;margin-top:6px">
+      ${topRvol.map(d=>`<tr><td style="padding:3px 8px;color:#00d4aa;font-weight:700">${d.symbol}</td><td style="padding:3px 8px;color:#e0e0e0">${parseFloat(d.rvol).toFixed(1)}×</td></tr>`).join('')}
+    </table>`;
+
+  // ── מגמת ציון היסטוריה ──
+  let trajEmailHTML = '<p style="color:#5a7a94;font-size:12px">נדרשת היסטוריה של לפחות יומיים</p>';
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length >= 2) {
+      const stockScores = {};
+      history.forEach(entry => {
+        entry.stocks.forEach(s => {
+          if (!stockScores[s.s]) stockScores[s.s] = [];
+          stockScores[s.s].push({ date: entry.date, score: radarDayScore(s.sig) });
+        });
+      });
+      const lastSyms = new Set(history[history.length-1].stocks.map(s=>s.s));
+      const candidates = Object.entries(stockScores)
+        .filter(([sym,arr]) => lastSyms.has(sym) && arr.length >= 2)
+        .map(([sym,arr]) => {
+          arr.sort((a,b)=>a.date.localeCompare(b.date));
+          const scores = arr.map(x=>x.score);
+          const half = Math.ceil(scores.length/2);
+          const first = scores.slice(0,half).reduce((a,b)=>a+b,0)/half;
+          const last  = scores.slice(-half).reduce((a,b)=>a+b,0)/half;
+          return { sym, scores, trend: last-first };
+        })
+        .sort((a,b)=>b.trend-a.trend)
+        .slice(0,8);
+      if (candidates.length) {
+        trajEmailHTML = `<table style="border-collapse:collapse;width:100%;max-width:400px">
+          ${candidates.map(c=>`<tr>
+            <td style="padding:3px 8px;color:#00d4aa;font-weight:700;width:60px">${c.sym}</td>
+            <td style="padding:3px 8px;color:${c.trend>0?'#00c853':'#ff1744'};font-weight:600">${c.trend>0?'↑':'↓'}${Math.abs(c.trend).toFixed(1)}</td>
+            <td style="padding:3px 8px;color:#888;font-size:11px">${c.scores.join(' → ')}</td>
+          </tr>`).join('')}
+        </table>`;
+      }
+    }
+  } catch(e) {}
+
+  // ── הזדמנויות (Watchlist) ──
+  const oppSyms = [...watchlist].filter(sym => isOpportunity(sym));
+  const oppEmailHTML = oppSyms.length
+    ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
+        ${oppSyms.map(sym => {
+          const d = RAW_DATA.find(x=>x.symbol===sym);
+          const price = livePrices[sym] || parseFloat(d?.price||0);
+          return `<tr>
+            <td style="padding:3px 8px;color:#ffc107;font-weight:700">${sym}</td>
+            <td style="padding:3px 8px;color:#e0e0e0">$${price.toFixed(2)}</td>
+            <td style="padding:3px 8px;color:#888;font-size:11px">${(d?.signals||[]).join(', ')}</td>
+          </tr>`;
+        }).join('')}
+      </table>`
+    : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
+
   const subject = `⚡ Momentum Scanner — עדכון יומי | ${tsStr}`;
   const body = `
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
@@ -6804,6 +6889,22 @@ async function sendDashboardEmails(tsStr) {
 
     <h2 style="color:#00d4aa;margin-top:24px;margin-bottom:4px">⚡ 2 סיגנלים — ${stocks2.length} מניות</h2>
     ${buildEmailTable(stocks2)}
+    <br>
+
+    <h2 style="color:#00c853;margin-top:24px;margin-bottom:4px">📊 עוצמת כניסה — RSI &amp; Stoch</h2>
+    ${readinessEmailHTML}
+    <br>
+
+    <h2 style="color:#00d4aa;margin-top:24px;margin-bottom:4px">📈 אישור ווליום — RVOL</h2>
+    ${rvolEmailHTML}
+    <br>
+
+    <h2 style="color:#a78bfa;margin-top:24px;margin-bottom:4px">🔮 מגמת ציון — היסטוריה</h2>
+    ${trajEmailHTML}
+    <br>
+
+    <h2 style="color:#ffc107;margin-top:24px;margin-bottom:4px">🎯 הזדמנויות במועדפים</h2>
+    ${oppEmailHTML}
   `;
   await sendBrevoEmail(subject, body);
 }
