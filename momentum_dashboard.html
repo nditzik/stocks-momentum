@@ -6880,6 +6880,50 @@ async function sendDashboardEmails(tsStr) {
       </table>`
     : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
 
+  // ── כניסת דיפ (all universe) ──
+  const dipCandidates = base.filter(d => {
+    if ((d.signal_count || 0) < 2) return false;
+    if (calcDipScore(d) < 65) return false;
+    const px   = parseFloat(d.price || 0);
+    const ma20 = parseFloat(d.ma20 || 0);
+    const ma50 = parseFloat(d.ma50 || 0);
+    const nearMA20 = ma20 > 0 && px <= ma20 * 1.05 && px >= ma20 * 0.98;
+    const nearMA50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
+    return nearMA20 || nearMA50;
+  }).sort((a,b) => calcDipScore(b) - calcDipScore(a)).slice(0, 10);
+  const dipEmailHTML = dipCandidates.length
+    ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
+        <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">Dip</td><td style="padding:3px 8px">סיגנלים</td></tr>
+        ${dipCandidates.map(d => `<tr>
+          <td style="padding:3px 8px;color:#00d4aa;font-weight:700">${d.symbol}</td>
+          <td style="padding:3px 8px;color:#e0e0e0">$${parseFloat(d.price).toFixed(2)}</td>
+          <td style="padding:3px 8px;color:#a78bfa;font-weight:600">${calcDipScore(d)}</td>
+          <td style="padding:3px 8px;color:#888;font-size:11px">${(d.signals||[]).join(', ')}</td>
+        </tr>`).join('')}
+      </table>`
+    : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
+
+  // ── כניסת פריצה (all universe) ──
+  const breakoutCandidates = base.filter(d => {
+    if ((d.signal_count || 0) < 3) return false;
+    if (!(d.signals || []).includes('6m_high')) return false;
+    if (parseFloat(d.change_pct || 0) < 1.5) return false;
+    if (parseFloat(d.rvol || 0) < 1.5) return false;
+    return true;
+  }).sort((a,b) => calcScore(b) - calcScore(a)).slice(0, 10);
+  const breakoutEmailHTML = breakoutCandidates.length
+    ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
+        <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">שינוי%</td><td style="padding:3px 8px">RVOL</td><td style="padding:3px 8px">סיגנלים</td></tr>
+        ${breakoutCandidates.map(d => `<tr>
+          <td style="padding:3px 8px;color:#00d4aa;font-weight:700">${d.symbol}</td>
+          <td style="padding:3px 8px;color:#e0e0e0">$${parseFloat(d.price).toFixed(2)}</td>
+          <td style="padding:3px 8px;color:#00c853;font-weight:600">+${parseFloat(d.change_pct).toFixed(1)}%</td>
+          <td style="padding:3px 8px;color:#ffc107;font-weight:600">${parseFloat(d.rvol).toFixed(1)}×</td>
+          <td style="padding:3px 8px;color:#888;font-size:11px">${(d.signals||[]).join(', ')}</td>
+        </tr>`).join('')}
+      </table>`
+    : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
+
   const subject = `⚡ Momentum Scanner — עדכון יומי | ${tsStr}`;
   const body = `
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
@@ -6916,6 +6960,16 @@ async function sendDashboardEmails(tsStr) {
 
     <h2 style="color:#ffc107;margin-top:24px;margin-bottom:4px">🎯 הזדמנויות במועדפים</h2>
     ${oppEmailHTML}
+    <br>
+
+    <h2 style="color:#00c853;margin-top:24px;margin-bottom:4px">📉 כניסת דיפ — ${dipCandidates.length} מניות</h2>
+    <p style="color:#5a7a94;font-size:11px;margin:0 0 6px">2+ סיגנלים · Dip Score ≥ 65 · קרוב ל-MA20/50</p>
+    ${dipEmailHTML}
+    <br>
+
+    <h2 style="color:#ff4d6a;margin-top:24px;margin-bottom:4px">🚀 כניסת פריצה — ${breakoutCandidates.length} מניות</h2>
+    <p style="color:#5a7a94;font-size:11px;margin:0 0 6px">3+ סיגנלים · 6M High · שינוי ≥ 1.5% · RVOL ≥ 1.5×</p>
+    ${breakoutEmailHTML}
   `;
   await sendBrevoEmail(subject, body);
 }
