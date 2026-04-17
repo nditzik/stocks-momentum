@@ -2703,9 +2703,11 @@
     <button class="entry-btn entry-btn-dip" data-filter="dip_entry" onclick="setFilter('dip_entry',this)" title="2+ סיגנלים · Dip Score ≥ 65 · קרוב ל-MA20/50">
       📉 כניסת דיפ<span class="entry-btn-count" id="dipCount">0</span>
     </button>
+    <button class="history-clear-btn" style="border-color:var(--accent-green);color:var(--accent-green)" onclick="exportTOS('dip_entry')" title="ייצא מניות דיפ ל-ThinkorSwim">⬇ TOS דיפ</button>
     <button class="entry-btn entry-btn-breakout" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="3+ סיגנלים · 6M High · שינוי ≥ 1.5% · RVOL ≥ 1.5×">
       🚀 כניסת פריצה<span class="entry-btn-count" id="breakoutCount">0</span>
     </button>
+    <button class="history-clear-btn" style="border-color:var(--signal-4);color:var(--signal-4)" onclick="exportTOS('breakout_entry')" title="ייצא מניות פריצה ל-ThinkorSwim">⬇ TOS פריצה</button>
   </div>
 
   <!-- RADAR PANEL -->
@@ -8462,6 +8464,27 @@ function exportTOS(type) {
     const { result } = buildSmartTracking();
     syms = result.map(d => d.symbol);
     name = `TOS_SmartTrack_${date}`;
+  } else if (type === 'dip_entry') {
+    syms = RAW_DATA.filter(passesBaseFilter).filter(d => {
+      if ((d.signal_count || 0) < 2) return false;
+      if (calcDipScore(d) < 65) return false;
+      const px = parseFloat(d.price || 0);
+      const ma20 = parseFloat(d.ma20 || 0);
+      const ma50 = parseFloat(d.ma50 || 0);
+      const nearMA20 = ma20 > 0 && px <= ma20 * 1.05 && px >= ma20 * 0.98;
+      const nearMA50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
+      return nearMA20 || nearMA50;
+    }).map(d => d.symbol);
+    name = `TOS_DipEntry_${date}`;
+  } else if (type === 'breakout_entry') {
+    syms = RAW_DATA.filter(passesBaseFilter).filter(d => {
+      if ((d.signal_count || 0) < 3) return false;
+      if (!(d.signals || []).includes('6m_high')) return false;
+      if (parseFloat(d.change_pct || 0) < 1.5) return false;
+      if (parseFloat(d.rvol || 0) < 1.5) return false;
+      return true;
+    }).map(d => d.symbol);
+    name = `TOS_BreakoutEntry_${date}`;
   } else {
     syms = RAW_DATA
       .filter(passesBaseFilter)
