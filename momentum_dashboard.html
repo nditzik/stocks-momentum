@@ -6754,6 +6754,7 @@ function applyNewData() {
   checkWatchlistOpportunities();
   renderSignalPulse();
   buildOverview();
+  updateEntryCounts();
   selectedSymbol = null;
   closeChart();
   document.getElementById('detailPanel').classList.remove('visible');
@@ -6989,7 +6990,7 @@ async function sendDashboardEmails(tsStr) {
     const nearMA20 = ma20 > 0 && px <= ma20 * 1.05 && px >= ma20 * 0.98;
     const nearMA50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
     return nearMA20 || nearMA50;
-  }).sort((a,b) => calcDipScore(b) - calcDipScore(a)).slice(0, 10);
+  }).sort((a,b) => calcDipScore(b) - calcDipScore(a));
   const dipEmailHTML = dipCandidates.length
     ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
         <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">Dip</td><td style="padding:3px 8px">סיגנלים</td></tr>
@@ -7009,7 +7010,7 @@ async function sendDashboardEmails(tsStr) {
     if (parseFloat(d.change_pct || 0) < 1.5) return false;
     if (parseFloat(d.rvol || 0) < 1.5) return false;
     return true;
-  }).sort((a,b) => calcScore(b) - calcScore(a)).slice(0, 10);
+  }).sort((a,b) => calcScore(b) - calcScore(a));
   const breakoutEmailHTML = breakoutCandidates.length
     ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
         <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">שינוי%</td><td style="padding:3px 8px">RVOL</td><td style="padding:3px 8px">סיגנלים</td></tr>
