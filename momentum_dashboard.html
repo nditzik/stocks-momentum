@@ -306,6 +306,8 @@
   .entry-btn-dip:hover, .entry-btn-dip.active { background: var(--accent-green); color: #0a1f14; }
   .entry-btn-breakout { border-color: var(--signal-4); color: var(--signal-4); }
   .entry-btn-breakout:hover, .entry-btn-breakout.active { background: var(--signal-4); color: #1a0a0f; }
+  .entry-btn-reversal { border-color: var(--accent-purple); color: var(--accent-purple); }
+  .entry-btn-reversal:hover, .entry-btn-reversal.active { background: var(--accent-purple); color: #14081f; }
   .entry-btn-count {
     display: inline-block;
     margin-right: 6px;
@@ -2708,6 +2710,10 @@
       🚀 כניסת פריצה<span class="entry-btn-count" id="breakoutCount">0</span>
     </button>
     <button class="history-clear-btn" style="border-color:var(--signal-4);color:var(--signal-4)" onclick="exportTOS('breakout_entry')" title="ייצא מניות פריצה ל-ThinkorSwim">⬇ TOS פריצה</button>
+    <button class="entry-btn entry-btn-reversal" data-filter="reversal_entry" onclick="setFilter('reversal_entry',this)" title="דיפ שהחזיק + נר ירוק ברור היום (change ≥ 0.3%) + RVOL > 1 (קונים חזרו)">
+      🔄 מניות בהיפוך<span class="entry-btn-count" id="reversalCount">0</span>
+    </button>
+    <button class="history-clear-btn" style="border-color:var(--accent-purple);color:var(--accent-purple)" onclick="exportTOS('reversal_entry')" title="ייצא מניות בהיפוך ל-ThinkorSwim">⬇ TOS היפוך</button>
   </div>
 
   <!-- RADAR PANEL -->
@@ -3453,10 +3459,13 @@ function updateEntryCounts() {
     return nearMA20 || nearMA50;
   }).length;
   const brkN = base.filter(isBreakoutEntry).length;
+  const revN = base.filter(isReversalEntry).length;
   const dipEl = document.getElementById('dipCount');
   const brkEl = document.getElementById('breakoutCount');
+  const revEl = document.getElementById('reversalCount');
   if (dipEl) dipEl.textContent = dipN;
   if (brkEl) brkEl.textContent = brkN;
+  if (revEl) revEl.textContent = revN;
 }
 
 function buildOverview() {
@@ -3985,6 +3994,9 @@ function applyFilters() {
     }
     if (currentFilter === 'breakout_entry') {
       return isBreakoutEntry(d);
+    }
+    if (currentFilter === 'reversal_entry') {
+      return isReversalEntry(d);
     }
     return true;
   });
@@ -4966,6 +4978,24 @@ function isBreakoutEntry(d) {
   const nearBB  = bbUpper > 0 && px <= bbUpper * 0.98;
   if (chg >= 0 && rv >= 1.0 && stoch >= 75 && nearBB) return true;
   return false;
+}
+
+// Reversal entry: dip that held MA support + clear green candle today with volume —
+// the moment the trigger actually fires (vs dip tab which is the pre-trigger watchlist).
+function isReversalEntry(d) {
+  if ((d.signal_count || 0) < 2) return false;
+  if (calcDipScore(d) < 65) return false;
+  const px   = parseFloat(d.price || 0);
+  const ma20 = parseFloat(d.ma20  || 0);
+  const ma50 = parseFloat(d.ma50  || 0);
+  // Support held — price AT OR ABOVE MA (not below)
+  const onMA20 = ma20 > 0 && px >= ma20 && px <= ma20 * 1.05;
+  const onMA50 = ma50 > 0 && px >= ma50 && px <= ma50 * 1.05;
+  if (!(onMA20 || onMA50)) return false;
+  // Green reversal candle + volume confirmation (buyers stepping in)
+  if (parseFloat(d.change_pct || 0) < 0.3) return false;
+  if (parseFloat(d.rvol        || 0) <= 1.0) return false;
+  return true;
 }
 
 // ===== MARKET DATA (OPTIONS FLOW) =====
@@ -7013,6 +7043,23 @@ async function sendDashboardEmails(tsStr) {
       </table>`
     : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
 
+  // ── מניות בהיפוך (all universe) ──
+  const reversalCandidates = base.filter(isReversalEntry)
+    .sort((a,b) => calcDipScore(b) - calcDipScore(a));
+  const reversalEmailHTML = reversalCandidates.length
+    ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
+        <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">שינוי%</td><td style="padding:3px 8px">RVOL</td><td style="padding:3px 8px">Dip</td><td style="padding:3px 8px">סיגנלים</td></tr>
+        ${reversalCandidates.map(d => `<tr>
+          <td style="padding:3px 8px;color:#9b6dff;font-weight:700">${d.symbol}</td>
+          <td style="padding:3px 8px;color:#e0e0e0">$${parseFloat(d.price).toFixed(2)}</td>
+          <td style="padding:3px 8px;color:#00c853;font-weight:600">+${parseFloat(d.change_pct).toFixed(1)}%</td>
+          <td style="padding:3px 8px;color:#ffc107;font-weight:600">${parseFloat(d.rvol).toFixed(1)}×</td>
+          <td style="padding:3px 8px;color:#a78bfa;font-weight:600">${calcDipScore(d)}</td>
+          <td style="padding:3px 8px;color:#888;font-size:11px">${(d.signals||[]).join(', ')}</td>
+        </tr>`).join('')}
+      </table>`
+    : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
+
   // ── כניסת פריצה (all universe) ──
   const breakoutCandidates = base.filter(isBreakoutEntry)
     .sort((a,b) => calcScore(b) - calcScore(a));
@@ -7070,6 +7117,11 @@ async function sendDashboardEmails(tsStr) {
     <h2 style="color:#00c853;margin-top:24px;margin-bottom:4px">📉 כניסת דיפ — ${dipCandidates.length} מניות</h2>
     <p style="color:#5a7a94;font-size:11px;margin:0 0 6px">2+ סיגנלים · Dip Score ≥ 65 · קרוב ל-MA20/50</p>
     ${dipEmailHTML}
+    <br>
+
+    <h2 style="color:#9b6dff;margin-top:24px;margin-bottom:4px">🔄 מניות בהיפוך — ${reversalCandidates.length} מניות</h2>
+    <p style="color:#5a7a94;font-size:11px;margin:0 0 6px">דיפ שהחזיק MA · נר ירוק ≥ 0.3% · RVOL &gt; 1 (אישור היפוך)</p>
+    ${reversalEmailHTML}
     <br>
 
     <h2 style="color:#ff4d6a;margin-top:24px;margin-bottom:4px">🚀 כניסת פריצה — ${breakoutCandidates.length} מניות</h2>
@@ -8485,6 +8537,9 @@ function exportTOS(type) {
   } else if (type === 'breakout_entry') {
     syms = RAW_DATA.filter(passesBaseFilter).filter(isBreakoutEntry).map(d => d.symbol);
     name = `TOS_BreakoutEntry_${date}`;
+  } else if (type === 'reversal_entry') {
+    syms = RAW_DATA.filter(passesBaseFilter).filter(isReversalEntry).map(d => d.symbol);
+    name = `TOS_Reversal_${date}`;
   } else {
     syms = RAW_DATA
       .filter(passesBaseFilter)
