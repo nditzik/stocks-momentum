@@ -1,0 +1,23 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D Rel Str","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+DOCN,"Digitalocean Holdings Inc","Internet - Software",94.71,+5.74%,6,Buy,"100% Buy",+208.91,+265.53%,62.2,73.25,55.03,84.8,62.37,228.58,93.63,3125900,Strongest,"Top 1%",74.98%,1,74.28,95.32,97%
+CGON,"Cg Oncology Inc","Medical - Biomedical",71.84,+2.05%,8,Buy,"100% Buy",+179.65,+251.98%,54.51,62.79,49.86,67.7,62.03,215.03,69.84,1069074,Strongest,Maximum,84.14%,0.63,63.02,72.39,94%
+AVTX,"Avalo Therapeutics Inc","Medical - Drugs",14.29,-2.52%,7,Sell,"40% Sell",+98.04,+224.04%,16.22,15.35,15.79,14.57,46.6,187.09,-24.5,430965,Average,Weak,24.62%,0.95,12.25,16.9,44%
+HAFN,"Hafnia Ltd","Transportation - Ship",8.45,+1.81%,7,Buy,"100% Buy",+92.79,+99.76%,6.59,7.45,6.45,7.95,67.54,62.81,55.35,1359993,"Top 1%",Maximum,81.87%,1.64,7.32,8.59,89%
+TDAY,"USA Today CO Inc","Media Conglomerates",7.34,+2.37%,7,Buy,"100% Buy",+90.69,+111.53%,6.06,6.54,5.47,7.03,64.26,74.58,39.33,1730471,Strengthening,Maximum,79.69%,0.88,6.58,7.47,85%
+NOV,"Nov Inc","Oil Field Machinery & Equip",19.59,+2.35%,6,Buy,"88% Buy",+62.35,+59.53%,18.09,19.27,16.72,19.26,55.6,22.58,22.15,4284620,Strengthening,Strong,59.07%,0.6,18.47,20.04,71%
+NET,"Cloudflare Inc Cl A","Internet - Software",207.67,+1.40%,1,Sell,"24% Buy",+51.02,+103.38%,194.36,196.57,202.47,201.27,54.19,66.43,2.15,3414518,Weakening,Minimum,66.21%,0.55,175.28,227.26,62%
+BKV,"Bkv Corp","Other Alt Energy",27.52,-0.40%,4,Sell,"8% Buy",+40.16,+59.08%,28.39,29.23,26.71,28.08,44.73,22.13,-1.83,715698,Weakening,Weak,45.67%,0.82,26.01,30.14,37%
+DGX,"Quest Diagnostics Inc","Medical - Outpatient & Hm Care",205.04,+4.45%,2,Hold,"80% Buy",+20.14,+26.68%,191.11,200.38,188.62,196.26,63.66,-10.27,14.97,1017315,Strongest,Strong,60.58%,2.47,190.1,202.43,121%
+FCN,"Fti Consulting",Consulting,187.03,+2.31%,8,Buy,"88% Buy",+18.11,+13.34%,172.01,170.12,168.48,178.54,65.74,-23.61,6.29,365801,Strongest,Strong,77.38%,0.4,168.41,188.67,92%
+WRLD,"World Acceptance Corp","Finance - Consumer Loans",147.76,-1.03%,6,Buy,"8% Buy",+6.78,+19.74%,138.88,136.47,144.9,140.06,57.09,-17.21,2.06,89393,Weakening,Minimum,67.29%,0.81,124.9,155.21,75%
+STRA,"Strategic Education",Schools,83.61,+0.49%,4,Hold,"48% Buy",+3.91,+7.69%,81.18,80.62,81.01,82.39,56.76,-29.26,1.06,205344,Strengthening,Weak,68.79%,0.71,79.6,85.19,72%
+AWR,"American States Water Company","Utility - Water Supply",77.83,-1.13%,9,Buy,"88% Buy",+1.80,-3.03%,74.06,74.89,73.85,76.34,56.88,-39.98,4.19,272396,Strongest,Strong,57.07%,1.16,73.05,79.63,73%
+CBT,"Cabot Corp","Chemical - Diversified",76.02,+0.68%,9,Buy,"88% Buy",+0.26,-1.46%,71.24,73.46,70.54,74.51,60.44,-38.41,11.51,438495,Strongest,Soft,66.35%,0.82,71.98,77.03,80%
+IIIV,"I3 Verticals Inc Cl A","Internet - Software",22.28,-0.54%,4,Sell,"88% Sell",-17.50,-9.02%,23.46,22.32,25.84,22.03,52.08,-45.97,-14.74,292068,Weakening,Strong,48.76%,0.86,20.64,23.43,59%
+CALM,"Cal-Maine Foods IN","Agriculture Products",77.02,+2.53%,4,Sell,"100% Sell",-22.37,-14.58%,81.97,81.95,85.34,77.51,44.89,-51.53,-6.39,1034580,Weakening,Strong,26.03%,0.83,73.84,81.19,43%
+SXC,"Suncoke Energy Inc",Coal,6.56,+2.50%,4,Hold,"56% Sell",-27.29,-29.08%,6.95,6.43,7.2,6.43,55.87,-66.03,-12.08,1313595,Weakest,Average,53.31%,0.66,6.12,6.73,72%
+DT,"Dynatrace Inc","IT Services",35.72,+0.79%,1,Sell,"100% Sell",-28.93,-15.30%,39.4,36.72,42.3,35.87,47.81,-52.25,-20.77,4590887,Average,Strong,62.48%,1.29,32.92,38.82,48%
+NICE,"Nice Ltd ADR","Internet - Software",106.26,+0.69%,1,Sell,"88% Sell",-32.03,-26.11%,111.66,112.37,118.78,107.16,45.43,-63.06,-9.19,738746,Weakening,Average,50.48%,0.53,98.87,115.44,45%
+SMPL,"The Simply Good Foods Company","Food - Confectionery",12.41,-1.66%,4,Sell,"100% Sell",-63.76,-65.71%,17.13,14.75,18.96,13.12,41.15,-102.66,-41.39,1996518,Average,Strong,44.85%,1.25,10.35,15.9,37%
+OWLS,"Obook Holdings Inc Cl A","Technology Services",6.39,+7.94%,5,Hold,N/A,N/A,N/A,6.28,5.89,0,5.85,60.79,N/A,-7.53,N/A,N/A,N/A,60.02%,2.71,5.44,6.25,117%
+"Downloaded from Barchart.com as of 04-21-2026 11:04pm CDT"
