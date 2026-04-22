@@ -8026,12 +8026,11 @@ async function refreshLiveQuotes() {
     const payload = await res.json();
     const fetchedAt = payload.fetched_at ? new Date(payload.fetched_at) : null;
     const ageMin = fetchedAt ? (Date.now() - fetchedAt.getTime()) / 60000 : Infinity;
-    const state = payload.market_state || 'UNKNOWN';
     const quotes = payload.quotes || {};
 
-    // Only merge when data is fresh (≤ 30 min). Older data means market is closed
-    // or the action hasn't run yet — keep EOD values from CSVs instead.
-    const fresh = ageMin <= 30 && (state === 'REGULAR' || state === 'PRE' || state === 'POST');
+    // Trust data freshness over Yahoo's marketState (often returns UNKNOWN).
+    // The GH Action only runs during US market hours, so fresh data ⇒ market open.
+    const fresh = ageMin <= 30 && Object.keys(quotes).length > 0;
     const badge   = document.getElementById('liveQuoteBadge');
     const textEl  = document.getElementById('liveQuoteText');
     const dotEl   = document.getElementById('liveQuoteDot');
@@ -8048,8 +8047,7 @@ async function refreshLiveQuotes() {
         merged++;
       });
       const hh = fetchedAt.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
-      const label = state === 'REGULAR' ? 'LIVE' : (state === 'PRE' ? 'PRE' : 'POST');
-      if (textEl) textEl.textContent = `${label} · 15m delayed · ${hh} · ${merged} מניות`;
+      if (textEl) textEl.textContent = `LIVE · 15m delayed · ${hh} · ${merged} מניות`;
       if (dotEl)  dotEl.style.background = 'var(--accent-teal)';
       if (badge)  badge.style.display = 'block';
       // Refresh table & overview so new prices render
