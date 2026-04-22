@@ -8044,6 +8044,7 @@ async function refreshLiveQuotes() {
         d.price       = String(q.price);
         d.change_pct  = String(q.change_pct);
         d._live_ts    = q.time;
+        livePrices[d.symbol] = q.price; // shared state for table/chart rendering
         merged++;
       });
       const hh = fetchedAt.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
@@ -8063,6 +8064,7 @@ async function refreshLiveQuotes() {
           restored++;
           delete d._live_ts;
         }
+        delete livePrices[d.symbol];
       });
       if (restored) { renderTable(); buildOverview(); updateEntryCounts(); }
       if (textEl) textEl.textContent = 'שוק סגור · EOD';
