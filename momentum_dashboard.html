@@ -2270,6 +2270,7 @@
     animation: pulse 1.4s ease-in-out infinite;
   }
   @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+  @keyframes livepulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,212,170,0.7)} 50%{opacity:0.6;box-shadow:0 0 0 4px rgba(0,212,170,0)} }
 
   /* ── Top 5 Momentum Bar ── */
   /* ── Signal Pulse Bar ── */
@@ -2582,6 +2583,10 @@
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
           <div class="date-badge" id="dateBadge"></div>
           <div id="headerLastUpdate" style="display:none;font-size:9px;color:var(--accent-gold);font-family:'DM Mono',monospace;white-space:nowrap">📥 עודכן: <span id="headerUpdateTime"></span></div>
+          <div id="liveQuoteBadge" style="display:none;font-size:9px;font-family:'DM Mono',monospace;white-space:nowrap;color:var(--accent-teal)">
+            <span id="liveQuoteDot" style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent-teal);margin-left:4px;vertical-align:middle;animation:livepulse 1.8s infinite"></span>
+            <span id="liveQuoteText">LIVE · 15m delayed</span>
+          </div>
         </div>
       </div>
     </div>
@@ -3442,7 +3447,13 @@ function init() {
   initScannerPanel();
   applyFilters();
   updateEntryCounts();
-  if (RAW_DATA.length) checkWatchlistOpportunities();
+  if (RAW_DATA.length) {
+    checkWatchlistOpportunities();
+    refreshLiveQuotes();
+    if (!refreshLiveQuotes._interval) {
+      refreshLiveQuotes._interval = setInterval(refreshLiveQuotes, 60000);
+    }
+  }
 }
 
 function updateEntryCounts() {
@@ -7999,6 +8010,68 @@ async function autoLoadFromData() {
     try { localStorage.setItem(LAST_UPDATE_KEY, tsStr); } catch(e) {}
     _applyLastUpdateBadge(tsStr);
   }
+
+  // ── Delayed live quotes (15m) ──
+  await refreshLiveQuotes();
+  if (!refreshLiveQuotes._interval) {
+    refreshLiveQuotes._interval = setInterval(refreshLiveQuotes, 60000);
+  }
+}
+
+async function refreshLiveQuotes() {
+  if (!RAW_DATA.length) return;
+  try {
+    const res = await fetch(`data/quotes.json?v=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const payload = await res.json();
+    const fetchedAt = payload.fetched_at ? new Date(payload.fetched_at) : null;
+    const ageMin = fetchedAt ? (Date.now() - fetchedAt.getTime()) / 60000 : Infinity;
+    const state = payload.market_state || 'UNKNOWN';
+    const quotes = payload.quotes || {};
+
+    // Only merge when data is fresh (≤ 30 min). Older data means market is closed
+    // or the action hasn't run yet — keep EOD values from CSVs instead.
+    const fresh = ageMin <= 30 && (state === 'REGULAR' || state === 'PRE' || state === 'POST');
+    const badge   = document.getElementById('liveQuoteBadge');
+    const textEl  = document.getElementById('liveQuoteText');
+    const dotEl   = document.getElementById('liveQuoteDot');
+
+    if (fresh) {
+      let merged = 0;
+      RAW_DATA.forEach(d => {
+        const q = quotes[d.symbol];
+        if (!q) return;
+        if (d.price_eod == null) d.price_eod = d.price; // preserve EOD once
+        d.price       = String(q.price);
+        d.change_pct  = String(q.change_pct);
+        d._live_ts    = q.time;
+        merged++;
+      });
+      const hh = fetchedAt.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+      const label = state === 'REGULAR' ? 'LIVE' : (state === 'PRE' ? 'PRE' : 'POST');
+      if (textEl) textEl.textContent = `${label} · 15m delayed · ${hh} · ${merged} מניות`;
+      if (dotEl)  dotEl.style.background = 'var(--accent-teal)';
+      if (badge)  badge.style.display = 'block';
+      // Refresh table & overview so new prices render
+      renderTable();
+      buildOverview();
+      updateEntryCounts();
+    } else {
+      // Stale / closed — restore EOD values if we previously overwrote
+      let restored = 0;
+      RAW_DATA.forEach(d => {
+        if (d.price_eod != null && d.price !== d.price_eod) {
+          d.price = d.price_eod;
+          restored++;
+          delete d._live_ts;
+        }
+      });
+      if (restored) { renderTable(); buildOverview(); updateEntryCounts(); }
+      if (textEl) textEl.textContent = 'שוק סגור · EOD';
+      if (dotEl)  dotEl.style.background = 'var(--text-2)';
+      if (badge)  badge.style.display = 'block';
+    }
+  } catch (e) { /* quotes.json missing — silent */ }
 }
 
 // ── Trade Journal ─────────────────────────────────────────────────────────────
