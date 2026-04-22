@@ -2704,7 +2704,7 @@
       📉 כניסת דיפ<span class="entry-btn-count" id="dipCount">0</span>
     </button>
     <button class="history-clear-btn" style="border-color:var(--accent-green);color:var(--accent-green)" onclick="exportTOS('dip_entry')" title="ייצא מניות דיפ ל-ThinkorSwim">⬇ TOS דיפ</button>
-    <button class="entry-btn entry-btn-breakout" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="3+ סיגנלים · 6M High · שינוי ≥ 1.5% · RVOL ≥ 1.5×">
+    <button class="entry-btn entry-btn-breakout" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="3+ סיגנלים · 6M High · מחיר ≥ MA20 · פריצה (1.5%+RVOL 1.5×) או pre-breakout (ירוק + stoch ≥ 75 + קרוב ל-BB Upper)">
       🚀 כניסת פריצה<span class="entry-btn-count" id="breakoutCount">0</span>
     </button>
     <button class="history-clear-btn" style="border-color:var(--signal-4);color:var(--signal-4)" onclick="exportTOS('breakout_entry')" title="ייצא מניות פריצה ל-ThinkorSwim">⬇ TOS פריצה</button>
@@ -3452,13 +3452,7 @@ function updateEntryCounts() {
     const nearMA50 = ma50 > 0 && px <= ma50 * 1.05 && px >= ma50 * 0.98;
     return nearMA20 || nearMA50;
   }).length;
-  const brkN = base.filter(d => {
-    if ((d.signal_count || 0) < 3) return false;
-    if (!(d.signals || []).includes('6m_high')) return false;
-    if (parseFloat(d.change_pct || 0) < 1.5) return false;
-    if (parseFloat(d.rvol || 0) < 1.5) return false;
-    return true;
-  }).length;
+  const brkN = base.filter(isBreakoutEntry).length;
   const dipEl = document.getElementById('dipCount');
   const brkEl = document.getElementById('breakoutCount');
   if (dipEl) dipEl.textContent = dipN;
@@ -3990,11 +3984,7 @@ function applyFilters() {
       return nearMA20 || nearMA50;
     }
     if (currentFilter === 'breakout_entry') {
-      if ((d.signal_count || 0) < 3) return false;
-      if (!(d.signals || []).includes('6m_high')) return false;
-      if (parseFloat(d.change_pct || 0) < 1.5) return false;
-      if (parseFloat(d.rvol || 0) < 1.5) return false;
-      return true;
+      return isBreakoutEntry(d);
     }
     return true;
   });
@@ -4956,6 +4946,26 @@ function calcDipScore(d) {
   }
   if (parts === 0) return 0;
   return Math.min(100, Math.round(score));
+}
+
+// Hybrid breakout entry: 6M high + ≥3 signals + above MA20, matching either
+// classical breakout (strong day + heavy volume) OR pre-breakout (green, rising, near BB upper).
+function isBreakoutEntry(d) {
+  if ((d.signal_count || 0) < 3) return false;
+  if (!(d.signals || []).includes('6m_high')) return false;
+  const px   = parseFloat(d.price || 0);
+  const ma20 = parseFloat(d.ma20  || 0);
+  if (!(ma20 > 0 && px >= ma20)) return false;
+  const chg  = parseFloat(d.change_pct || 0);
+  const rv   = parseFloat(d.rvol       || 0);
+  // Track 1 — classical breakout
+  if (chg >= 1.5 && rv >= 1.5) return true;
+  // Track 2 — pre-breakout
+  const stoch   = parseFloat(d.stoch    || 0);
+  const bbUpper = parseFloat(d.bb_upper || 0);
+  const nearBB  = bbUpper > 0 && px <= bbUpper * 0.98;
+  if (chg >= 0 && rv >= 1.0 && stoch >= 75 && nearBB) return true;
+  return false;
 }
 
 // ===== MARKET DATA (OPTIONS FLOW) =====
@@ -7004,13 +7014,8 @@ async function sendDashboardEmails(tsStr) {
     : '<p style="color:#5a7a94;font-size:12px">לא נמצאו</p>';
 
   // ── כניסת פריצה (all universe) ──
-  const breakoutCandidates = base.filter(d => {
-    if ((d.signal_count || 0) < 3) return false;
-    if (!(d.signals || []).includes('6m_high')) return false;
-    if (parseFloat(d.change_pct || 0) < 1.5) return false;
-    if (parseFloat(d.rvol || 0) < 1.5) return false;
-    return true;
-  }).sort((a,b) => calcScore(b) - calcScore(a));
+  const breakoutCandidates = base.filter(isBreakoutEntry)
+    .sort((a,b) => calcScore(b) - calcScore(a));
   const breakoutEmailHTML = breakoutCandidates.length
     ? `<table style="border-collapse:collapse;width:100%;max-width:500px">
         <tr style="color:#5a7a94;font-size:11px"><td style="padding:3px 8px">סימבול</td><td style="padding:3px 8px">מחיר</td><td style="padding:3px 8px">שינוי%</td><td style="padding:3px 8px">RVOL</td><td style="padding:3px 8px">סיגנלים</td></tr>
@@ -8478,13 +8483,7 @@ function exportTOS(type) {
     }).map(d => d.symbol);
     name = `TOS_DipEntry_${date}`;
   } else if (type === 'breakout_entry') {
-    syms = RAW_DATA.filter(passesBaseFilter).filter(d => {
-      if ((d.signal_count || 0) < 3) return false;
-      if (!(d.signals || []).includes('6m_high')) return false;
-      if (parseFloat(d.change_pct || 0) < 1.5) return false;
-      if (parseFloat(d.rvol || 0) < 1.5) return false;
-      return true;
-    }).map(d => d.symbol);
+    syms = RAW_DATA.filter(passesBaseFilter).filter(isBreakoutEntry).map(d => d.symbol);
     name = `TOS_BreakoutEntry_${date}`;
   } else {
     syms = RAW_DATA
