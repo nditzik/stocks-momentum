@@ -1,0 +1,37 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D Rel Str","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+OPTX,"Syntec Optics Holdings Inc","Technology Services",10.99,+15.68%,7,Buy,"100% Buy",+424.25,+668.53%,5.66,7.71,4.44,9.11,61.15,633.54,280,1122685,Strongest,"Top 1%",58.50%,1.36,6.23,11.99,83%
+AGX,"Argan Inc","Building & Construction - Misc",651.68,+5.98%,9,Buy,"100% Buy",+340.93,+386.29%,418.52,495.61,378.6,572.88,73.41,351.3,103.72,406940,"Top 1%","Top 1%",92.55%,0.55,458.75,687.01,85%
+WTI,"W&T Offshore","Oil - US Exploration & Product",3.9,+20.37%,7,Buy,"100% Buy",+182.57,+242.11%,2.38,2.94,2.26,3.14,64.86,207.12,134.99,3487195,"Top 1%","Top 1%",65.30%,1.93,2.55,3.73,114%
+LBRT,"Liberty Energy Inc","Oil - Field Services",29.42,+3.85%,1,Hold,"80% Buy",+149.43,+144.96%,24.2,28.16,21.07,28.1,57.25,109.97,55.1,4407154,Average,Strong,63.83%,0.96,26.35,29.84,88%
+PUMP,"Propetro Holding Corp","Oil - Field Services",15.41,+2.19%,5,Buy,"100% Buy",+132.80,+199.22%,11.79,13.32,10.33,14.24,63.41,164.23,57.77,2892174,Strongest,Maximum,79.55%,0.8,13.22,15.27,107%
+AXG,"Solowin Holdings Ordinary Share","Finance - Misc Services",3.9,+10.17%,7,Hold,"32% Buy",+124.31,+125.43%,3.75,3.65,3.59,3.57,62.75,90.44,-9.38,774647,Average,Minimum,63.82%,1.64,3.27,3.87,104%
+RUN,"Sunrun Inc",Solar,12.71,+7.89%,6,Sell,"88% Sell",+112.83,+84.74%,16.55,14.32,17.36,12.84,47.13,49.75,-35.19,10577910,Average,Average,18.14%,0.95,11.55,14.13,45%
+WTTR,"Select Water Solutions Inc","Waste Removal Svcs",16.4,+6.15%,9,Buy,"100% Buy",+102.90,+95.01%,12.83,14.36,12.13,15.23,67.65,60.02,51.62,1222937,"Top 1%","Top 1%",71.57%,2.01,14.49,15.97,129%
+TS,"Tenaris S.A. ADR","Steel - Pipe & Tube",62.16,+2.32%,9,Buy,"100% Buy",+101.40,+87.29%,48.45,55.4,44.75,58.87,71.69,52.3,57.39,1589568,Strongest,"Top 1%",88.31%,0.81,56.51,61.22,120%
+HP,"Helmerich & Payne","Oil & Gas - Drilling",36.41,+2.19%,2,Hold,"96% Buy",+94.87,+83.61%,32.96,35.04,30.14,35.27,56.78,48.62,22.68,1700212,Average,Strong,66.45%,0.61,33.47,37.07,82%
+ACDC,"Profrac Holding Corp. Cl A","Oil - Field Services",7.11,+8.72%,3,Buy,"100% Buy",+90.68,+49.06%,5.14,5.9,4.78,6.21,65.18,14.07,78.51,1388501,Strongest,Strong,84.14%,1.09,5.56,6.85,120%
+NHC,"National Healthcare Corp","Medical - Nursing Homes",173.63,+8.11%,6,Buy,"100% Buy",+85.79,+87.55%,151.67,163.57,142.25,164.98,58.88,52.56,22.38,80410,Strongest,Maximum,47.06%,2.93,154.6,175.35,92%
+ASC,"Ardmore Shipping Corp","Transportation - Ship",16.24,+4.84%,5,Buy,"100% Buy",+74.19,+80.24%,13.44,15.19,13.06,15.49,61.18,45.25,49.08,605865,Strongest,Maximum,70.63%,1.14,14.9,16.08,114%
+RES,"RPC Inc","Oil - Field Services",7.45,+1.64%,6,Buy,"100% Buy",+61.68,+49.00%,6.17,6.51,5.75,6.95,61.21,14.01,32.68,1981830,Strongest,"Top 1%",82.49%,0.87,6.42,7.48,97%
+ROMA,"Roma Green Finance Limited","Finance - Misc Services",5.73,+1.24%,3,Hold,"96% Buy",+57.19,+416.22%,3.27,4.28,3.12,5.43,54.78,381.23,234.78,248167,Strengthening,Strong,82.35%,0.26,2.61,8.24,55%
+AMR,"Alpha Metallurgical Resources Inc","Mining - Misc",208.63,+0.90%,5,Buy,"88% Buy",+54.29,+67.78%,198.36,190.73,186.82,201.94,57.43,32.79,0.11,310359,Strengthening,Average,70.80%,0.74,180.62,223.27,66%
+FTK,"Flotek Industries","Chemical - Specialty",16.75,+9.26%,5,Sell,"40% Buy",+48.65,+151.12%,16.73,16.58,16.24,16.17,54.24,116.13,-7.06,374442,Weakening,Weak,43.32%,1.82,14.65,17.69,69%
+RCI,"Rogers Communication","Diversified Comm Services",37.48,+13.61%,2,Hold,"32% Buy",+36.89,+47.50%,37.29,37.54,37.23,35.1,60.58,12.51,-4.93,1155624,Weakest,Minimum,45.41%,2.96,30.17,40.04,74%
+CLNE,"Clean Energy Fuels","Utility - Gas Distribution",2.48,+3.77%,6,Buy,"64% Buy",+34.20,+74.65%,2.31,2.37,2.41,2.39,58.89,39.66,13.83,1433256,Strengthening,Weak,55.44%,1.37,2.17,2.61,71%
+FROG,"Jfrog Ltd","Internet - Software",46.81,+1.54%,7,Buy,"24% Sell",+26.81,+52.92%,52.49,44.36,52.14,45.88,54.37,17.93,-29.33,2102257,Weakest,Soft,46.39%,0.26,41.37,50.39,60%
+WBI,"Waterbridge Infrastructure Llc Cl A","Real Estate Operations",27.83,+3.07%,5,Buy,N/A,+26.49,N/A,23.53,25.66,0,26.3,60.16,N/A,34.81,N/A,N/A,N/A,72.92%,1.25,24.63,27.97,96%
+DKL,"Delek Logistics Partners LP","Oil Gas Prod Pipeline MLP",49.6,+0.79%,2,Sell,"24% Buy",+23.99,+30.60%,49.67,52.12,48.08,50.24,44.23,-4.39,6.89,65793,Weakest,Soft,56.94%,0.97,47.04,53.43,40%
+VNOM,"Viper Energy Inc","Oil - US Exploration & Product",47.66,+1.38%,3,Buy,"100% Buy",+22.87,+17.19%,42.41,45.69,40.77,46.42,57.64,-17.8,19.11,2298909,Strongest,Maximum,82.61%,0.42,44.54,48.31,83%
+RDWR,"Radware Ltd","Internet - Software",26.81,+0.11%,6,Buy,"88% Buy",+14.55,+27.18%,24.78,25.44,24.92,26.1,56.5,-7.81,7.02,234102,Strongest,Average,60.01%,0.57,23.62,28.58,64%
+TPL,"Texas Pacific Land Trust","Other Alt Energy",439.5,+0.41%,2,Sell,"40% Buy",+12.62,+0.62%,396.81,480.24,368.3,446.59,45.9,-34.37,48.75,459852,Average,Average,67.26%,0.51,371.06,522.12,45%
+RLX,"Rlx Technology Inc ADR","Consumer Prdts - Misc Discr",2.2,+5.26%,2,Sell,"88% Sell",+11.94,+26.44%,2.29,2.25,2.34,2.16,52,-8.55,-9.85,2459980,Weakening,Average,45.19%,0.63,2.08,2.23,80%
+CVGW,"Calavo Growers Inc","Agriculture Operations",27.86,+1.79%,10,Buy,"88% Buy",+8.97,+0.40%,24.47,26.16,24.16,27,61.51,-34.59,23.82,286305,Strongest,Good,66.30%,0.96,25.58,28.43,80%
+BCE,"BCE Inc","Diversified Comm Services",23.73,-0.71%,2,Sell,"24% Sell",+5.87,+6.65%,24.65,25.28,24.19,24.35,35.92,-28.34,-4.65,3241244,Average,Weak,33.21%,1.1,22.96,25.74,28%
+PM,"Philip Morris International Inc",Tobacco,163.95,+6.98%,2,Sell,"8% Sell",-3.95,-0.10%,167.29,170.6,163.55,160.29,51.95,-35.09,-2.06,5857138,Weakest,Minimum,48.94%,1.56,153.64,166.94,78%
+HUYA,"Huya Inc ADR","Internet Software Services",3.21,+5.25%,5,Sell,"32% Sell",-9.94,-4.75%,3.45,3.49,3.3,3.21,47.6,-39.74,7.19,1658952,Weakest,Minimum,27.14%,0.87,3,3.43,49%
+MSEX,"Middlesex Water Company","Utility - Water Supply",53.48,+1.19%,8,Hold,"16% Buy",-9.98,-15.46%,52.47,52.96,53.2,52.68,53.59,-50.45,1.8,144367,Average,Minimum,53.98%,0.88,49.93,55.42,65%
+BJ,"Bj's Wholesale Club Holdings Inc","Consumer Prdts - Misc Staple",95.41,-0.61%,5,Sell,"8% Buy",-12.52,-17.08%,95.03,96.87,94.15,95.25,50.9,-52.07,1.71,2064970,Weakest,Minimum,56.65%,0.72,89.69,100.82,51%
+XFOR,"X4 Pharmaceuticals Inc","Medical - Biomedical",4.42,+6.00%,2,Buy,"100% Buy",-19.06,-27.42%,3.83,3.85,3.71,4.15,57.83,-62.41,6.23,1795048,Strongest,Soft,73.56%,1.36,3.85,4.45,95%
+APPN,"Appian Corp Cl A","Internet - Software",21.86,+3.80%,1,Sell,"100% Sell",-44.74,-18.25%,29.1,24.26,30.59,22.59,42.64,-53.24,-42.55,902682,Average,Strong,31.21%,0.63,19.69,25.49,37%
+WIX,"Wix.com Ltd","IT Services",76.88,-0.30%,2,Sell,"100% Sell",-58.86,-50.27%,86.61,78.72,104.99,77.7,49.27,-85.26,-30.27,1986297,Average,Strong,52.71%,0.58,59.22,96.17,48%
+"Downloaded from Barchart.com as of 04-22-2026 10:12pm CDT"
