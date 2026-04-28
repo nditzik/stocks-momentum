@@ -1493,9 +1493,16 @@
     background: var(--bg-2);
     border: 1px solid var(--border-bright);
     border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
   }
+  .scanner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 4px 22px;
+    padding: 4px 0;
+  }
+  .scanner-grid .scanner-section { border-bottom: none; padding: 4px 0; }
   .scanner-panel.visible { display: block; }
   .scanner-panel-title {
     font-size: 11px;
@@ -1637,20 +1644,21 @@
   .scanner-quick-btn:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
 
   /* Scanner panel layout */
-  .scanner-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
-  .scanner-reset-btn { padding:5px 12px; border-radius:6px; border:1px solid var(--border); background:none; color:var(--text-2); font-size:12px; cursor:pointer; transition:all .12s; }
+  .scanner-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .scanner-reset-btn { padding:4px 11px; border-radius:6px; border:1px solid var(--border); background:none; color:var(--text-2); font-size:11px; cursor:pointer; transition:all .12s; }
   .scanner-reset-btn:hover { border-color:var(--accent-red); color:var(--accent-red); }
-  .scanner-section { padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
-  .scanner-sec-label { font-size:10px; font-weight:700; color:var(--text-2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:7px; display:flex; align-items:center; gap:8px; }
+  .scanner-section { padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .scanner-sec-label { font-size:10px; font-weight:700; color:var(--text-2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:5px; display:flex; align-items:center; gap:8px; }
+  .scanner-sec-label.sub { margin-top:6px; }
   .sc-mode-wrap { display:inline-flex; }
-  .sc-toggle-group { display:flex; flex-wrap:wrap; gap:6px; }
+  .sc-toggle-group { display:flex; flex-wrap:wrap; gap:5px; }
   .sc-toggle {
-    padding: 5px 13px;
+    padding: 3px 10px;
     border-radius: 6px;
     border: 1px solid var(--border);
     background: var(--bg-0);
     color: var(--text-2);
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
     transition: all 0.12s;
     white-space: nowrap;
@@ -2872,90 +2880,92 @@
       </div>
     </div>
 
-    <!-- ROW 2: Signal count + RVOL -->
-    <div class="scanner-section">
-      <div class="scanner-sec-label">כמות סיגנלים מינימום</div>
-      <div class="sc-toggle-group" id="scSigCount">
-        <button class="sc-toggle active" data-val="0"      onclick="setScannerSigMin(0,this)">הכל</button>
-        <button class="sc-toggle" data-val="exact1" onclick="setScannerSigMin('exact1',this)" title="בדיוק סיגנל אחד בלבד">=1</button>
-        <button class="sc-toggle" data-val="1"      onclick="setScannerSigMin(1,this)">1+</button>
-        <button class="sc-toggle" data-val="2"      onclick="setScannerSigMin(2,this)">2+</button>
-        <button class="sc-toggle" data-val="3"      onclick="setScannerSigMin(3,this)">3+</button>
-        <button class="sc-toggle" data-val="4"      onclick="setScannerSigMin(4,this)">4+</button>
+    <div class="scanner-grid">
+      <!-- ROW 2: Signal count + RVOL -->
+      <div class="scanner-section">
+        <div class="scanner-sec-label">כמות סיגנלים מינימום</div>
+        <div class="sc-toggle-group" id="scSigCount">
+          <button class="sc-toggle active" data-val="0"      onclick="setScannerSigMin(0,this)">הכל</button>
+          <button class="sc-toggle" data-val="exact1" onclick="setScannerSigMin('exact1',this)" title="בדיוק סיגנל אחד בלבד">=1</button>
+          <button class="sc-toggle" data-val="1"      onclick="setScannerSigMin(1,this)">1+</button>
+          <button class="sc-toggle" data-val="2"      onclick="setScannerSigMin(2,this)">2+</button>
+          <button class="sc-toggle" data-val="3"      onclick="setScannerSigMin(3,this)">3+</button>
+          <button class="sc-toggle" data-val="4"      onclick="setScannerSigMin(4,this)">4+</button>
+        </div>
+        <div class="scanner-sec-label sub">RVOL</div>
+        <div class="sc-toggle-group" id="scRvol">
+          <button class="sc-toggle active" data-val="0"   onclick="setScannerRvol(0,this)">הכל</button>
+          <button class="sc-toggle" data-val="1"   onclick="setScannerRvol(1,this)">≥ 1×</button>
+          <button class="sc-toggle" data-val="1.5" onclick="setScannerRvol(1.5,this)">≥ 1.5×</button>
+          <button class="sc-toggle" data-val="2"   onclick="setScannerRvol(2,this)">≥ 2×</button>
+        </div>
       </div>
-      <div class="scanner-sec-label" style="margin-top:10px">RVOL</div>
-      <div class="sc-toggle-group" id="scRvol">
-        <button class="sc-toggle active" data-val="0"   onclick="setScannerRvol(0,this)">הכל</button>
-        <button class="sc-toggle" data-val="1"   onclick="setScannerRvol(1,this)">≥ 1×</button>
-        <button class="sc-toggle" data-val="1.5" onclick="setScannerRvol(1.5,this)">≥ 1.5×</button>
-        <button class="sc-toggle" data-val="2"   onclick="setScannerRvol(2,this)">≥ 2×</button>
-      </div>
-    </div>
 
-    <!-- ROW 3: RSI + BB% -->
-    <div class="scanner-section">
-      <div class="scanner-sec-label">RSI (14)</div>
-      <div class="sc-toggle-group" id="scRsi">
-        <button class="sc-toggle active" data-val="" onclick="setScannerRSI('',this)">הכל</button>
-        <button class="sc-toggle" data-val="oversold"   onclick="setScannerRSI('oversold',this)"   title="RSI < 40">חפרז &lt;40</button>
-        <button class="sc-toggle" data-val="healthy"    onclick="setScannerRSI('healthy',this)"    title="RSI 40–60">בריא 40–60</button>
-        <button class="sc-toggle" data-val="hot"        onclick="setScannerRSI('hot',this)"        title="RSI 60–70">חם 60–70</button>
-        <button class="sc-toggle" data-val="overbought" onclick="setScannerRSI('overbought',this)" title="RSI > 70">מוגזם &gt;70</button>
+      <!-- ROW 3: RSI + BB% -->
+      <div class="scanner-section">
+        <div class="scanner-sec-label">RSI (14)</div>
+        <div class="sc-toggle-group" id="scRsi">
+          <button class="sc-toggle active" data-val="" onclick="setScannerRSI('',this)">הכל</button>
+          <button class="sc-toggle" data-val="oversold"   onclick="setScannerRSI('oversold',this)"   title="RSI < 40">חפרז &lt;40</button>
+          <button class="sc-toggle" data-val="healthy"    onclick="setScannerRSI('healthy',this)"    title="RSI 40–60">בריא 40–60</button>
+          <button class="sc-toggle" data-val="hot"        onclick="setScannerRSI('hot',this)"        title="RSI 60–70">חם 60–70</button>
+          <button class="sc-toggle" data-val="overbought" onclick="setScannerRSI('overbought',this)" title="RSI > 70">מוגזם &gt;70</button>
+        </div>
+        <div class="scanner-sec-label sub">BB% <span style="font-size:10px;color:var(--text-2)">(מיקום ברצועה)</span></div>
+        <div class="sc-toggle-group" id="scBBPct">
+          <button class="sc-toggle active" data-val="" onclick="setScannerBBPct('',this)">הכל</button>
+          <button class="sc-toggle" data-val="low"  onclick="setScannerBBPct('low',this)"  title="BB% < 20 — קרוב לרצועה תחתונה">תחתון &lt;20%</button>
+          <button class="sc-toggle" data-val="mid"  onclick="setScannerBBPct('mid',this)"  title="BB% 20–70 — אזור ביניים">אמצע 20–70%</button>
+          <button class="sc-toggle" data-val="high" onclick="setScannerBBPct('high',this)" title="BB% > 70 — קרוב לרצועה עליונה">עליון &gt;70%</button>
+        </div>
+        <div class="scanner-sec-label sub">Band Width</div>
+        <div class="sc-toggle-group" id="scBBWidth">
+          <button class="sc-toggle active" data-val="" onclick="setScannerBBWidth('',this)">הכל</button>
+          <button class="sc-toggle" data-val="squeeze" onclick="setScannerBBWidth('squeeze',this)" title="Band Width < 10% — רצועות צרות, squeeze מתהווה">🌀 צר &lt;10%</button>
+          <button class="sc-toggle" data-val="normal"  onclick="setScannerBBWidth('normal',this)"  title="Band Width 10–20% — רוחב נורמלי">בינוני 10–20%</button>
+          <button class="sc-toggle" data-val="wide"    onclick="setScannerBBWidth('wide',this)"    title="Band Width > 20% — רצועות מורחבות, תנודתיות גבוהה">רחב &gt;20%</button>
+        </div>
       </div>
-      <div class="scanner-sec-label" style="margin-top:10px">BB% <span style="font-size:10px;color:var(--text-2)">(מיקום בתוך הרצועה)</span></div>
-      <div class="sc-toggle-group" id="scBBPct">
-        <button class="sc-toggle active" data-val="" onclick="setScannerBBPct('',this)">הכל</button>
-        <button class="sc-toggle" data-val="low"  onclick="setScannerBBPct('low',this)"  title="BB% < 20 — קרוב לרצועה תחתונה">תחתון &lt;20%</button>
-        <button class="sc-toggle" data-val="mid"  onclick="setScannerBBPct('mid',this)"  title="BB% 20–70 — אזור ביניים">אמצע 20–70%</button>
-        <button class="sc-toggle" data-val="high" onclick="setScannerBBPct('high',this)" title="BB% > 70 — קרוב לרצועה עליונה">עליון &gt;70%</button>
-      </div>
-      <div class="scanner-sec-label" style="margin-top:10px">Band Width <span style="font-size:10px;color:var(--text-2)">= (Upper−Lower)/MA20 × 100</span></div>
-      <div class="sc-toggle-group" id="scBBWidth">
-        <button class="sc-toggle active" data-val="" onclick="setScannerBBWidth('',this)">הכל</button>
-        <button class="sc-toggle" data-val="squeeze" onclick="setScannerBBWidth('squeeze',this)" title="Band Width < 10% — רצועות צרות, squeeze מתהווה">🌀 צר &lt;10%</button>
-        <button class="sc-toggle" data-val="normal"  onclick="setScannerBBWidth('normal',this)"  title="Band Width 10–20% — רוחב נורמלי">בינוני 10–20%</button>
-        <button class="sc-toggle" data-val="wide"    onclick="setScannerBBWidth('wide',this)"    title="Band Width > 20% — רצועות מורחבות, תנודתיות גבוהה">רחב &gt;20%</button>
-      </div>
-    </div>
 
-    <!-- ROW 4: MA alignment -->
-    <div class="scanner-section">
-      <div class="scanner-sec-label">ממוצעים נעים — מחיר מעל</div>
-      <div class="sc-toggle-group" id="scMAAbove">
-        <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMA('ma20',this)">MA20</button>
-        <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMA('ma50',this)">MA50</button>
-        <button class="sc-toggle" data-val="ma100" onclick="toggleScannerMA('ma100',this)">MA100</button>
-        <button class="sc-toggle" data-val="ma150" onclick="toggleScannerMA('ma150',this)">MA150</button>
+      <!-- ROW 4: MA alignment -->
+      <div class="scanner-section">
+        <div class="scanner-sec-label">ממוצעים נעים — מחיר מעל</div>
+        <div class="sc-toggle-group" id="scMAAbove">
+          <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMA('ma20',this)">MA20</button>
+          <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMA('ma50',this)">MA50</button>
+          <button class="sc-toggle" data-val="ma100" onclick="toggleScannerMA('ma100',this)">MA100</button>
+          <button class="sc-toggle" data-val="ma150" onclick="toggleScannerMA('ma150',this)">MA150</button>
+        </div>
+        <div class="scanner-sec-label sub">קרוב לממוצע <span style="font-size:10px;color:var(--text-2)">(±3%)</span></div>
+        <div class="sc-toggle-group" id="scMANear">
+          <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMANear('ma20',this)">קרוב MA20</button>
+          <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMANear('ma50',this)">קרוב MA50</button>
+        </div>
       </div>
-      <div class="scanner-sec-label" style="margin-top:10px">קרוב לממוצע <span style="font-size:10px;color:var(--text-2)">(±3%)</span></div>
-      <div class="sc-toggle-group" id="scMANear">
-        <button class="sc-toggle" data-val="ma20"  onclick="toggleScannerMANear('ma20',this)">קרוב MA20</button>
-        <button class="sc-toggle" data-val="ma50"  onclick="toggleScannerMANear('ma50',this)">קרוב MA50</button>
-      </div>
-    </div>
 
-    <!-- ROW 5: Sentiment -->
-    <div class="scanner-section" style="border-bottom:none">
-      <div class="scanner-sec-label">Opinion</div>
-      <div class="sc-toggle-group" id="scOpinion">
-        <button class="sc-toggle active" data-val="" onclick="setScannerOpinion('',this)">הכל</button>
-        <button class="sc-toggle" data-val="buy"  onclick="setScannerOpinion('buy',this)"  style="--sc-active-col:var(--accent-green)">Bullish</button>
-        <button class="sc-toggle" data-val="hold" onclick="setScannerOpinion('hold',this)" style="--sc-active-col:var(--accent-gold)">Neutral</button>
-        <button class="sc-toggle" data-val="sell" onclick="setScannerOpinion('sell',this)" style="--sc-active-col:var(--accent-red)">Bearish</button>
-      </div>
-      <div class="scanner-sec-label" style="margin-top:10px">Direction</div>
-      <div class="sc-toggle-group" id="scDirection">
-        <button class="sc-toggle active" data-val="" onclick="setScannerDirection('',this)">הכל</button>
-        <button class="sc-toggle" data-val="strengthening" onclick="setScannerDirection('strengthening',this)">Strengthening</button>
-        <button class="sc-toggle" data-val="average"       onclick="setScannerDirection('average',this)">Average</button>
-        <button class="sc-toggle" data-val="weakening"     onclick="setScannerDirection('weakening',this)" style="--sc-active-col:var(--accent-red)">Weakening</button>
-      </div>
-      <div class="scanner-sec-label" style="margin-top:10px">Strength</div>
-      <div class="sc-toggle-group" id="scStrength">
-        <button class="sc-toggle active" data-val="" onclick="setScannerStrength('',this)">הכל</button>
-        <button class="sc-toggle" data-val="maximum" onclick="setScannerStrength('maximum',this)" style="--sc-active-col:var(--signal-4)">Maximum</button>
-        <button class="sc-toggle" data-val="strong"  onclick="setScannerStrength('strong',this)"  style="--sc-active-col:var(--accent-green)">Strong</button>
-        <button class="sc-toggle" data-val="moderate" onclick="setScannerStrength('moderate',this)" style="--sc-active-col:var(--accent-gold)">Moderate</button>
+      <!-- ROW 5: Sentiment -->
+      <div class="scanner-section">
+        <div class="scanner-sec-label">Opinion</div>
+        <div class="sc-toggle-group" id="scOpinion">
+          <button class="sc-toggle active" data-val="" onclick="setScannerOpinion('',this)">הכל</button>
+          <button class="sc-toggle" data-val="buy"  onclick="setScannerOpinion('buy',this)"  style="--sc-active-col:var(--accent-green)">Bullish</button>
+          <button class="sc-toggle" data-val="hold" onclick="setScannerOpinion('hold',this)" style="--sc-active-col:var(--accent-gold)">Neutral</button>
+          <button class="sc-toggle" data-val="sell" onclick="setScannerOpinion('sell',this)" style="--sc-active-col:var(--accent-red)">Bearish</button>
+        </div>
+        <div class="scanner-sec-label sub">Direction</div>
+        <div class="sc-toggle-group" id="scDirection">
+          <button class="sc-toggle active" data-val="" onclick="setScannerDirection('',this)">הכל</button>
+          <button class="sc-toggle" data-val="strengthening" onclick="setScannerDirection('strengthening',this)">Strengthening</button>
+          <button class="sc-toggle" data-val="average"       onclick="setScannerDirection('average',this)">Average</button>
+          <button class="sc-toggle" data-val="weakening"     onclick="setScannerDirection('weakening',this)" style="--sc-active-col:var(--accent-red)">Weakening</button>
+        </div>
+        <div class="scanner-sec-label sub">Strength</div>
+        <div class="sc-toggle-group" id="scStrength">
+          <button class="sc-toggle active" data-val="" onclick="setScannerStrength('',this)">הכל</button>
+          <button class="sc-toggle" data-val="maximum" onclick="setScannerStrength('maximum',this)" style="--sc-active-col:var(--signal-4)">Maximum</button>
+          <button class="sc-toggle" data-val="strong"  onclick="setScannerStrength('strong',this)"  style="--sc-active-col:var(--accent-green)">Strong</button>
+          <button class="sc-toggle" data-val="moderate" onclick="setScannerStrength('moderate',this)" style="--sc-active-col:var(--accent-gold)">Moderate</button>
+        </div>
       </div>
     </div>
 
