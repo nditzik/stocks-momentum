@@ -1498,11 +1498,14 @@
   }
   .scanner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4px 22px;
     padding: 4px 0;
   }
-  .scanner-grid .scanner-section { border-bottom: none; padding: 4px 0; }
+  .scanner-grid .scanner-section { border-bottom: none; padding: 4px 0; min-width: 0; }
+  @media (max-width: 720px) {
+    .scanner-grid { grid-template-columns: 1fr; }
+  }
   .scanner-panel.visible { display: block; }
   .scanner-panel-title {
     font-size: 11px;
