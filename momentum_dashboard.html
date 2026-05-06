@@ -2725,7 +2725,7 @@
       📉 כניסת דיפ<span class="entry-btn-count" id="dipCount">0</span>
     </button>
     <button class="history-clear-btn" style="border-color:var(--accent-green);color:var(--accent-green)" onclick="exportTOS('dip_entry')" title="ייצא מניות דיפ ל-ThinkorSwim">⬇ TOS דיפ</button>
-    <button class="entry-btn entry-btn-breakout" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="3+ סיגנלים · 6M High · מחיר ≥ MA20 · פריצה (1.5%+RVOL 1.5×) או pre-breakout (ירוק + stoch ≥ 75 + קרוב ל-BB Upper)">
+    <button class="entry-btn entry-btn-breakout" data-filter="breakout_entry" onclick="setFilter('breakout_entry',this)" title="3+ סיגנלים · 6M High · מחיר ≥ MA20 · פריצה (1.0%+RVOL 1.3×) או pre/post-breakout (ירוק + stoch ≥ 75 + BB% ≥ 70)">
       🚀 כניסת פריצה<span class="entry-btn-count" id="breakoutCount">0</span>
     </button>
     <button class="history-clear-btn" style="border-color:var(--signal-4);color:var(--signal-4)" onclick="exportTOS('breakout_entry')" title="ייצא מניות פריצה ל-ThinkorSwim">⬇ TOS פריצה</button>
@@ -4998,12 +4998,11 @@ function isBreakoutEntry(d) {
   const chg  = parseFloat(d.change_pct || 0);
   const rv   = parseFloat(d.rvol       || 0);
   // Track 1 — classical breakout
-  if (chg >= 1.5 && rv >= 1.5) return true;
-  // Track 2 — pre-breakout
-  const stoch   = parseFloat(d.stoch    || 0);
-  const bbUpper = parseFloat(d.bb_upper || 0);
-  const nearBB  = bbUpper > 0 && px <= bbUpper * 0.98;
-  if (chg >= 0 && rv >= 1.0 && stoch >= 75 && nearBB) return true;
+  if (chg >= 1.0 && rv >= 1.3) return true;
+  // Track 2 — pre-breakout / breakout-through (BB% ≥ 70 covers both near-band and just-broke-out)
+  const stoch = parseFloat(d.stoch   || 0);
+  const bbp   = parseFloat(d.bb_pct ?? -1);
+  if (chg >= 0 && rv >= 1.0 && stoch >= 75 && bbp >= 70) return true;
   return false;
 }
 
