@@ -6017,7 +6017,7 @@ async function loadChart(symbol) {
   const bcFooter = document.getElementById('barchartFooter');
   if (bcFooter) {
     bcFooter.style.display = 'block';
-    bcFooter.innerHTML = `<a href="https://www.barchart.com/stocks/quotes/${symbol}/overview" target="_blank" rel="noopener noreferrer"
+    bcFooter.innerHTML = `<a href="https://www.barchart.com/stocks/quotes/${symbol}/interactive-chart" target="_blank" rel="noopener noreferrer"
       style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent-teal);text-decoration:none;opacity:0.65;transition:opacity 0.15s"
       onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.65">↗ Barchart · ${symbol} · Full Analysis</a>`;
   }
