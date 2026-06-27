@@ -5242,7 +5242,7 @@ function toggleCompact() {
 // ===== CSV EXPORT =====
 function exportCSV() {
   if (filtered.length === 0) { alert('אין נתונים לייצוא.'); return; }
-  const headers = ['Symbol','Name','Price','Change%','Signals','Score','DipScore','Opinion','Direction','Strength','RSI','Stoch','WtdAlpha','52W%','Rec','Industry'];
+  const headers = ['Symbol','Name','Price','Change%','Signals','Score','DipScore','Opinion','Direction','Strength','RSI','Stoch','RVOL','WtdAlpha','52W%','Rec','Industry'];
   const rows = filtered.map(d => {
     const rec = getRecommendation(d);
     return [
@@ -5258,6 +5258,7 @@ function exportCSV() {
       d.strength || '',
       d.rel_str || '',
       d.stoch || '',
+      d.rvol || '',
       d.wtd_alpha || '',
       d.w52_chg || '',
       rec.label,
