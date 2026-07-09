@@ -3977,40 +3977,6 @@ function applyFilters() {
     return;
   }
 
-  // Diagnostic: log when signal-count filter drops stocks the stat bar counted.
-  // Only fires when there's a discrepancy — silent otherwise. Copy the log if
-  // the tab count doesn't match the header for the '4'/'3'/'2' pills.
-  if (['4','3','2'].includes(currentFilter)) {
-    const sc = currentFilter === '4' ? (d => d.signal_count >= 4)
-             : currentFilter === '3' ? (d => d.signal_count === 3)
-             : (d => d.signal_count === 2);
-    const inBase = RAW_DATA.filter(passesBaseFilter).filter(sc);
-    const kept = inBase.filter(d => {
-      if (q && !d.symbol.includes(q)) return false;
-      if (smartMode) {
-        const _r=parseFloat(d.rel_str||0), _s=parseFloat(d.stoch||0);
-        const _p=parseFloat(d.price||0),  _m=parseFloat(d.ma50||0);
-        if (_r>0 && _r>65) return false;
-        if (_s>0 && _s>72) return false;
-        if (_p>0 && _m>0 && _p<_m) return false;
-      }
-      return true;
-    });
-    if (kept.length !== inBase.length) {
-      console.warn(`[filter-${currentFilter}] header=${inBase.length}  tab=${kept.length}  search-q="${q}"  smartMode=${smartMode}`);
-      inBase.forEach(d => {
-        const _r=parseFloat(d.rel_str||0), _s=parseFloat(d.stoch||0);
-        const _p=parseFloat(d.price||0),  _m=parseFloat(d.ma50||0);
-        const reason = (q && !d.symbol.includes(q)) ? `search-mismatch("${q}")`
-          : smartMode && _r>65 ? `smart:RSI=${_r}>65`
-          : smartMode && _s>72 ? `smart:Stoch=${_s}>72`
-          : smartMode && _p>0 && _m>0 && _p<_m ? `smart:px(${_p})<MA50(${_m})`
-          : 'kept';
-        console.log(`  ${d.symbol}: ${reason}`);
-      });
-    }
-  }
-
   filtered = RAW_DATA.filter(d => {
     if (q && !d.symbol.includes(q)) return false;
     // Permanent base filters (volume, alpha, quality gates)
