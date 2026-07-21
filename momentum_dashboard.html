@@ -9132,6 +9132,46 @@ function exportHistoryCSV() {
   URL.revokeObjectURL(url);
 }
 
+// ============================================================================
+// AUTO UPDATE CHECK
+// Long-open-tab problem: the dashboard tab often stays open across days, so
+// new HTML deployed to GitHub Pages never actually loads. Every 5 min we HEAD
+// the page and compare Last-Modified / ETag against what we captured on load.
+// If it changed, we show a non-blocking banner so the user can reload once.
+// ============================================================================
+(function autoUpdateCheck() {
+  const url = location.pathname;
+  let baseline = null;
+  const CHECK_MS = 5 * 60 * 1000;
+
+  async function fetchModTime() {
+    try {
+      const r = await fetch(url + '?_v=' + Date.now(), { method: 'HEAD', cache: 'no-store' });
+      return r.headers.get('Last-Modified') || r.headers.get('ETag');
+    } catch (e) { return null; }
+  }
+
+  function showUpdateBanner() {
+    if (document.getElementById('updateBanner')) return;
+    const b = document.createElement('div');
+    b.id = 'updateBanner';
+    b.innerHTML = '🔄 גרסה חדשה זמינה — <a href="#" style="color:#080c10;text-decoration:underline;font-weight:800">רענן עכשיו</a> <span style="margin-right:8px;opacity:0.5;cursor:pointer" title="סגור">✕</span>';
+    b.style.cssText = 'position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#00d4aa;color:#080c10;padding:10px 18px;border-radius:8px;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.5);font-size:13px;font-weight:600;direction:rtl';
+    b.querySelector('a').onclick = e => { e.preventDefault(); location.reload(); };
+    b.querySelector('span[title]').onclick = () => b.remove();
+    document.body.appendChild(b);
+  }
+
+  (async () => {
+    baseline = await fetchModTime();
+    if (!baseline) return; // server doesn't send those headers → give up silently
+    setInterval(async () => {
+      const cur = await fetchModTime();
+      if (cur && cur !== baseline) showUpdateBanner();
+    }, CHECK_MS);
+  })();
+})();
+
 // Start
 init();
 autoLoadFromData();
