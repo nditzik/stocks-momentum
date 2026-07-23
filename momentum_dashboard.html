@@ -3977,6 +3977,41 @@ function applyFilters() {
     return;
   }
 
+  // Diagnostic: silent when header count matches tab count. If a mismatch
+  // appears (e.g. header=6, tab=5 for '3-signals' pill), logs the specific
+  // stock and the reason it was excluded so we can pinpoint the cause.
+  if (['4','3','2'].includes(currentFilter)) {
+    const sc = currentFilter === '4' ? (d => d.signal_count >= 4)
+             : currentFilter === '3' ? (d => d.signal_count === 3)
+             : (d => d.signal_count === 2);
+    const headerCount = RAW_DATA.filter(passesBaseFilter).filter(sc).length;
+    const tabCount = RAW_DATA.filter(d => {
+      if (q && !d.symbol.includes(q)) return false;
+      if (!passesBaseFilter(d)) return false;
+      if (smartMode) {
+        const _r=parseFloat(d.rel_str||0), _s=parseFloat(d.stoch||0);
+        const _p=parseFloat(d.price||0),  _m=parseFloat(d.ma50||0);
+        if (_r>0 && _r>65) return false;
+        if (_s>0 && _s>72) return false;
+        if (_p>0 && _m>0 && _p<_m) return false;
+      }
+      return sc(d);
+    }).length;
+    if (headerCount !== tabCount) {
+      console.warn(`[mismatch filter-${currentFilter}] header=${headerCount} tab=${tabCount} q="${q}" smartMode=${smartMode}`);
+      RAW_DATA.filter(passesBaseFilter).filter(sc).forEach(d => {
+        const _r=parseFloat(d.rel_str||0), _s=parseFloat(d.stoch||0);
+        const _p=parseFloat(d.price||0),  _m=parseFloat(d.ma50||0);
+        const reason = (q && !d.symbol.includes(q)) ? `search-mismatch("${q}")`
+          : smartMode && _r>65 ? `smart:RSI=${_r}>65`
+          : smartMode && _s>72 ? `smart:Stoch=${_s}>72`
+          : smartMode && _p>0 && _m>0 && _p<_m ? `smart:px(${_p})<MA50(${_m})`
+          : 'kept';
+        console.log(`  ${d.symbol}: ${reason}`);
+      });
+    }
+  }
+
   filtered = RAW_DATA.filter(d => {
     if (q && !d.symbol.includes(q)) return false;
     // Permanent base filters (volume, alpha, quality gates)
