@@ -6822,7 +6822,7 @@ function applyNewData() {
       setf('ma50',        num(r['50D MA']  || '', '$,+%'));
       setf('ma100',       num(r['100D MA'] || '', '$,+%'));
       setf('ma150',       num(r['150D MA'] || '', '$,+%'));
-      setf('rel_str',     r['14D Rel Str'] || '');
+      setf('rel_str',     r['14D Rel Str'] || r['14D RSI'] || '');
       setf('stoch',       r['14D Stoch %K'] || '');
       setf('wtd_alpha',   num(r['Wtd Alpha'] || '', '+'));
       setf('w52_chg',     r['52W %Chg'] || r['52-Week % Chg'] || '');
@@ -8021,7 +8021,7 @@ async function autoLoadFromData() {
     { type: 'strength',      pattern: lbl => `data/stocks-screener-strength-and-direction-${lbl}.csv`,  slotId: 'slot-strength', statusId: 'status-strength' },
     { type: '6m_high',       pattern: lbl => `data/stocks-screener-nearing-6-month-highs-${lbl}.csv`,   slotId: 'slot-highs',    statusId: 'status-6m_high' },
     { type: 'ttm_squeeze',   pattern: lbl => `data/ttm-squeeze-triggered-${lbl}.csv`,                   slotId: 'slot-squeeze',  statusId: 'status-ttm_squeeze' },
-    { type: 'macd_buy',      pattern: lbl => `data/12-26-9-day-emacd-new-buy-signals-${lbl}.csv`,       slotId: 'slot-macd',     statusId: 'status-macd_buy' },
+    { type: 'macd_buy',      pattern: lbl => `data/emacd-new-buy-signals-stocks-${lbl}.csv`,             slotId: 'slot-macd',     statusId: 'status-macd_buy' },
     { type: 'hot_prospects', pattern: lbl => `data/stocks-screener-hot-prospects-${lbl}.csv`,           slotId: 'slot-hot',      statusId: 'status-hot_prospects' },
   ];
 
