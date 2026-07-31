@@ -6997,6 +6997,17 @@ async function sendDashboardEmailsManual(btn) {
 
 async function sendDashboardEmails(tsStr) {
   if (!getBrevoKey()) return;
+
+  // Freshness guard: if the deployed HTML changed since page load, our
+  // BREVO_RECIPIENTS / template / logic might be stale. Clear the dedup
+  // and reload so the fresh session sends the email with fresh code.
+  if (await isPageStale()) {
+    console.warn('[send] page stale — clearing dedup and reloading before send');
+    try { localStorage.removeItem(LAST_EMAIL_DATE_KEY); } catch(e) {}
+    location.reload();
+    return;
+  }
+
   const base = RAW_DATA.filter(passesBaseFilter);
   const stocks4 = base.filter(d => d.signal_count >= 4).sort((a,b) => calcScore(b)-calcScore(a));
   const stocks3 = base.filter(d => d.signal_count === 3).sort((a,b) => calcScore(b)-calcScore(a));
@@ -9196,12 +9207,25 @@ function exportHistoryCSV() {
   (async () => {
     baseline = await fetchModTime();
     if (!baseline) return; // server doesn't send those headers → give up silently
+    window._pageLoadMod = baseline;   // ← shared with sendDashboardEmails for freshness guard
     setInterval(async () => {
       const cur = await fetchModTime();
       if (cur && cur !== baseline) showUpdateBanner();
     }, CHECK_MS);
   })();
 })();
+
+// Freshness guard for outgoing emails: if the deployed HTML changed since
+// page load, reload BEFORE sending so the email goes out from the fresh page
+// (fresh recipients, fresh template). Called by sendDashboardEmails.
+async function isPageStale() {
+  if (!window._pageLoadMod) return false;
+  try {
+    const r = await fetch(location.pathname + '?_v=' + Date.now(), { method: 'HEAD', cache: 'no-store' });
+    const remote = r.headers.get('Last-Modified') || r.headers.get('ETag');
+    return !!(remote && remote !== window._pageLoadMod);
+  } catch (e) { return false; }
+}
 
 // Start
 init();
