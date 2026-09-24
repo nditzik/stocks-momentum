@@ -1,0 +1,42 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+HPE,"Hewlett Packard Enterprise","Computer - Integrated Systems",62.33,+2.13%,8,Buy,"100% Buy",+197.21,+152.35%,47.6,53.27,39.67,56.52,61.01,136.59,146.92,21826484,Strongest,Strong,88.12%,0.73,49.03,64.02,89%
+ILMN,"Illumina Inc","Medical - Biomedical",255.38,+3.20%,8,Buy,"100% Buy",+185.60,+157.00%,184.73,207.47,165,222.58,71.5,141.24,82.14,2061567,"Top 1%","Top 1%",90.31%,0.87,192.03,253.14,104%
+TWLO,Twilio,"Internet - Software",290.7,+2.17%,11,Buy,"100% Buy",+179.10,+181.06%,212.71,224.25,184.57,241.4,75.36,165.3,91.8,2410454,"Top 1%",Maximum,96.32%,1.87,205.52,277.27,119%
+GRAL,"Grail Inc","Medical - Biomedical",109.91,+1.28%,5,Buy,"88% Buy",+177.10,+133.96%,70.22,76.15,63.89,83.34,81.84,117.32,14.99,931650,Strongest,Strong,91.18%,0,61.6,105.08,111%
+ECO,"Okeanis Eco Tankers Corp","Transportation - Ship",78.03,+0.63%,14,Buy,"100% Buy",+170.87,+155.67%,59.32,65.91,56.25,74.38,59.72,139.91,118.02,497264,Strongest,Maximum,58.78%,1.16,60.16,88.59,63%
+GORO,"Goldgroup Mining Inc","Mining - Gold",3.65,+2.82%,6,Buy,"88% Buy",+159.28,+353.98%,2.11,2.92,1.87,3.67,58.57,338.22,328.25,3531349,Strengthening,Maximum,23.78%,0.36,3.31,4.02,47%
+CRWD,"Crowdstrike Holdings",Security,262.49,+4.97%,9,Buy,"100% Buy",+155.57,+116.89%,188.65,210.61,160.16,225.55,68.95,101.13,111.42,12711977,Strongest,"Top 1%",98.47%,1.32,187.65,263.45,99%
+KRT,"Karat Packaging Inc","Containers - Paper Products",53.05,+1.63%,8,Buy,"100% Buy",+149.60,+114.08%,37.68,45.64,34.13,48.97,74.77,98.32,122.48,106851,Strongest,Maximum,95.12%,1.61,45.55,52.38,110%
+OKTA,"Okta Inc Cl A",Security,205.36,+4.45%,9,Buy,"100% Buy",+143.72,+122.73%,133.91,156.13,114.5,176.29,71.3,106.97,124.92,3508884,"Top 1%","Top 1%",96.18%,1.56,146.04,206.55,98%
+SSL,"Sasol Ltd ADR","Oil - International Integrated",14.29,+3.63%,6,Buy,"100% Buy",+116.04,+133.12%,12.19,12.26,11.96,13.35,61.81,117.36,106.94,1861666,"Top 1%",Good,58.88%,2.15,11.05,15.65,70%
+FTNT,"Fortinet Inc",Security,178.74,+2.57%,8,Buy,"100% Buy",+112.32,+109.62%,149.22,161.03,126.75,165.54,64.59,93.86,112.51,6033842,Strongest,Strong,95.54%,0.7,149.81,181.28,92%
+ATRC,"Atricure Inc","Medical Products",59.96,+1.91%,11,Buy,"100% Buy",+107.78,+63.63%,37.39,45.92,34.76,53.88,80.73,47.87,38.98,827032,"Top 1%","Top 1%",87.55%,1.11,46.2,61.56,90%
+AVT,"Avnet Inc","Electronics - Parts Distrib",101.15,+2.95%,9,Buy,"100% Buy",+98.68,+90.81%,88.97,91.59,81.46,93.04,65.08,75.05,97.81,1203590,Strongest,Strong,81.35%,1.43,86.34,99.74,110%
+FSLY,"Fastly Inc","Internet - Software",29.65,+13.69%,7,Buy,"100% Buy",+93.08,+246.38%,21.38,23.53,22.45,23.55,65.79,230.62,178.69,8936461,"Top 1%",Good,82.43%,4.59,19.03,28.07,118%
+SNX,"Synnex Corp","IT Services",287.89,+1.64%,11,Buy,"100% Buy",+87.01,+89.55%,255.73,256.3,230.38,262.94,70.59,73.79,79.06,799807,Strongest,Strong,91.48%,3.59,243.18,282.69,113%
+RSKD,"Riskified Ltd Cl A","Internet - Software",7.14,+1.85%,10,Buy,"100% Buy",+65.87,+51.27%,5.38,5.85,5.02,6.34,69.31,35.51,31.09,990901,"Top 1%","Top 1%",80.81%,3.79,5.68,7.01,110%
+PBR,"Petroleo Brasileiro S.A. Petrobras ADR","Oil - International Integrated",21.14,+1.83%,7,Buy,"100% Buy",+63.85,+60.64%,18.83,19.2,19.03,20.41,61.1,44.88,65.83,22174838,Strongest,Good,43.55%,1.46,18.29,22.53,67%
+GPRK,"Geopark Hlds Lmtd","Oil - US Exploration & Product",11.11,+1.93%,7,Buy,"88% Buy",+61.90,+78.62%,10.12,10.25,9.76,11.18,54.13,62.86,37.36,773847,Strongest,Strong,12.87%,0.99,9.82,12.54,47%
+PBR.A,"Petroleo Brasileiro S.A. Petrobras ADR","Emerging Markets Integrated",19.22,+1.48%,8,Buy,"100% Buy",+61.44,+58.45%,16.91,17.23,17.18,18.45,63.88,42.69,57.97,9470531,"Top 1%",Good,57.41%,1.03,16.53,20.36,70%
+FFIV,"F5 Inc","Internet - Software",455.99,+0.59%,13,Buy,"100% Buy",+58.77,+40.43%,397.27,406.15,362.42,413.85,69.15,24.67,66.07,785482,Strongest,Strong,96.54%,0.79,370.9,456.81,99%
+RBRK,"Rubrik Inc Cl A","Internet - Software",115.57,+3.31%,7,Buy,"100% Buy",+57.16,+41.87%,81.39,90.98,71.48,98.52,68.51,26.11,38.54,3817941,"Top 1%","Top 1%",96.69%,0.89,80.03,117,96%
+CNXN,"PC Connection Inc","Retail - Wholesale Computers",88.57,+1.99%,12,Buy,"100% Buy",+54.22,+41.87%,75.97,82.15,71,83.78,68.92,26.11,40.77,111304,"Top 1%",Maximum,81.43%,0.82,78.13,89.43,92%
+MTLS,"Materialise NV ADR","Internet - Software",7.99,+1.91%,10,Buy,"100% Buy",+54.00,+39.93%,6.68,6.96,6.18,7.46,71.98,24.17,31.39,122915,Strongest,Maximum,88.67%,1.71,6.79,8.12,90%
+TKNO,"Alpha Teknova Inc","Medical - Biomedical",8.93,+1.82%,7,Buy,"100% Buy",+52.27,+72.73%,5.62,6.59,4.66,7.35,77.85,56.97,122.43,199394,"Top 1%","Top 1%",91.39%,1.75,6.12,8.59,114%
+VEON,"Veon Ltd ADR","Diversified Comm Services",70.36,+1.43%,9,Buy,"100% Buy",+47.59,+28.35%,55.93,59.3,54.45,66.09,73.73,12.59,21.27,99791,Strongest,"Top 1%",85.72%,2.11,59.47,72.71,82%
+QRVO,"Qorvo Inc","Semi Radio Frequency",119.59,+0.97%,12,Buy,"100% Buy",+44.45,+27.43%,96.87,98.55,91.51,107.63,67.46,11.67,28.94,1251051,Strongest,"Top 1%",90.21%,0.9,89.23,126.03,82%
+OSPN,"Onespan Inc","Internet - Software",18.01,+3.33%,7,Buy,"100% Buy",+44.22,+12.84%,14.94,16.22,13.6,16.88,65.48,-2.92,27.69,555677,"Top 1%",Maximum,82.17%,1.06,15.36,18.4,87%
+DT,"Dynatrace Inc","IT Services",58.51,+2.29%,12,Buy,"100% Buy",+38.76,+22.48%,45.41,49.4,42.47,53.59,71.1,6.72,22.43,6177633,"Top 1%","Top 1%",93.44%,1.25,49.01,58.18,104%
+SWKS,"Skyworks Solutions","Semi Radio Frequency",91.45,+1.66%,9,Buy,"100% Buy",+36.30,+12.54%,70.49,70.52,66.13,79.04,66.97,-3.22,31.65,4728452,Strongest,Maximum,90.70%,0.77,60.12,97.96,83%
+CNH,"CNH Industrial N.V.","Machinery - Farm",13.75,+0.59%,6,Buy,"100% Buy",+32.15,+25.46%,11.16,11.75,11.14,13.23,62.95,9.7,36.56,15086762,Strongest,Strong,55.07%,0.89,11.5,14.97,65%
+OPRT,"Oportun Financial Corp","Finance - Misc Services",8.48,+2.29%,7,Buy,"100% Buy",+25.30,+26.00%,6.26,7.1,5.86,7.79,67.85,10.24,47.73,509848,Strongest,Maximum,95.48%,2.31,7.06,8.52,97%
+CRESY,"Cresud Sacif ADR","Agriculture Operations",12.71,+2.50%,10,Buy,"56% Buy",+25.19,+35.21%,11.34,11.44,11.46,12.05,61.86,19.45,-11.94,270750,Average,Average,81.97%,1.19,11.01,13.09,82%
+TRLV,"Trulieve Cannabis Corp","Medical Products",12.54,+0.56%,8,Buy,"100% Buy",+22.89,+71.78%,9.7,10.17,8.68,11.71,65.56,56.02,31.73,899252,Strongest,Maximum,68.94%,2.01,10.88,12.54,100%
+IBEX,"Ibex Ltd","Business Services",42.66,+2.60%,10,Buy,"100% Buy",+21.01,+3.39%,34.05,37.06,32.16,39.24,70.69,-12.37,-0.84,122952,"Top 1%",Maximum,92.67%,1.11,35.89,42.58,101%
+SAIL,"Sailpoint Inc","Internet - Software",21.41,+0.19%,3,Buy,"100% Buy",+17.23,-4.25%,16.35,18.09,15.25,19.42,63.8,-20.01,-6.74,3618949,Strongest,Strong,90.16%,1.7,16.96,21.88,90%
+AMPH,"Amphastar Pharma","Medical - Generic Drugs",24.96,+2.63%,10,Buy,"72% Buy",+15.15,-8.94%,20.55,21.54,20.77,23.41,71.55,-24.7,-19.37,506665,Strongest,Average,73.53%,1.09,21.78,25.04,98%
+META,"META Platforms","Internet - Software",744.1,+1.02%,16,Buy,"56% Buy",+12.25,-1.50%,606.63,612.08,614.76,641.76,76.95,-17.26,0.16,17143857,Strengthening,Good,90.05%,1.66,531.21,752.31,96%
+PD,"Pagerduty Inc","Internet - Software",14.83,+2.42%,7,Buy,"100% Buy",+10.39,-7.54%,10.37,12.18,9.15,13.95,66.93,-23.3,0.55,2326404,"Top 1%",Strong,82.50%,1.18,12.64,15.27,83%
+CAI,"Caris Life Sciences Inc","Medical Services",31.65,+0.57%,7,Buy,"88% Buy",+3.40,-1.40%,19.76,22.41,19.55,26.95,74.43,-17.16,4.74,3247677,Strongest,Maximum,89.60%,0.84,21.77,32.13,95%
+HCM,"Hutchmed China Ltd ADR","Medical - Biomedical",14.37,+2.13%,4,Buy,"56% Buy",-0.95,-10.13%,11.93,12.39,12.79,13.31,63,-25.89,-4.77,48289,Strengthening,Average,89.59%,1.61,11.67,14.94,83%
+"Downloaded from Barchart.com as of 09-23-2026 10:34pm CDT"
