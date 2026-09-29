@@ -1,0 +1,31 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+ASX,"Ase Industrial Holding Ltd ADR","Electronics - Semiconductors",43.79,-1.17%,8,Buy,"100% Buy",+254.20,+292.03%,38.29,38.48,33.84,40.25,61.93,276.38,159.75,8434986,Average,Strong,83.96%,0.91,34.54,45.96,81%
+AMD,"Adv Micro Devices","Computer - Integrated Systems",607.87,-3.61%,12,Buy,"100% Buy",+217.83,+281.21%,503.02,506.95,415.81,535.22,65.62,265.56,171.6,32634422,Average,Strong,91.40%,0.93,412.14,658.29,80%
+ADPT,"Adaptive Biotechnologies Corp","Medical - Biomedical",28.51,-3.13%,10,Buy,"100% Buy",+116.51,+115.66%,21.25,25.1,18.93,26.38,63.4,100.01,63.31,2303087,Strengthening,Maximum,89.68%,1.13,22.39,30.37,77%
+HAE,"Haemonetics Corp","Medical Products",105.79,+0.47%,6,Buy,"100% Buy",+95.42,+119.62%,83.06,96.71,75.3,104.97,59.33,103.97,19.75,814297,Average,Maximum,52.08%,0.66,100.29,109.65,59%
+NEOG,"Neogen Corp","Medical Products",13.72,-0.29%,12,Buy,"100% Buy",+89.76,+141.98%,10.42,11.69,10.15,12.54,72.3,126.33,84.04,2848181,Strongest,Strong,80.14%,2.9,10.82,14.25,84%
+TEVA,"Teva Pharmaceutical Industries ADR","Medical - Generic Drugs",38.88,-0.79%,9,Buy,"100% Buy",+81.75,+112.00%,35.08,36.24,33.83,38.07,55.52,96.35,12.34,6956695,Average,Average,73.13%,0.8,35.32,40.81,65%
+CYRX,"Cryoport Inc","Medical Services",17.38,-0.17%,9,Buy,"100% Buy",+76.62,+88.91%,15.42,15.94,13.3,16.39,64.69,73.26,68.8,574990,Average,Strong,82.79%,1.27,14.71,18.07,79%
+HALO,"Halozyme Therapeutic","Medical - Biomedical",112.89,-0.89%,8,Buy,"100% Buy",+74.65,+53.07%,86.03,100.45,79.33,110.03,61.38,37.42,55.5,1922144,Average,Maximum,74.95%,1.02,104.43,115.62,76%
+ANET,"Arista Networks Inc","Internet - Software",204.92,-0.79%,6,Buy,"100% Buy",+53.32,+43.80%,175.81,190.96,165.36,197.05,58.26,28.15,44.15,7889879,Average,Maximum,80.02%,0.56,184.12,209.99,80%
+DE,"Deere & Company","Machinery - Farm",689.59,-0.13%,5,Buy,"100% Buy",+50.00,+48.62%,612.57,642.7,604.13,685.29,58.09,32.97,35.88,1369827,Strengthening,Strong,47.00%,0.64,661.33,709.26,59%
+QRVO,"Qorvo Inc","Semi Radio Frequency",116.3,-1.42%,10,Buy,"100% Buy",+37.99,+25.03%,97.55,100.51,92.21,110.86,60.49,9.38,25.38,1257460,Strengthening,Maximum,77.92%,1.2,94.81,126.91,67%
+IFF,"International Flavors & Fragrances","Chemical - Specialty",85.72,+0.04%,1,Buy,"100% Buy",+36.79,+41.17%,80.05,83.34,77.54,85.09,55.61,25.52,14.96,1852121,Strengthening,Strong,77.37%,1.13,82.81,87.37,64%
+DT,"Dynatrace Inc","IT Services",57.84,-0.19%,8,Buy,"100% Buy",+36.07,+16.82%,46.01,50.2,42.93,54.38,67.02,1.17,21.22,6247954,Strengthening,"Top 1%",87.28%,1.13,48.88,59.89,81%
+EMBJ,"Embraer S.A. ADR","Aerospace - Defense",76.53,-2.67%,9,Buy,"88% Buy",+35.72,+26.27%,66.73,72.98,65.75,74.75,56.66,10.62,6.65,1290620,Strengthening,Strong,81.37%,1.06,71.23,78.27,75%
+AAPL,"Apple Inc","Computer - Micro",338.4,-0.78%,9,Buy,"100% Buy",+34.94,+32.47%,312.29,321.93,295.47,330.33,61.79,16.82,12.24,48752348,Strengthening,Maximum,80.60%,0.71,314.19,346.47,75%
+OPRT,"Oportun Financial Corp","Finance - Misc Services",8.28,-3.16%,11,Buy,"100% Buy",+29.15,+29.58%,6.34,7.24,5.93,7.93,59.42,13.93,44.28,516545,Strengthening,Maximum,77.42%,1.27,7.17,8.7,73%
+PRTH,"Priority Techno Holdings Inc","Technology Services",7.77,-0.13%,7,Buy,"88% Buy",+24.07,+10.84%,6.25,6.08,5.88,6.3,78.51,-4.81,30.33,530615,Average,Strong,97.60%,1.32,4.29,8.3,87%
+HELE,"Helen of Troy Ltd","Cosmetics & Toiletries",29.16,+1.85%,1,Hold,"80% Buy",+22.02,+14.62%,27.49,28.44,24.23,28.12,55.25,-1.03,24.98,637370,Weakening,Good,72.71%,1.14,26.08,30.16,76%
+ABM,"ABM Industries Inc","Business Services",49.02,-1.53%,4,Buy,"100% Buy",+11.56,+7.08%,45.46,48.28,43.72,48.95,51.56,-8.57,3.65,588758,Strengthening,Strong,56.34%,1.18,46.3,51.59,51%
+FAST,"Fastenal Company","Industrial Services",50.49,+0.12%,4,Buy,"88% Buy",+11.08,+3.68%,47.55,49.5,46.91,49.49,56.41,-11.97,13.58,7800091,Average,Strong,74.33%,0.96,48.04,50.93,85%
+SBH,"Sally Beauty Holdings","Retail - Misc & Diversified",16.92,-1.51%,7,Buy,"88% Buy",+10.52,+5.88%,14.77,16.11,14.65,16.32,58.76,-9.77,6.41,1516375,Average,Strong,91.22%,0.88,15.42,17.22,83%
+PD,"Pagerduty Inc","Internet - Software",14.48,+0.70%,5,Buy,"100% Buy",+7.51,-10.23%,10.59,12.43,9.31,14.21,59.95,-25.88,-1.79,2313544,Strengthening,Strong,77.09%,0.91,13.34,15.09,65%
+BWIN,"The Baldwin Insurance Group Inc","Insurance - Life",31.82,-0.09%,5,Buy,"100% Buy",+1.67,+11.18%,26.05,29.97,24.74,31.14,57.53,-4.47,20.18,1854819,Average,Strong,82.51%,1.16,28.92,33.36,65%
+PLTR,"Palantir Technologies Cl A","Internet - Software",187.48,-1.15%,3,Buy,"88% Buy",-0.04,+5.58%,148.75,165.03,147.67,178.46,61.01,-10.07,-6.77,43302887,Average,Strong,84.18%,0.52,162.07,194.85,78%
+CAI,"Caris Life Sciences Inc","Medical Services",31.75,-0.72%,9,Buy,"88% Buy",-1.94,+8.77%,20.16,23.32,19.81,27.81,72.18,-6.88,5.44,3274294,Average,Maximum,90.82%,0.76,21.58,34.03,82%
+CNNE,"Cannae Holdings Inc","Finance - Investment Mgmt",15.58,-1.02%,4,Buy,"100% Buy",-6.98,-14.91%,14.7,15.2,13.87,15.52,52.95,-30.56,-13.19,569589,Average,Average,67.28%,0.94,15.04,15.99,57%
+XGN,"Exagen Inc","Medical Products",8.48,-2.75%,11,Buy,"100% Buy",-8.50,-22.13%,5.57,6.83,4.74,7.82,65.16,-37.78,27.23,385978,Strengthening,Strong,88.34%,0.66,6.59,9.06,77%
+DSGX,"Descartes Sys Group","Computer - Software",78.85,+0.31%,1,Sell,"72% Buy",-10.31,-16.95%,74.28,76.95,73.12,78.37,51.82,-32.6,-22.29,605752,Weakening,Weak,80.84%,1.28,73.5,83.25,55%
+ACB,"Aurora Cannabis Inc","Medical Products",4.09,-0.24%,4,Buy,"72% Buy",-16.43,-15.84%,3.33,3.55,3.39,3.96,61.77,-31.49,-15.32,1303113,Weakening,Average,70.43%,0.37,3.66,4.27,71%
+"Downloaded from Barchart.com as of 09-28-2026 11:27pm CDT"
