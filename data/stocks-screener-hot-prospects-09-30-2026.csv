@@ -1,0 +1,56 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+TXG,"10X Genomics Inc","Medical Information Systems",90.36,+0.36%,18,Buy,"100% Buy",+720.86,+672.97%,47.76,63.06,39.03,75.01,77.22,658.57,442.25,2824247,Strongest,"Top 1%",90.59%,1.24,56.79,93.24,92%
+TWST,"Twist Bioscience Corp","Medical - Biomedical",193.24,+3.82%,12,Buy,"100% Buy",+466.55,+586.71%,104.75,131.91,86.97,152.27,75.08,572.31,497.44,1570278,"Top 1%","Top 1%",91.99%,1.74,105.25,199.28,94%
+IOVA,"Iovance Biotherapeutics Inc","Medical - Biomedical",14.82,+2.56%,12,Buy,"100% Buy",+355.98,+582.95%,6,7.91,5.27,10.09,87.15,568.55,431.09,15715737,"Top 1%","Top 1%",92.02%,1.66,6.58,13.6,117%
+CDNA,"Caredx Inc","Medical Services",65,+1.53%,15,Buy,"100% Buy",+289.74,+347.04%,37.37,49.09,31.16,55.07,78.99,332.64,233.24,892599,Strongest,"Top 1%",94.00%,1.46,44.34,65.8,96%
+HPE,"Hewlett Packard Enterprise","Computer - Integrated Systems",63.89,+3.90%,9,Buy,"100% Buy",+199.85,+160.14%,49.27,54.96,41.08,58.99,61.77,145.74,154.22,21425074,"Top 1%",Strong,68.63%,1.58,51.36,66.62,82%
+ILMN,"Illumina Inc","Medical - Biomedical",273.68,+0.62%,11,Buy,"100% Buy",+187.06,+188.18%,191.39,215.87,170.06,236.21,74.82,173.78,96.89,2102183,Strongest,"Top 1%",91.77%,1.04,185.38,287.05,87%
+ECO,"Okeanis Eco Tankers Corp","Transportation - Ship",80.88,+0.79%,12,Buy,"100% Buy",+181.58,+176.32%,60.5,68.27,57.22,77.69,64.42,161.92,127.24,503963,"Top 1%",Maximum,54.25%,0.72,67.18,88.19,65%
+TWLO,Twilio,"Internet - Software",292.46,+0.58%,9,Buy,"100% Buy",+178.12,+192.20%,217.6,232.64,190.44,255.09,67.36,177.8,93.84,2443299,Strongest,Maximum,81.95%,1.6,202.15,308.02,85%
+GRAL,"Grail Inc","Medical - Biomedical",140.12,+2.60%,10,Buy,"100% Buy",+176.05,+136.97%,73.46,81.42,65.94,94.84,89.55,122.57,51.94,959561,"Top 1%",Maximum,92.05%,1.95,47.71,141.97,98%
+PGEN,"Precigen Inc","Medical - Biomedical",8.56,+6.34%,11,Buy,"100% Buy",+154.77,+160.18%,5.82,6.91,5.14,7.41,71.58,145.78,93.01,4809414,"Top 1%","Top 1%",80.59%,2.23,6.41,8.42,107%
+CRWD,"Crowdstrike Holdings",Security,264.75,+0.77%,10,Buy,"100% Buy",+153.33,+115.95%,195.7,216.51,165.7,236.4,66.74,101.55,114.15,12702719,Strongest,"Top 1%",92.64%,0.89,193.42,279.38,83%
+ABSI,"Absci Corp","Medical - Biomedical",10.77,+6.21%,5,Buy,"100% Buy",+152.74,+254.28%,8.32,8.89,6.67,9.21,61.95,239.88,196.83,4269256,Strongest,Strong,67.63%,1.7,7.47,10.95,95%
+GH,"Guardant Health Inc","Medical - Biomedical",178.36,+0.35%,6,Buy,"100% Buy",+147.99,+185.47%,149.03,164.3,128.93,171.05,60.56,171.07,62.85,2207656,Strengthening,Strong,79.44%,0.8,154.94,187.16,73%
+OKTA,"Okta Inc Cl A",Security,209.11,+2.06%,8,Buy,"100% Buy",+144.08,+128.04%,140.2,161.73,118.82,186.54,68.08,113.64,130.06,3544509,"Top 1%","Top 1%",84.65%,0.91,157.06,216.02,88%
+AGEN,"Agenus Inc","Medical - Biomedical",9.93,+0.40%,10,Buy,"100% Buy",+129.08,+157.92%,5.58,7.61,4.96,8.05,73.58,143.52,204.47,1872720,Strongest,"Top 1%",91.76%,1.05,6.18,9.92,100%
+FOSL,"Fossil Group","Retail - Apparel & Shoes",6.57,+6.66%,6,Buy,"100% Buy",+127.36,+155.64%,4.75,5.33,4.7,5.51,65.69,141.24,62.96,784208,"Top 1%",Maximum,85.18%,1.59,4.32,6.7,95%
+OBIO,"Orchestra Biomed Hldgs Inc","Medical - Biomedical",6.22,+2.30%,8,Buy,"100% Buy",+125.00,+150.81%,4.51,5.05,4.45,5.79,64.55,136.41,38.11,269462,"Top 1%",Maximum,55.95%,0.89,4.94,6.64,75%
+MANE,"Veradermics Incorporated","Medical - Biomedical",121.23,+2.89%,8,Buy,N/A,+122.79,N/A,106.96,107.23,94.19,107.59,66.87,N/A,N/A,N/A,N/A,N/A,83.41%,0.93,91.6,123.58,93%
+OABI,"Omniab Inc","Medical - Drugs",4.96,+4.64%,2,Buy,"100% Buy",+122.47,+210.00%,3.03,3.75,2.56,4.53,64.91,195.6,156.34,813555,Strongest,Maximum,82.03%,1.2,3.92,5.15,85%
+FRO,"Frontline Plc","Transportation - Ship",49.27,+0.69%,13,Buy,"100% Buy",+116.02,+116.19%,40.69,44.08,38.84,48.85,58.4,101.79,114.03,3238380,"Top 1%",Maximum,26.42%,0.94,44.11,53.58,54%
+TEN,"Tsakos Energy Navigation Ltd","Transportation - Ship",47.25,+0.17%,12,Buy,"88% Buy",+108.07,+112.65%,41.29,43.28,40.31,47.43,54.85,98.25,98.98,370349,Strongest,Strong,28.71%,1.19,41.26,53.59,49%
+HNGE,"Hinge Health Inc Cl A","Medical Information Systems",97.24,+2.13%,10,Buy,"100% Buy",+104.71,+98.13%,78.55,87.72,66.74,92.98,60.56,83.73,97.57,1536580,Strongest,Strong,75.42%,0.9,88.58,97.39,98%
+NTAP,"Netapp Inc","Computer - Storage Devices",210.08,+0.43%,7,Buy,"100% Buy",+92.11,+77.34%,171.62,190.13,148.86,194.12,66.83,62.94,84.4,2613780,Strongest,Maximum,91.19%,1.3,177.83,210.41,99%
+DHT,"Dht Holdings","Transportation - Ship",22.57,+0.67%,13,Buy,"100% Buy",+91.25,+88.87%,18.82,20.04,18.6,21.77,63.47,74.47,73.08,3607896,"Top 1%",Strong,56.74%,1.14,20.05,23.49,73%
+ANL,"Adlai Nortye Group Ltd ADR","Medical - Biomedical",16,+2.24%,8,Buy,"100% Buy",+89.49,+789.53%,12.67,14.19,12.01,15.4,58.29,775.13,1014.99,466561,Strongest,Good,46.25%,0.6,14.26,16.53,77%
+MTRN,"Materion Corp","Mining - Misc",269.59,+0.38%,8,Buy,"100% Buy",+84.52,+123.15%,245.09,249.69,216.87,252.73,62,108.75,105.08,275247,Strongest,Good,89.94%,0.78,234.74,270.72,97%
+TRMD,"Torm Plc Cl A","Transportation - Ship",38.05,+5.26%,10,Buy,"100% Buy",+81.69,+84.53%,30.98,32.42,30.42,35.47,67.03,70.13,82.56,886732,"Top 1%",Maximum,64.80%,1.64,33,37.94,102%
+RVTY,"Revvity Inc","Medical Services",152.89,+0.08%,9,Buy,"100% Buy",+81.34,+74.43%,114.98,126.28,106.65,139,74.91,60.03,46.26,1470433,Strongest,"Top 1%",93.48%,2.38,117.92,160.08,83%
+RSKD,"Riskified Ltd Cl A","Internet - Software",7.91,+2.59%,7,Buy,"100% Buy",+78.63,+69.02%,5.53,6.11,5.13,6.75,73.77,54.62,47.38,1073122,"Top 1%","Top 1%",83.05%,2.31,5.38,8.12,92%
+IDT,"IDT Corp","Diversified Comm Services",79.97,+5.84%,9,Buy,"100% Buy",+78.18,+52.88%,62.12,67.97,58.16,69.96,80.26,38.48,44.39,188894,"Top 1%","Top 1%",79.76%,3.26,64.23,75.68,137%
+MASS,"908 Devices Inc","Medical Instruments",12.34,+4.14%,9,Buy,"100% Buy",+76.78,+40.87%,8.94,9.78,8.18,10.59,71.75,26.47,123.28,355129,"Top 1%","Top 1%",97.72%,0.96,8.89,12.29,102%
+BLTE,"Belite Bio Inc ADR","Medical - Biomedical",169.82,+1.90%,5,Buy,"72% Buy",+74.30,+129.49%,156.07,165.5,159.12,172.99,51.38,115.09,-5.61,193552,Strongest,Weak,16.53%,0.77,156.92,189.06,40%
+CTKB,"Cytek Biosciences Inc","Medical - Biomedical",5.96,+3.47%,11,Buy,"88% Buy",+73.11,+71.76%,4.49,4.79,4.49,5.16,77.25,57.36,6.25,1048417,Strongest,Strong,94.45%,1.3,4.21,6.12,92%
+CVI,"Cvr Energy Inc","Oil - Refining and Marketing",50.99,+0.83%,12,Buy,"100% Buy",+69.83,+39.78%,36.56,41.5,34.65,49.85,65.7,25.38,88.66,1169247,Strongest,Maximum,47.49%,1,43.31,56.39,59%
+HAFN,"Hafnia Ltd","Transportation - Ship",9.94,+2.79%,11,Buy,"100% Buy",+67.31,+65.94%,8.04,8.4,8,9.34,65.81,51.54,74.72,1750997,"Top 1%",Maximum,68.25%,1.76,8.63,10.06,92%
+BRKR,"Bruker Corp","Industrial Scientific",64.75,+0.37%,8,Buy,"100% Buy",+66.43,+99.29%,56.74,58.83,50.22,59.67,61.75,84.89,25.67,2317317,Strongest,Strong,88.55%,0.94,52,67.35,83%
+PBR,"Petroleo Brasileiro S.A. Petrobras ADR","Oil - International Integrated",20.87,+1.07%,6,Buy,"96% Buy",+66.01,+64.85%,18.79,19.47,19.18,20.87,56.87,50.45,64.35,22096961,Strongest,Average,29.24%,1.31,20.16,21.57,50%
+P,"Everpure Inc","Technology Services",130.78,+0.56%,11,Buy,"100% Buy",+64.77,+56.04%,88.09,99.56,80.47,107.47,73.53,41.64,83.39,3734034,Strongest,"Top 1%",94.25%,0.65,81.59,133.34,95%
+PBR.A,"Petroleo Brasileiro S.A. Petrobras ADR","Emerging Markets Integrated",18.99,+1.06%,7,Buy,"100% Buy",+62.27,+60.66%,16.88,17.5,17.31,18.9,58.84,46.26,56.73,9419116,Strongest,Good,32.98%,1.26,18.34,19.45,58%
+CNXN,"PC Connection Inc","Retail - Wholesale Computers",90.23,+0.83%,11,Buy,"100% Buy",+59.02,+45.56%,77.2,83.22,71.95,86.19,72.21,31.16,44.45,112236,Strongest,Maximum,90.06%,1.09,80.99,91.39,89%
+GRDN,"Guardian Pharmacy Services Inc Cl A","Medical - Drugs",40.78,+0.25%,12,Buy,"72% Buy",+57.48,+55.47%,40.3,40.81,38.91,43.08,44.24,41.07,23.76,417085,Weakening,Average,7.81%,1.05,38.34,47.82,26%
+KOD,"Kodiak Sciences Inc","Medical - Biomedical",94.8,+4.04%,5,Buy,"100% Buy",+54.90,+479.11%,39.23,41.45,37.93,42.37,90.54,464.71,227.29,1106177,"Top 1%",Strong,92.76%,3.01,0.6,84.15,113%
+S,"Sentinelone Inc Cl A",Security,23.76,+1.93%,7,Buy,"100% Buy",+54.48,+34.92%,19.11,21.23,17.38,22.03,59.69,20.52,46.63,8129799,"Top 1%",Maximum,77.98%,1.12,18.46,25.61,74%
+FFIV,"F5 Inc","Internet - Software",445.18,+1.62%,11,Buy,"100% Buy",+52.86,+37.75%,402.57,409.23,367.96,423.93,61,23.35,62.63,767136,Strongest,Strong,66.45%,0.71,378.81,469.05,74%
+SDGR,"Schrodinger Inc","Medical Information Systems",31.05,+2.37%,10,Buy,"100% Buy",+51.41,+54.79%,17.76,20.7,15.89,25.26,74.12,40.39,61.89,1405013,"Top 1%","Top 1%",87.99%,2.42,15.73,34.8,80%
+EPRX,"Eupraxia Pharmaceuticals Inc","Medical - Biomedical",9.1,+9.57%,9,Buy,"72% Buy",+50.39,+54.24%,6.95,7.27,7.09,8.22,68.12,39.84,8.76,307591,Strongest,Strong,60.59%,2.53,7.5,8.94,111%
+FEIM,"Frequency Elcts Inc","Industrial Controls",84.53,+0.45%,5,Buy,"100% Buy",+48.14,+149.28%,68.94,72.03,62.98,78.29,59.07,134.88,45.23,256112,Strongest,Strong,69.50%,1.03,56.31,100.28,64%
+ELPC,"Companhia Paranaense DE Energia [Copel] ADR","Utility - Electric Power",12.42,+1.97%,6,Buy,"88% Buy",+37.65,+38.62%,11.69,11.72,11.87,12.4,56.68,24.22,18.83,358132,Strongest,Average,31.67%,1.25,12.02,12.77,53%
+XP,"XP Inc Cl A","Finance - Misc Services",21,+3.58%,7,Buy,"72% Buy",+27.77,+11.73%,17.31,18.13,18.06,20.16,65.83,-2.67,16.48,6011178,Strongest,Good,60.44%,1.79,19.12,21.2,90%
+VGZ,"Vista Gold Corp","Mining - Gold",2.71,+1.12%,5,Buy,"88% Buy",+23.44,+27.23%,2.16,2.23,2.15,2.43,65.84,12.83,25.79,1879630,Strongest,Average,76.02%,1.78,1.92,2.93,78%
+FPI,"Farmland Partners Inc","REIT - Equity Trust Other",11.35,+2.34%,8,Buy,"56% Buy",+10.10,+4.32%,10.12,10.25,10.63,10.8,70.78,-10.08,5.36,506758,Strengthening,Weak,75.05%,2.73,10.42,11.18,122%
+HCM,"Hutchmed China Ltd ADR","Medical - Biomedical",14.63,+3.39%,5,Buy,"56% Buy",-0.24,-7.11%,11.98,12.67,12.75,13.78,63.83,-21.51,-2.02,49163,Strongest,Average,79.80%,1.07,12.63,14.94,86%
+LUXE,"Luxexperience B.V. ADR","Textile - Apparel",9.91,+3.12%,5,Buy,"72% Buy",-4.25,+16.59%,7.88,8.18,8.14,8.54,67.4,2.19,6.91,249064,Strongest,Strong,84.63%,0.85,6.47,10.61,83%
+ALMR,"Alamar Biosciences Inc Cl A","Medical - Biomedical",34.07,+4.35%,4,Buy,N/A,N/A,N/A,26.75,30.43,0,31.26,59.83,N/A,N/A,N/A,N/A,N/A,55.76%,1.93,26.73,35.79,81%
+"Downloaded from Barchart.com as of 09-30-2026 09:18pm CDT"
