@@ -1,0 +1,44 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+LITE,"Lumentum Holdings","Communications Components",1133.4,+3.82%,6,Buy,"100% Buy",+384.51,+605.73%,870.95,894.03,849.35,959.99,70.07,589.73,193.28,5372886,Strongest,Strong,94.66%,0.88,808.96,1111.02,107%
+HPE,"Hewlett Packard Enterprise","Computer - Integrated Systems",70.48,+3.10%,9,Buy,"100% Buy",+238.11,+184.31%,50.75,56.59,42.32,61.92,69.59,168.31,179.2,21064449,"Top 1%",Maximum,91.96%,0.78,53.57,70.26,101%
+SILC,"Silicom Ltd","Computer - Networks",61.65,+0.78%,11,Buy,"100% Buy",+206.01,+249.29%,44.47,45.42,38.6,49.3,75.82,233.29,305.17,125645,Strongest,Strong,94.16%,0.66,36.54,62.05,98%
+SMTC,"Semtech Corp","Semi Analog & Mixed",197.2,+2.27%,8,Buy,"100% Buy",+202.68,+189.28%,148.42,148.81,130.33,175.08,66.36,173.28,153.39,2731307,Strongest,Maximum,85.33%,0.71,148.88,201.27,92%
+AMD,"Adv Micro Devices","Computer - Integrated Systems",649.42,+2.80%,12,Buy,"100% Buy",+202.26,+218.80%,514.14,518.82,432.69,581.38,72.16,202.8,189.02,32308887,Strongest,Strong,91.80%,1.07,475.21,687.56,82%
+CRWD,"Crowdstrike Holdings",Security,278.86,+2.27%,16,Buy,"100% Buy",+167.68,+124.91%,201.13,223.56,170.4,248.7,72,108.91,123.74,12651904,"Top 1%","Top 1%",91.24%,0.8,207.34,290.07,86%
+OKTA,"Okta Inc Cl A",Security,218.67,+0.17%,13,Buy,"100% Buy",+164.57,+133.35%,145.58,167.97,122.6,196.01,71.44,117.35,138.67,3538217,Strongest,"Top 1%",88.46%,0.85,166.09,225.93,88%
+PANW,"Palo Alto Networks",Security,419.91,+3.23%,12,Buy,"100% Buy",+135.83,+97.53%,332.2,365.57,278.94,378.79,67.48,81.53,113.74,8176792,"Top 1%",Maximum,88.97%,0.88,332.86,424.72,95%
+FTNT,"Fortinet Inc",Security,191.27,+3.88%,12,Buy,"100% Buy",+131.30,+121.43%,156.16,165.06,132.82,173.77,72.18,105.43,126.64,5915456,Strongest,Maximum,93.46%,0.91,156.9,190.64,102%
+SSL,"Sasol Ltd ADR","Oil - International Integrated",14.29,+1.71%,4,Buy,"100% Buy",+128.92,+130.48%,12.24,12.72,12.28,14.17,61.15,114.48,105.29,1904355,Strongest,Good,55.74%,1.19,13.43,14.91,58%
+NTAP,"Netapp Inc","Computer - Storage Devices",228.45,+2.09%,9,Buy,"100% Buy",+119.24,+89.71%,175.85,194.62,152.17,201.75,74.8,73.71,99.11,2648532,"Top 1%",Maximum,87.18%,1.1,175.91,227.59,102%
+KEYS,"Keysight Technologies","Electronics - Measuring Inst",388.03,+1.00%,12,Buy,"100% Buy",+118.68,+123.85%,336.68,336.9,329.63,349.48,74.9,107.85,76.75,1386975,Strongest,Good,95.43%,1.21,304.59,394.37,93%
+CVI,"Cvr Energy Inc","Oil - Refining and Marketing",57.42,+0.84%,12,Buy,"100% Buy",+110.37,+56.29%,37.43,43.24,35.49,52.17,79,40.29,111.49,1166342,"Top 1%","Top 1%",88.07%,0.82,47.1,57.24,102%
+JILL,"J. Jill Inc","Retail - Apparel & Shoes",24.76,+0.57%,9,Buy,"100% Buy",+98.12,+57.41%,17.9,21.18,16.46,24.05,69.69,41.41,66.25,99847,Strongest,"Top 1%",82.64%,1.83,22.65,25.45,75%
+FROG,"Jfrog Ltd","Internet - Software",98.51,+0.66%,10,Buy,"100% Buy",+95.37,+103.28%,86.54,90.44,73.43,92.68,59.33,87.28,43.5,2721417,Strongest,Strong,81.16%,0.54,85.81,99.56,92%
+XMTR,"Xometry Inc Cl A","Machinery - General Industrial",110.66,+2.75%,7,Buy,"100% Buy",+94.82,+109.78%,91.94,92.82,77.24,97.89,67.65,93.78,71.86,877688,Strongest,Strong,86.89%,1.42,81.83,113.94,90%
+CIX,"Compx International Inc","Office Supply & Forms",39,+2.01%,2,Buy,"100% Buy",+92.41,+66.45%,29.5,33.71,27.47,37.31,61.23,50.45,53.38,8441,Strongest,"Top 1%",61.46%,0.41,35.02,39.6,87%
+WEYS,"Weyco Gp Inc","Shoes and Related Apparel",50.96,+1.53%,9,Buy,"100% Buy",+92.21,+73.69%,41.1,45.17,38.48,46.71,71.96,57.69,52.37,18792,Strongest,"Top 1%",89.66%,0.71,41.94,51.48,95%
+P,"Everpure Inc","Technology Services",147.2,+2.31%,12,Buy,"100% Buy",+88.80,+62.96%,90.41,104.89,82.52,116.17,81.03,46.96,105.45,3747078,"Top 1%","Top 1%",98.15%,0.7,81.25,151.1,94%
+IDT,"IDT Corp","Diversified Comm Services",80.31,+0.29%,8,Buy,"100% Buy",+85.60,+65.45%,63.21,69.22,58.93,72.18,77.45,49.45,42.6,192382,Strongest,"Top 1%",85.22%,1.23,62.7,81.67,93%
+XP,"XP Inc Cl A","Finance - Misc Services",29.73,+5.61%,7,Buy,"88% Buy",+78.92,+73.66%,17.58,18.79,18.16,21.19,89.43,57.66,67.39,6352368,Strongest,Maximum,94.00%,3.11,15.86,26.53,130%
+S,"Sentinelone Inc Cl A",Security,25.8,+1.45%,12,Buy,"100% Buy",+76.58,+44.05%,19.47,21.81,17.7,23.14,68.39,28.05,57.78,8130471,"Top 1%","Top 1%",87.57%,1.13,19.7,26.58,89%
+RBRK,"Rubrik Inc Cl A","Internet - Software",125.8,+2.54%,14,Buy,"100% Buy",+75.25,+53.02%,86.53,98.19,75.35,108.81,72.75,37.02,50.27,3676246,"Top 1%","Top 1%",94.71%,0.76,87.78,129.84,90%
+QLYS,"Qualys Inc",Security,199.93,+0.63%,10,Buy,"100% Buy",+68.49,+54.27%,150.5,176.87,130.32,179.97,64.85,38.27,36.22,737930,"Top 1%",Maximum,92.73%,1.02,157.16,202.77,94%
+DDOG,"Datadog Cl A","Internet - Software",278.24,+0.66%,13,Buy,"100% Buy",+65.86,+76.82%,243.16,245.78,206.33,250.69,70.61,60.82,90.38,5143012,Strengthening,Strong,89.66%,0.42,209.23,292.15,83%
+MTLS,"Materialise NV ADR","Internet - Software",8.56,+0.12%,9,Buy,"100% Buy",+63.69,+34.38%,6.94,7.3,6.37,8.05,72.82,18.38,40.01,129401,Strongest,"Top 1%",79.32%,1.2,7.19,8.92,79%
+FFIV,"F5 Inc","Internet - Software",469.79,+2.46%,13,Buy,"100% Buy",+61.42,+42.79%,406.58,413.97,372.75,437.07,69.63,26.79,69.82,746144,"Top 1%",Maximum,90.50%,0.89,399.81,474.32,94%
+ITUB,"Itau Unibanco Banco Holding S.A. ADR","Banks - Foreign",10.15,+2.32%,7,Buy,"56% Buy",+58.03,+46.63%,8.05,8.07,8.2,8.45,80.27,30.63,27.54,24244504,Strongest,Good,93.88%,2.08,7.34,9.55,127%
+ANET,"Arista Networks Inc","Internet - Software",215.36,+4.09%,6,Buy,"100% Buy",+57.12,+44.05%,179.71,194.97,168.43,201.52,66.82,28.05,50.14,7817144,"Top 1%",Maximum,82.70%,1.14,188.27,214.78,102%
+FEIM,"Frequency Elcts Inc","Industrial Controls",87.13,+1.95%,3,Buy,"100% Buy",+52.54,+127.67%,69.91,73.15,63.88,83.28,61.7,111.67,47.61,249857,"Top 1%",Maximum,57.69%,0.61,69.28,97.27,64%
+DT,"Dynatrace Inc","IT Services",61.05,+1.40%,16,Buy,"100% Buy",+49.39,+24.21%,47.22,52.21,43.86,56.47,74.68,8.21,26.64,6301256,"Top 1%","Top 1%",90.87%,0.78,50.61,62.33,89%
+TENB,"Tenable Holdings Inc","Internet - Software",39.47,+2.48%,4,Buy,"100% Buy",+45.54,+33.24%,33.22,35.4,28.68,35.57,62.38,17.24,53.5,3420670,Strongest,Strong,86.85%,0.8,31.4,39.73,97%
+BBDO,"Banco Bradesco S.A. ADR","Banks - Foreign",4.02,+6.91%,8,Buy,"40% Buy",+39.79,+42.05%,3.11,3.17,3.21,3.22,81.35,26.05,25.85,76030,Strengthening,Good,80.05%,2.41,2.75,3.69,136%
+AMPH,"Amphastar Pharma","Medical - Generic Drugs",25.91,+2.13%,9,Buy,"88% Buy",+31.63,-2.52%,21,22.74,20.81,24.87,62.54,-18.52,-17.47,512466,Strongest,Good,48.74%,0.98,22.48,27.26,72%
+CVLT,"Commvault Systems","Computer - Software",154.98,+0.81%,11,Buy,"100% Buy",+27.14,-13.03%,134.39,138.48,119.06,145.18,63.98,-29.03,9.41,858396,Strongest,Strong,85.69%,0.69,131.64,158.71,86%
+SIG,"Signet Jewelers Ltd","Retail - Jewelry",102.1,+1.20%,7,Buy,"88% Buy",+16.55,+9.06%,89.62,93.72,89.07,101.28,58.34,-6.94,8.97,885174,Strongest,Strong,38.04%,0.59,97.92,104.63,62%
+KE,"Kimball Electrnc","Electronics Products - Misc",28.81,+2.04%,9,Buy,"72% Buy",+10.35,+0.40%,25.28,25.45,25.24,26.47,66.59,-15.6,-10.68,180089,Strengthening,Average,91.67%,0.96,23.36,29.58,87%
+AMC,"AMC Entertainment Holdings","Leisure & Recreation Services",2.95,+5.73%,6,Buy,"100% Buy",+6.21,+1.72%,2.32,2.67,1.99,2.78,56.53,-14.28,74.88,35766777,Strongest,Strong,34.05%,0.68,2.32,3.24,68%
+PLTR,"Palantir Technologies Cl A","Internet - Software",192.07,+1.41%,8,Buy,"88% Buy",+2.60,+6.98%,151.98,172.32,149.71,182.03,64.32,-9.02,-6.16,42502441,Strongest,Strong,81.30%,0.52,164.52,199.54,79%
+LUXE,"Luxexperience B.V. ADR","Textile - Apparel",10,+2.56%,5,Buy,"88% Buy",-1.51,+30.04%,7.95,8.33,8.15,9,66.15,14.04,5.54,250206,Strongest,Strong,83.37%,1.41,6.98,11.03,75%
+ELMT,"The Elmet Group Co.","Aerospace - Defense",23.16,+8.78%,2,Buy,N/A,N/A,N/A,17.45,17.97,0,20.09,63.83,N/A,N/A,N/A,N/A,N/A,67.55%,1.58,16.03,24.14,88%
+PS,"Pershing Square Inc","Finance - Investment Mgmt",59.75,+8.89%,9,Buy,N/A,N/A,N/A,38.84,42.62,0,48.59,67.68,N/A,N/A,N/A,N/A,N/A,80.42%,0.83,33.58,63.61,87%
+"Downloaded from Barchart.com as of 10-06-2026 09:10pm CDT"
