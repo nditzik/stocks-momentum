@@ -1,0 +1,32 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+FOSL,"Fossil Group","Retail - Apparel & Shoes",7,-1.13%,9,Buy,"100% Buy",+167.63,+184.55%,4.91,5.66,4.8,6.12,66.85,169.57,72.73,798810,Strengthening,Maximum,85.05%,0.64,4.64,7.59,80%
+ANDG,"Andersen Group Inc Cl A","Finance - Misc Services",56.24,+1.63%,4,Buy,"100% Buy",+146.29,N/A,45.97,52.65,40.83,54.95,55.99,N/A,103.45,375972,Average,Maximum,71.66%,0.36,52.17,57.73,73%
+TBBB,"BBB Foods Inc Cl A","Consumer Prdts - Misc Staple",53.07,+0.11%,7,Buy,"100% Buy",+111.02,+120.02%,44.56,49.06,41.62,52.26,58.7,105.04,45.5,650983,Average,Maximum,71.18%,0.77,50.01,54.5,68%
+HNGE,"Hinge Health Inc Cl A","Medical Information Systems",98,+0.14%,11,Buy,"100% Buy",+109.61,+82.12%,81.14,90.39,68.87,95.03,60.89,67.14,97.54,1565615,Strengthening,Strong,78.42%,0.48,89.85,100.22,79%
+KEYS,"Keysight Technologies","Electronics - Measuring Inst",374.67,-1.77%,11,Buy,"100% Buy",+108.29,+117.60%,337.13,339.99,330.77,354.45,63.03,102.62,70.95,1379902,Strengthening,Average,84.77%,1.62,309.01,399.9,72%
+MG,"Mistras Group Inc","Electronics Products - Misc",20.7,-0.86%,5,Buy,"100% Buy",+100.48,+112.09%,18.15,19.07,17.59,20.66,56.05,97.11,50.2,220892,Strengthening,Strong,42.35%,0.61,19.35,21.96,52%
+TEVA,"Teva Pharmaceutical Industries ADR","Medical - Generic Drugs",39.25,+0.18%,6,Buy,"100% Buy",+82.65,+94.21%,35.38,37.51,34.16,39.21,55.19,79.23,12.32,6755271,Strongest,Good,36.01%,1.11,37.93,40.48,52%
+RAL,"Ralliant Corporation","Technology Services",71.86,-1.44%,10,Buy,"100% Buy",+76.80,+61.34%,66.99,67.44,59.83,69.72,59.94,46.36,27.71,1615609,Average,Strong,70.49%,2.08,64.78,74.67,72%
+TX,"Ternium S.A. ADR","Steel - Producers",56.47,+0.11%,2,Hold,"96% Buy",+62.15,+52.83%,50.71,55.22,47.66,56.28,53.32,37.85,34.43,391952,Average,Strong,55.72%,0.43,53.83,58.72,54%
+FFIV,"F5 Inc","Internet - Software",461.66,-1.07%,13,Buy,"100% Buy",+57.60,+34.76%,408.59,416.73,375.14,443.33,63.87,19.78,67.42,729513,Strengthening,Strong,86.48%,0.92,411.4,475.25,79%
+MSM,"Msc Industrial Direct Company","Industrial Services",128.92,-1.12%,9,Buy,"100% Buy",+54.09,+44.00%,119.98,122.33,111.96,124.1,63.24,29.02,39.85,712093,Average,Strong,81.09%,1.31,116.26,131.94,81%
+ANET,"Arista Networks Inc","Internet - Software",210.97,-2.25%,10,Buy,"100% Buy",+52.75,+34.07%,181.08,196.95,169.45,203.76,60.04,19.09,47.57,7775413,Strongest,Maximum,85.14%,0.81,190.8,216.73,78%
+OSPN,"Onespan Inc","Internet - Software",18.01,+1.75%,10,Buy,"100% Buy",+50.90,+14.86%,15.6,16.8,14.12,17.82,58.03,-0.12,26.82,539107,Strengthening,Maximum,55.21%,1.27,17.14,18.49,64%
+JCI,"Johnson Controls Intl","Building Products - Wood",154,-1.24%,10,Buy,"100% Buy",+42.15,+42.03%,144.47,147.17,142.25,148.02,59.46,27.05,15.16,4078358,Strengthening,Good,77.51%,0.88,135.9,160.15,75%
+NDSN,"Nordson Corp","Machinery - General Industrial",326.87,-0.25%,10,Buy,"100% Buy",+42.03,+39.50%,303.89,318.07,294.18,322.17,55.41,24.52,22.51,387555,Strengthening,Strong,69.78%,1.05,304.34,339.99,63%
+IEX,"Idex Corp","Machinery - General Industrial",231.75,-0.50%,10,Buy,"88% Buy",+39.31,+38.86%,225,230.52,216.9,228.07,54.35,23.88,16.8,720875,Weakening,Good,68.02%,1.35,218.91,237.23,70%
+CRCT,"Cricut Inc Cl A","Technology Services",6.4,+0.63%,11,Buy,"100% Buy",+35.48,+12.87%,5.07,5.78,4.78,6.05,67.02,-2.11,15.85,598455,Strongest,Maximum,75.11%,0.95,5.34,6.76,75%
+NTNX,"Nutanix Inc","IT Services",73.11,-0.42%,12,Buy,"100% Buy",+33.42,+2.75%,59.38,67.22,53.12,70.1,69.06,-12.23,28,3777197,Strengthening,Strong,88.15%,0.66,65.9,74.3,86%
+LILA,"Liberty Latin America Cl A","Wireless National",8.77,-1.57%,7,Hold,"96% Buy",+30.34,+9.35%,8.01,8.56,8.03,8.64,55.09,-5.63,5.23,467092,Average,Good,79.45%,0.61,8.25,9.03,66%
+LILAK,"Liberty Latin America Cl C","Wireless National",8.72,-1.47%,7,Hold,"88% Buy",+28.97,+6.47%,7.98,8.5,8.06,8.6,54.99,-8.51,3.45,1164368,Weakening,Average,81.71%,1.67,8.21,9,65%
+TTC,"Toro Company","Tools - Hand Held",96.81,+0.40%,6,Buy,"88% Buy",+27.64,+25.78%,94.58,96.57,94.61,95.72,51.56,10.8,9.54,839414,Average,Weak,65.91%,0.76,91.24,100.19,62%
+EMR,"Emerson Electric Company","Machinery - Electrical",159.06,-0.10%,10,Buy,"88% Buy",+26.19,+19.65%,148.39,155.59,144.62,154.97,56.53,4.67,6.41,2916706,Average,Strong,68.73%,0.92,144.8,165.14,70%
+PI,"Impinj Inc","Electronics - Semiconductors",183.45,-3.97%,8,Buy,"100% Buy",+22.87,-13.65%,155.45,173.34,142.07,180.53,55.19,-28.63,-8.02,527851,Strengthening,Strong,68.25%,0.91,171.14,189.93,66%
+CVLT,"Commvault Systems","Computer - Software",151,+0.48%,11,Buy,"100% Buy",+22.67,-15.03%,135.34,139.7,119.9,147.08,57.49,-30.01,7.01,851782,Strengthening,Good,64.06%,1.12,136.74,157.42,69%
+EQH,"Axa Equitable Holdings Inc","Insurance - Multi Line",53.48,+0.47%,8,Buy,"100% Buy",+19.36,+6.34%,48.22,51.69,45.4,53.16,55.08,-8.64,-1.2,3468420,Strengthening,Strong,72.41%,0.86,51.4,54.92,59%
+CRBG,"Corebridge Financial Inc","Insurance - Multi Line",34.45,+0.15%,7,Buy,"100% Buy",+18.52,+7.45%,31.33,33.58,29.36,34.39,53.77,-7.53,0.75,4873738,Average,Strong,72.14%,1.07,33.28,35.5,53%
+FAST,"Fastenal Company","Industrial Services",50.49,+1.32%,5,Buy,"88% Buy",+14.38,+6.18%,48.07,50.11,47.14,50,53.9,-8.8,12.38,7679642,Strengthening,Strong,64.18%,0.98,48.74,51.27,69%
+MSFT,"Microsoft Corp","Computer - Software",522.61,-1.35%,9,Buy,"100% Buy",+11.63,-0.43%,448.34,498.77,431.91,508.13,61.7,-15.41,-5.38,33663391,Strengthening,Strong,80.99%,0.76,484.3,531.95,80%
+HHH,"Howard Hughes Holdings Inc","Real Estate Developers",71.93,+0.11%,7,Buy,"40% Buy",-4.52,-12.99%,67.03,66.33,66.01,67.58,59.99,-27.97,-23.27,492913,Average,Weak,81.75%,0.79,57.52,77.64,72%
+LFCR,"Lifecore Biomedical Inc","Medical - Biomedical",6.43,-0.16%,5,Buy,"24% Buy",-5.51,-6.40%,4.94,4.84,4.91,5.3,74.98,-21.38,-34.83,262655,Weakening,Weak,91.87%,1.46,3.11,7.5,76%
+"Downloaded from Barchart.com as of 10-08-2026 10:05pm CDT"
