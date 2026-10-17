@@ -1,0 +1,23 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+CLMT,"Calumet Inc","Oil - US Integrated",57.75,-0.84%,3,Buy,"100% Buy",+220.63,+204.75%,45.41,52.91,41.04,55.78,59.73,189.21,178.75,1253199,Average,Maximum,83.19%,1.21,51.87,59.69,75%
+VLO,"Valero Energy Corp","Oil - Refining and Marketing",444.71,+0.15%,10,Buy,"100% Buy",+200.44,+184.36%,328.38,381.63,299.77,413.86,66.4,168.82,161.29,3311474,Average,"Top 1%",85.42%,0.7,359.69,468.03,78%
+DINO,"HF Sinclair Corp","Oil - Refining and Marketing",125.29,+0.47%,8,Buy,"100% Buy",+172.94,+147.46%,91.58,105.99,82.34,114.81,71.2,131.92,160.01,2677946,Strengthening,"Top 1%",86.66%,0.7,99.09,130.53,83%
+ECPG,"Encore Capital Group","Finance - Consumer Loans",101.68,-0.90%,3,Buy,"88% Buy",+129.04,+150.88%,93.31,98.96,88.09,98.62,55.68,135.34,75.19,308121,Weakening,Strong,67.55%,0.47,92.84,104.39,77%
+HAE,"Haemonetics Corp","Medical Products",118.28,-2.48%,6,Buy,"100% Buy",+123.93,+137.65%,90.72,105.18,79.93,110.69,66.26,122.11,35.68,817998,Strengthening,Maximum,84.22%,0.66,96.09,125.3,76%
+RXO,"Rxo Inc","Transportation - Services",28.6,-1.58%,13,Buy,"88% Buy",+81.94,+60.31%,24.35,22.55,22.15,24.62,73.85,44.77,114.38,2398739,Average,Good,95.29%,2.01,16.27,32.97,74%
+TX,"Ternium S.A. ADR","Steel - Producers",57.1,+0.39%,2,Buy,"100% Buy",+62.65,+61.71%,51.48,56.09,48.42,56.49,52.6,46.17,37.63,401701,Average,Strong,70.38%,0.84,53.64,59.33,61%
+MSM,"Msc Industrial Direct Company","Industrial Services",130.38,-0.24%,11,Buy,"100% Buy",+55.37,+52.62%,121.46,123.09,113.55,127.09,61.07,37.08,43.14,724391,Average,Strong,83.58%,1.31,119.07,135.12,70%
+PCRX,"Pacira Pharm Inc","Medical - Biomedical",36.34,+0.03%,10,Buy,"100% Buy",+42.18,+59.60%,25.61,26.57,24.93,28.99,84.01,44.06,28.53,857622,Strengthening,"Top 1%",97.96%,0.72,18.18,39.8,84%
+IEX,"Idex Corp","Machinery - General Industrial",235.55,-0.37%,11,Buy,"100% Buy",+38.82,+42.73%,226.7,230.77,218.6,232.15,57.45,27.19,20.49,730307,Average,Good,74.80%,1.09,224.05,240.24,71%
+SIBN,"Si-Bone Inc","Medical Instruments",19.68,-1.16%,7,Buy,"100% Buy",+38.65,+30.33%,17.71,18.97,16.28,19.08,55.97,14.79,-12.09,610833,Strengthening,Strong,75.18%,2.1,17.96,20.21,76%
+A,"Agilent Technologies","Medical Products",172.97,-1.47%,8,Buy,"100% Buy",+35.00,+22.59%,146.32,158.89,135.83,170.55,62.25,7.05,15.23,2262062,Strengthening,Maximum,78.35%,1.25,163.56,177.54,67%
+EMR,"Emerson Electric Company","Machinery - Electrical",161.47,-0.42%,12,Buy,"100% Buy",+26.23,+25.28%,150.03,156.41,145.62,159.06,57.64,9.74,9.77,2951707,Average,Strong,69.74%,1.42,152.63,165.5,69%
+ACCO,"Acco Brands Corp","Consumer Prdts - Misc Discr",4.52,-1.31%,7,Buy,"100% Buy",+25.30,+18.64%,4.18,4.32,3.91,4.37,59.6,3.1,9.29,852964,Strengthening,Strong,74.15%,1.08,4.12,4.62,80%
+FAST,"Fastenal Company","Industrial Services",51.02,+1.27%,9,Buy,"100% Buy",+21.90,+21.59%,48.51,50.39,47.34,50.59,54.18,6.05,15.25,7904987,Strengthening,Strong,71.63%,1.44,49.37,51.81,68%
+EQH,"Axa Equitable Holdings Inc","Insurance - Multi Line",53.21,-0.52%,2,Buy,"100% Buy",+19.93,+12.69%,48.87,52.15,45.99,52.97,52.7,-2.85,-0.22,3506460,Average,Strong,62.34%,1.14,51.41,54.54,58%
+VRSN,"Verisign Inc","Internet Software Services",302.33,-0.58%,4,Buy,"100% Buy",+19.46,+16.38%,283.4,291.4,279.29,294.63,59.6,0.84,12.55,817242,Strengthening,Strong,80.57%,1.18,278.39,310.86,74%
+MSFT,"Microsoft Corp","Computer - Software",529.05,-1.93%,12,Buy,"100% Buy",+12.99,+3.41%,455.4,505.53,437.22,520.22,57.33,-12.13,-2.5,33967418,Average,Maximum,66.11%,1.12,491.47,548.97,65%
+CCC,"CCC Intelligent Solutions Hldgs Inc","Internet - Software",7.61,-0.26%,7,Buy,"88% Buy",+7.95,-13.13%,6.19,7.01,5.9,6.91,65.54,-28.67,-16.17,13663104,Average,Good,80.86%,5.39,6.01,7.81,89%
+LSPD,"Lightspeed Commerce Inc","Internet - Software",10.57,-2.94%,14,Buy,"80% Buy",-1.91,-5.29%,10.09,10.22,9.75,10.09,56.46,-20.83,-24.39,953116,Average,Soft,71.17%,0.91,9.22,10.96,77%
+CNNE,"Cannae Holdings Inc","Finance - Investment Mgmt",15.87,-2.22%,7,Buy,"100% Buy",-3.35,-12.51%,14.99,15.44,14.22,15.64,54.89,-28.05,-11.,542029,Strengthening,Average,74.23%,1.22,15.2,16.07,76%
+"Downloaded from Barchart.com as of 10-16-2026 09:10pm CDT"
