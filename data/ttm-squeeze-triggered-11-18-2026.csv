@@ -1,0 +1,507 @@
+Symbol,Name,Industry,Latest,%Change,"1M #Hi",Trend,Opinion,"Wtd Alpha","52W %Chg","100D MA","50D MA","150D MA","20D MA","14D RSI","1Y vs IDX","YTD vs IDX","200D Avg Vol",Direction,Strength,"14D Stoch %K","50D RelVol","BB Lower","BB Upper",BB%
+ERAS,"Erasca Inc","Medical - Biomedical",13.76,-0.94%,6,Hold,"80% Sell",+216.24,+381.12%,16.55,14.85,15.55,14.82,42.95,370.45,262.91,5452950,Strongest,Weak,27.62%,1.65,13.2,16.45,17%
+CAKE,"Cheesecake Factory","Retail - Restaurants",120.05,+7.23%,4,Buy,"100% Buy",+163.26,+166.90%,103.19,108.25,90.77,110.67,62.69,156.23,130.84,1446563,Strengthening,Strong,69.10%,1.85,104.22,117.13,123%
+AOUT,"American Outdoor Brands Inc","Leisure & Recreational Prdcts",19.4,+1.84%,7,Buy,"100% Buy",+150.17,+201.71%,14.95,17.26,13.22,18.26,66.8,191.04,143.99,114220,Strongest,Maximum,81.90%,1.13,17.04,19.48,97%
+MTC,"Mmtec Inc","Technology Services",5.42,-1.90%,2,Buy,"56% Buy",+123.43,+167.00%,4.35,5.49,4.61,5.5,48.37,156.33,51.5,52332,Weakest,Weak,45.01%,0.26,4.86,6.13,44%
+VAC,"Marriot Vacations Worldwide Cor","Leisure & Recreation Services",116.33,+1.67%,8,Buy,"100% Buy",+107.58,+149.74%,106.8,108.5,98.64,114.14,55.84,139.07,94.67,504666,Average,Strong,73.26%,0.7,107.93,120.36,68%
+OABI,"Omniab Inc","Medical - Drugs",5.08,+0.59%,6,Buy,"100% Buy",+104.08,+215.53%,3.92,4.79,3.31,5.01,54.35,204.86,167.61,976678,Strengthening,Strong,59.70%,0.89,4.64,5.39,59%
+DAO,"Youdao Inc ADR","Technology Services",18.09,-7.09%,3,Hold,"80% Buy",+92.74,+86.69%,16.52,17.38,14.87,19.46,43.3,76.02,72.48,69392,Average,Strong,37.08%,0.63,18.38,20.53,-14%
+AMPL,"Amplitude Inc Cl A","Technology Services",16.89,-0.47%,7,Buy,"88% Buy",+89.81,+71.12%,13.18,15.42,11.11,17.1,53.67,60.45,38.87,2215325,Weakening,Maximum,49.19%,1.28,16.41,17.79,35%
+OPHC,"Optimumbank Hlds","Banks - Southeast",8.25,-5.71%,4,Sell,"24% Buy",+88.86,+98.80%,8.37,8.93,7.43,8.91,36.15,88.13,87.14,67801,Weakest,Weak,35.71%,0.89,8.43,9.39,-19%
+HAE,"Haemonetics Corp","Medical Products",122.86,+1.60%,5,Buy,"100% Buy",+80.77,+65.13%,101.62,114.43,89.48,120.77,57.82,54.46,46.31,803039,Strengthening,Maximum,32.81%,0.71,115.94,125.6,72%
+VRNS,"Varonis Systems Inc",Security,49.23,+0.43%,6,Buy,"100% Buy",+78.15,+49.45%,46.14,48.24,40.95,48.95,57.37,38.78,43.11,2757139,Average,Good,74.42%,1.22,48.68,49.23,100%
+JILL,"J. Jill Inc","Retail - Apparel & Shoes",22.5,+3.93%,1,Sell,"40% Buy",+73.20,+65.20%,20.91,23.63,18.36,22.76,46.86,54.53,57.01,115909,Weakening,Average,22.19%,2.24,21.51,24.01,40%
+CBNA,"Chain Bridge Bancorp Inc Cl A","Banks - Northeast",52.43,+0.61%,13,Buy,"100% Buy",+71.89,+72.35%,47.13,49.38,43.74,51.43,60.96,61.68,44.38,14188,Strengthening,Maximum,86.65%,0.7,49.87,52.99,82%
+ELF,"E.L.F. Beauty Inc","Cosmetics & Toiletries",113.77,+2.30%,7,Hold,"80% Buy",+69.81,+55.72%,98.46,107.85,85.51,114.3,51.63,45.05,42.64,2498428,Weakening,Strong,46.61%,0.74,108.91,119.69,45%
+KRSA,"Korsana Biosciences Inc","Medical - Biomedical",33.27,+2.37%,2,Buy,"88% Buy",+69.59,+234.71%,29.13,31.97,26.73,31.43,57.56,224.04,267.26,243175,Strengthening,Good,70.96%,1.81,29.43,33.42,96%
+EPC,"Edgewell Personal Care","Consumer Prdts - Misc Staple",28.25,+1.00%,6,Hold,"64% Buy",+68.11,+67.46%,27.9,27.84,25.64,28.46,49.79,56.79,58.71,734511,Average,Average,41.14%,0.91,27.19,29.74,42%
+CHEF,"The Chefs Warehouse","Food - Misc & Diversified",103.91,-0.66%,2,Sell,"8% Buy",+66.90,+79.81%,107.03,108.82,98.15,105.39,44.2,69.14,59.73,542995,Weakening,Weak,43.21%,0.53,101.09,109.7,33%
+TLYS,"Tilly's Inc","Retail - Apparel & Shoes",4.22,+3.43%,2,Sell,"24% Buy",+65.81,+232.28%,4.2,4.39,4.29,4.24,47.51,221.61,105.08,703831,Weakest,Minimum,26.92%,0.37,4.05,4.43,45%
+MSGE,"Madison Square Garden Entmt Corp","Media Conglomerates",80.62,+1.00%,6,Sell,"72% Buy",+59.08,+69.76%,78.75,79.46,75.71,78.99,54.6,59.09,42.62,423288,Average,Average,75.74%,0.66,76.26,81.72,80%
+SYNA,"Synaptics Inc","Electronics - Semiconductors",117.67,+0.26%,4,Buy,"88% Buy",+58.88,+96.61%,110.11,111.44,113.73,117.55,58.82,85.94,51.99,944880,Average,Weak,53.15%,1.09,116.58,118.51,56%
+CBLL,"Ceribell Inc","Medical Products",25.63,-1.31%,5,Buy,"88% Buy",+58.39,+94.17%,23.23,25.61,21.81,26.95,45.44,83.5,9.89,373394,Weakening,Strong,59.02%,0.85,25.56,28.34,2%
+PRSU,"Pursuit Attractions and Hospitality Inc","Leisure & Recreation Services",53.7,+1.63%,6,Hold,"80% Buy",+57.34,+61.65%,51.59,52.67,49.33,54.88,48.11,50.98,52.46,252066,Strengthening,Average,46.54%,1.08,52.48,57.28,25%
+RBKB,"Rhinebeck Bancorp Inc","Banks - Northeast",12.97,-0.15%,8,Buy,"88% Buy",+57.01,+85.47%,12.7,12.95,12.34,13.02,48.12,74.8,44.08,74872,Weakening,Average,32.96%,0.82,12.73,13.3,42%
+ALKS,"Alkermes Plc","Medical - Biomedical",46.85,+3.08%,7,Buy,"40% Buy",+55.24,+60.12%,46.97,43.71,44.61,45.64,58.45,49.45,60.46,2089688,Average,Weak,54.01%,0.68,43.47,47.81,78%
+LQDT,"Liquidity Services","Auction Valuation Services",43.97,+0.73%,8,Buy,"88% Buy",+54.22,+94.73%,42.03,43.76,40.03,44.8,47.96,84.06,38.09,205307,Weakening,Strong,23.70%,1.36,43.19,46.41,24%
+AMTB,"Mercantil Bank Holding Cl A","Banks - Southeast",28.92,-1.57%,6,Sell,"56% Buy",+53.26,+69.12%,28.71,29.47,26.87,29.92,40.68,58.45,41.25,326036,Weakest,Average,24.84%,0.71,29.16,30.69,-15%
+EHLD,"Euroholdings Ltd","Transportation - Ship",12.05,+1.28%,7,Hold,"64% Buy",+53.05,+65.85%,10.63,12.22,9.9,11.66,54.27,55.18,70.23,6838,Average,Good,51.92%,0.22,11.15,12.18,88%
+GCBC,"Greene Bancorp Inc","Finance - Savings & Loan",34.69,-1.06%,4,Hold,"64% Buy",+51.72,+58.04%,34.56,35.08,31.74,35.78,42.38,47.37,49.07,27697,Weakest,Average,11.06%,0.93,34.86,36.7,-9%
+ACOG,"Alpha Cognition Inc","Medical - Biomedical",8.6,+8.59%,5,Sell,"8% Buy",+50.37,+38.04%,8.68,8.66,7.86,8.5,51.23,27.37,25.33,86455,Weakest,Weak,26.75%,2.53,7.78,9.22,57%
+FTK,"Flotek Industries","Chemical - Specialty",25.22,+1.41%,8,Sell,"24% Buy",+50.14,+73.93%,26.69,26.72,24.48,24.92,48.97,63.26,39.39,376035,Weakest,Weak,39.87%,1,22.84,27.01,57%
+UVE,"Universal Insurance Holdings Inc","Insurance - Proprty & Casualty",48.4,-0.60%,5,Buy,"100% Buy",+50.14,+43.24%,44.25,46.01,42.29,48.06,56.19,32.57,36.22,202412,Average,Maximum,61.16%,1.2,46.33,49.8,60%
+TWIN,"Twin Disc Inc","Machinery - General Industrial",23.34,+1.21%,5,Sell,"24% Buy",+49.35,+61.52%,24.25,25.26,22.35,24.32,43.23,50.85,32.95,86113,Weakest,Weak,17.18%,0.86,22.68,25.97,20%
+BIIB,"Biogen Inc","Medical - Biomedical",251.41,+0.25%,5,Buy,"100% Buy",+49.01,+48.91%,222.44,235.54,212.91,251.04,56.64,38.24,35.87,1168573,Strengthening,Maximum,53.73%,0.95,245.05,257.03,53%
+WSM,Williams-Sonoma,"Retail - Home Furniture",260.09,+4.02%,6,Buy,"100% Buy",+48.58,+43.89%,237.87,243.43,225.19,256.21,55.62,33.22,38.66,1146551,Strongest,Strong,35.58%,1.77,245.33,267.09,68%
+VOR,"Vor Biopharma Inc","Medical - Biomedical",17.83,-1.93%,5,Sell,"24% Sell",+48.47,+95.50%,20.54,19.62,18.64,19.37,39.89,84.83,29.33,1021373,Average,Weak,12.22%,0.79,17.75,20.99,2%
+EBAY,"Ebay Inc","Internet Commerce",121.46,+2.42%,6,Buy,"100% Buy",+47.91,+48.43%,112.14,115.17,110.99,121,54.79,37.76,32.47,4908461,Strongest,Strong,31.86%,1.11,117.21,124.78,56%
+ATLO,"Ames Natl Corp","Banks - Midwest",33.14,-0.51%,8,Buy,"88% Buy",+47.82,+57.96%,31.77,32.78,30.82,33.91,46.59,47.29,37.36,48209,Weakening,Good,18.89%,1.07,33.18,34.64,-3%
+CPAC,"Cementos Pacasmayo S.A.A ADR","Building - CMT & CNT & AG",12.83,-0.23%,8,Buy,"100% Buy",+47.51,+77.70%,12.26,12.54,11.79,12.8,59.65,67.03,16.15,48196,Weakening,Average,67.13%,8.78,12.65,12.94,61%
+CNK,"Cinemark Holdings Inc","Movie & TV Production & Dist",39.73,-1.73%,6,Buy,"88% Buy",+46.85,+31.64%,36.22,38.01,34.01,39.95,51.37,20.97,63.98,2256986,Weakening,Strong,72.60%,0.84,38.19,41.72,44%
+HBT,"Hbt Financial Inc","Banks - Northeast",35.94,-0.86%,7,Hold,"64% Buy",+46.61,+57.08%,35.49,36.23,33.27,36.92,43.56,46.41,32.05,117362,Weakest,Average,12.65%,0.99,35.9,37.94,2%
+ASRV,"Ameriserv Financial","Banks - Northeast",4.66,+3.10%,11,Hold,"72% Buy",+45.39,+52.29%,4.58,4.66,4.33,4.76,48.48,41.62,39.1,15880,Weakening,Average,59.36%,2.3,4.52,4.99,30%
+MBX,"Mbx Biosciences Inc","Medical - Biomedical",53.42,+0.60%,7,Sell,"8% Buy",+44.31,+102.66%,59.3,55.22,51.24,53.33,48.54,91.99,62.39,618966,Weakest,Minimum,51.44%,1.26,48.46,58.21,51%
+FMAO,"Farmers & Merch Banc","Banks - Northeast",35.71,-1.05%,7,Buy,"72% Buy",+44.16,+51.89%,34.34,35.76,32.16,36.6,45.1,41.22,37.48,67024,Weakest,Good,31.28%,1.86,35.77,37.42,-4%
+RAL,"Ralliant Corporation","Technology Services",66.57,-1.07%,6,Sell,"24% Buy",+43.50,+45.48%,68.2,69.11,64.77,68.46,45.21,34.81,23.78,1652479,Weakest,Weak,45.47%,0.81,63.99,72.93,29%
+CZFS,"Citizens Fincl Svcs","Banks - Northeast",82.32,-1.01%,8,Hold,"80% Buy",+43.09,+49.78%,79.94,82.06,75.26,84.94,43.85,39.11,37.39,21209,Weakening,Strong,18.20%,0.72,82.64,87.25,-7%
+UMBF,"UMB Financial Corp","Banks - Midwest",131.57,+0.30%,9,Buy,"72% Buy",+43.06,+89.45%,117.93,133.61,107.61,134.74,45.81,78.78,64.57,862227,Weakening,Strong,20.06%,0.91,131.11,138.38,6%
+TTRX,"Turn Therapeutics Inc","Medical - Biomedical",8.89,+3.98%,2,Sell,"8% Buy",+42.88,+199.33%,10.47,11.51,8.6,9.84,39.87,188.66,118.65,72028,Weakest,Minimum,16.87%,0.42,8.42,11.27,17%
+AFRI,"Forafric Global Plc","Agriculture Operations",13.02,+1.01%,10,Buy,"100% Buy",+42.52,+33.86%,11.31,11.97,10.88,12.63,60.72,23.19,11.11,19712,Strongest,"Top 1%",60.81%,3.71,11.9,13.35,78%
+SOPH,"Sophia Genetics Sa","Medical Information Systems",7.47,+0.27%,9,Hold,"64% Buy",+42.04,+82.64%,7.25,7.62,6.53,7.45,49.84,71.97,52.98,358213,Weakening,Average,63.89%,0.9,6.67,8.22,52%
+NSYS,"Nortech Systems IN","Electronics - Misc Components",11.46,-2.39%,6,Buy,"56% Sell",+41.45,+63.71%,12.28,11.04,13.11,10.91,54.25,53.04,47.36,17913,Weakening,Weak,42.40%,0.84,9.93,11.89,78%
+PBAM,"Private Bancorp of America Inc","Banks - Southwest",82.9,-1.07%,5,Sell,"24% Buy",+40.74,+49.10%,84.61,86.23,80.79,85.37,41.09,38.43,37.12,39602,Weakest,Weak,11.41%,0.47,82.91,87.83,0%
+OBT,"Orange County Bancor","Banks - Northeast",39.12,+0.05%,7,Buy,"88% Buy",+40.68,+55.05%,38.08,38.23,37.02,39.3,51.43,44.38,30.04,63641,Average,Average,46.70%,0.7,37.84,40.76,44%
+CAC,"Camden Natl Corp","Banks - Northeast",58.09,-0.15%,8,Buy,"88% Buy",+40.18,+52.19%,56.91,57.43,54.64,58.47,49.93,41.52,26.93,96959,Weakening,Average,56.47%,0.73,57.19,59.74,35%
+MAN,"Manpower Inc",Staffing,45.18,-0.31%,5,Sell,"8% Sell",+39.83,+62.46%,51.67,50.49,44.75,46.01,41.63,51.79,44.99,1137152,Weakening,Minimum,41.12%,0.53,44.42,47.61,24%
+SLAB,"Silicon Labs Inc","Semi Analog & Mixed",221.33,-0.08%,7,Hold,"64% Buy",+39.62,+89.67%,219.88,221.39,219.09,221.71,46.97,79,62.36,499141,Weakest,Weak,39.10%,0.97,220.94,222.49,25%
+PRGO,"Perrigo Company","Medical Products",16.94,+7.49%,4,Buy,"100% Buy",+39.39,+26.51%,13.7,15.27,12.8,16.11,61.95,15.84,14.72,3047244,Strongest,Strong,60.94%,1.01,15.31,16.92,102%
+PLBC,"Plumas Bancorp","Banks - West",61.74,+0.06%,7,Hold,"64% Buy",+39.13,+48.38%,61.73,62.4,58.92,63,42.55,37.71,31.17,53337,Weakest,Average,11.69%,0.95,61.7,64.29,1%
+BSVN,"Bank7 Corp","Banks - Southeast",57.07,-0.82%,6,Hold,"80% Buy",+39.09,+40.26%,53.94,56.7,50.75,58.62,44.43,29.59,32.28,27668,Weakest,Strong,16.60%,0.84,57.5,59.75,-19%
+CFBK,"Central Fed Corp","Banks - Northeast",34.52,-1.20%,5,Buy,"72% Buy",+39.05,+50.55%,34.4,34.53,32.6,34.88,46.34,39.88,31.38,50604,Weakening,Average,59.48%,0.83,34.1,35.67,27%
+ACNB,"Acnb Corp","Banks - Southwest",66.4,+0.51%,7,Buy,"100% Buy",+38.14,+42.15%,63.82,64.6,60.57,66.14,55.11,31.48,30.35,63144,Average,Strong,44.98%,1.29,64.57,67.72,58%
+TRV,"The Travelers Companies","Insurance - Proprty & Casualty",391.58,-1.51%,6,Buy,"88% Buy",+37.92,+36.51%,373.68,382.76,350.35,399.25,48.01,25.84,28.02,1622594,Weakening,Strong,28.65%,1.18,390.84,407.66,4%
+FNLC,"First Bancorp Inc","Banks - Northeast",35.75,-0.97%,9,Buy,"88% Buy",+37.68,+44.10%,34.96,35.16,33.22,36.56,47.44,33.43,28.23,29007,Weakening,Good,20.71%,0.66,35.82,37.3,-5%
+JXN,"Jackson Financial Inc Cl A","Insurance - Life",132.6,-0.43%,10,Buy,"72% Buy",+37.48,+45.00%,129.73,133.49,122.9,135.53,45.74,34.33,17.35,668741,Weakening,Good,19.90%,0.59,129.85,141.21,24%
+TTAN,"Servicetitan Inc Cl A","Internet - Software",81.53,+1.10%,6,Buy,"56% Buy",+37.07,-5.24%,78.36,72.82,73.93,82.8,53.03,-15.91,-30.43,1746062,Weakening,Weak,36.62%,0.47,79.02,86.58,33%
+FBLA,"Fb Bancorp Inc","Banks - Southeast",16.85,+0.09%,8,Buy,"100% Buy",+36.81,+39.83%,16.09,16.65,15.46,16.83,53.09,29.16,24.15,104101,Strengthening,Strong,47.68%,0.58,16.41,17.25,52%
+RZLT,"Rezolute Inc","Medical - Biomedical",4.25,+5.85%,8,Sell,Hold,+36.74,-58.17%,4.41,4.05,4.19,3.93,56.34,-68.84,73.1,1935220,Falling,,46.85%,1.66,3.58,4.28,95%
+ABM,"ABM Industries Inc","Business Services",54.7,+1.13%,8,Buy,"100% Buy",+36.18,+35.10%,49.31,51.46,46.66,54.02,60.82,24.43,22.33,505094,Strengthening,Maximum,66.06%,0.85,52.95,55.09,82%
+ANAB,"Anaptysbio Inc","Medical - Biomedical",47.06,+3.18%,2,Sell,"88% Sell",+36.18,+90.73%,53.51,49.18,55.35,47.72,46.99,80.06,38.63,651043,Average,Soft,28.30%,1.16,45.1,50.34,37%
+NECB,"Northeast Community Bancorp","Banks - Northeast",28.4,-2.00%,7,Buy,"88% Buy",+36.16,+45.05%,27.28,27.82,26.45,28.93,47.6,34.38,18.63,43841,Average,Strong,25.61%,1.38,28.1,29.76,18%
+DV,"Doubleverify Holdings Inc","Internet - Software",13.56,-0.07%,11,Buy,"96% Buy",+35.51,+31.78%,12.89,13.51,12.04,13.56,57.59,21.11,11.55,3133415,Weakest,Strong,68.33%,0.55,13.53,13.58,56%
+PRTH,"Priority Techno Holdings Inc","Technology Services",7.91,0.00%,12,Buy,"100% Buy",+35.30,+52.41%,6.85,7.57,6.56,7.88,73.31,41.74,38.16,583683,Average,Maximum,67.88%,0.44,7.81,7.95,73%
+TBCH,"Turtle Beach Corp","Computers - Peripheral Equpt",16.35,+1.55%,8,Buy,"100% Buy",+35.19,+18.22%,13.64,14.62,13.14,16.34,55.1,7.55,9.56,351622,Strongest,Maximum,60.83%,0.86,15.5,17.19,50%
+SWKS,"Skyworks Solutions","Semi Radio Frequency",82.43,-4.07%,10,Buy,"72% Buy",+35.12,+32.27%,74.86,84.51,73.45,85.19,46.02,21.6,23.02,5138120,Weakening,Strong,59.28%,0.42,79.79,90.59,24%
+VGNT,"Versigent Plc","Utility - Electric Power",42.51,+3.68%,2,Sell,N/A,+35.11,N/A,43.95,43.88,43.3,41.63,50.48,N/A,N/A,N/A,N/A,N/A,36.06%,0.74,40.24,43.01,82%
+ASIC,"Ategrity Specialty Insurance Company Holdings","Insurance - Multi Line",25.6,+4.11%,2,Sell,"40% Buy",+34.94,+33.54%,25.35,25.8,23.72,24.22,56.65,22.87,14.87,87956,Weakening,Soft,76.60%,0.95,23.27,25.17,123%
+GDRX,"Goodrx Holdings Inc Cl A","Medical Services",3.36,-3.17%,6,Hold,"48% Buy",+34.76,+20.43%,3.38,3.44,3.12,3.54,43.7,9.76,17.01,1752458,Weakest,Soft,24.83%,0.67,3.38,3.69,-7%
+MET,"Metlife Inc","Insurance - Multi Line",99.79,-1.68%,5,Buy,"88% Buy",+34.41,+32.40%,96.87,99.02,91.93,100.99,47.76,21.73,19.43,3585022,Weakest,Strong,35.05%,1.36,98.14,103.83,29%
+TSBK,"Timberland Bancorp","Finance - Savings & Loan",46.82,-0.47%,8,Buy,"88% Buy",+34.41,+44.77%,45.67,46.32,44.21,47.51,47.62,34.1,23.8,33951,Weakening,Strong,25.64%,1.49,46.49,48.53,16%
+LYV,"Live Nation Entertainment","Movie & TV Production & Dist",181.56,+2.98%,8,Buy,"88% Buy",+34.37,+38.25%,177.17,173.19,173.13,177.28,59.78,27.58,20.43,2543306,Strongest,Average,46.18%,1.48,171.08,183.48,85%
+NIC,"Nicolet Bankshares Inc","Banks - Northeast",169.79,+0.42%,10,Buy,"72% Buy",+34.24,+40.61%,169.53,168.52,161.62,172.77,46.74,29.94,33,207646,Weakening,Average,12.33%,0.9,168.91,176.63,11%
+PAG,"Penske Automotive Group","Retail - Wsale Auto & Trucks",212.43,+0.08%,5,Buy,"72% Buy",+34.01,+35.78%,209.34,209.13,196.23,212.49,55.36,25.11,27.22,379309,Weakening,Average,14.21%,0.55,211.32,213.66,47%
+SRCE,"1st Source Corp","Banks - Midwest",85.55,-0.67%,7,Hold,"48% Buy",+33.75,+42.35%,86.13,86.43,82.4,87.67,42.39,31.68,29.92,128199,Weakest,Soft,10.11%,0.84,85.97,89.36,-13%
+STT,"State Street Corp","Banks - Major Regional",165.15,-1.28%,9,Sell,"24% Sell",+33.52,+45.89%,179.95,174.52,172.57,170.15,38.67,35.22,21.03,2053791,Average,Minimum,25.18%,0.53,164.35,175.95,7%
+TRST,"Trustco Bank Corp NY","Banks - Northeast",56.52,+0.52%,9,Buy,"72% Buy",+33.34,+43.98%,56.19,56.12,54.25,57.01,49.16,33.31,29.77,123924,Weakening,Average,20.08%,1.32,55.43,58.58,35%
+WSFS,"WSFS Financial Corp","Finance - Savings & Loan",77.49,-0.37%,8,Buy,"40% Buy",+32.91,+45.88%,78.71,78.03,76.58,79.27,43.31,35.21,33.3,405566,Weakest,Weak,14.34%,0.91,77.37,81.17,3%
+ORMP,"Oramed Pharma","Medical Products",3.89,+0.52%,4,Sell,"56% Sell",+32.39,+56.22%,4.38,4.3,4.27,4.02,42.68,45.55,29.51,202660,Weakening,Soft,34.95%,1.09,3.76,4.28,25%
+BPRN,"Princeton Bancorp Inc","Banks - Northeast",43.94,-0.11%,5,Hold,"80% Buy",+32.28,+36.37%,42.36,43.75,40.19,44.3,48.65,25.7,19.68,20978,Weakest,Strong,43.12%,1.39,43.22,45.38,33%
+BY,"Byline Bancorp Inc","Banks - Northeast",37.94,-0.71%,7,Buy,"56% Buy",+32.17,+43.49%,38.09,37.84,36.64,38.63,45.71,32.82,23.17,248071,Weakest,Soft,26.56%,1.24,37.82,39.43,8%
+LSBK,"Lake Shore Bancorp","Finance - Savings & Loan",18.68,-0.90%,6,Buy,"88% Buy",+31.94,+32.48%,17.79,18.38,17.2,18.82,51.01,21.81,20.44,14014,Weakening,Strong,50.23%,0.92,18.56,19.08,23%
+BOW,"Bowhead Specialty Holdings Inc","Insurance - Proprty & Casualty",34.31,+0.41%,6,Buy,"100% Buy",+31.86,+23.24%,33.18,33.98,30.94,34.14,58.87,12.57,13.24,250070,Strengthening,Strong,36.23%,0.39,33.95,34.33,94%
+A,"Agilent Technologies","Medical Products",177.33,+2.97%,5,Hold,"96% Buy",+31.67,+23.28%,156.38,169.98,145.19,175.68,55.22,12.61,23.34,2276830,Strongest,Maximum,32.02%,1.11,169.87,181.48,64%
+MOV,"Movado Group Inc","Retail - Jewelry",31.67,+3.09%,2,Sell,"24% Sell",+31.21,+70.64%,34.54,32.42,33.77,31.62,47.87,59.97,46.61,189245,Weakest,Minimum,25.50%,0.63,30.53,32.72,52%
+PKBK,"Parke Bancorp Inc","Banks - Northeast",31.72,-0.75%,6,Sell,"24% Sell",+31.06,+49.76%,33.41,33.07,32.61,32.77,37.19,39.09,19.7,67373,Average,Weak,9.41%,0.89,31.93,33.61,-13%
+PBFS,"Pioneer Bancorp Inc","Banks - Northeast",17.76,-1.11%,4,Hold,"64% Buy",+30.93,+34.24%,17.67,17.95,16.92,18.23,43.63,23.57,24.77,15078,Weakest,Average,13.48%,1.52,17.79,18.67,-4%
+COKE,"Coca-Cola Consolidated Inc","Beverages - Soft",210.12,+2.11%,3,Buy,"100% Buy",+30.92,+30.08%,194.19,201.14,190.7,209.08,53.4,19.41,30.08,536065,Strengthening,Average,41.10%,1.03,202.61,215.55,58%
+WTS,"Watts Water Technologies","Machinery - General Industrial",363.74,+2.01%,7,Hold,"64% Buy",+30.85,+36.30%,358.75,355.34,343.54,356.16,56.02,25.63,24.8,275130,Average,Soft,62.88%,1,343.77,368.54,81%
+MCBS,"Metrocity Bankshares Inc","Banks - Southeast",35.4,-0.53%,8,Buy,"56% Buy",+30.75,+43.26%,35.53,35.34,34.67,36.07,45.38,32.59,26.4,92660,Weakest,Soft,57.98%,1.24,35.38,36.77,2%
+CATY,"Cathay Genl Bncp","Banks - West",63.47,-0.27%,9,Buy,"72% Buy",+30.22,+38.91%,62.47,62.31,60.83,64.83,47.91,28.24,24.18,471507,Weakening,Average,13.38%,0.75,63.48,66.17,0%
+OSBC,"Old Second Bancorp","Banks - Midwest",24.64,-0.48%,3,Sell,"24% Buy",+29.96,+38.04%,24.77,24.86,23.64,24.79,46.03,27.37,19.38,444657,Weakening,Soft,37.98%,1.07,24.19,25.39,37%
+CF,"Cf Industries Holdings",Fertilizers,113.7,-4.73%,8,Sell,"40% Sell",+29.88,+40.15%,121.35,120.3,119.72,119.82,40.31,29.48,40.03,3206819,Average,Weak,44.77%,1,113.4,126.25,2%
+PSMT,"Pricesmart Inc","Retail - Discount",167.31,+0.92%,3,Sell,"56% Sell",+29.48,+44.18%,175.72,168.56,173.35,165.9,51.06,33.51,29.41,249967,Weakening,Weak,54.25%,1,159.71,172.08,61%
+CBK,"Commercial Bancgroup Inc","Banks - Southeast",32.28,-0.31%,9,Buy,"32% Buy",+28.49,+34.50%,33.13,32.28,31.96,32.76,46.25,23.83,24.45,53454,Weakest,Weak,18.99%,0.72,31.91,33.62,22%
+ABBV,"Abbvie Inc","Large Cap Pharma",286.01,-2.33%,5,Hold,"80% Buy",+28.45,+22.29%,266.08,277.85,249.29,290.49,48.54,11.62,18.19,6170128,Average,Strong,46.00%,0.98,282.91,298.08,20%
+MYFW,"First Western Financial Inc","Banks - Midwest",30.91,+0.23%,7,Buy,"40% Buy",+27.99,+34.45%,31.19,30.51,30.43,31.02,50.85,23.78,8.31,43771,Weakest,Weak,33.69%,0.74,30.11,31.94,44%
+GENC,"Gencor Industries IN","Machinery - Thermal Processing",17.51,+0.46%,5,Sell,"72% Buy",+27.45,+35.21%,17.04,17.46,16.27,17.29,52.14,24.54,28.13,40476,Average,Average,63.12%,0.64,16.87,17.7,77%
+FCAP,"First Capital Inc","Finance - Savings & Loan",64.77,-0.40%,8,Buy,"88% Buy",+27.38,+41.64%,62.95,62.92,61.54,64.03,55.34,30.97,2.43,12950,Average,Average,75.13%,0.73,61.95,66.11,68%
+FMBH,"First Mid Ill Bncshr","Banks - Northeast",49.33,-0.86%,9,Hold,"32% Buy",+26.72,+38.18%,50.22,50.09,48.24,50.88,41.42,27.51,19.51,130650,Weakest,Weak,9.77%,0.77,49.71,52.04,-16%
+RBCAA,"Republic Bancorp Inc","Banks - Southeast",88.95,0.00%,5,Sell,"24% Sell",+26.58,+36.61%,93.49,92.41,89.1,91.29,38.41,25.94,21.95,92169,Average,Minimum,6.65%,0.79,89.25,93.32,-7%
+CAL,"Caleres Inc","Shoes and Related Apparel",13.75,+8.01%,8,Buy,"88% Buy",+26.47,+42.19%,12.73,12.76,12.89,13.32,55.9,31.52,6,578989,Strongest,Average,23.13%,0.95,12.45,14.19,75%
+COSO,"Coastalsouth Bancshares Inc","Banks - Southeast",28.16,-0.74%,9,Buy,"88% Buy",+26.47,+33.02%,27.32,27.41,26.85,28.23,52.65,22.35,14.14,100953,Average,Strong,44.21%,0.57,27.51,28.95,45%
+HNI,"Hon Industries Inc","Business Office Products",49.06,+4.94%,5,Buy,"100% Buy",+26.22,+25.51%,46.31,47.3,42.14,48.32,54.49,14.84,9.72,668599,Strongest,Good,31.42%,0.85,46.63,50.01,72%
+M,"Macy's Inc","Retail - Regional Dept Stores",24.88,+6.37%,6,Buy,"88% Buy",+26.17,+27.52%,23.43,23.3,22.75,24.28,54.98,16.85,5.85,6383176,Strongest,Average,33.44%,1.22,23.03,25.52,74%
+YEXT,"Yext Inc","Technology Services",7.43,-0.13%,8,Buy,"88% Buy",+26.13,-10.27%,6.36,6.98,5.55,7.5,52.71,-20.94,-14.8,1829103,Weakening,Good,46.81%,0.86,7.15,7.86,40%
+IHS,"IHS Holding Ltd","Communications Infrastructure",8.46,+0.59%,4,Buy,"100% Buy",+26.11,+33.23%,8.36,8.43,8.32,8.45,53.37,22.56,6.42,1307741,Strongest,Weak,48.15%,0.51,8.4,8.5,61%
+SHBI,"Shore Bancshares Inc","Banks - Northeast",22.05,-0.63%,6,Sell,"24% Sell",+25.95,+41.80%,23.09,22.78,22.23,22.7,39.14,31.13,17.74,224111,Strengthening,Minimum,12.52%,0.82,22.09,23.31,-3%
+CRBG,"Corebridge Financial Inc","Insurance - Multi Line",34.54,-1.12%,8,Buy,"72% Buy",+25.84,+25.10%,33.44,34.77,31.45,35.3,45.76,14.43,7.5,5049400,Weakest,Good,50.45%,0.51,33.91,36.69,23%
+CCC,"CCC Intelligent Solutions Hldgs Inc","Internet - Software",7.69,0.00%,9,Buy,"100% Buy",+25.27,+6.95%,6.87,7.23,6.18,7.68,63.72,-3.72,-10.25,15197078,Average,Good,52.38%,0.66,7.65,7.72,61%
+EZPW,"Ezcorp Inc","Finance - Consumer Loans",26.54,-1.70%,1,Sell,"72% Sell",+25.09,+48.35%,30.94,30.24,31.37,28.47,34.1,37.68,29.68,915382,Strongest,Average,16.30%,1.06,26.59,30.35,-1%
+MBWM,"Mercantile Bank Corp","Banks - Midwest",59.06,-1.04%,7,Hold,"48% Buy",+24.93,+35.03%,59.69,59.84,57.34,60.7,42.29,24.36,15.81,119882,Weakest,Soft,15.20%,0.64,59.39,62,-13%
+EFSI,"Eagle Financial Services Inc","Banks - Southeast",44.98,-0.98%,5,Hold,"64% Buy",+24.86,+28.99%,43.8,45.8,42.37,45.94,40.67,18.32,6.05,38083,Weakest,Strong,19.78%,0.59,45.07,46.81,-5%
+ARXS,"Arxis Inc Cl A","Electronics - Misc Components",53.41,+1.95%,2,Buy,N/A,+24.82,N/A,50.46,50.97,46.61,51.95,55.38,N/A,N/A,N/A,N/A,N/A,71.19%,0.49,48.53,55.36,71%
+KRNY,"Kearny Financial","Finance - Savings & Loan",8.87,-1.33%,8,Sell,"24% Sell",+24.80,+40.35%,9.44,9.26,9.05,9.19,36.92,29.68,12.72,463807,Average,Minimum,17.95%,1.77,8.93,9.44,-12%
+FNRN,"First Northern Community Bancorp","Banks - West",17.33,-0.40%,7,Hold,"16% Buy",+24.77,+31.09%,17.42,17.11,17.36,17.14,53.29,20.42,22.74,103230,Weakest,Minimum,52.49%,0.75,16.27,18.01,61%
+VRSN,"Verisign Inc","Internet Software Services",307.12,+0.46%,8,Buy,"88% Buy",+24.65,+23.03%,290.82,301.41,287.39,308.83,50.61,12.36,19.43,861070,Average,Strong,29.83%,0.59,300.66,317.01,40%
+FULT,"Fulton Financial Cor","Banks - Northeast",23.38,-0.21%,8,Buy,"56% Buy",+24.35,+35.54%,23.68,23.17,23.12,23.76,47.61,24.87,13.97,1848405,Weakest,Weak,17.88%,0.87,23.22,24.31,15%
+MUSA,"Murphy USA Inc","Retail - Convenience Stores",514.92,-3.08%,3,Hold,"32% Sell",+24.10,+39.68%,546.75,523.22,548.54,525.19,45.24,29.01,20.63,317570,Average,Weak,61.67%,0.91,501.73,548.64,28%
+STBA,"S&T Bancorp Inc","Banks - Northeast",49.86,-0.30%,10,Buy,"48% Buy",+23.77,+32.75%,50.15,49.86,48.54,50.92,45.53,22.08,19.73,255446,Weakest,Soft,10.85%,0.64,49.81,52.03,2%
+BPOP,"Popular Inc","Banks - Southeast",153.25,-0.84%,4,Sell,"56% Sell",+23.69,+35.78%,165.06,158.69,160.81,157.73,37.59,25.11,16.09,515997,Strongest,Soft,18.21%,0.66,154.25,161.2,-14%
+CPF,"Central Pacific Financial Company","Banks - West",37.76,-0.29%,10,Buy,"56% Buy",+23.63,+32.35%,37.88,37.31,36.92,38.4,47.23,21.68,14.2,158884,Weakest,Soft,19.95%,1.18,37.34,39.46,20%
+MCB,"Metropolitan Bank Holding Corp","Banks - Northeast",94.15,-0.13%,9,Buy,"56% Buy",+23.62,+36.91%,92.8,91.6,92.28,96.3,48.95,26.24,16.32,148956,Weakening,Weak,48.35%,0.8,94.36,98.24,-5%
+FRPT,"Freshpet Inc CS","Food - Misc & Diversified",67.7,+2.70%,7,Buy,"88% Buy",+23.46,+28.10%,64.22,64,61.33,66.37,54.58,17.43,4.13,1412969,Strongest,Soft,50.42%,1.21,62.36,70.38,67%
+NWFL,"Norwood Financial Corp","Banks - Northeast",34.73,-1.34%,7,Buy,"88% Buy",+23.43,+29.40%,33.93,34.68,32.78,35.76,44.34,18.73,16.83,35652,Weakening,Strong,47.14%,0.84,34.45,37.08,11%
+FCF,"First Commonwealth Financial Corp","Banks - Northeast",20.57,-0.87%,8,Hold,"32% Buy",+23.42,+31.86%,20.9,20.76,20.25,21.04,43.52,21.19,15.02,844010,Weakest,Weak,20.41%,0.93,20.62,21.46,-6%
+AGEN,"Agenus Inc","Medical - Biomedical",6.4,+3.06%,6,Sell,"8% Buy",+23.16,+51.30%,6.87,7.3,5.74,6.72,43.61,40.63,96.84,1874065,Weakest,Weak,17.51%,0.96,6.04,7.4,27%
+III,"Information Svcs Group",Consulting,6,-1.32%,8,Buy,"88% Buy",+23.14,+16.73%,5.16,5.77,4.85,6.1,50.67,6.06,-3.17,258685,Weakening,Strong,65.20%,0.95,5.91,6.29,23%
+SMBK,"Smartfinancial Inc","Banks - Northeast",46.47,-0.58%,2,Sell,"24% Sell",+23.12,+33.50%,49.98,49.72,47.54,48.38,34.36,22.83,18.65,99604,Strengthening,Minimum,8.93%,1.57,46.7,50.06,-7%
+OFG,"OFG Bancorp","Banks - Northeast",50.07,-0.16%,2,Sell,"8% Sell",+23.08,+25.93%,51.58,51.34,49.69,50.95,41.26,15.26,15.2,319886,Average,Minimum,13.84%,1.4,50,51.9,4%
+FFBC,"First Finl Bncp [Oh]","Banks - Midwest",31.79,0.00%,9,Hold,"16% Sell",+22.98,+35.05%,32.92,32.03,32.22,32.6,42.97,24.38,20.08,896553,Weakening,Minimum,6.56%,1.06,31.88,33.32,-7%
+EQH,"Axa Equitable Holdings Inc","Insurance - Multi Line",53.36,-1.15%,7,Buy,"72% Buy",+22.87,+23.81%,51.54,53.76,48.49,54.57,45.58,13.14,5,3469971,Weakest,Good,54.22%,1.22,52.4,56.73,22%
+FUNC,"First United Corp","Banks - Northeast",45.19,-0.15%,9,Buy,"88% Buy",+22.80,+26.02%,44.47,44.62,42.72,46.06,47.89,15.35,13.72,20741,Average,Good,15.90%,0.47,45.11,47.01,4%
+ATRO,"Astronics Corp","Aerospace - Defense Equipment",58.87,+5.22%,3,Sell,"88% Sell",+22.79,+42.46%,69.15,63.42,69.31,58.88,47.13,31.79,23.26,680292,Average,Average,41.43%,0.68,54.03,63.73,50%
+PARK,"Park Dental Partners Inc","Medical Services",18.97,-2.01%,8,Hold,Hold,+22.78,N/A,20.34,20.27,19.66,20.41,41.67,N/A,21.54,32958,Falling,,34.68%,1.62,18.72,22.1,7%
+CIVB,"Civista Bncshrs","Banks - Midwest",27.87,-0.71%,9,Buy,"72% Buy",+22.27,+31.59%,27.83,27.51,27.12,28.44,46.69,20.92,18.45,116850,Weakening,Average,19.33%,0.65,27.82,29.06,4%
+ENVA,"Enova International Inc","Finance - Consumer Loans",169.9,+0.12%,5,Sell,"88% Sell",+22.25,+42.19%,209.22,176.9,198.28,172.29,44.83,31.52,1.1,317253,Average,Soft,26.22%,0.59,163.09,181.5,37%
+QCRH,"Qcr Holdings Inc","Banks - Midwest",99.35,-1.20%,8,Hold,"32% Buy",+21.80,+30.79%,100.74,100.72,97.88,102.41,42.58,20.12,12.29,116649,Weakest,Weak,21.78%,0.89,99.92,104.9,-11%
+DSGR,"Distribution Solutions Group Inc","Industrial Services",35.05,+0.14%,2,Hold,"96% Buy",+21.79,+33.12%,34.02,34.98,31.8,35.01,57.33,22.45,20.99,180348,Average,Good,44.24%,0.67,34.93,35.08,82%
+SFNC,"Simmons First Natl","Banks - Southeast",22.81,-0.78%,10,Hold,"32% Buy",+21.65,+31.24%,23.05,22.95,22.55,23.37,43.44,20.57,14.03,1406484,Weakest,Weak,13.50%,0.7,22.88,23.87,-7%
+TVTX,"Travere Therapeutics Inc","Medical - Biomedical",50.24,-1.68%,3,Sell,"24% Sell",+21.33,+39.56%,57.78,55,54,50.68,43.88,28.89,24.5,1903952,Weakening,Weak,65.54%,0.45,48.6,52.77,39%
+PROV,"Provident Financial","Finance - Savings & Loan",18.57,+0.38%,3,Buy,"88% Buy",+21.31,+23.72%,18.04,18.32,17.71,18.26,67.34,13.05,9.74,10932,Strengthening,Strong,53.20%,1.27,17.99,18.52,109%
+TECH,"Bio-Techne Corp","Medical - Biomedical",72.75,+0.17%,8,Buy,"100% Buy",+21.10,+25.11%,72.23,72.56,65.92,72.71,54.89,14.44,16.72,3389000,Weakening,Good,45.00%,0.85,72.55,72.88,61%
+BFST,"Business First Bancshares Inc","Banks - Northeast",31.54,-0.32%,10,Buy,"88% Buy",+20.98,+29.00%,31.31,31.39,30.29,32.16,44.97,18.33,13.68,208527,Weakening,Good,39.59%,0.79,31.32,33,13%
+LARK,"Landmark Bancorp Inc","Finance - Savings & Loan",32.22,+0.88%,2,Hold,"96% Buy",+20.98,+26.33%,31.71,31.89,30.56,32.18,52.37,15.66,16.04,9047,Average,Average,62.66%,1.02,31.56,32.8,53%
+FBNC,"First Bancorp [Nc]","Banks - Southeast",63.04,+0.45%,8,Buy,"56% Buy",+20.72,+30.11%,63.52,62.82,62.17,64.43,46.84,19.44,17.14,226577,Weakening,Weak,11.42%,0.76,62.82,66.05,7%
+LCNB,"Lcnb Corp","Banks - Northeast",19.33,+0.10%,10,Buy,"72% Buy",+20.68,+26.92%,19.22,19.2,18.36,19.69,47.19,16.25,10.96,30514,Weakening,Average,13.90%,1.03,19.26,20.11,8%
+SAFT,"Safety Ins Group Inc","Insurance - Proprty & Casualty",104.42,+0.06%,14,Buy,"100% Buy",+20.32,+37.09%,98.87,103.93,90.11,104.26,60.27,26.42,27.05,137031,Weakening,Strong,81.03%,1.17,103.89,104.63,72%
+NP,"Neptune Insurance Holdings Inc Cl A","Insurance - Multi Line",29.01,-0.68%,2,Sell,"8% Sell",+20.31,+26.13%,30.49,28.76,29.44,28.73,52.56,15.46,-7.49,623526,Weakest,Minimum,66.50%,0.82,27.75,29.7,65%
+KSPI,"Joint Stock Company Kaspi.Kz ADR","Financial Transaction Services",88.9,-0.24%,5,Sell,"24% Sell",+19.68,+22.10%,94.27,93.51,91.67,90.99,43.27,11.43,6.8,522805,Average,Minimum,32.33%,0.46,87.19,94.78,23%
+JBHT,"J B Hunt Transport","Transportation - Truck",227.4,+1.40%,5,Hold,"64% Sell",+19.49,+40.34%,253.7,231.59,256.95,225.71,49.19,29.67,10.03,987649,Strengthening,Average,67.39%,0.93,217.56,233.85,60%
+QTTB,"Q32 Bio Inc","Medical - Biomedical",8.53,-1.16%,8,Sell,"88% Sell",+19.24,+274.12%,11.99,9.03,10.94,8.84,43.63,263.45,149.95,801772,Strengthening,Soft,22.07%,0.35,8.29,9.4,22%
+BMY,"Bristol-Myers Squibb","Medical - Biomedical",59.56,-2.92%,6,Sell,"24% Sell",+19.00,+26.56%,62.41,61.66,60.63,62.19,40.87,15.89,3.44,11855482,Average,Weak,26.22%,0.92,60.1,64.27,-13%
+CUZ,"Cousins Properties Inc","REIT - Equity Trust Other",29.55,+0.48%,10,Buy,"72% Buy",+18.99,+17.03%,29.41,28.51,28.58,29.43,54.1,6.36,7.64,1827176,Average,Average,63.37%,0.89,28.52,30.33,57%
+HWBK,"Hawthorn Bancshares","Banks - Northeast",39.19,+1.70%,7,Buy,"72% Buy",+18.91,+22.58%,38.93,38.78,38,39.26,51.85,11.91,5.38,12675,Average,Average,35.96%,1.85,38.6,39.92,44%
+UCB,"United Community Banks Inc","Banks - Southeast",36.56,-0.22%,8,Buy,"72% Buy",+18.79,+24.57%,35.47,35.36,34.79,37.12,51.08,13.9,10.12,901412,Average,Good,17.89%,0.65,36.45,37.78,8%
+INNV,"Innovage Holding Corp","Medical Services",8.91,-5.41%,7,Buy,"56% Sell",+18.10,+59.39%,10.31,9.42,9.58,9.27,42.76,48.72,64.7,418055,Strengthening,Weak,48.72%,0.79,8.77,9.78,14%
+CCBG,"Capital City Bank Gr","Banks - Southeast",49.88,-0.18%,9,Buy,"40% Buy",+18.06,+26.41%,50.52,49.97,49.15,50.9,44.39,15.74,10.19,90488,Weakest,Weak,11.97%,1.31,49.83,51.98,2%
+FXNC,"First Natl Corp Strasburg VA","Banks - Northeast",29.53,-1.01%,7,Hold,"16% Buy",+17.96,+26.44%,30.43,30.2,29.74,30.47,41.71,15.77,10.02,54915,Weakest,Weak,21.85%,0.72,29.37,31.57,7%
+ARX,"Accelerant Holdings Cl A","Insurance - Brokers",19.9,+0.20%,13,Buy,"100% Buy",+17.61,+45.26%,17.66,19.8,16.53,19.84,64.34,34.59,14.73,2110838,Strengthening,Strong,69.39%,0.57,19.76,19.93,84%
+IVZ,"Invesco Limited","Finance - Investment Mgmt",28.65,-1.00%,5,Sell,"8% Sell",+17.58,+26.43%,30.07,29.46,29.07,28.44,48.94,15.76,2.08,5227167,Weakening,Weak,63.45%,1.2,27.23,29.65,59%
+RMBI,"Richmond Mutual Bancorp Inc","Banks - Northeast",15.87,+1.02%,5,Buy,"88% Buy",+17.53,+20.87%,15.61,15.58,15.36,15.81,55.03,10.2,6.05,53694,Strengthening,Average,56.95%,0.74,15.54,16.07,62%
+BWB,"Bridgewater Bancshares Inc","Banks - Northeast",20.53,-0.10%,4,Sell,Hold,+17.41,+26.96%,20.99,20.58,20.33,20.53,49.3,16.29,10.13,120884,Falling,,48.21%,1.25,20.19,20.88,50%
+SRBK,"Sr Bancorp Inc","Banks - Northeast",18.57,-0.75%,5,Sell,"56% Sell",+17.12,+23.97%,19.27,18.94,19.07,18.9,42.84,13.3,11,35992,Strengthening,Weak,35.11%,0.88,18.62,19.18,-9%
+TAYD,"Taylor Devices Inc","Machinery - General Industrial",58.63,+2.64%,9,Sell,"8% Sell",+17.04,+27.21%,57.35,58.4,56.31,57.23,53.67,16.54,-6.69,43105,Weakening,Minimum,51.49%,0.43,54.89,59.57,80%
+BOLD,"Boundless Bio Inc","Medical - Biomedical",2.4,-0.41%,4,Sell,"8% Sell",+16.92,+101.68%,2.61,2.54,2.27,2.44,42.34,91.01,93.02,518745,Weakening,Weak,12.48%,1.08,2.36,2.51,27%
+INCY,"Incyte Corp","Medical - Biomedical",117.8,-1.08%,7,Buy,"24% Buy",+16.74,+13.39%,120.01,118.78,113.22,118.95,47.66,2.72,12.29,1696788,Weakest,Weak,55.05%,0.7,114.08,123.83,38%
+BWMX,"Betterware DE Mexico Sapi DE Cv","Consumer Prdts - Misc Discr",17.04,+1.07%,5,Buy,"8% Buy",+16.61,+23.57%,16.72,16.52,16.95,16.82,54.08,12.9,12.94,83642,Weakest,Minimum,67.96%,0.81,15.97,17.67,63%
+AROW,"Arrow Financial Corp","Banks - Northeast",37.18,-1.12%,10,Hold,"32% Sell",+16.35,+27.37%,38.81,37.87,38.32,38.49,40.79,16.7,11.43,87804,Weakening,Weak,11.90%,0.9,37.47,39.51,-14%
+BBT,"Beacon Financial Corporation","Banks - Northeast",30.2,-1.05%,10,Buy,"24% Buy",+15.64,+23.16%,30.24,29.43,30.03,30.69,50.48,12.49,7.54,875404,Weakest,Minimum,22.62%,0.76,29.95,31.43,17%
+HSIC,"Henry Schein Inc","Medical - Dental Suppliers",85.69,+3.32%,3,Hold,"32% Buy",+15.53,+20.35%,86.62,85.65,83.25,85.81,49.7,9.68,6.4,1378830,Weakest,Weak,40.46%,1.44,82.46,89.16,48%
+USB,"U.S. Bancorp","Banks - Major Regional",58.28,-1.52%,9,Hold,"32% Sell",+15.33,+26.92%,61.2,59.29,59.52,60.05,41.87,16.25,2.24,8602711,Average,Minimum,16.67%,0.69,58.65,61.45,-13%
+ZION,"Zions Bancorp","Banks - West",63.69,-0.67%,8,Hold,"32% Sell",+15.13,+29.08%,67.26,64.74,66,65.73,41.19,18.41,1.82,1625489,Average,Weak,14.38%,0.62,64.15,67.31,-15%
+CTBI,"Community TR Bancp","Banks - Southeast",68.05,-0.31%,2,Sell,"40% Sell",+15.05,+28.88%,74.57,73.02,72.07,69.77,36,18.21,13.46,107132,Strengthening,Soft,9.89%,0.6,68.24,71.3,-6%
+NESR,"National Energy Services Reunited Corp","Oil Field Machinery & Equip",20.26,+1.25%,3,Sell,"88% Sell",+15.02,+42.18%,27.59,24.32,26.74,20.66,42.93,31.51,22.39,2255972,Average,Good,42.20%,0.39,19.14,22.18,37%
+BCAL,"California Bancorp","Banks - Southwest",21.39,-0.33%,7,Hold,"48% Buy",+14.17,+17.01%,21.48,21.71,20.72,21.83,42.15,6.34,7.59,205546,Weakest,Average,19.36%,0.76,21.34,22.32,5%
+XPO,"Xpo Inc","Transportation - Truck",188.13,+0.92%,5,Buy,"40% Sell",+14.06,+46.03%,192.5,183.01,199.11,186.56,52.17,35.36,31.44,1394970,Weakening,Weak,62.73%,0.97,177.75,195.37,59%
+INDB,"Independent Bk Corp","Banks - Northeast",82.4,-0.07%,8,Buy,"40% Buy",+14.04,+23.76%,82.81,81.52,81.65,83.96,47.42,13.09,5.77,359690,Weakest,Weak,14.98%,0.56,82,85.91,10%
+BZUN,"Baozun Inc ADR","IT Services",3.29,-2.08%,1,Buy,"88% Buy",+14.01,+11.15%,3.04,3.27,2.93,3.42,44.94,0.48,16.7,285983,Weakening,Strong,47.90%,0.99,3.17,3.67,24%
+UTL,"Unitil Corp","Utility - Electric Power",55.73,+0.72%,9,Buy,"88% Buy",+14.01,+16.20%,53.69,53.53,52.93,55.63,56.74,5.53,8.07,131257,Strengthening,Strong,36.67%,1.22,54.5,56.77,54%
+KWR,"Quaker Chemical Corp","Chemical - Specialty",154.51,+2.27%,3,Sell,"8% Buy",+13.92,+22.09%,158.12,156.29,153.16,154.13,49.4,11.42,5.55,164245,Weakest,Minimum,36.61%,1.14,148.31,159.95,53%
+MPB,"Mid Penn Bancorp Inc","Banks - Northeast",34.72,-0.52%,2,Sell,"8% Sell",+13.74,+23.16%,36.15,35.6,35.12,34.58,45.9,12.49,4.95,150667,Average,Minimum,50.56%,1.52,33.76,35.39,59%
+CE,"Celanese Corp","Chemical - Specialty",48.21,-0.92%,8,Buy,"8% Sell",+13.60,+32.59%,46.32,47.11,49.76,48.91,49.27,21.92,7.05,2043271,Weakest,Minimum,39.07%,0.81,46.26,51.56,37%
+HTLD,"Heartland Express","Transportation - Truck",10.26,+1.68%,2,Sell,"100% Sell",+13.51,+40.93%,12.2,11.01,12.83,10.34,43.75,30.26,6.64,606987,Strongest,Good,24.76%,0.58,9.98,10.69,40%
+WHWK,"Whitehawk Therapeutics Inc","Medical - Biomedical",3.13,+1.62%,6,Sell,"88% Sell",+13.42,+46.26%,3.88,3.45,4.01,3.17,45.89,35.59,22.36,352160,Average,Good,30.44%,0.74,2.95,3.39,41%
+UNTY,"Unity Bancorp Inc","Banks - Northeast",57.05,-0.63%,8,Buy,"40% Buy",+13.37,+20.82%,57.89,57.15,56.75,58.1,46.53,10.15,3.33,54346,Weakest,Weak,14.33%,1.02,56.95,59.25,5%
+CHCO,"City Holding Company","Banks - Southeast",138.88,-0.20%,6,Sell,"40% Buy",+13.15,+17.41%,141.57,141.79,136.23,142.36,39.84,6.74,9.53,119375,Weakest,Weak,8.67%,0.79,139.41,145.32,-9%
+NHP,"National Healthcare Properties Inc Cl A","REIT - Equity Trust Resident",14.85,+2.06%,4,Sell,N/A,+12.54,N/A,15.74,15.53,0,15.23,44.31,N/A,N/A,N/A,N/A,N/A,20.42%,0.97,14.42,16.04,26%
+BFC,"Bank First National Corp [Wisconsin]","Banks - Northeast",144.9,-0.47%,5,Sell,"40% Sell",+12.48,+19.87%,150.55,149.22,148.03,148.58,40.53,9.2,11.97,89952,Average,Weak,14.25%,1.41,144.97,152.18,-1%
+SSB,"Southstate Bank Corporation","Banks - Southeast",102.09,-0.96%,9,Hold,"32% Buy",+12.25,+18.52%,104.23,103.28,101.58,105.11,41.07,7.85,1.5,814671,Weakest,Weak,8.67%,1.16,102.87,107.35,-17%
+SFST,"Southern First Bancs","Banks - Southeast",58.49,-0.54%,5,Sell,"40% Sell",+12.03,+22.06%,61.45,60.57,60.19,60.43,39.98,11.39,6.55,110350,Strengthening,Weak,13.44%,0.73,58.7,62.17,-6%
+ENTX,"Entera Bio Ltd","Medical - Biomedical",3.26,+8.67%,4,Buy,"100% Buy",+11.97,+25.38%,2.75,2.91,2.26,3.1,59.54,14.71,61.06,1011400,Strongest,Strong,32.90%,1.07,2.88,3.32,87%
+OVLY,"Oak Valley Bancp CA","Banks - West",33.25,+0.48%,8,Hold,"16% Buy",+11.81,+19.22%,33.96,34.15,33.85,34.28,40.96,8.55,3.63,30032,Weakest,Minimum,10.26%,1.56,33.32,35.24,-3%
+WHG,"Westwood Holdings Group Inc","Finance - Investment Mgmt",18.7,-0.95%,5,Sell,"8% Sell",+11.75,+17.76%,19.14,18.86,18.39,18.79,47.32,7.09,1.68,16333,Weakening,Weak,23.53%,0.9,18.46,19.13,36%
+W,"Wayfair Inc","Internet Commerce",109.35,+2.20%,6,Hold,"80% Buy",+11.36,+14.13%,102.16,108,92.54,113.49,47.65,3.46,1.92,3379923,Weakening,Strong,11.94%,0.92,106.49,120.5,20%
+JMSB,"John Marshall Bk Fal","Banks - Southeast",22.48,-1.23%,5,Sell,"40% Buy",+11.34,+14.64%,22.9,23.05,22.37,23.14,39.36,3.97,5.48,72202,Weakest,Weak,14.37%,0.83,22.6,23.68,-11%
+AAT,"American Assets Trust","REIT - Equity Trust Retail",21.8,+0.83%,7,Buy,"8% Sell",+11.25,+15.53%,22.59,21.55,22.55,21.66,53.22,4.86,8.18,418692,Weakest,Minimum,46.12%,0.88,21.14,22.17,64%
+NPO,"Enpro Inc","Technology Services",268.95,+1.30%,3,Sell,"88% Sell",+11.15,+32.78%,306.9,290.67,310.83,273.18,43.9,22.11,18.62,229695,Strengthening,Average,26.89%,0.63,257.23,289.14,37%
+CBAN,"Colony Bankcorp Inc","Banks - Southeast",19.86,-1.39%,8,Sell,"88% Sell",+11.05,+22.37%,20.85,20.41,20.61,20.32,41.42,11.7,4.47,224378,Strongest,Soft,20.86%,1.6,19.95,20.68,-12%
+LCU,"Lion Copper Corp","Mining - Misc",4.15,+0.61%,1,Sell,"100% Sell",+10.93,+50.69%,4.86,4.68,5.22,4.37,44.83,40.02,-0.68,5897,Strengthening,Average,14.50%,1.01,3.97,4.77,23%
+AVIR,"Atea Pharmaceuticals Inc","Medical - Biomedical",3.99,+0.76%,2,Sell,"100% Sell",+10.72,+30.82%,4.88,4.7,4.85,4.19,37.62,20.15,4.78,366789,Strongest,Average,23.39%,1.12,3.93,4.44,11%
+ZBIO,"Zenas Biopharma Inc","Medical - Biomedical",26.42,-4.79%,4,Sell,"8% Sell",+10.46,-27.04%,29.56,28.26,26.19,27.89,42.38,-37.71,-34.22,724609,Average,Minimum,37.27%,0.78,26.33,29.45,3%
+ABLV,"Able View Global Inc Cl B","Business Services",2.22,+0.45%,8,Buy,"88% Buy",+10.45,+258.01%,1.44,1.94,1.28,2.39,49.62,247.34,221.67,196790,Average,Strong,34.75%,0.32,1.98,2.8,30%
+ANL,"Adlai Nortye Group Ltd ADR","Medical - Biomedical",8.74,-7.81%,2,Sell,"56% Sell",+10.45,+456.69%,12.71,12.68,12.59,10.12,34.99,446.02,508.51,268804,Strengthening,Soft,24.96%,1.74,8.93,11.3,-8%
+HTB,"Hometrust Bancshares Inc","Banks - Southeast",46.38,-0.09%,8,Buy,"24% Sell",+10.25,+17.84%,47.83,46.84,47.43,47.19,43.78,7.17,1.03,125401,Average,Minimum,18.66%,0.76,46.23,48.16,8%
+TRLV,"Trulieve Cannabis Corp","Medical Products",10.02,-0.50%,6,Sell,"24% Buy",+10.16,+92.69%,10.35,11.02,9.92,10.84,39.92,82.02,8.32,1079774,Weakest,Soft,11.74%,0.5,9.93,11.75,5%
+DMRA,"Damora Therapeutics Inc","Medical - Biomedical",22.98,+1.86%,8,Buy,"24% Sell",+9.96,+10.11%,25.8,21.84,25.14,22.32,54.32,-0.56,-7.11,485022,Weakest,Weak,45.89%,0.91,20.54,24.11,68%
+SGU,"Star Gas Partners LP","Electronics Products - Misc",13.19,+0.30%,4,Buy,"100% Buy",+9.70,+11.97%,12.87,12.96,12.82,13.07,57.55,1.3,4.42,23205,Strongest,Average,66.50%,0.74,12.87,13.27,80%
+BOKF,"Bok Financial Corp","Banks - Southwest",128.17,-0.53%,10,Buy,"56% Sell",+9.67,+22.12%,135.02,129.55,133.96,130.27,44.16,11.45,1.22,288322,Strengthening,Soft,16.64%,0.77,127.85,132.69,7%
+CBT,"Cabot Corp","Chemical - Diversified",74.03,+5.55%,4,Sell,"72% Sell",+9.53,+22.87%,80.82,75.32,81.59,72.97,51.68,12.2,4.71,450439,Weakening,Good,24.94%,1.31,70.09,75.85,68%
+ALCO,"Alico Inc","Agriculture Operations",37.75,+0.40%,8,Sell,"88% Sell",+9.49,+17.78%,39.07,38.13,39.73,37.41,51.12,7.11,-3.21,23642,Average,Average,54.26%,0.74,36.84,37.97,80%
+FCCO,"First Community Corp","Banks - Southeast",31.88,-0.65%,7,Sell,"8% Sell",+9.46,+16.56%,33.22,32.88,32.38,32.9,38.89,5.89,0.54,68590,Weakening,Minimum,19.31%,0.54,32.01,33.79,-7%
+CFG,"Citizens Financial Group","Banks - Northeast",62.03,-1.60%,8,Sell,"88% Sell",+9.19,+23.00%,68.23,65.02,67.03,64.65,38.16,12.33,-0.78,4455427,Strongest,Average,12.27%,0.8,62.71,66.6,-17%
+WLKP,"Westlake Chemical Partners LP","Chemical - Specialty",21.09,-1.22%,7,Hold,"80% Sell",+9.10,+17.82%,21.55,21.28,22,21.29,46.34,7.15,4.02,30424,Average,Soft,30.19%,0.6,20.79,21.79,30%
+SFBS,"Servisfirst Bancs","Finance - Savings & Loan",40.17,-0.12%,8,Buy,"40% Sell",+9.09,+17.65%,42.13,40.52,41.3,40.94,45.15,6.98,4.93,597786,Average,Weak,15.74%,0.88,39.9,41.99,13%
+IBCP,"Independent Bank Corp","Banks - Northeast",35.5,-1.47%,7,Hold,Hold,+9.03,+18.02%,36.67,36.22,35.84,36.72,40.41,7.35,2.15,184592,Falling,,10.18%,0.65,35.86,37.58,-21%
+EVI,"Evi Industries Inc","Industrial Services",20.98,-0.10%,9,Hold,"64% Buy",+8.87,+2.34%,17.38,19.78,17.5,21.32,51.51,-8.33,-21.83,62653,Average,Good,33.18%,1.1,19.78,22.85,39%
+NODK,"Ni Holdings Inc","Insurance - Proprty & Casualty",14.9,+0.88%,10,Hold,"16% Buy",+8.71,+9.96%,15.24,14.97,14.89,15.08,46.06,-0.71,5.05,21834,Weakest,Weak,16.89%,0.56,14.63,15.52,30%
+BHRB,"Burke Herbert Financial Services Corp","Finance - Misc Services",69.24,-0.19%,7,Buy,"24% Buy",+8.21,+14.96%,70.99,70.06,68.86,70.67,43.54,4.29,4.14,136132,Weakest,Weak,29.09%,0.87,69.2,72.15,2%
+DLR,"Digital Realty Trust","REIT - Equity Trust Other",178.31,+1.01%,6,Hold,"96% Sell",+8.15,+11.71%,182.84,179.04,186.05,178.47,49.17,1.04,8.27,2396601,Strengthening,Soft,40.07%,1,171.17,185.76,49%
+EQBK,"Equity Bncsrs Cm A","Banks - Northeast",47.48,-1.74%,7,Hold,"8% Sell",+8.04,+15.35%,49.26,48.39,48.24,48.94,40.38,4.68,-0.64,118146,Weakening,Minimum,12.85%,1,47.88,50.01,-19%
+DHR,"Danaher Corp","Medical Services",228.58,+1.24%,4,Hold,"80% Buy",+7.95,+1.36%,212.94,223.84,201.54,231.7,49.56,-9.31,-7.13,4458726,Average,Strong,33.08%,0.69,225.5,237.91,25%
+LRN,"Stride Inc",Schools,77.78,+1.38%,2,Sell,"88% Sell",+7.93,+20.46%,82.41,79.18,85.66,77.43,49.65,9.79,12.81,850666,Weakening,Soft,48.28%,0.7,73.59,81.26,55%
+C,"Citigroup Inc","Finance - Investment Brokers",117.34,-2.17%,4,Sell,"88% Sell",+7.72,+19.34%,130.94,126.78,131.13,122.13,36.46,8.67,-6.42,11821810,Strongest,Good,23.25%,1.11,117.83,126.43,-6%
+TPCS,"Techprecision Corp","Metal Production & Fabrication",4.98,-1.58%,2,Sell,"16% Buy",+7.10,+15.55%,5.23,5.34,4.8,5.22,41.29,4.88,-3.87,42262,Weakest,Weak,22.36%,0.36,4.86,5.58,17%
+RF,"Regions Financial Corp","Banks - Southeast",27.95,-0.71%,9,Buy,"56% Sell",+6.83,+15.59%,29.49,28.09,29.05,28.57,44.37,4.92,-3.84,10959669,Strengthening,Weak,14.28%,0.95,28.04,29.11,-8%
+TOWN,"Towne Bank","Banks - Southeast",35.95,-0.14%,8,Buy,"8% Buy",+6.62,+11.92%,36.68,36.23,36.07,36.55,45.12,1.25,0.75,560280,Weakest,Weak,17.24%,0.83,35.9,37.2,4%
+HEPS,"D-Market Electronic Services & Trading ADR","Internet Commerce",2.72,-1.09%,9,Buy,"16% Sell",+6.50,+24.77%,2.74,2.67,2.75,2.77,47.96,14.1,2.7,269132,Weakening,Weak,62.07%,0.12,2.72,2.82,4%
+UBCP,"United Bncp Inc","Banks - Midwest",14.67,+1.03%,3,Sell,"72% Sell",+6.47,+13.18%,15.12,14.54,15.33,14.26,55.14,2.51,-4.75,9059,Weakening,Average,82.33%,0.22,13.64,14.87,83%
+MTB,"M&T Bank Corp","Banks - Major Regional",214.17,-0.77%,9,Sell,"88% Sell",+6.36,+17.61%,233.2,221.54,228.39,220.77,39.01,6.94,-0.68,1077113,Strongest,Average,9.33%,0.84,215.64,225.91,-14%
+SO,"Southern Company","Utility - Electric Power",94.41,+0.87%,7,Buy,"40% Buy",+6.02,+4.10%,91.04,89.03,91.89,93.35,60.01,-6.57,1.29,6176292,Average,Minimum,71.74%,0.99,91.8,94.9,84%
+BWIN,"The Baldwin Insurance Group Inc","Insurance - Life",32.15,0.00%,7,Buy,"100% Buy",+5.98,+20.14%,30.31,31.85,27.33,32.02,59.5,9.47,26.81,1966938,Average,Strong,75.00%,0.56,31.82,32.22,83%
+EGP,"Eastgroup Properties","REIT - Equity Trust Other",196.16,+1.17%,4,Sell,"88% Sell",+5.96,+8.91%,202.42,198.18,202.29,198.01,46.89,-1.76,3.14,438631,Strengthening,Soft,42.36%,1.17,193.08,202.94,31%
+ABCB,"Ameris Bancorp","Banks - Southeast",81.6,+0.12%,8,Buy,"56% Sell",+5.54,+13.84%,84.97,81.81,85.22,82.62,46.6,3.17,2.89,489645,Average,Soft,17.11%,0.88,81.21,84.03,14%
+SAIA,"Saia Inc","Transportation - Truck",336.49,+1.39%,8,Buy,"88% Sell",+5.34,+28.69%,362.37,340.12,391.87,339.78,48.29,18.02,-3.93,452388,Average,Average,32.09%,0.54,321.63,357.93,41%
+MS,"Morgan Stanley","Finance - Investment Brokers",181.17,-1.29%,8,Hold,"80% Sell",+5.30,+13.35%,203.24,190.74,203,186.17,42.1,2.68,-4.93,6090664,Strongest,Average,20.59%,0.85,178.79,193.55,16%
+TRNO,"Terreno Realty Corp","REIT - Equity Trust Other",66.01,+1.23%,6,Buy,"24% Sell",+5.25,+9.49%,67.45,65.6,66.85,66.19,49.46,-1.18,5.45,754299,Weakening,Weak,37.50%,1.24,64.15,68.23,46%
+PAY,"Paymentus Holdings Inc Cl A","Financial Transaction Services",32.47,-1.07%,5,Hold,"16% Buy",+5.02,-6.10%,33.63,32.85,30.53,33.25,46.46,-16.77,-4.19,923043,Weakest,Weak,58.37%,0.63,31.2,35.29,31%
+FSS,"Federal Signal Corp","Auto - Domestic",115.63,+0.97%,7,Hold,"32% Sell",+4.66,+8.33%,118.09,114.54,117.01,115.14,51.1,-2.34,-0.5,480494,Weakest,Weak,60.00%,1.02,112.01,118.27,58%
+SBCF,"Seacoast Banking Corp","Banks - Southeast",32.57,-0.55%,5,Hold,Hold,+4.49,+10.26%,33.58,33.04,32.74,33.52,42.52,-0.41,-3.32,860206,Bearish,,12.62%,0.71,32.62,34.42,-3%
+HBCP,"Home Bancorp Inc","Banks - Southeast",61.38,-0.02%,1,Sell,"88% Sell",+4.48,+16.91%,67.32,64.63,66.48,61.41,41.31,6.24,-0.79,91682,Strengthening,Good,30.05%,1.2,60.69,62.14,48%
+ISTR,"Investar Holding","Banks - Southeast",27.24,-0.84%,4,Sell,"88% Sell",+4.34,+16.76%,29.45,28.85,29.17,27.97,36.05,6.09,-5.03,142563,Strongest,Good,15.07%,0.78,27.15,28.8,5%
+BCML,"Bay Commercial Bk CA","Banks - West",30.51,-0.75%,2,Hold,"32% Sell",+4.22,+11.64%,31.15,30.74,31.02,30.97,43.56,0.97,-3.2,55137,Average,Minimum,23.24%,1.55,30.23,31.7,19%
+CNA,"CNA Financial Corp","Insurance - Proprty & Casualty",48.48,+1.06%,4,Buy,"24% Buy",+4.22,+4.84%,49.23,47.49,47.86,48.2,54.59,-5.83,-5.43,495780,Weakest,Weak,69.02%,1,47.18,49.22,64%
+AIIA,"AI Infrastructure Acquisition Corp Cl A",Unclassified,10.33,-0.19%,8,Buy,"100% Buy",+4.15,N/A,10.24,10.28,10.18,10.32,53.6,N/A,-3.06,47635,Average,Maximum,51.85%,4.73,10.26,10.37,63%
+MRTN,"Marten Transport L","Transportation - Truck",12.03,+1.60%,2,Sell,"88% Sell",+3.95,+25.44%,14.14,12.64,14.87,11.96,45.61,14.77,-1.27,764976,Average,Strong,49.52%,0.9,11.6,12.32,60%
+JCAP,"Jefferson Capital Inc","Finance - Misc Services",21.12,+1.73%,6,Buy,"72% Buy",+3.42,-1.58%,20.37,20.18,19.7,20.24,57.8,-12.25,-12.44,302913,Strengthening,Soft,61.29%,1.44,19.27,21.2,96%
+AEP,"American Electric Power","Utility - Electric Power",126.5,+0.42%,5,Buy,"24% Sell",+3.09,+2.42%,126.7,124.66,128.16,128.78,47.11,-8.25,2.72,4054669,Weakening,Weak,42.01%,1.23,126.05,131.51,8%
+CRD.B,"Crawford Company Cl B","Building & Construction - Misc",11.22,+0.63%,3,Sell,"24% Buy",+3.05,+8.93%,11.49,11.81,11.01,11.57,43.83,-1.74,-2.32,16561,Weakest,Weak,30.77%,0.12,10.82,12.32,27%
+ODTX,"Odyssey Therapeutics Inc","Medical - Biomedical",18.98,-2.01%,9,Buy,N/A,+3.03,N/A,20.48,20.19,0,19.61,45.92,N/A,N/A,N/A,N/A,N/A,28.20%,1.04,18.33,20.89,25%
+L,"Loews Corp","Insurance - Multi Line",109.98,-0.20%,5,Buy,"8% Sell",+2.89,+4.62%,111.26,108.97,110.21,111.16,47.5,-6.05,-2.55,794508,Weakening,Minimum,46.05%,1.21,109.29,113.04,18%
+CBSH,"Commerce Bancshares","Banks - Midwest",54.2,-0.61%,7,Sell,"56% Sell",+2.83,+9.23%,57.24,55.71,55.78,55.54,39.01,-1.44,-3.43,1159338,Strengthening,Weak,12.31%,1.14,54.43,56.64,-10%
+FELE,"Franklin Electric Company","Machinery - Electrical",97.96,+1.24%,3,Sell,"40% Sell",+2.56,+8.04%,100.97,97.73,100.89,97.77,50.02,-2.63,-4.44,309970,Weakening,Average,34.87%,0.89,94.5,101.04,53%
+FSBW,"FS Bancorp Inc","Banks - West",41.93,-2.12%,3,Sell,"8% Sell",+2.39,+7.82%,43.59,43.94,42.78,43.61,29.1,-2.85,-5.13,20185,Average,Minimum,8.09%,1.27,42.41,44.81,-20%
+AKO.B,"Embotell Andna Sa Cl B ADR","Beverages - Soft",28.18,-1.79%,5,Sell,"72% Sell",+2.38,+3.64%,29.73,29.31,29.41,28.73,46.95,-7.03,-5.98,9188,Strengthening,Soft,42.24%,1.74,27.1,30.35,33%
+CRD.A,"Crawford Company Cl A","Business Services",11.97,-0.25%,4,Sell,"8% Buy",+2.31,+7.94%,12.25,12.37,11.72,12.08,46.96,-2.73,-0.58,60247,Weakest,Weak,53.22%,0.82,11.31,12.85,43%
+FE,"Firstenergy Corp","Utility - Electric Power",47.69,+1.34%,7,Buy,"24% Buy",+2.18,+2.32%,46.63,45.58,46.65,46.81,63.15,-8.35,-0.46,4686723,Average,Minimum,82.35%,1.37,45.88,47.74,97%
+SFBC,"Sound Financial","Banks - West",45.36,+0.64%,1,Hold,"16% Buy",+1.82,+1.39%,45.75,45.42,44.65,45.17,52.11,-9.28,-3.01,8283,Weakest,Weak,46.83%,0.46,44.42,45.91,63%
+HNNA,"Hennessy Advisors","Finance - Investment Mgmt",10.11,+0.55%,7,Hold,"32% Buy",+0.96,+0.70%,10.14,10.25,10.09,10.22,45.74,-9.97,-1.67,7806,Weakest,Weak,12.02%,0.35,9.97,10.48,28%
+RGCO,"Rgc Resources Inc","Oil - Refining and Marketing",22.53,+2.64%,6,Hold,Hold,+0.85,+3.30%,22.4,22.21,22.63,22.81,49.29,-7.37,-1.21,12601,Falling,,23.20%,1.26,21.96,23.65,34%
+BRBS,"Blue Ridge Bankshare","Banks - Northeast",3.96,-0.25%,6,Buy,"80% Buy",+0.37,-3.41%,3.82,3.96,3.68,4.01,46.87,-14.08,-14.24,583442,Weakening,Soft,30.43%,0.34,3.93,4.1,17%
+KMTS,"Kestra Medical Technologies Ltd","Medical Products",28.29,+0.07%,8,Hold,"80% Buy",+0.30,+10.29%,26.52,27.57,24.73,29.32,48.38,-0.38,-0.31,374887,Strengthening,Strong,13.02%,0.95,27.45,31.19,22%
+LGL,"LGL Group","Electronics - Misc Components",6.59,+1.38%,6,Sell,"100% Sell",-0.41,+5.44%,6.97,6.79,6.99,6.72,45.5,-5.23,7.63,11828,Strongest,Average,32.14%,0.72,6.46,6.98,25%
+LOB,"Live Oak Bancsh","Banks - Southeast",33.74,-0.68%,4,Sell,"88% Sell",-0.55,+12.32%,38.68,35.8,38.38,34.63,39.77,1.65,-8.76,257427,Strongest,Strong,28.38%,1.87,33.64,35.62,5%
+RBC,"RBC Bearings Inc","Machinery - General Industrial",474.23,-0.28%,1,Sell,"100% Sell",-0.64,+12.01%,523.59,492.26,548.6,481.11,44.11,1.34,-1.23,257516,Strongest,Strong,45.07%,0.54,461.91,500.31,32%
+DGICA,"Donegal Group Cl A","Insurance - Proprty & Casualty",18.94,-0.16%,5,Buy,"88% Buy",-0.88,-4.82%,18.82,18.66,18.33,18.9,53.03,-15.49,-12.19,124483,Average,Average,46.62%,1.04,18.58,19.22,57%
+GPC,"Genuine Parts Company","Retail - Wholesale Auto Parts",123.64,+2.52%,1,Sell,"8% Buy",-0.98,-2.04%,128.41,126.81,120.08,123.5,47.65,-12.71,-6.43,1543538,Weakest,Weak,21.67%,0.92,119.92,127.07,52%
+MARPS,"Marine Petroleum U","Oil - US Royalty Trusts",4.38,+3.06%,3,Hold,"64% Sell",-0.98,+1.86%,4.55,4.35,4.65,4.3,53.38,-8.81,-1.31,28357,Weakening,Average,35.05%,2.17,4.11,4.49,72%
+FHN,"First Horizon Corp","Banks - Southwest",22.59,-1.31%,9,Sell,"88% Sell",-1.87,+8.82%,24.37,23.38,24.41,23.36,38.27,-1.85,-12.46,5351901,Strongest,Strong,26.05%,0.72,22.81,23.9,-20%
+GROW,"U S Global Inv Inc","Finance - Investment Mgmt",2.57,+1.58%,4,Sell,"88% Sell",-1.94,+13.22%,2.92,2.77,2.86,2.61,44.91,2.55,-0.34,23050,Average,Good,20.71%,0.46,2.45,2.76,38%
+TCBX,"Third Coast Bancshares Inc","Banks - Southeast",38.17,-1.14%,2,Sell,"56% Sell",-2.43,+5.88%,42.42,41.59,41.16,39.7,33.82,-4.79,-6.56,100656,Strengthening,Average,7.22%,0.56,38.42,40.98,-10%
+DSGN,"Design Therapeutics Inc","Medical - Biomedical",9.47,-3.76%,2,Sell,"88% Sell",-2.46,+24.77%,12.74,11.36,12.66,10.4,36.41,14.1,-6.02,606700,Strongest,Strong,11.87%,0.58,9.56,11.24,-5%
+AYI,"Acuity Inc","Technology Services",326.51,+0.40%,9,Buy,"40% Buy",-2.47,-5.43%,327.56,313.98,318.01,326.41,52.84,-16.1,-16.29,373154,Weakening,Weak,47.55%,0.68,314.2,338.61,50%
+ANGO,"Angiodynamics Inc","Medical Instruments",11.32,-1.48%,5,Sell,"56% Sell",-2.65,-4.71%,13.94,13.2,13.16,11.98,36.91,-15.38,-18.82,492586,Strengthening,Soft,12.00%,0.44,11.41,12.56,-8%
+ORLY,"O'Reilly Automotive","Retail - Wholesale Auto Parts",93.37,+0.73%,8,Buy,"40% Buy",-2.85,-5.04%,88.42,87.99,89.23,90.8,63.13,-15.71,-4.61,6512501,Strengthening,Soft,86.19%,0.97,87.91,93.69,94%
+KRSP,"Rice Acquisition Corporation 3 Cl A",Unclassified,10.36,+0.24%,3,Sell,"24% Sell",-2.88,N/A,10.52,10.53,10.46,10.45,42.54,N/A,-5.91,41299,Weakening,Weak,64.44%,3.24,10.36,10.54,-1%
+USAC,"USA Compression Partners LP","Oil Field Machinery & Equip",24.35,-2.13%,3,Sell,"100% Sell",-3.27,+3.93%,26,25.47,26.53,25.04,41.58,-6.74,-1.11,256305,"Top 1%",Strong,26.88%,0.69,24.27,25.81,5%
+BOH,"Bank of Hawaii Corp","Banks - West",68.23,+0.01%,9,Sell,"100% Sell",-3.31,+7.70%,75.1,70.1,76.18,69.96,40.73,-2.97,-7.18,407595,Strengthening,Strong,8.08%,0.91,68.39,71.53,-5%
+STRW,"Strawberry Fields REIT Inc","REIT - Equity Trust Other",12.28,+2.33%,3,Sell,"88% Sell",-3.42,+2.59%,13.41,12.95,13.27,12.5,44.69,-8.08,-13.24,35353,Average,Strong,19.22%,0.95,11.98,13.03,29%
+ONEW,"Onewater Marine Inc Cl A","Leisure & Recreational Prdcts",11.39,+7.45%,10,Buy,"24% Buy",-3.44,-7.17%,10.91,9.77,10.92,9.85,64.16,-17.84,-1.71,122210,Average,Minimum,54.67%,2.21,8.79,10.91,122%
+UTZ,"Utz Brands Inc","Food - Misc & Diversified",14.26,-0.14%,3,Sell,"48% Buy",-3.66,+41.89%,13.31,14.27,11.34,14.27,50.41,31.22,30.4,2447266,Weakest,Average,43.33%,1.82,14.24,14.31,32%
+BKU,"BankUnited Inc","Banks - Major Regional",42.37,-0.91%,9,Hold,"80% Sell",-3.89,+8.81%,45.22,43.32,45.85,43.63,41.28,-1.86,-11.92,876602,Strengthening,Average,14.88%,0.5,42.4,44.86,-1%
+PCYO,"Pure Cycle Corp","Utility - Water Supply",10.61,-1.12%,1,Hold,"64% Sell",-4.38,-3.81%,10.94,10.9,10.93,10.73,42.97,-14.48,-10.44,68868,Strengthening,Weak,37.66%,0.95,10.44,11.03,29%
+HCC,"Warrior Met Coal Inc",Coal,79.16,+0.20%,1,Sell,"100% Sell",-4.56,+1.42%,89.27,87.76,89.77,83.29,36.6,-9.25,-17.2,779539,Strongest,Average,29.62%,1.03,78.43,88.15,8%
+FBK,"Fb Financial Corp","Banks - Northeast",53,-0.32%,7,Buy,"56% Sell",-4.67,+0.21%,55.99,53.31,55.16,54.13,43.43,-10.46,-12.,382042,Average,Soft,12.80%,0.75,52.6,55.66,13%
+KRC,"Kilroy Realty Corp","REIT - Equity Trust Other",36.74,+2.68%,7,Buy,"56% Buy",-4.80,-11.41%,36.49,35.06,36.01,36.3,55.14,-22.08,-8.67,1692792,Strengthening,Weak,29.37%,0.79,35.21,37.4,70%
+LAD,"Lithia Motors","Retail - Wsale Auto & Trucks",295.98,+0.81%,4,Hold,"80% Sell",-4.88,+0.67%,329.76,304.8,315.8,300.2,46.52,-10.,-17.92,321277,Weakening,Weak,17.41%,0.5,282.23,318.16,38%
+FTW,"Eqv Ventures Acquisition Corp Cl A","Oil - US Integrated",10.31,+0.68%,7,Hold,"48% Sell",-4.91,-1.25%,10.82,10.11,11.09,10.18,54.61,-11.92,-8.7,95105,Weakest,Average,48.48%,1.08,9.94,10.42,77%
+EOLS,"Evolus Inc","Medical Products",7.07,+5.68%,4,Sell,"8% Buy",-5.25,+0.57%,7.41,7.49,7.02,7.14,47.81,-10.1,-0.66,950417,Weakest,Weak,32.63%,0.91,6.56,7.72,44%
+NNN,"NNN REIT Inc","REIT - Equity Trust Other",40.57,+0.35%,5,Sell,"88% Sell",-5.58,-1.43%,44.1,41.36,44.35,41.37,42.49,-12.1,-4.61,1863138,Strengthening,Strong,17.06%,1.03,40.44,42.3,7%
+IBOC,"Intl Bancshares","Banks - Southwest",65.77,-0.62%,6,Sell,"100% Sell",-5.61,+2.86%,71.21,68.34,71.82,67.42,38.81,-7.81,-7.99,360793,Strengthening,Maximum,17.61%,0.68,65.71,69.14,2%
+CMS,"Cms Energy Corp","Utility - Electric Power",69.74,+0.48%,7,Buy,"24% Sell",-6.05,-6.10%,69.58,67.19,71.09,69.82,53.84,-16.77,-7.25,3456272,Weakest,Weak,42.23%,0.65,68.47,71.17,47%
+SELF,"Global Self Storage","REIT - Equity Trust Other",4.85,+0.83%,1,Sell,"96% Sell",-6.32,-6.10%,5.08,4.93,5.14,4.85,47.31,-16.77,-11.88,26257,Average,Strong,35.19%,1.3,4.78,4.92,50%
+GTY,"Getty Realty Corp","REIT - Equity Trust Other",28.51,+0.56%,5,Sell,"88% Sell",-6.47,-0.70%,31.26,28.7,31.89,28.39,49.53,-11.37,-2.81,546601,Strengthening,Strong,55.37%,1,27.72,29.05,59%
+HUBB,"Hubbell Inc B","Machinery - Elect Utilities",426.47,+0.39%,1,Sell,"100% Sell",-7.01,+2.20%,467.54,452.24,478.79,436.43,41.89,-8.47,-10.95,594050,Strengthening,Strong,34.07%,0.66,416.68,456.18,25%
+SNDA,"Sonida Senior Living Inc","Medical Services",32.42,-0.46%,3,Sell,"88% Sell",-7.06,+1.38%,37.88,35.76,37.35,33.65,38.85,-9.29,-7.56,542390,Strongest,Strong,11.02%,1.06,31.74,35.55,18%
+VIRC,"Virco MFG Corp",Furniture,6.18,+1.64%,3,Sell,"16% Buy",-7.77,-4.92%,6.21,6.35,6.17,6.23,46.44,-15.59,-10.27,42382,Weakest,Minimum,43.07%,0.28,6.03,6.42,38%
+AVO,"Mission Produce Inc","Agriculture Operations",11.38,-0.61%,1,Sell,"100% Sell",-7.86,-1.90%,12.53,12.14,12.43,11.61,42.17,-12.57,-8.88,973297,Strongest,Good,50.98%,0.6,11.2,12.02,22%
+ALLY,"Ally Financial","Finance - Consumer Loans",37.67,+0.56%,7,Sell,"100% Sell",-8.23,+0.05%,41.34,38.65,42.16,38.47,44.46,-10.62,-23.8,3538593,Strongest,Strong,15.20%,0.64,37.3,39.64,16%
+WLTH,"Wealthfront Corp","Mining - Gold",10.7,+0.38%,5,Buy,"88% Buy",-8.40,N/A,9.93,10.55,10.13,10.72,50.77,N/A,-28.25,1791606,Average,Strong,57.22%,0.42,10.14,11.3,48%
+FFIN,"First Finl Bkshs Inc","Banks - Southwest",29.81,-0.03%,4,Sell,"88% Sell",-8.46,-1.39%,32.88,31.29,32.78,30.47,38.16,-12.06,-7.18,843672,Strengthening,Strong,8.77%,0.93,29.59,31.35,13%
+BANX,"Arrowmark Financial Corp","Finance - Investment Mgmt",19.33,-0.51%,2,Sell,"56% Sell",-8.75,-11.13%,20.18,20.01,19.99,19.6,39.26,-21.8,-18.39,39630,Strengthening,Soft,29.53%,0.53,19.25,19.95,11%
+FR,"First Industrial Realty Trust","REIT - Equity Trust Other",54.66,+0.44%,3,Sell,"100% Sell",-8.78,-2.11%,61.07,58.06,61.49,54.81,39.8,-12.78,-11.54,1165227,Strongest,Maximum,51.40%,0.89,53.9,55.73,42%
+NRIM,"Northrim Bancorp Inc","Banks - West",22.91,-0.17%,7,Sell,"88% Sell",-9.61,+0.48%,25.54,24.36,25.32,23.83,35.87,-10.19,-20.88,147775,Strongest,Good,7.11%,0.76,23.06,24.6,-10%
+WAY,"Waystar Holding Corp","Internet - Software",27.54,-0.47%,6,Hold,"80% Buy",-9.80,-21.02%,25.34,27.01,23.75,28.46,46.88,-31.69,-22.89,2549923,Weakening,Average,59.92%,0.61,27.28,29.63,11%
+ANGH,"Anghami Inc","Broadcast - Radio & TV",3.37,-6.13%,1,Hold,"48% Sell",-10.54,+19.31%,3.53,3.55,3.67,3.44,46.73,8.64,-17.59,19031,Weakening,Weak,48.43%,1.08,3.23,3.64,33%
+GEG,"Great Elm Group Inc","Conglomerates - Div Operations",2.19,+1.86%,6,Buy,"48% Buy",-10.56,-11.69%,2.17,2.16,2.18,2.16,57.27,-22.36,-21.1,17020,Average,Weak,42.22%,0.16,2.13,2.19,97%
+BAC,"Bank of America Corp","Finance - Investment Brokers",48.91,-1.07%,3,Sell,"88% Sell",-10.94,-5.29%,57.55,53.28,56.16,50.34,35.11,-15.96,-18.05,37285328,Strongest,Strong,12.26%,1.01,48.97,51.7,-2%
+CMRC,"Commerce.com Inc","Internet Commerce",3.44,+3.61%,2,Buy,"88% Buy",-11.55,-22.87%,3.06,3.42,3.01,3.51,49.05,-33.54,-23.48,870508,Average,Average,36.94%,0.51,3.26,3.75,36%
+BDC,"Belden Inc","Communications Components",104.21,+4.05%,6,Sell,"88% Sell",-11.62,-3.58%,112.19,107.49,113.14,103.78,49.39,-14.25,-17.57,456557,Average,Strong,40.53%,0.71,97.27,110.28,53%
+AXR,"Amrep Corp","Real Estate Developers",20.04,+0.65%,10,Sell,"100% Sell",-11.97,+1.67%,22.55,21.36,23.77,20.92,37.12,-9.,-0.38,9699,Strongest,Strong,24.69%,0.44,20.1,21.74,-3%
+ANIP,"ANI Pharma Inc","Medical - Biomedical",71.47,+2.11%,4,Sell,"88% Sell",-12.00,-11.84%,75.18,72.32,77.02,71.18,50.35,-22.51,-16.44,374208,Weakening,Strong,41.15%,0.72,68.11,74.25,55%
+BRT,"BRT Realty Trust","REIT - Equity Trust Resident",13.04,+1.09%,2,Sell,"88% Sell",-12.07,-9.38%,14.02,13.34,14.21,12.93,49.82,-20.05,-18.27,47111,Weakening,Strong,45.86%,0.81,12.55,13.31,65%
+STRR,"Star Equity Holdings Inc","Conglomerates - Div Operations",9.15,-3.28%,5,Sell,"88% Sell",-12.31,-11.25%,10.31,9.86,10.33,9.54,42.55,-21.92,-25.65,7222,Strongest,Strong,41.39%,0.88,8.82,10.26,23%
+SAH,"Sonic Automotive","Retail - Wsale Auto & Trucks",60.58,+3.29%,4,Sell,"88% Sell",-12.39,-1.77%,75.3,63.53,76.52,61.89,45.67,-12.44,-9.05,297548,Average,Good,21.09%,0.79,58.42,65.36,31%
+CLDX,"Celldex Therapeutics","Medical - Biomedical",27.55,-1.75%,5,Sell,"88% Sell",-12.44,+7.70%,35.21,31.31,34.2,29.4,38.46,-2.97,-5.54,1114214,Strongest,Good,11.66%,0.44,27.6,31.19,-1%
+RARE,"Ultragenyx Pharmaceu","Medical - Biomedical",17.73,+6.17%,8,Buy,"40% Sell",-13.22,-45.99%,21.24,15.41,22.48,16.38,60.24,-56.66,-29.89,2936852,Weakest,Average,63.56%,1.15,15.24,17.52,109%
+SANG,"Sangoma Technologies Corp","Internet - Software",4.74,+0.64%,3,Buy,"88% Buy",-13.44,-7.60%,4.2,4.43,4.09,4.65,58.63,-18.27,-13.46,53081,Strengthening,Average,62.85%,0.14,4.48,4.82,77%
+FSCO,"FS Credit Opportunities Corp","Finance - Misc Services",5.08,+0.99%,5,Hold,"8% Buy",-13.50,-19.49%,5.07,5.11,5.05,5.08,49.32,-30.16,-26.35,1302408,Weakest,Minimum,26.98%,0.95,4.95,5.22,49%
+IRT,"Independence Realty Trust Inc","REIT - Equity Trust Resident",14.79,+0.41%,7,Hold,"80% Sell",-13.98,-9.60%,15.74,14.84,15.95,14.94,46.65,-20.27,-22.37,3006292,Average,Strong,26.83%,0.98,14.51,15.36,33%
+STOK,"Stoke Therapeutics Inc","Medical - Biomedical",26.69,+1.06%,7,Buy,"40% Sell",-14.16,-7.71%,28.66,26.25,29.64,26.51,51.44,-18.38,-22.89,848250,Weakest,Average,34.09%,0.89,25.16,27.86,57%
+LFCR,"Lifecore Biomedical Inc","Medical - Biomedical",6.4,+0.16%,5,Buy,"72% Buy",-14.46,-15.79%,5.27,5.92,5.22,6.41,61.14,-26.46,-28.74,300452,Average,Average,43.84%,0.3,6.33,6.49,42%
+GLPI,"Gaming & Leisure","REIT - Equity Trust Other",38.43,-1.06%,4,Buy,"72% Sell",-15.40,-12.30%,41.34,39.07,43.22,39.22,42.67,-22.97,-20.99,2627719,Strengthening,Strong,29.22%,1.05,38.43,40,0%
+CLPR,"Clipper Realty Inc","REIT - Equity Trust Other",3.02,-3.51%,6,Sell,"24% Sell",-15.58,-18.60%,3.13,3.24,3.14,3.23,38.62,-29.27,-27.92,73398,Weakening,Minimum,26.21%,2.06,3,3.45,4%
+ACRS,"Aclaris Therapts","Medical - Drugs",3.5,+3.55%,10,Sell,"88% Sell",-15.76,+40.56%,5.04,4.29,4.87,3.85,40.12,29.89,9.3,2176771,Strongest,Strong,19.78%,0.87,3.38,4.31,13%
+TLF,"Tandy Leather Fctry","Retail - Apparel & Shoes",2.2,-0.45%,4,Sell,"96% Sell",-16.34,-17.91%,2.44,2.41,2.41,2.22,43.43,-28.58,-26.69,36630,Strongest,Average,72.49%,0.48,2.07,2.37,42%
+ALVO,Alvotech,"Medical - Biomedical",4.55,+4.12%,2,Sell,"24% Buy",-16.68,-10.96%,4.59,5.18,4.25,4.65,44.87,-21.63,-18.29,838427,Weakest,Weak,34.63%,1.35,4.26,5.04,37%
+STRT,"Strattec Security","Auto - Truck Original Parts",62.7,+3.11%,6,Sell,"88% Sell",-16.86,-5.43%,72.57,64.29,73.49,62.37,49.1,-16.1,-24.63,82076,Weakening,Strong,29.22%,0.73,59.98,64.76,57%
+JBS,"Jbs N.V. Cl A","Food - Misc & Diversified",12.02,-0.66%,2,Buy,"72% Sell",-16.91,-12.90%,12.64,12.26,13.07,12.35,45,-23.57,-23.62,6097276,Strengthening,Average,46.67%,1.44,11.71,12.99,24%
+CRWS,"Crown Crafts Inc","Textile - Home Furnishings",2.39,+0.84%,7,Hold,"96% Sell",-17.06,-12.13%,2.7,2.47,2.73,2.45,44.78,-22.8,-20.7,55616,Strengthening,Strong,30.16%,0.62,2.34,2.56,22%
+MPV,"Barings Participation Investors","Finance - Investment Mgmt",16.18,-0.19%,3,Buy,"56% Sell",-17.14,-19.52%,16.38,16.51,16.64,16.49,43.38,-30.19,-5.15,15719,Strengthening,Weak,37.85%,0.63,16.04,16.95,16%
+PCG,"Pacific Gas & Electric Company","Utility - Electric Power",13.71,+1.26%,8,Buy,"40% Sell",-17.45,-15.11%,15,13.01,15.53,13.19,59.57,-25.78,-21.67,27280271,Weakest,Good,82.88%,0.7,12.67,13.71,100%
+ALTO,"Alto Ingredients Inc","Consumer Prdts - Misc Discr",3.33,-7.64%,7,Sell,"100% Sell",-17.52,+62.99%,4.22,3.72,4.54,3.65,32.87,52.32,8.47,1831694,Strongest,Average,25.11%,0.95,3.41,3.89,-18%
+VERU,"Veru Inc","Medical Products",2.31,+7.94%,3,Sell,"88% Sell",-17.64,-8.70%,2.45,2.33,2.49,2.18,55.46,-19.37,0.96,714558,Average,Soft,47.89%,2.63,2.04,2.32,96%
+ADSE,"Ads-Tec Energy Plc","Electronic Misc Services",9.63,+4.67%,2,Sell,"88% Sell",-17.67,-6.14%,10.97,10.05,11.16,9.36,51.23,-16.81,-31.03,17913,Average,Strong,51.88%,1.2,8.82,9.89,76%
+PSBD,"Palmer Square Capital Bdc Inc","Finance - SBIC & Commercial",9.67,+0.83%,10,Sell,"100% Sell",-18.63,-18.53%,10.03,9.89,10.28,9.85,42.64,-29.2,-27.65,117563,Strengthening,Average,11.77%,1.65,9.62,10.09,11%
+AIRI,"Air Industries Group Inc","Aerospace - Defense",2.46,+0.82%,7,Hold,"80% Sell",-18.65,-15.46%,2.64,2.61,2.77,2.62,42.91,-26.13,-26.85,49122,Strengthening,Good,38.67%,0.93,2.36,2.88,19%
+WAFD,"Wafd Inc","Banks - West",28.09,-0.60%,7,Sell,"100% Sell",-18.73,-8.44%,33.62,30.19,34.34,29.39,33.39,-19.11,-19.28,740412,Strongest,Maximum,3.92%,0.47,28.4,30.38,-16%
+BAFN,"Bayfirst Financial Corp","Banks - Southeast",5.48,-8.97%,4,Sell,"40% Sell",-18.84,-32.35%,6.57,6.85,6.48,6.11,37.86,-43.02,-37.17,55039,Strengthening,Soft,38.18%,0.51,5.42,6.8,4%
+LAZ,"Lazard Inc","Finance - Misc Services",39.39,+0.69%,10,Buy,"40% Sell",-18.93,-15.49%,40.44,37.73,42.27,39.18,51.99,-26.16,-25.86,1719260,Weakening,Average,31.22%,0.79,36.66,41.69,54%
+CCU,"Compania Cervecerias Unidas S.A. ADR","Beverages - Alcohol",10.38,-2.54%,4,Sell,"100% Sell",-20.09,-20.15%,11.24,10.83,11.33,10.6,43.02,-30.82,-25.63,167855,Strongest,Strong,24.90%,0.69,10.19,11.01,23%
+OMSE,"Oms Energy Technologies Inc","Oil Field Machinery & Equip",3.92,-5.72%,4,Sell,"100% Sell",-20.51,-19.63%,4.29,4.19,4.37,3.98,45.47,-30.3,-17.84,19129,Strongest,Good,43.86%,2.75,3.77,4.19,35%
+INDP,"Indaptus Therapeutics Inc","Medical - Drugs",3.29,-0.90%,8,Buy,"100% Buy",-21.04,+42.42%,2.42,3.05,2.49,3.23,54.13,31.75,6.08,637266,Strengthening,Average,74.93%,0.29,2.95,3.52,60%
+LIEN,"Chicago Atlantic Bdc Inc","Finance - SBIC & Commercial",8.59,-2.83%,3,Sell,"100% Sell",-21.16,-18.50%,9.6,9.43,9.64,9.07,23.86,-29.17,-23.82,64317,Strongest,Maximum,7.58%,1.32,8.8,9.33,-41%
+FUL,"H. B. Fuller Company","Chemical - Specialty",48.16,+0.77%,7,Hold,"96% Sell",-21.18,-14.05%,53.75,50.22,56.33,49.94,40.2,-24.72,-25.98,688669,Strengthening,Strong,9.15%,0.43,47.73,52.15,10%
+DAIO,"Data I O Corp","Electronics - Misc Components",2.6,-1.89%,1,Sell,"88% Sell",-21.39,+4.42%,2.9,2.68,3.04,2.47,52.16,-6.25,-24.96,48169,Average,Average,63.07%,0.37,2.3,2.65,85%
+SABS,"Sab Biotherapeutics Inc","Medical - Biomedical",3.2,+8.47%,9,Buy,"56% Sell",-21.52,-18.16%,3.4,3.09,3.5,3.08,55.17,-28.83,-21.42,666123,Weakest,Soft,36.36%,1.27,2.8,3.36,72%
+BNTX,"Biontech Se ADR","Medical - Biomedical",83.26,-1.89%,4,Sell,"100% Sell",-21.80,-18.79%,94.43,92.13,94.31,87.1,35.61,-29.46,-19.52,1091855,Strongest,Good,8.02%,1.23,83.67,90.52,-6%
+RRR,"Red Rock Resorts Inc",Gaming,47.32,+0.55%,6,Sell,"100% Sell",-21.83,-14.40%,56.3,50.3,56.5,49.24,40,-25.07,-30.6,883465,Strongest,Maximum,21.23%,0.58,46.9,51.58,9%
+PHR,"Phreesia Inc","Medical Information Systems",12.26,-2.39%,7,Buy,"88% Buy",-21.84,-37.45%,11.3,11.35,10.67,12.63,50.32,-48.12,-34.52,1312853,Average,Soft,41.84%,1.29,12.12,13.14,13%
+EGHT,"8X8 Inc","Internet - Software",2.16,0.00%,8,Buy,"72% Buy",-22.14,+14.29%,2.05,2.12,2.06,2.2,48.79,3.62,2.66,1710958,Weakening,Soft,39.13%,0.49,2.03,2.36,39%
+SHEN,"Shenandoah Telecom","Diversified Comm Services",9.74,-2.21%,5,Sell,"100% Sell",-22.15,-3.18%,11.66,10.77,13.07,10.09,39.77,-13.85,-22.72,502867,Strongest,Strong,47.55%,0.58,9.64,10.55,11%
+BXDC,"Blackstone Digital Infrastructure Trust Inc","REIT - Equity Trust Other",16.61,+0.18%,8,Sell,N/A,-22.27,N/A,18.88,17.25,0,16.28,49.6,N/A,N/A,N/A,N/A,N/A,44.44%,1.16,15.57,16.98,74%
+MMLP,"Martin Midstrm LP","Transportation - Ship",2.11,-6.64%,5,Buy,"56% Sell",-22.29,-19.77%,2.22,2.1,2.33,2.07,50.77,-30.44,-26.14,22611,Average,Good,66.10%,0.66,1.86,2.28,60%
+TYRA,"Tyra Biosciences Inc","Medical - Biomedical",19.61,+0.20%,8,Sell,"100% Sell",-22.58,+22.26%,25.06,21.38,27.47,20.84,40.52,11.59,-32.39,906826,Average,Strong,10.00%,0.57,19.32,22.36,9%
+IMNM,"Immunome Inc","Medical - Biomedical",16.78,-2.33%,8,Sell,"88% Sell",-22.64,-6.05%,22.61,20.09,22.14,18.52,36.76,-16.72,-28.86,1297770,Strongest,Strong,4.91%,0.95,16.87,20.16,-3%
+MHH,"Mastech Holdings Inc","IT Services",6.17,+2.83%,5,Sell,"88% Sell",-23.97,-10.97%,7.18,6.7,7.09,6.3,41.8,-21.64,-18.58,14482,Strengthening,Good,10.19%,0.83,6.08,6.52,20%
+LAKE,"Lakeland Inds Inc","Protection - Safety",8.54,+3.02%,3,Sell,"88% Sell",-24.39,-41.10%,10.61,9.66,10.51,9.01,37.62,-51.77,-10.37,107079,Strongest,Good,20.94%,1.37,8.44,9.58,9%
+PIPR,"Piper Jaffray Companies","Finance - Misc Services",64.03,-1.54%,9,Hold,"96% Sell",-24.65,-19.12%,71.35,67.52,74.54,66.24,42.55,-29.79,-31.59,712838,Strengthening,Strong,35.46%,0.44,63.23,69.24,13%
+GENI,"Genius Sports Ltd","Internet - Content",6.11,+3.38%,3,Sell,"8% Sell",-25.61,-32.34%,6.75,6.32,6.28,6.32,46.36,-43.01,-51.54,6745040,Weakest,Minimum,32.55%,0.99,5.78,6.87,31%
+MSLE,"Satellos Bioscience Inc","Medical - Biomedical",5.94,-4.19%,7,Sell,"88% Sell",-25.93,-4.81%,8.46,7.58,7.94,6.63,35.99,-15.48,-5.96,60574,Strongest,Average,22.25%,1.69,5.95,7.3,-1%
+CCM,"Concord Medical Services ADR","Medical - Nursing Homes",3.61,-2.96%,2,Buy,"72% Sell",-26.20,-11.52%,4.13,3.63,4.31,3.67,48.56,-22.19,-13.46,35235,Average,Average,44.29%,1.39,3.38,3.96,40%
+AIRG,"Airgain Inc","Communications Components",3.76,-0.27%,8,Sell,"100% Sell",-26.41,-9.83%,5.04,4.43,5.64,4.04,38.72,-20.5,-14.37,79980,Strongest,Strong,26.94%,0.73,3.71,4.36,7%
+MNPR,"Monopar Therapeutics Inc","Medical - Biomedical",70.75,-0.44%,5,Sell,"72% Sell",-26.45,-12.22%,95.22,79.98,84.32,71.23,43.07,-22.89,1.37,190236,Strengthening,Soft,35.94%,0.67,67.64,74.81,43%
+FRPH,"Frp Holdings Inc","Real Estate Operations",18.15,+0.72%,4,Sell,"100% Sell",-26.54,-22.24%,21.38,19.8,21.83,18.72,39.3,-32.91,-27.34,84528,Strengthening,Maximum,31.62%,0.92,17.9,19.53,15%
+NDRA,"Endra Life Sciences Inc","Medical Instruments",4.03,+2.93%,5,Sell,"40% Sell",-26.91,-39.69%,5.11,5.24,5.1,4.69,32.28,-50.36,-17.91,54092,Average,Soft,32.65%,0.63,4.13,5.25,-9%
+PW,"Power REIT","REIT - Equity Trust Other",6.8,-2.16%,5,Sell,"88% Sell",-27.53,+2.38%,7.69,6.89,7.78,6.79,48.44,-8.29,-29.29,10987,Average,Average,64.49%,1.28,6.48,7.09,52%
+CBIO,"Crescent Biopharma Inc","Medical - Biomedical",12.4,-4.91%,6,Sell,"100% Sell",-27.55,-4.62%,15.62,14.36,16.96,13.45,39.71,-15.29,-2.43,310444,Strongest,Average,15.52%,0.88,12.29,14.62,5%
+NCI,"Neo-Concept International Group Holdings Limited","Retail - Apparel & Shoes",4.2,-14.23%,7,Sell,"100% Sell",-28.05,-93.44%,64.56,31.07,67.78,5.45,23.24,-104.11,-101.17,92753,Strengthening,Average,45.32%,0.03,4.02,6.88,6%
+IMUX,"Immunic Inc","Medical - Biomedical",7.52,+2.59%,7,Sell,"88% Sell",-28.06,-1.05%,11.62,8.38,11.89,7.61,44.81,-11.72,33.92,311575,Average,Strong,19.99%,0.5,7.05,8.18,42%
+PPC,"Pilgrim's Pride","Food - Meat Products",27.76,-2.53%,3,Hold,"96% Sell",-28.38,-25.93%,28.73,28.37,29.05,28.11,47.11,-36.6,-35.78,1332022,Strengthening,Soft,60.66%,0.81,26.58,29.63,39%
+RMCO,"Royalty Management Holding Corp","Finance - Investment Mgmt",2.17,-1.81%,2,Hold,"96% Sell",-28.54,-29.66%,2.51,2.41,2.55,2.23,42.69,-40.33,-36.75,22285,Strongest,Average,65.23%,0.4,2.1,2.37,27%
+DKS,"Dick's Sporting Goods Inc","Retail - Misc & Diversified",144.69,+2.71%,4,Buy,"40% Sell",-28.90,-31.16%,164.64,138.18,184.4,144.27,51.1,-41.83,-33.89,1939104,Weakening,Good,59.23%,0.57,136.38,152.17,53%
+WBTN,"Webtoon Entertainment Inc","Internet - Content",9.42,+6.80%,6,Sell,"88% Sell",-29.92,-24.40%,9.92,9.98,10.64,9.45,47.81,-35.07,-34.69,398103,Average,Soft,25.06%,0.71,8.64,10.25,48%
+NINE,"Nine Energy Service Inc","Oil - Field Services",6.72,-3.72%,2,Sell,N/A,-30.84,N/A,9.63,8.16,9.88,7.41,39,N/A,N/A,N/A,N/A,N/A,22.57%,0.7,6.59,8.22,8%
+GECC,"Great Elm Capital Corp","Finance - Investment Mgmt",4.96,+0.40%,3,Sell,"88% Sell",-31.23,-34.22%,5.34,5.11,5.48,4.93,48.31,-44.89,-36.58,82119,Weakening,Weak,55.77%,0.61,4.71,5.15,57%
+TSHA,"Taysha Gene Therapies Inc","Medical - Generic Drugs",3.99,-0.25%,7,Sell,"100% Sell",-31.73,-3.86%,5.21,4.4,5.52,4.15,41.66,-14.53,-34.43,3137580,Strongest,Strong,15.85%,0.88,3.88,4.41,20%
+MZTI,"The Marzetti Company","Food - Misc & Diversified",110.26,+1.74%,7,Buy,"8% Sell",-32.03,-35.22%,108.17,104.91,110.65,109.68,54.39,-45.89,-39.92,348871,Weakest,Minimum,73.88%,0.62,106.28,113.09,58%
+TZOO,"Travelzoo Inc","Internet Commerce",5.23,+3.16%,5,Sell,"88% Sell",-32.06,-23.76%,6.88,5.33,7.85,5.14,49.78,-34.43,-33.52,137888,Weakening,Strong,49.81%,0.85,4.9,5.37,70%
+SFIX,"Stitch Fix Inc","Retail - Apparel & Shoes",2.86,+2.14%,5,Buy,"40% Sell",-33.25,-29.56%,3.17,2.72,3.35,2.77,53.82,-40.23,-52.5,2140166,Weakest,Average,51.83%,0.77,2.58,2.97,73%
+MINE,"Mayfair Gold Corp","Mining - Gold",2.2,-3.08%,1,Sell,"100% Sell",-33.68,-27.80%,2.63,2.57,2.7,2.36,39.76,-38.47,-44.21,90255,Strongest,Good,12.42%,0.36,2.19,2.53,4%
+XFOR,"X4 Pharmaceuticals Inc","Medical - Biomedical",2.98,-3.56%,8,Hold,"80% Sell",-33.81,-17.22%,3.58,3.11,3.75,3.2,44.79,-27.89,-32.48,684096,Strengthening,Strong,25.31%,0.7,2.94,3.46,8%
+BRID,"Bridgford Foods Corp","Food - Misc & Diversified",5.29,+0.95%,1,Sell,"100% Sell",-34.12,-30.58%,5.99,5.6,6.48,5.39,44.62,-41.25,-39.16,4008,Strongest,Maximum,28.15%,0.35,5.19,5.59,24%
+KOSS,"Koss Corp","Audio & Video Products",3.14,+2.95%,1,Sell,"100% Sell",-34.60,-32.33%,3.62,3.54,3.77,3.27,40.33,-43.,-31.13,27061,Strongest,Strong,26.41%,0.9,3,3.54,25%
+WTF,"Waton Financial Ltd","Finance - Misc Services",2,-0.99%,4,Sell,"100% Sell",-35.01,-60.32%,2.59,2.34,2.87,2.09,41.99,-70.99,-46.37,47442,Strongest,Strong,58.16%,0.44,1.81,2.38,34%
+SMSI,"Smith Micro Software","Computer - Software",2.22,-2.20%,6,Hold,"96% Sell",-35.78,-25.29%,2.63,2.52,3.02,2.33,41.91,-35.96,-24.79,77528,Strongest,Strong,45.15%,3.28,2.12,2.55,23%
+CSPI,"C S P Inc","Computer - Integrated Systems",7.23,+1.97%,4,Sell,"100% Sell",-35.83,-34.69%,7.76,7.47,8.25,7.28,48.06,-45.36,-49.14,21927,Average,Average,46.41%,0.52,6.83,7.72,45%
+ASPS,"Altisource Portfolio","REIT - Mortgage Trusts",5.86,+0.60%,2,Sell,"64% Sell",-36.27,-39.77%,5.86,5.73,6.11,5.63,55.31,-50.44,-22.66,21753,Weakest,Weak,62.32%,0.6,5.32,5.93,88%
+MAIR,"Madison Air Solutions Corporation Cl A","Electronics Products - Misc",22.86,+1.55%,7,Sell,N/A,-36.70,N/A,27.59,23.88,31.43,23.41,45.75,N/A,N/A,N/A,N/A,N/A,37.94%,1.7,21.76,25.06,33%
+CSBR,"Champions Oncolog","Medical - Drugs",4.44,-3.30%,3,Sell,"100% Sell",-36.98,-35.18%,5.16,4.87,5.46,4.76,32.2,-45.85,-42.73,9133,Strongest,Maximum,15.18%,1.17,4.55,4.97,-26%
+CINT,"CI&T Inc Cl A","Internet - Software",2.93,+0.34%,6,Hold,"88% Sell",-37.25,-31.38%,3.26,3.08,3.47,3.08,41.64,-42.05,-34.99,114053,Average,Good,7.37%,0.41,2.88,3.29,12%
+LIF,"Life360 Inc","Protection - Safety",44.07,+0.59%,6,Hold,"48% Sell",-37.36,-35.23%,47.19,42.97,46.44,44.81,49.63,-45.9,-38.27,930094,Weakest,Weak,37.87%,0.98,41.95,47.67,37%
+DCH,"Dauch Corporation","Auto - Truck Original Parts",4.36,+0.69%,5,Sell,"100% Sell",-37.90,-27.69%,5.59,5.2,5.77,4.62,37.79,-38.36,-38.96,4717588,Strongest,Strong,26.98%,1.79,4.3,4.95,10%
+WINA,"Winmark Corp","Retail - Misc & Diversified",273.38,+5.31%,1,Sell,"100% Sell",-39.32,-31.81%,323.37,288.67,343.36,275.73,45.81,-42.48,-39.47,65838,Average,Maximum,22.80%,0.79,260.85,290.61,42%
+RAVE,"Rave Restaurant Group","Retail - Restaurants",2.01,-1.47%,3,Sell,"100% Sell",-40.12,-33.88%,2.75,2.33,2.8,2.14,32.74,-44.55,-46.07,56915,Strongest,Maximum,14.64%,0.35,2.02,2.26,-5%
+MBI,"MBIA Inc","Insurance - Multi Line",4.47,+0.45%,9,Buy,"72% Sell",-41.00,-41.49%,5,4.49,5.34,4.55,45.18,-52.16,-44.55,378121,Weakening,Strong,47.27%,1.1,4.33,4.78,31%
+FBRT,"Franklin Bsp Realty Trust Inc","REIT - Mortgage Trusts",6.16,+1.99%,8,Sell,"100% Sell",-41.58,-37.78%,7.3,6.56,7.77,6.23,44.83,-48.45,-45.56,1352446,Average,Maximum,28.07%,0.75,6,6.47,34%
+IMRX,"Immuneering Corp Cl A","Medical - Biomedical",3.5,+1.16%,4,Sell,"100% Sell",-41.82,-51.05%,4.38,3.92,4.57,3.7,42.64,-61.72,-53.79,1022135,Strengthening,Strong,21.70%,0.97,3.37,4.03,20%
+BNTC,"Benitec Biopharma Ltd ADR","Medical - Biomedical",8.27,+1.47%,5,Sell,"100% Sell",-43.69,-38.88%,11.05,9.41,11.31,8.86,41.43,-49.55,-45.58,151460,Strengthening,Maximum,15.59%,0.68,7.99,9.73,16%
+NYC,"American Strategic Investment CO","Real Estate Operations",5.13,-6.73%,1,Sell,"100% Sell",-44.42,-35.88%,7.04,5.99,7.52,5.82,31.47,-46.54,-45.09,21667,Strongest,Maximum,14.48%,0.5,5.37,6.27,-27%
+NCEL,"Newcelx Ltd","Medical - Biomedical",2.65,-1.12%,4,Sell,"88% Sell",-44.62,-22.06%,3.22,2.86,3.28,2.68,46.7,-32.73,32.49,29454,Strengthening,Weak,50.71%,0.29,2.47,2.89,43%
+HUIZ,"Huize Holding Ltd ADR","Insurance - Brokers",2.26,-0.44%,2,Buy,"88% Buy",-44.73,-24.92%,1.56,1.79,1.55,2.23,58.35,-35.59,-26.55,726934,Average,Good,69.50%,0.08,2.07,2.39,58%
+UNCY,"Unicycive Therapeutics Inc","Medical - Drugs",3.57,-3.51%,3,Sell,"100% Sell",-45.79,-39.70%,4.69,4.11,5.65,3.67,42.99,-50.37,-45.11,978193,Strengthening,Strong,54.44%,1.35,3.43,3.92,29%
+RNTZ,Rantizo,"Aerospace - Defense",4.37,-0.23%,4,Hold,"16% Sell",-46.82,+35.38%,4.57,4.4,4.4,4.19,50.55,24.71,50.95,302961,Weakening,Minimum,40.41%,0.87,3.45,4.93,62%
+LVO,"Liveone Inc","Audio & Video Products",2.82,+4.06%,9,Hold,"64% Sell",-46.85,-36.05%,3.63,2.78,4.38,2.75,52.06,-46.72,-47.23,77597,Weakening,Strong,43.49%,0.28,2.32,3.17,58%
+XBP,"Xbp Global Holdings Inc","Internet - Software",2.58,+7.05%,2,Sell,"72% Sell",-46.91,-61.32%,2.91,3.01,2.8,2.84,40.35,-71.99,-69.09,15999,Strengthening,Weak,48.86%,5.33,2.54,3.13,6%
+ABVX,"Abivax Sa ADR","Medical - Biomedical",83.83,+2.11%,3,Sell,"100% Sell",-47.24,-26.36%,109.41,92.77,109.96,87.3,41.54,-37.03,-44.82,1338161,Strengthening,Strong,10.04%,1.04,82.2,92.41,16%
+RGP,"Resources Connection Inc",Staffing,2.54,-3.79%,6,Sell,"100% Sell",-47.46,-46.41%,3.74,3.16,3.93,2.67,34.42,-57.08,-56.58,413282,Strongest,Maximum,32.10%,0.51,2.54,2.8,-1%
+RXST,"Rxsight Inc","Medical Instruments",5.01,+3.73%,9,Buy,"56% Sell",-47.97,-47.81%,5.5,4.96,5.62,4.95,50.57,-58.48,-58.9,910550,Average,Weak,61.62%,0.88,4.48,5.43,56%
+OCS,"Oculis Holding Ag","Medical - Biomedical",7.39,-1.60%,6,Sell,"100% Sell",-48.53,-61.69%,10.5,8.48,14.3,7.69,40.6,-72.36,-69.97,426555,Strengthening,Strong,35.44%,1.02,7.04,8.35,27%
+VNDA,"Vanda Pharmaceuticals","Medical - Biomedical",3.75,-1.57%,3,Sell,"100% Sell",-48.69,-29.91%,4.94,4.4,5.42,3.92,39.01,-40.58,-64.46,1489517,Strongest,Strong,24.98%,0.82,3.64,4.2,20%
+KRKR,"36Kr Holdings Inc ADR","Business Information",2.68,-3.44%,3,Sell,"88% Sell",-48.96,-49.05%,2.94,2.99,3.14,2.85,39.17,-59.72,-50.68,15750,Strongest,Average,59.41%,0.41,2.6,3.09,17%
+FGC,"Fg Communities Holdings Inc","Real Estate Operations",5.65,+4.82%,2,Sell,"88% Sell",-49.60,-58.76%,6.6,6.39,6.61,5.53,48.33,-69.43,-65.89,99926,Average,Weak,41.35%,0.28,4.64,6.43,57%
+JBDI,"Jbdi Holdings Ltd","Waste Removal Svcs",2.36,+0.85%,2,Buy,"88% Buy",-49.83,+18.01%,1.58,1.87,1.43,2.45,51.8,7.34,51.26,698004,Strengthening,Strong,15.21%,0.02,2.16,2.75,34%
+FULC,"Fulcrum Therapeutics Inc","Medical - Biomedical",3.72,-0.80%,5,Sell,"88% Sell",-50.66,-61.77%,3.74,3.73,4.4,3.71,49.91,-72.44,-74.09,1677270,Average,Average,54.17%,0.46,3.64,3.79,54%
+ROC,"Rank One Computing Corp","Internet - Software",3.6,+0.28%,3,Hold,N/A,-50.99,N/A,4.21,3.82,4.58,3.55,48.86,N/A,N/A,N/A,N/A,N/A,36.84%,0.66,3.24,3.87,58%
+ARDX,"Ardelyx Inc","Medical - Drugs",3.12,-1.89%,3,Sell,"88% Sell",-51.33,-46.30%,3.9,3.24,4.64,3.07,49.02,-56.97,-53.46,4122102,Weakening,Strong,53.01%,1.02,2.89,3.25,64%
+LUD,"Luda Technology Group Limited","Steel - Specialty",3.61,-2.43%,4,Sell,"100% Sell",-51.45,-49.51%,4.19,3.95,4.61,3.81,42.37,-60.18,-50.75,65530,Strengthening,Average,33.33%,0.55,3.5,4.12,17%
+SORA,Asiastrategy,"Leisure & Recreational Prdcts",2.2,-1.57%,1,Hold,"24% Buy",-53.17,-44.79%,2.18,2.3,2.29,2.36,43.7,-55.46,-34.85,78846,Weakest,Minimum,12.27%,0.01,2.18,2.53,5%
+GALT,"Galectin Therapeutic","Medical - Drugs",2.98,+2.41%,1,Sell,"40% Sell",-53.47,-51.86%,3.72,3.57,3.34,3.25,39.04,-62.53,-35.35,405829,Weakening,Weak,15.25%,1.01,2.88,3.63,14%
+TRT,"Trio-Tech International","Electronics - Measuring Inst",4.77,+0.85%,5,Sell,"100% Sell",-54.52,+20.76%,8.5,6.47,9.82,5.03,40.48,10.09,-34.93,609869,Strongest,Good,25.25%,0.26,4.41,5.64,29%
+SQNS,"Sequans Communications S A ADR","Electronics - Semiconductors",2.32,+0.87%,6,Sell,"100% Sell",-56.38,-61.59%,2.77,2.66,3.02,2.49,39.39,-72.26,-55.31,120032,Average,Soft,11.87%,2.03,2.25,2.73,14%
+CEPL,"Capstone Energy Plus Inc","Other Alt Energy",2.56,+1.19%,2,Sell,"100% Sell",-56.52,-17.42%,5.97,3.88,7.33,2.79,36.73,-28.09,-56.19,371303,Strengthening,Strong,30.90%,0.64,2.41,3.16,20%
+NAMS,"Newamsterdam Pharma Company N.V.","Medical - Drugs",19.74,+1.81%,3,Sell,"100% Sell",-56.59,-49.27%,25.25,21.22,27.72,19.95,45.74,-59.94,-50.71,1267620,Strengthening,Maximum,37.39%,1.04,18.45,21.44,43%
+GURE,"Gulf Resources Inc","Chemical - Diversified",2.84,+6.37%,2,Sell,"100% Sell",-56.64,-29.00%,3.27,3.1,3.61,2.94,46.01,-39.67,-30.22,49784,Strengthening,Good,20.34%,0.09,2.67,3.21,31%
+VITL,"Vital Farms Inc","Food - Misc & Diversified",9.6,+13.61%,6,Hold,"64% Sell",-57.79,-69.71%,10.74,9.53,10.74,9.36,52.36,-80.38,-76.92,2340832,Weakest,Weak,23.97%,1.57,8.38,10.33,62%
+IZEA,"Izea Inc","Internet - Software",2.2,-4.76%,5,Hold,"96% Sell",-58.63,-58.10%,2.87,2.42,3.21,2.29,42.91,-68.77,-56.75,54384,Strongest,Strong,34.13%,2.37,2.13,2.45,22%
+NVNO,"Envveno Medical Corp","Medical Instruments",5.77,0.00%,2,Sell,"100% Sell",-59.75,-50.00%,9.31,7.78,9.8,6.62,28.74,-60.67,-55.59,20201,Strongest,Average,7.33%,0.55,5.82,7.41,-3%
+BTLN,"Brightline Interactive Inc","IT Services",3.18,-2.75%,1,Sell,"88% Sell",-59.82,-61.78%,5.8,4.52,5.72,3.4,35.19,-72.45,-64.05,30713,Strongest,Strong,27.80%,0.92,2.92,3.88,27%
+INLX,"Intellinetics Inc","Internet - Content",3.79,+2.99%,3,Sell,"100% Sell",-59.88,-57.80%,5.24,4.67,5.98,4,36.63,-68.47,-59.47,6718,Strengthening,Maximum,13.40%,0.25,3.54,4.47,27%
+NERV,"Minerva Neuroscie","Medical - Drugs",2.18,+0.93%,6,Sell,"100% Sell",-60.75,-49.30%,3.69,2.88,4.25,2.34,37.7,-59.97,-52.75,218648,Strengthening,Strong,27.50%,1.6,2.07,2.61,20%
+GWAV,"Greenwave Technology Solutions Inc","Metal Products - Distribution",2.01,0.00%,1,Sell,"100% Sell",-61.62,-68.54%,3.05,2.4,3.23,2.09,41.56,-79.21,-68.62,51333,Strengthening,Average,15.24%,0.46,1.83,2.34,35%
+ALHC,"Alignment Healthcare Inc","Medical Services",6.72,-11.81%,3,Sell,"100% Sell",-62.60,-58.26%,12.56,8.3,14.65,7.63,35.43,-68.93,-72.95,5889232,Strongest,Maximum,26.60%,0.73,6.79,8.48,-4%
+CTSO,"Cytosorbents Cor","Medical Products",5.57,+23.12%,4,Buy,"40% Sell",-62.65,-55.23%,6.06,4.77,7.49,4.98,56.47,-65.9,-63.45,15775,Weakest,Average,51.30%,0.37,3.92,6.03,78%
+KNDI,"Kandi Technologies Group Inc","Leisure & Recreational Prdcts",3.4,-4.49%,2,Sell,"100% Sell",-62.87,-64.36%,5.77,4.91,6.24,3.44,37.71,-75.03,-63.81,94642,Strengthening,Maximum,51.03%,0.3,3.21,3.68,41%
+RXT,"Rackspace Technology Inc","Technology Services",2.43,+3.18%,5,Sell,"88% Sell",-63.05,+118.92%,3.76,3.25,3.99,2.71,41.23,108.25,143.3,18608150,Strengthening,Soft,17.79%,0.88,2.26,3.16,18%
+SPAI,"Safe Pro Group Inc","Technology Services",2.91,-4.28%,1,Sell,"100% Sell",-63.99,-40.49%,4.08,3.72,4.28,3.07,43.57,-51.16,-37.03,386728,Strengthening,Strong,43.28%,1.95,2.61,3.52,33%
+NKTR,"Nektar Therapeutics","Medical - Drugs",34.42,-4.15%,3,Sell,"100% Sell",-64.03,-41.83%,59.1,46.15,63.43,37.49,30.96,-52.5,-25.57,1098123,Strongest,Maximum,9.34%,0.64,35.26,39.73,-19%
+FAC,"Factorial Energy Inc","Technology Services",3.74,+1.08%,1,Sell,"100% Sell",-64.35,-63.08%,5.53,4.97,7.64,4.18,35.79,-73.75,-70.65,322472,Average,Good,6.81%,1.17,3.68,4.68,6%
+GSIW,"Garden Stage Limited","Finance - Misc Services",10.37,-0.38%,2,Sell,"88% Sell",-64.55,-62.59%,17.69,12.16,20.65,10.19,45.01,-73.26,-66.85,26345,Weakening,Average,44.89%,0.05,9.37,11.01,61%
+SION,"Sionna Therapeutics Inc","Medical - Biomedical",2.97,-3.26%,3,Sell,"100% Sell",-64.85,-92.41%,16.52,4.66,24.29,3.57,27.62,-103.08,-99.76,1032813,Average,Strong,5.21%,0.46,2.97,4.17,0%
+LXEO,"Lexeo Therapeutics Inc","Medical - Drugs",2.95,+3.33%,8,Sell,"100% Sell",-64.87,-67.86%,4,3.28,4.42,2.99,46.6,-78.53,-77.27,1242380,Average,Strong,19.48%,0.75,2.7,3.28,42%
+AIBZ,"Bitzero Holdings Inc","IT Services",2.62,+5.22%,3,Sell,"88% Sell",-65.60,N/A,4.87,3.41,5.01,2.82,43.94,N/A,6.93,361207,Average,Strong,27.14%,0.97,2.21,3.43,33%
+PN,"Pn Smart Energy Limited","Other Alt Energy",2.2,-2.65%,3,Sell,"100% Sell",-66.75,-86.45%,3.71,2.44,3.77,2.32,39.79,-97.12,-91.82,772211,Strengthening,Weak,25.53%,0.18,2.2,2.43,-2%
+GRNQ,"Greenpro Capital Corp","Finance - Misc Services",7.29,+1.39%,1,Sell,"88% Sell",-67.15,-54.15%,10.66,8.32,13.55,7.1,46.59,-64.82,-67.57,25488,Average,Strong,67.31%,0.1,6.4,7.79,64%
+QNRX,"Quoin Pharmaceuticals Ltd ADR","Medical - Drugs",3.56,+5.95%,7,Sell,"100% Sell",-67.51,-81.50%,4.92,4.78,5.02,3.88,37.58,-92.17,-82.31,280141,Strengthening,Average,13.35%,0.23,3.37,4.39,18%
+ATXG,"Addentax Group Corp","Conglomerates - Div Operations",2.48,-1.49%,4,Sell,"100% Sell",-68.07,-63.29%,3.49,3.12,4.03,2.71,41.4,-73.96,-64.87,71616,Strongest,Average,52.00%,0.04,2.31,3.11,20%
+CRE,"Cre8 Enterprise Limited Cl A","Business Services",2.45,+3.38%,3,Sell,"88% Sell",-68.49,-50.24%,2.81,2.67,2.79,2.54,45.27,-60.91,-18.71,880338,Strengthening,Weak,27.24%,0.03,2.32,2.76,30%
+TVGN,"Tevogen Inc","Medical Services",6.14,+7.91%,2,Sell,"72% Sell",-68.61,-69.98%,6.35,6.65,7.09,5.99,49.77,-80.65,-69.89,20727,Weakening,Weak,52.71%,0.57,5.34,6.64,62%
+TARA,"Artara Therapeutics Inc","Medical - Drugs",2.34,+0.86%,5,Sell,"100% Sell",-69.28,-65.33%,3.4,2.8,3.83,2.41,43.02,-76.,-63.08,854448,Strengthening,Maximum,42.08%,0.93,2.2,2.62,33%
+SCOR,"Comscore Inc","Business Services",2.82,+1.44%,3,Sell,"100% Sell",-69.68,-55.90%,5.23,3.93,5.92,3.18,25.47,-66.57,-63.6,30204,Strongest,Maximum,10.87%,0.96,2.82,3.54,-1%
+COE,"51Talk Online Education Group","Consumer Services - Misc",10.6,-2.21%,4,Sell,"100% Sell",-69.76,-74.63%,14.04,11.25,17.27,11.16,43.44,-85.3,-73.78,20354,Strengthening,Good,34.09%,0.45,10.37,11.94,14%
+WNW,"Meiwu Technology Ltd","Technology Services",2.11,0.00%,1,Sell,"88% Sell",-70.24,-98.61%,2.52,2.2,2.89,2.04,50.84,-109.28,-105.46,876074,Weakening,Weak,79.17%,0.05,1.9,2.18,75%
+VRCA,"Verrica Pharmaceuticals Inc","Medical - Drugs",2.86,-9.08%,3,Sell,"100% Sell",-71.32,-25.46%,4.67,3.93,5.23,3.41,35.38,-36.13,-72.62,78752,Strongest,Maximum,14.07%,0.8,2.91,3.91,-6%
+AVX,"Avax One Technology Ltd","Finance - Misc Services",3.3,-8.84%,3,Sell,"72% Sell",-72.48,-83.13%,4.2,4.68,4.84,4.23,36.17,-93.8,-88.77,106386,Strengthening,Weak,8.78%,0.19,3.47,4.99,-11%
+FUBO,"Fubo TV","Broadcast - Radio & TV",6.73,-2.04%,4,Sell,"100% Sell",-72.58,-84.16%,9.29,8.71,9.68,7.7,29.6,-94.83,-84.72,1532491,Strongest,Soft,5.81%,2.43,6.97,8.43,-17%
+XE,"X-Energy Inc Cl A","Other Alt Energy",10.09,-0.30%,5,Sell,N/A,-73.67,N/A,15.26,12.74,0,10.72,39.79,N/A,N/A,N/A,N/A,N/A,45.40%,0.74,9.48,11.96,25%
+CITR,"Citrotech Inc","Protection - Safety",2.15,-9.28%,2,Sell,"100% Sell",-75.21,-75.00%,4.39,3.18,5.16,2.45,36.05,-85.67,-80.37,48889,Strengthening,Maximum,20.94%,1.1,2.12,2.78,4%
+SPHL,"Springview Holdings Ltd","Building & Construction - Misc",2.38,-1.65%,3,Buy,"88% Sell",-76.19,-26.49%,2.54,2.43,2.64,2.4,49.39,-37.16,7.44,660832,Strengthening,Soft,38.70%,0.01,2.02,2.78,47%
+SCNX,"Scienture Holdings Inc","Medical - Drugs",2.55,-7.61%,3,Sell,"100% Sell",-76.83,-83.75%,7.2,4.6,8.05,3.09,27.56,-94.42,-86.98,119641,Strongest,Strong,14.92%,0.48,2.6,3.58,-5%
+GLOO,"Gloo Holdings Inc","Internet - Software",2.67,-3.61%,3,Sell,"88% Sell",-78.54,N/A,3.47,3.54,4.24,2.91,32.22,N/A,-60.06,329324,Strengthening,Strong,25.36%,0.23,2.68,3.13,-2%
+JEM,"707 Cayman Holdings Ltd","Textile - Apparel",2.68,-6.12%,3,Sell,"88% Sell",-80.57,-95.71%,5.42,3.17,10.19,2.62,46.51,-106.38,-100.65,495888,Weakening,Weak,57.81%,0.95,2.17,3.07,57%
+EXOZ,"Exozymes Inc","Medical - Biomedical",3.43,+3.63%,4,Sell,"100% Sell",-80.76,-76.38%,5.59,4.94,6.81,4.04,34.55,-87.05,-75.51,7649,Strongest,Strong,22.65%,1.71,3.39,4.7,3%
+NNNN,"Anbio Biotechnology Cl A","Medical - Biomedical",3.6,-1.37%,3,Sell,"100% Sell",-81.12,-86.42%,6.98,4.58,12.92,3.74,40.45,-97.09,-95.01,75915,Average,Strong,34.70%,0.88,3.4,4.07,29%
+RYOJ,"Ryojbaba Co. Ltd","Business Services",2.25,-9.64%,1,Sell,"88% Sell",-81.74,-49.21%,3.76,3,3.36,2.46,37.72,-59.88,-33.21,401966,Strongest,Average,23.84%,0.67,2.17,2.74,14%
+NXGL,"Nexgel Inc","Medical Instruments",3.61,-5.13%,1,Sell,"100% Sell",-84.26,-89.87%,6.41,4.37,8.15,3.99,43.21,-100.54,-95.78,47447,Strengthening,Average,39.36%,0.11,3.22,4.77,25%
+AEMD,"Aethlon Medical Inc","Medical - HMO",5.11,+0.59%,5,Sell,"40% Sell",-84.98,-75.67%,4.12,5.32,6.19,5.36,45.19,-86.34,-70.08,867863,Weakest,Minimum,13.69%,0.01,4.9,5.83,23%
+OMH,"Ohmyhome Limited","Technology Services",4.09,-9.71%,5,Hold,"80% Sell",-86.41,-92.50%,7.35,4.26,18.8,6.84,46.9,-103.17,-96.85,1627435,Average,Average,1.53%,1.05,-5.28,18.95,39%
+SNAL,"Snail Inc Cl A",Gaming,2.31,+11.06%,5,Hold,"72% Sell",-87.21,-47.50%,3.06,2.31,3.28,2.23,51.37,-58.17,-55.01,1496513,Weakening,Average,32.18%,0.85,1.86,2.6,61%
+LIMN,"Liminatus Pharma Inc Cl A","Medical - Drugs",2.68,-4.63%,3,Sell,"100% Sell",-89.71,-95.17%,4.37,3.31,5.75,2.83,41.08,-105.84,-98.19,328875,Strengthening,Weak,56.72%,0.89,2.5,3.16,27%
+PMI,"Picard Medical Inc","Medical Information Systems",6.44,-6.80%,2,Hold,"48% Sell",-90.00,-94.93%,6.89,7.59,11.59,7.6,42.47,-105.6,-99.62,773204,Weakening,Weak,18.75%,0.04,6.21,8.99,8%
+WCT,"Wellchange Holdings Company Ltd","Internet - Software",2.89,-5.25%,3,Sell,"100% Sell",-91.46,-99.55%,38.63,26.55,55.07,3.12,26.03,-110.22,-106.26,149967,Average,Soft,23.00%,0.04,2.13,4.1,39%
+CPOP,"Pop Culture Group Company Cl A","Advertising Marketing Services",2.58,-0.39%,1,Sell,"100% Sell",-92.91,-96.03%,5.02,3.43,18.64,3.03,34.07,-106.7,-102.89,181567,Average,Average,25.67%,0.05,2.62,3.44,-6%
+TGL,"Treasure Global Inc","Internet Commerce",4.2,+15.70%,2,Sell,"100% Sell",-92.96,-98.81%,49.39,24.63,66.92,4.81,29.24,-109.48,-104.13,112819,Average,Average,22.60%,4.27,3.32,6.3,29%
+RPGL,"Republic Power Group Limited Cl A","Internet - Software",9.38,-0.79%,5,Sell,"100% Sell",-93.77,-99.85%,23.78,17.54,120.33,9.5,41.27,-110.52,-106.85,44340,Weakening,Weak,29.79%,0.06,6.01,13,48%
+NCT,"Intercont [Cayman] Limited","Transportation - Ship",6.62,-34.26%,5,Sell,"100% Sell",-93.80,-99.86%,342.1,21.78,412.78,9.49,28.85,-110.53,-106.29,103364,Average,Weak,59.34%,0.54,4.12,14.87,23%
+UCAR,"U Power Limited","Auto - Truck Original Parts",3.21,+7.00%,2,Sell,"88% Sell",-93.83,-99.20%,10.82,3.78,16.63,3.03,45.02,-109.87,-105.92,224955,Weakest,Weak,61.34%,0.14,2.73,3.33,81%
+HCAI,"Hauchen AI Parking Management Ltd","Technology Services",2.66,+6.40%,2,Sell,"100% Sell",-94.27,-98.91%,59.91,8.76,100.03,2.98,21.75,-109.58,-105.71,56867,Average,Average,36.57%,0.11,2.18,3.78,30%
+FXHO,"Utime Ltd","Wireless Equipment",4.9,-2.10%,1,Sell,"100% Sell",-94.50,-96.45%,10.48,8.67,10.92,5.95,34.47,-107.12,-97.37,158368,Strengthening,Soft,9.05%,1.16,4.53,7.36,13%
+ALP,"Alpha Compute Corp","Internet - Software",2.31,-5.92%,3,Sell,"100% Sell",-94.70,-98.39%,6.83,3.76,9.35,3.05,26.18,-109.06,-99.3,197317,Strengthening,Weak,10.25%,0.15,2.5,3.6,-17%
+SBFM,"Sunshine Biopharma","Medical - Biomedical",2.41,-5.12%,1,Sell,"100% Sell",-95.39,-99.19%,19.16,8.84,50.24,2.82,27.24,-109.86,-106.,126269,Weakening,Average,10.17%,0.06,2.35,3.29,6%
+KUST,"Kustom Entertainment Inc","Media Conglomerates",2.67,-4.64%,4,Sell,"100% Sell",-95.53,-98.58%,7.69,4.36,14.32,3.18,32.92,-109.25,-104.13,230763,Average,Weak,8.36%,0.05,2.69,3.66,-2%
+OFAL,"Ofa Group","Building - Residential & Comm",2.29,-1.72%,1,Sell,"100% Sell",-95.54,-96.37%,7.58,4.01,20.18,2.7,37.55,-107.04,-103.47,409788,Weakening,Average,31.37%,0.04,1.95,3.45,23%
+NXTT,"Next Technology Holding Inc","Internet - Software",3.88,+7.65%,4,Sell,"100% Sell",-95.96,-99.70%,25.41,5.17,67.38,4.78,35.14,-110.37,-106.34,57995,Average,Weak,7.94%,0.77,3.88,5.68,0%
+RETO,"Reto Eco-Solutions Inc","Building - CMT & CNT & AG",4.87,-6.88%,2,Sell,"100% Sell",-96.44,-99.74%,187.9,28.76,271.52,5.2,39.31,-110.41,-106.58,124944,Average,Weak,27.82%,0.08,2.71,7.69,43%
+SXTC,"China Sxt Pharmaceuticals Inc","Medical - Drugs",2.83,-1.05%,1,Sell,"100% Sell",-96.84,-100.00%,3344.69,101.3,7321.48,3.2,27.87,-110.67,-106.98,77934,Weakening,Weak,18.22%,0.11,2.17,4.23,32%
+PAVS,"Paranovus Entertainment Technology Ltd","Conglomerates - Div Operations",2.55,-4.14%,2,Sell,"100% Sell",-97.22,-100.00%,4.44,3.44,33.82,2.85,39.72,-110.67,-106.86,506410,Weakening,Weak,20.58%,0.94,2.25,3.44,25%
+TWG,"Top Wealth Group Holding Ltd","Food - Misc & Diversified",2.23,0.00%,1,Sell,"100% Sell",-98.62,-99.56%,85.02,12.09,154.81,3.04,21.36,-110.23,-106.3,42692,Weakening,Strong,6.15%,0.03,1.79,4.3,18%
+VCIG,"Vci Global Limited","Business Services",3.03,-9.28%,3,Sell,"100% Sell",-99.78,-99.98%,106.75,14.35,348.86,4.77,30.66,-110.65,-106.94,132250,Weakening,Weak,8.19%,0.08,2.2,7.34,16%
+AIIR,"Air Global Plc",Tobacco,6.04,-17.93%,3,Sell,N/A,N/A,N/A,7.13,7.49,0,7.48,29.79,N/A,N/A,N/A,N/A,N/A,13.01%,0.86,6.7,8.26,-42%
+ATTO,"Attovia Therapeutics Inc","Medical - Biomedical",15.53,+4.51%,6,N/A,N/A,N/A,N/A,0,16.99,0,15.25,48.39,N/A,N/A,N/A,N/A,N/A,35.23%,0.89,13.8,16.7,60%
+ELOX,"Eloxx Pharmaceuticals Inc","Medical - Biomedical",10.41,-11.33%,1,Sell,N/A,N/A,N/A,14.71,14.23,0,12.81,29.7,N/A,N/A,N/A,N/A,N/A,21.86%,1.03,11.48,14.15,-40%
+OCTV,"Octave Intelligence Plc Cl B","Internet - Software",21.3,+2.55%,7,Buy,N/A,N/A,N/A,19.12,20.17,0,21.34,53.68,N/A,N/A,N/A,N/A,N/A,48.16%,1.47,20.62,22.06,47%
+SCTX,"Scribe Therapeutics Inc","Medical - Biomedical",14.05,-10.91%,2,N/A,N/A,N/A,N/A,0,20.24,0,16.22,35.95,N/A,N/A,N/A,N/A,N/A,21.67%,0.61,14.34,18.11,-8%
+SECZ,"Securitize Corp","Finance - Misc Services",6.74,-2.74%,1,N/A,N/A,N/A,N/A,0,10.15,0,7.76,38.5,N/A,N/A,N/A,N/A,N/A,10.00%,0.57,6.53,8.99,8%
+SIND,"Sinda Ltd","Mining - Silver",11.63,-3.08%,6,Sell,N/A,N/A,N/A,13.78,12.96,0,11.83,42.72,N/A,N/A,N/A,N/A,N/A,36.61%,3.82,11.11,12.56,36%
+TCGX,"Tcgx Acquisition Corp. Cl A",Unclassified,10.02,-0.10%,1,N/A,N/A,N/A,N/A,0,11.83,0,10.05,31.85,N/A,N/A,N/A,N/A,N/A,21.11%,0.13,9.98,10.11,30%
+TP,"Ticketplus Ltd","Technology Services",8.4,-1.18%,3,N/A,N/A,N/A,N/A,0,8.38,0,8.27,51.94,N/A,N/A,N/A,N/A,N/A,63.71%,0.37,7.88,8.66,66%
+"Downloaded from Barchart.com as of 11-18-2026 09:04pm CST"
